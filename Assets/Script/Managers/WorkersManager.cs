@@ -5,6 +5,7 @@ using UnityEngine;
 public class WorkersManager : MonoBehaviour {
     public GameObject leader;
     public int LaneWidth = 5;
+
     // Use this for initialization
     void Start () {
         GlobalData.Leader = leader;
@@ -25,20 +26,15 @@ public class WorkersManager : MonoBehaviour {
             Vector3 newPos = leader.transform.position;
             newPos.x = -12;
             leader.transform.position = newPos;
-            StartCoroutine(SetWorkersNewPos());
+            SetWorkersNewPos();
         }
     }
-    IEnumerator SetWorkersNewPos()
+
+    void SetWorkersNewPos()
     {
-        for (int i = 0; i < 1000; i++)
-        {
-            yield return null;
-        }
-        foreach (GameObject worker in GlobalData.workers)
-        {
-            GlobalData.workersRb.Add(worker.GetComponent<Rigidbody>());
-        }
+        Vector3 oldWorkersPos = new Vector3();
     }
+
     private void FixedUpdate()
     {
         GlobalData.LaneWidth = LaneWidth;
