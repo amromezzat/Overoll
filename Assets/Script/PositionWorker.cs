@@ -30,7 +30,7 @@ public class PositionWorker : MonoBehaviour
         desiredVelocity = desiredVelocity.normalized * maxVel;
         Vector3 steerToLeader = desiredVelocity - rb.velocity;
         steerToLeader = steerToLeader.normalized * maxForce;
-        float decelerate = GetDeceleration(desiredVelocity.magnitude, steerToLeader.magnitude);
+        float decelerate = GetDeceleration(desiredVelocity.sqrMagnitude, steerToLeader.magnitude);
         steerToLeader *= decelerate * Time.deltaTime;
         if (GlobalData.Leader.transform.position.z - GlobalData.LaneWidth < transform.position.z
             && GlobalData.Leader.transform.position.z + GlobalData.LaneWidth > transform.position.z)
@@ -48,8 +48,8 @@ public class PositionWorker : MonoBehaviour
         {
             if (GlobalData.workers[i].GetInstanceID() != GetInstanceID())
             {
-                Vector3 averageDist = -transform.position + GlobalData.workers[i].transform.position;
-                if (averageDist.magnitude <= neighborDist)
+                Vector3 averageDist = GlobalData.workers[i].transform.position - transform.position;
+                if (averageDist.sqrMagnitude <= neighborDist)
                 {
                     averageDesiredVelocity += averageDist;
                     count++;
