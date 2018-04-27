@@ -932,9 +932,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leader: {fileID: 200170254}
   laneWidth: 5
-  workersSepDis: 3
+  workersSepDis: 2
   arrivalSlowingRad: 5
-  maxSepForce: 8
+  maxSepForce: 12
   maxFolForce: 10
   maxSpeed: 10
   aheadFollowPoint: 2
