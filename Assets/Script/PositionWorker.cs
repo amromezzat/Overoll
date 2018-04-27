@@ -17,8 +17,7 @@ public class PositionWorker : MonoBehaviour
     void Update()
     {
         newVelocity = Vector2.ClampMagnitude(SteeringForce(), GlobalData.maxSpeed);
-        rb.AddForce(new Vector3(newVelocity.x, rb.velocity.y, newVelocity.y));
-        //rb.velocity += new Vector3(newVelocity.x, rb.velocity.y, newVelocity.y);
+        rb.AddForce(new Vector3(newVelocity.x, 0, newVelocity.y));
     }
 
     Vector2 SteeringForce()
@@ -55,19 +54,24 @@ public class PositionWorker : MonoBehaviour
         seperationForce /= neighborCount;
         //move in the opposite direction from the average direction from the workers
         seperationForce *= -1;
-        seperationForce.Normalize();
-        seperationForce *= GlobalData.maxSepForce;
+        seperationForce = seperationForce.normalized * GlobalData.maxSepForce;
         return seperationForce;
     }
 
     //chase leader while maintaining a distance behind him
     Vector2 FollowLeader()
     {
-        Vector3 traverseVec = GlobalData.leaderRb.velocity;
+        Vector2 traverseVec = Vector2.zero;
+        traverseVec.x = GlobalData.leaderRb.velocity.x;
+        traverseVec.y = GlobalData.leaderRb.velocity.z;
         traverseVec = traverseVec.normalized * GlobalData.aheadFollowPoint;
-        Vector3 aheadDis = GlobalData.leader.transform.position + traverseVec;
+        Vector2 aheadDis = Vector2.zero;
+        aheadDis.x = GlobalData.leader.transform.position.x + traverseVec.x;
+        aheadDis.y = GlobalData.leader.transform.position.z + traverseVec.y;
         // Calculate the desired velocity
-        Vector3 desiredVelocity = aheadDis - transform.position;
+        Vector2 desiredVelocity = Vector2.zero;
+        desiredVelocity.x = aheadDis.x - transform.position.x;
+        desiredVelocity.y = aheadDis.y - transform.position.z;
         float distance = desiredVelocity.magnitude;
 
         // Check the distance to detect whether the character
@@ -75,13 +79,15 @@ public class PositionWorker : MonoBehaviour
         if (distance < GlobalData.arrivalSlowingRad)
         {
             // Inside the slowing area
-            desiredVelocity  *= distance / GlobalData.arrivalSlowingRad;
+            desiredVelocity *= distance / GlobalData.arrivalSlowingRad;
         }
 
         // Set the steering based on this
-        Vector3 folForce = desiredVelocity - rb.velocity;
+        Vector2 folForce = Vector2.zero;
+        folForce.x = desiredVelocity.x - rb.velocity.x;
+        folForce.y = desiredVelocity.y - rb.velocity.z;
         folForce = Vector3.ClampMagnitude(folForce, GlobalData.maxFolForce);
-        return new Vector2(folForce.x, folForce.z);
+        return folForce;
     }
 
     float CalculateDisFrom(GameObject entity)
