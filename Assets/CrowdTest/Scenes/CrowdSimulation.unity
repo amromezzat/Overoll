@@ -122,7 +122,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4327680177311512, guid: 8631d67398357694f9b9b82eed5edf0e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 11.86
+      value: 12.27
       objectReference: {fileID: 0}
     - target: {fileID: 4327680177311512, guid: 8631d67398357694f9b9b82eed5edf0e, type: 2}
       propertyPath: m_LocalPosition.y
@@ -629,7 +629,7 @@ Transform:
   m_GameObject: {fileID: 812142725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 11.009999, y: -0.16999999, z: 6.76}
-  m_LocalScale: {x: 30, y: 1, z: 1}
+  m_LocalScale: {x: 118.89756, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1369029354}
   m_RootOrder: 0
@@ -713,7 +713,7 @@ Transform:
   m_GameObject: {fileID: 885773271}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 11.009999, y: -0.16999999, z: -5.24}
-  m_LocalScale: {x: 30, y: 1, z: 1}
+  m_LocalScale: {x: 119.2717, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1369029354}
   m_RootOrder: 1
@@ -931,7 +931,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leader: {fileID: 200170254}
-  LaneWidth: 5
+  laneWidth: 5
+  workersSepDis: 3
+  arrivalSlowingRad: 5
+  maxSepForce: 8
+  maxFolForce: 10
+  maxSpeed: 10
+  aheadFollowPoint: 2
 --- !u!4 &1187881633
 Transform:
   m_ObjectHideFlags: 0
@@ -1293,6 +1299,11 @@ Prefab:
       propertyPath: m_Name
       value: Worker1
       objectReference: {fileID: 0}
+    - target: {fileID: 135896504964518608, guid: 8631d67398357694f9b9b82eed5edf0e,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8631d67398357694f9b9b82eed5edf0e, type: 2}
   m_IsPrefabParent: 0
@@ -1437,7 +1448,7 @@ Transform:
   m_GameObject: {fileID: 2061968513}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.115721, y: 1, z: 3.1906502}
+  m_LocalScale: {x: 12.193746, y: 1, z: 3.1906502}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
