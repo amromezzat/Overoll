@@ -5,89 +5,89 @@ using UnityEngine;
 public class PositionWorker : MonoBehaviour
 {
     Rigidbody rb;
-    int maxForce = 200;
-    int maxVel = 5;
-    float neighborDist = 2f;
-    Vector3 steerForce;
+    Vector2 newVelocity;
+    int lastNeighborsCount = 0;
+    int lastSepDis = 0;
 
     // Use this for initialization
     void Start()
     {
-        steerForce = Vector3.zero;
         rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        steerForce = FollowLeader() + KeepDistance();
+        newVelocity = Vector2.ClampMagnitude(SteeringForce(), GlobalData.maxSpeed);
+        rb.AddForce(new Vector3(newVelocity.x, rb.velocity.y, newVelocity.y));
+        //rb.velocity += new Vector3(newVelocity.x, rb.velocity.y, newVelocity.y);
     }
 
-    Vector3 FollowLeader()
+    Vector2 SteeringForce()
     {
-        //Vector3 LeaderFutureLocation = GlobalData.Leader.GetComponent<Rigidbody>().velocity.normalized * 100 + GlobalData.Leader.transform.position;
-        Vector3 desiredVelocity = GlobalData.Leader.transform.position - transform.position;
-        desiredVelocity = desiredVelocity.normalized * maxVel;
-        Vector3 steerToLeader = desiredVelocity - rb.velocity;
-        steerToLeader = steerToLeader.normalized * maxForce;
-        float decelerate = GetDeceleration(desiredVelocity.sqrMagnitude, steerToLeader.magnitude);
-        steerToLeader *= decelerate * Time.deltaTime;
-        if (GlobalData.Leader.transform.position.z - GlobalData.LaneWidth < transform.position.z
-            && GlobalData.Leader.transform.position.z + GlobalData.LaneWidth > transform.position.z)
-        {
-            steerToLeader.z = 0;
-        }
-        return steerToLeader;
+        // Creates a force to arrive at the behind point
+        Vector2 steeringForce = FollowLeader(); // 50 is the arrive radius
+
+        //seperate workers
+        steeringForce += StayAway();
+        return steeringForce;
+
     }
 
-    Vector3 KeepDistance()
+    //seperating worker force
+    Vector2 StayAway()
     {
-        Vector3 averageDesiredVelocity = Vector3.zero;
-        int count = 0;
-        for (int i = 0; i < GlobalData.workers.Count; i++)
+        //the point and magnitude at which we give to the worker
+        //to the avoid the crowd
+        Vector2 seperationForce = Vector2.zero;
+        int neighborCount = 0;
+
+        foreach (GameObject worker in GlobalData.workers)
         {
-            if (GlobalData.workers[i].GetInstanceID() != GetInstanceID())
+            if (worker.GetInstanceID() != GetInstanceID() && CalculateDisFrom(worker) < GlobalData.workersSepDis)
             {
-                Vector3 averageDist = GlobalData.workers[i].transform.position - transform.position;
-                if (averageDist.sqrMagnitude <= neighborDist)
-                {
-                    averageDesiredVelocity += averageDist;
-                    count++;
-                }
+                seperationForce.x += worker.transform.position.x - transform.position.x;
+                seperationForce.y += worker.transform.position.z - transform.position.z;
+                neighborCount++;
             }
         }
-        if (count > 0)
-        {
-            averageDesiredVelocity /= count;
-            averageDesiredVelocity = averageDesiredVelocity.normalized * maxVel;
-            Vector3 SteerToKeepDist = averageDesiredVelocity - rb.velocity;
-            SteerToKeepDist = -SteerToKeepDist.normalized * maxForce / 40;
-            //float decelerate = GetDeceleration(SteerToKeepDist.magnitude, SteerToKeepDist.magnitude);
-            //steerToLeader *= decelerate * Time.deltaTime;
-            return SteerToKeepDist;
-        }
-        return Vector3.zero;
+        if (neighborCount == 0)
+            return seperationForce;
+        //get the average point to apply the seperation
+        seperationForce /= neighborCount;
+        //move in the opposite direction from the average direction from the workers
+        seperationForce *= -1;
+        seperationForce.Normalize();
+        seperationForce *= GlobalData.maxSepForce;
+        return seperationForce;
     }
 
-    private void FixedUpdate()
+    //chase leader while maintaining a distance behind him
+    Vector2 FollowLeader()
     {
-        //rb.angularVelocity = Vector3.zero;
-        rb.velocity = steerForce;
-        //rb.AddForce(steerForce, ForceMode.VelocityChange);
+        Vector3 traverseVec = GlobalData.leaderRb.velocity;
+        traverseVec = traverseVec.normalized * GlobalData.aheadFollowPoint;
+        Vector3 aheadDis = GlobalData.leader.transform.position + traverseVec;
+        // Calculate the desired velocity
+        Vector3 desiredVelocity = aheadDis - transform.position;
+        float distance = desiredVelocity.magnitude;
+
+        // Check the distance to detect whether the character
+        // is inside the slowing area
+        if (distance < GlobalData.arrivalSlowingRad)
+        {
+            // Inside the slowing area
+            desiredVelocity  *= distance / GlobalData.arrivalSlowingRad;
+        }
+
+        // Set the steering based on this
+        Vector3 folForce = desiredVelocity - rb.velocity;
+        folForce = Vector3.ClampMagnitude(folForce, GlobalData.maxFolForce);
+        return new Vector2(folForce.x, folForce.z);
     }
 
-    //decelerate before hitting the leader
-    public static float GetDeceleration(float dist, float speed)
+    float CalculateDisFrom(GameObject entity)
     {
-        if (dist < 0.5)
-        {
-            return 0.1f / speed;
-        }
-        else if (dist < 2)
-        {
-            return dist / speed;
-        }
-
-        return 1;
+        return (entity.transform.position - transform.position).magnitude;
     }
 }
