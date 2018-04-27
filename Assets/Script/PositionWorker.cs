@@ -6,8 +6,6 @@ public class PositionWorker : MonoBehaviour
 {
     Rigidbody rb;
     Vector2 newVelocity;
-    int lastNeighborsCount = 0;
-    int lastSepDis = 0;
 
     // Use this for initialization
     void Start()
