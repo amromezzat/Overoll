@@ -6,16 +6,19 @@ public class WorkersManager : MonoBehaviour
 {
     public static WorkersManager instance = null;
     public GameObject leader;
-    public static Rigidbody leaderRb;
-    public static int laneWidth = 5; //width of each seperate lane
-    public static int workersSepDis = 5;//distance workers keep from each other
-    public static int arrivalSlowingRad = 5;//slow when entering this rad
-    public static int maxSepForce = 10;
-    public static int maxFolForce = 10;
-    public static int maxSpeed = 10;
-    public static int aheadFollowPoint = 5;//distance infront of workers to follow
-    public static List<GameObject> workers;
-    public static List<Rigidbody> workersRb = new List<Rigidbody>();
+    [HideInInspector]
+    public Rigidbody leaderRb;
+    public int laneWidth = 5; //width of each seperate lane
+    public int workersSepDis = 5;//distance workers keep from each other
+    public int arrivalSlowingRad = 5;//slow when entering this rad
+    public int maxSepForce = 10;
+    public int maxFolForce = 10;
+    public int maxSpeed = 10;
+    public int aheadFollowPoint = 5;//distance infront of workers to follow
+    [HideInInspector]
+    public List<GameObject> workers;
+    [HideInInspector]
+    public List<Rigidbody> workersRb = new List<Rigidbody>();
 
     private void Awake()
     {
@@ -38,22 +41,13 @@ public class WorkersManager : MonoBehaviour
         {
             workersRb.Add(worker.GetComponent<Rigidbody>());
         }
-        leaderRb.velocity = new Vector3(5, 0);
+        leaderRb.velocity = new Vector3(10, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateLeaderPos();
-
-        //used for testing at this point for WorkersManager update should be empt
-        if (leader.transform.position.x > 100)
-        {
-            Vector3 newPos = leader.transform.position;
-            newPos.x = -100;
-            leader.transform.position = newPos;
-            SetWorkersNewPos();
-        }
     }
 
     void SetWorkersNewPos()
@@ -68,6 +62,14 @@ public class WorkersManager : MonoBehaviour
 
     void UpdateLeaderPos()
     {
+        //used for testing at this point for WorkersManager update should be empt
+        if (leader.transform.position.x > 100)
+        {
+            Vector3 newPos = leader.transform.position;
+            newPos.x = -100;
+            leader.transform.position = newPos;
+            SetWorkersNewPos();
+        }
     }
 
 }
