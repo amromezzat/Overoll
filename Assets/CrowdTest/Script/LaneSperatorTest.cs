@@ -17,10 +17,10 @@ public class LaneSperatorTest : MonoBehaviour
     void Update()
     {
         Vector3 LaneSepPos = LaneSperatorObj1.transform.position;
-        LaneSepPos.z = GlobalData.leader.transform.position.z + 6;
+        LaneSepPos.z = WorkersManager.instance.leader.transform.position.z + 6;
         LaneSperatorObj1.transform.position = LaneSepPos;
         LaneSepPos = LaneSperatorObj2.transform.position;
-        LaneSepPos.z = GlobalData.leader.transform.position.z - 6;
+        LaneSepPos.z = WorkersManager.instance.leader.transform.position.z - 6;
         LaneSperatorObj2.transform.position = LaneSepPos;
 
     }
