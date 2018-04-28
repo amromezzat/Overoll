@@ -16,7 +16,12 @@ public class PositionWorker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        newVelocity = Vector2.ClampMagnitude(SteeringForce(), WorkersManager.maxSpeed);
+
+    }
+
+    private void FixedUpdate()
+    {
+        newVelocity = Vector2.ClampMagnitude(SteeringForce(), WorkersManager.instance.maxSpeed);
         rb.AddForce(new Vector3(newVelocity.x, 0, newVelocity.y));
     }
 
@@ -39,9 +44,9 @@ public class PositionWorker : MonoBehaviour
         Vector2 seperationForce = Vector2.zero;
         int neighborCount = 0;
 
-        foreach (GameObject worker in WorkersManager.workers)
+        foreach (GameObject worker in WorkersManager.instance.workers)
         {
-            if (worker.GetInstanceID() != GetInstanceID() && CalculateDisFrom(worker) < WorkersManager.workersSepDis)
+            if (worker.GetInstanceID() != GetInstanceID() && CalculateDisFrom(worker) < WorkersManager.instance.workersSepDis)
             {
                 seperationForce.x += worker.transform.position.x - transform.position.x;
                 seperationForce.y += worker.transform.position.z - transform.position.z;
@@ -54,7 +59,7 @@ public class PositionWorker : MonoBehaviour
         seperationForce /= neighborCount;
         //move in the opposite direction from the average direction from the workers
         seperationForce *= -1;
-        seperationForce = seperationForce.normalized * WorkersManager.maxSepForce;
+        seperationForce = seperationForce.normalized * WorkersManager.instance.maxSepForce;
         return seperationForce;
     }
 
@@ -62,9 +67,9 @@ public class PositionWorker : MonoBehaviour
     Vector2 FollowLeader()
     {
         Vector2 traverseVec = Vector2.zero;
-        traverseVec.x = WorkersManager.leaderRb.velocity.x;
-        traverseVec.y = WorkersManager.leaderRb.velocity.z;
-        traverseVec = traverseVec.normalized * WorkersManager.aheadFollowPoint;
+        traverseVec.x = WorkersManager.instance.leaderRb.velocity.x;
+        traverseVec.y = WorkersManager.instance.leaderRb.velocity.z;
+        traverseVec = traverseVec.normalized * WorkersManager.instance.aheadFollowPoint;
         Vector2 aheadDis = Vector2.zero;
         aheadDis.x = WorkersManager.instance.leader.transform.position.x + traverseVec.x;
         aheadDis.y = WorkersManager.instance.leader.transform.position.z + traverseVec.y;
@@ -76,17 +81,17 @@ public class PositionWorker : MonoBehaviour
 
         // Check the distance to detect whether the character
         // is inside the slowing area
-        if (distance < WorkersManager.arrivalSlowingRad)
+        if (distance < WorkersManager.instance.arrivalSlowingRad)
         {
             // Inside the slowing area
-            desiredVelocity *= distance / WorkersManager.arrivalSlowingRad;
+            desiredVelocity *= distance / WorkersManager.instance.arrivalSlowingRad;
         }
 
         // Set the steering based on this
         Vector2 folForce = Vector2.zero;
         folForce.x = desiredVelocity.x - rb.velocity.x;
         folForce.y = desiredVelocity.y - rb.velocity.z;
-        folForce = Vector3.ClampMagnitude(folForce, WorkersManager.maxFolForce);
+        folForce = Vector2.ClampMagnitude(folForce, WorkersManager.instance.maxFolForce);
         return folForce;
     }
 
