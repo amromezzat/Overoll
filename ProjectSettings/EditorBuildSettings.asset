@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 314b0967ebba01e4bb1915a86699eea2
+  - enabled: 1
+    path: Assets/CrowdTest/Scenes/CrowdSimulation.unity
+    guid: dcc3dd25f896867429079eddf1a0d2a7
