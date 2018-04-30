@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaneSperatorTest : MonoBehaviour
 {
-
+    public WorkerConfig wc;
     public GameObject LaneSperatorObj1;
     public GameObject LaneSperatorObj2;
     // Use this for initialization
@@ -17,10 +17,10 @@ public class LaneSperatorTest : MonoBehaviour
     void Update()
     {
         Vector3 LaneSepPos = LaneSperatorObj1.transform.position;
-        LaneSepPos.z = WorkersManager.instance.leader.transform.position.z + 6;
+        LaneSepPos.z = wc.leader.transform.position.z + 6;
         LaneSperatorObj1.transform.position = LaneSepPos;
         LaneSepPos = LaneSperatorObj2.transform.position;
-        LaneSepPos.z = WorkersManager.instance.leader.transform.position.z - 6;
+        LaneSepPos.z = wc.leader.transform.position.z - 6;
         LaneSperatorObj2.transform.position = LaneSepPos;
 
     }
