@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class WorkerController : MonoBehaviour
 {
+    public WorkerConfig wc;
     public int jumpSpeed = 10;
     public float gravityFactor = 10;
+    int laneNum = 2;
     Rigidbody rb;
     bool jumping = false;
     float t0;
@@ -29,6 +31,14 @@ public class WorkerController : MonoBehaviour
                 jumping = true;
                 t0 = Time.time;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if(laneNum-1<laneNum/2)
+                return;
+            Vector3 newPos = gameObject.transform.position;
+            newPos.x -= wc.laneWidth;
+            gameObject.transform.position = newPos;
         }
     }
 
