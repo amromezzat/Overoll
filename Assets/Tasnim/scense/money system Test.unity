@@ -463,6 +463,46 @@ Transform:
   m_PrefabParentObject: {fileID: 4327680177311512, guid: 8631d67398357694f9b9b82eed5edf0e,
     type: 2}
   m_PrefabInternal: {fileID: 999350495}
+--- !u!1 &121057523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 121057524}
+  - component: {fileID: 121057525}
+  m_Layer: 0
+  m_Name: Swip test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &121057524
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 121057523}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -75.97827, y: 5.118159, z: -11.6126795}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &121057525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 121057523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be28668f3607f349bfe0d7bac0c06d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &133303793
 Prefab:
   m_ObjectHideFlags: 0
@@ -4231,6 +4271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leader: {fileID: 1421545867}
+  leaderRb: {fileID: 0}
   laneWidth: 10
   workersSepDis: 2
   arrivalSlowingRad: 10
@@ -4238,6 +4279,8 @@ MonoBehaviour:
   maxFolForce: 10
   maxSpeed: 10
   aheadFollowPoint: 3
+  workers: []
+  workersRb: []
 --- !u!4 &1187881633
 Transform:
   m_ObjectHideFlags: 0
@@ -5016,6 +5059,46 @@ Rigidbody:
 Transform:
   m_PrefabParentObject: {fileID: 400016, guid: df38d25b6fd39b44eacfb4a2b784547c, type: 3}
   m_PrefabInternal: {fileID: 1471837488}
+--- !u!1 &1472382549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1472382551}
+  - component: {fileID: 1472382550}
+  m_Layer: 0
+  m_Name: 'touch test '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1472382550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1472382549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f051f725050b44c9b900d6f0b53234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1472382551
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1472382549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -75.97827, y: 5.118159, z: -11.6126795}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490537457
 GameObject:
   m_ObjectHideFlags: 0
@@ -6350,7 +6433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1638487326}
   m_Layer: 0
-  m_Name: Money
+  m_Name: Coins_Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
