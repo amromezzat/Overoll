@@ -8,8 +8,6 @@ public class WorkerConfig : ScriptableObject {
     public GameObject leader;
     [HideInInspector]
     public Rigidbody leaderRb;
-    public float laneWidth = 5;//width of each seperate lane
-    public float laneCount = 3;//number of available lanes
     public float workersSepDis = 5;//distance workers keep from each other
     public float arrivalSlowingRad = 5;//slow when entering this rad
     public float maxSepForce = 10;
@@ -19,5 +17,10 @@ public class WorkerConfig : ScriptableObject {
     [HideInInspector]
     public List<GameObject> workers;
     [HideInInspector]
-    public List<Rigidbody> workersRb = new List<Rigidbody>();
+    public List<Rigidbody> workersRb;
+    private void OnEnable()
+    {
+        workers = new List<GameObject>();
+        workersRb = new List<Rigidbody>();
+    }
 }

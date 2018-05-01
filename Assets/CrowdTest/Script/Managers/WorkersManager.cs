@@ -18,27 +18,9 @@ public class WorkersManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateLeaderPos();
-    }
-
-    void SetWorkersNewPos()
-    {
-
     }
 
     private void FixedUpdate()
     {
-
     }
-
-    void UpdateLeaderPos()
-    {
-    }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawCube(wc.leader.transform.position -new Vector3(0,wc.leader.transform.position.y,0) * wc.aheadFollowPoint, Vector3.one);
-    //}
-
 }
