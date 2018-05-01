@@ -87,4 +87,52 @@ public class Lanes : ScriptableObject
         currentLane = onGridLanes[++currentLaneIndex];
         return currentLane.laneCenter;
     }
+
+    //Add a lane to the left
+    public bool AddLeft()
+    {
+        //add a lane to the left if there is no more than 1 lane to the left
+        if (onGridLanes[0].laneNum > 0)
+        {
+            onGridLanes.Insert(0, gridLanes[onGridLanes[0].laneNum - 1]);
+            return true;
+        }
+        return false;
+    }
+
+    //Add a lane to the right
+    public bool AddRight()
+    {
+        //add a lane to the right if there is no more than 1 lane to the right
+        if (onGridLanes[onGridLanes.Count - 1].laneNum < 4)
+        {
+            onGridLanes.Add(gridLanes[onGridLanes[onGridLanes.Count - 1].laneNum + 1]);
+            return true;
+        }
+        return false;
+    }
+
+    //Remove a lane from the left
+    public bool RemoveLeft()
+    {
+        //remove a lane from the left if there is at least two lanes to the left of the middle one
+        if (onGridLanes[0].laneNum < 1)
+        {
+            onGridLanes.RemoveAt(0);
+            return true;
+        }
+        return false;
+    }
+
+    //Remove a lane from the right
+    public bool RemoveRight()
+    {
+        //remove a lane from the right if there is at least two lanes to the right of the middle one
+        if (onGridLanes[onGridLanes.Count - 1].laneNum > 3)
+        {
+            onGridLanes.RemoveAt(onGridLanes.Count - 1);
+            return true;
+        }
+        return false;
+    }
 }
