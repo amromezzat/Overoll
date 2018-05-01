@@ -39,7 +39,7 @@ public class Lanes : ScriptableObject
         onGridLanes.Add(currentLane);
 
         //initialize left and right lanes
-        for (int i = 1; i < laneCount; i++)
+        for (int i = 1; i < laneCount / 2; i++)
         {
             gridLanes[2 - i].laneCenter = -laneWidth * i;
             onGridLanes.Insert(0, gridLanes[2 - i]);
