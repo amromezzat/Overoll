@@ -13,9 +13,9 @@ public class MoveObsTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(transform.position.z < -10)
+		if(transform.position.z < -20)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, 10);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 20);
         }
 	}
 }
