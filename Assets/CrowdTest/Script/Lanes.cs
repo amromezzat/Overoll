@@ -94,6 +94,7 @@ public class Lanes : ScriptableObject
         //add a lane to the left if there is no more than 1 lane to the left
         if (onGridLanes[0].laneNum > 0)
         {
+            gridLanes[onGridLanes[0].laneNum - 1].laneCenter = laneWidth * (2 - gridLanes[onGridLanes[0].laneNum - 1].laneNum);
             onGridLanes.Insert(0, gridLanes[onGridLanes[0].laneNum - 1]);
             return true;
         }
@@ -106,6 +107,7 @@ public class Lanes : ScriptableObject
         //add a lane to the right if there is no more than 1 lane to the right
         if (onGridLanes[onGridLanes.Count - 1].laneNum < 4)
         {
+            gridLanes[onGridLanes[0].laneNum + 1].laneCenter = laneWidth * (2 - gridLanes[onGridLanes[0].laneNum + 1].laneNum);
             onGridLanes.Add(gridLanes[onGridLanes[onGridLanes.Count - 1].laneNum + 1]);
             return true;
         }
