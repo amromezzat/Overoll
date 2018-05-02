@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
+
+
+
+
 
 public class InputManager : MonoBehaviour
 {
@@ -62,7 +65,7 @@ public class InputManager : MonoBehaviour
                     if (swiptime < maxTime && swipdis > minSwipDis)
                     {
                         //  Debug.Log("enter the conditions ");
-                        Swip();
+                        Swipe();
                     }
 
                 }
@@ -117,7 +120,7 @@ public class InputManager : MonoBehaviour
                     if (swiptime < maxTime && swipdis > minSwipDis)
                     {
                         //  Debug.Log("enter the conditions ");
-                        Swip();
+                        Swipe();
                     }
 
                 }
@@ -129,7 +132,7 @@ public class InputManager : MonoBehaviour
     }
 
 
-    void Swip()
+    void Swipe()
     {
         Vector2 distance = startPos - endpos;
 
