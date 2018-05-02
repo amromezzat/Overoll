@@ -72,7 +72,7 @@ public class PositionWorker : MonoBehaviour
         Vector2 traverseVec = Vector2.zero;
         traverseVec.x = wc.leader.transform.position.x;
         traverseVec.y = wc.leader.transform.position.z;
-        traverseVec = traverseVec.normalized * wc.aheadFollowPoint;
+        traverseVec = traverseVec.normalized + new Vector2(0, wc.aheadFollowPoint);
         Vector2 aheadDis = Vector2.zero;
         aheadDis.x = wc.leader.transform.position.x + traverseVec.x;
         aheadDis.y = wc.leader.transform.position.z + traverseVec.y;
