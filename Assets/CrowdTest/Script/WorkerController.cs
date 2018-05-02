@@ -21,6 +21,8 @@ public class WorkerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        TheInputManager theInputManger = new TheInputManager();
+        theInputManger.OnJump.AddListener(Jump);
     }
 
     // Update is called once per frame
