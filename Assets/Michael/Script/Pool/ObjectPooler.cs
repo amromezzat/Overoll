@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This Class used to move the ground and act like the player keeps moving forward
+/// </summary>
 
 public class ObjectPooler : MonoBehaviour
 {
@@ -25,7 +28,7 @@ public class ObjectPooler : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 10; i++)
         {
             int index = 0;
             if (i > 4)
