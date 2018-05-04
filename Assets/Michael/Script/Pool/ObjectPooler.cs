@@ -38,33 +38,33 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    //private void Start()
-    //{
-    //    GameObject el = GetObjectFromPool();
-    //    MoveTile(el);
-    //    lastGen = el;
-    //}
+    private void Start()
+    {
+        GameObject el = GetObjectFromPool();
+        MoveTile(el);
+        lastGen = el;
+    }
 
     public void Update()
     {
 
-       // if (parent.transform.position.z - lastGen.transform.position.z > tileSize)
-       // {
+        if (parent.transform.position.z - lastGen.transform.position.z > tileSize)
+        {
             GameObject el = GetObjectFromPool();
             MoveTile(el);
-          //  lastGen = el;
-       // }
-       // else
-       // {
-        //    return;
-       // }
+            lastGen = el;
+        }
+        else
+        {
+            return;
+        }
     }
 
 
     public GameObject GetObjectFromPool()
     {
 
-        if (parent.transform.position.z - lastGen.transform.position.z > tileSize)
+   //     if (parent.transform.position.z - lastGen.transform.position.z > tileSize)
         {
             if (pool.Count == 0)
             {
@@ -83,8 +83,8 @@ public class ObjectPooler : MonoBehaviour
                 return element;
             }
         }
-        else
-            return null;
+     //   else
+       //     return null;
 
 
     }
