@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68d9d8690492a75499e5c85f2f69c453, type: 3}
-  m_Name: Middle
+  m_Name: FarRightLane
   m_EditorClassIdentifier: 
-  laneNum: 2
-  laneCenter: 0
+  laneNum: 4
+  laneCenter: 10

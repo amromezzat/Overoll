@@ -6,34 +6,28 @@ public class WorkerController : MonoBehaviour
 {
     public Lanes lanes;
     public WorkerConfig wc;
-    public int jumpSpeed = 15;
-    public int turnSpeed = 15;
-    public float gravityFactor = 10;
+
     Rigidbody rb;
+
     bool jumping = false;
     bool turningRight = false;
     bool turningLeft = false;
     float jumpt0;//jump start time
     float turnt0;//turn start time
+
     Vector3 newVel;
     Vector3 newPos;
+
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        TheInputManager theInputManger = new TheInputManager();
-        theInputManger.OnJump.AddListener(Jump);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Jump();
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-            MoveLeft();
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-            MoveRight();
+
     }
 
     void Jump()
@@ -41,7 +35,7 @@ public class WorkerController : MonoBehaviour
         //only jump if it is not yet currently jumping
         if (!jumping)
         {
-            rb.velocity += Vector3.up * jumpSpeed;
+            rb.velocity += Vector3.up * wc.jumpSpeed;
             jumping = true;
             jumpt0 = Time.time;
         }
@@ -52,7 +46,7 @@ public class WorkerController : MonoBehaviour
         if (!turningRight && !turningLeft)
         {
             lanes.GoLeft();
-            rb.velocity += turnSpeed * Vector3.left;
+            rb.velocity += wc.turnSpeed * Vector3.left;
             turningLeft = true;
             turnt0 = Time.time;
         }
@@ -63,20 +57,23 @@ public class WorkerController : MonoBehaviour
         if (!turningRight && !turningLeft)
         {
             lanes.GoRight();
-            rb.velocity += turnSpeed * Vector3.right;
+            rb.velocity += wc.turnSpeed * Vector3.right;
             turningRight = true;
             turnt0 = Time.time;
         }
     }
 
-    void FixedUpdate()
+    void Slide() {
+        print("sliding");
+    }
+
+    //applying gravitational force to the body
+    void StopJumping()
     {
-        newPos = transform.position;
-        newVel = rb.velocity;
         if (jumping)
         {
 
-            newVel.y -= gravityFactor * (Time.time - jumpt0);
+            newVel.y -= wc.gravityFactor * (Time.time - jumpt0);
             rb.velocity = newVel;
             // And test that the character is not on the ground again.
             //calculate platform height from equation platformHeigt(at x pos)
@@ -90,8 +87,13 @@ public class WorkerController : MonoBehaviour
                 jumping = false;
             }
         }
+    }
+
+    //when worker reaches lane center make him stick to it
+    void StopTurning()
+    {
         if ((turningRight && lanes.CurrentLane.laneCenter < transform.position.x)
-            || (turningLeft && lanes.CurrentLane.laneCenter > transform.position.x))
+    || (turningLeft && lanes.CurrentLane.laneCenter > transform.position.x))
         {
             //set within platfrom height from equation platformHeigt(at x pos)
             newPos.x = lanes.CurrentLane.laneCenter;
@@ -101,5 +103,30 @@ public class WorkerController : MonoBehaviour
             turningRight = false;
             turningLeft = false;
         }
+    }
+
+    void FixedUpdate()
+    {
+        newPos = transform.position;
+        newVel = rb.velocity;
+
+        StopJumping();
+        StopTurning();
+    }
+
+    public void OnEnable()
+    {
+        wc.onJump.AddListener(Jump);
+        wc.onSlide.AddListener(Slide);
+        wc.onLeft.AddListener(MoveLeft);
+        wc.onRight.AddListener(MoveRight);
+    }
+
+    public void OnDisable()
+    {
+        wc.onJump.RemoveListener(Jump);
+        wc.onSlide.RemoveListener(Slide);
+        wc.onLeft.RemoveListener(MoveLeft);
+        wc.onRight.RemoveListener(MoveRight);
     }
 }
