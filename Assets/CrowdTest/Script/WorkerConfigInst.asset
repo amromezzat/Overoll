@@ -13,12 +13,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leader: {fileID: 0}
   leaderRb: {fileID: 0}
+  onLeft:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onRight:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onJump:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onSlide:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  jumpSpeed: 15
+  turnSpeed: 15
+  gravityFactor: 10
   workersSepDis: 1
-  arrivalSlowingRad: 5
+  arrivalSlowingRad: 1
   maxSepForce: 20
-  maxFolForce: 10
-  maxSpeed: 10
-  aheadFollowPoint: 0
+  maxFolForce: 20
+  maxSpeed: 20
+  aheadFollowPoint: -4.9
   workers:
   - {fileID: 0}
   - {fileID: 0}
