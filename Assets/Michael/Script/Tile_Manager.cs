@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class is depricated Now. Reference to class named ObjectPooler
+/// </summary>
+
 public class Tile_Manager : MonoBehaviour
 {
 
