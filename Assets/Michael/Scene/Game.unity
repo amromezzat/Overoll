@@ -189,7 +189,6 @@ GameObject:
   - component: {fileID: 86855204}
   - component: {fileID: 86855203}
   - component: {fileID: 86855202}
-  - component: {fileID: 86855207}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -260,17 +259,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 21.766, y: 0, z: 0}
---- !u!114 &86855207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 86855201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6210f541c3482fe46a0269fb8b1bea1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &504488628
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4439aa8c2f8dd54b892c81b94c1f6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 2
   listOfPrefabs:
   - {fileID: 1503379709102766, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
   - {fileID: 1305447595229064, guid: 0c5098c42ad909e408a8646fa96ce4d2, type: 2}
@@ -311,6 +298,7 @@ MonoBehaviour:
   parent: {fileID: 504488628}
   player: {fileID: 0}
   safeZone: 5
+  tileSize: 2
   speed: -5
 --- !u!4 &504488630
 Transform:
@@ -337,7 +325,6 @@ GameObject:
   - component: {fileID: 974694254}
   - component: {fileID: 974694252}
   - component: {fileID: 974694253}
-  - component: {fileID: 974694256}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -417,18 +404,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &974694256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 974694251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180c52735371ce346835cb9cb1d7a1c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerManager: {fileID: 11400000, guid: 04955415d93f2ee4f98399ce4f7bc16c, type: 2}
 --- !u!1001 &1805701811
 Prefab:
   m_ObjectHideFlags: 0
