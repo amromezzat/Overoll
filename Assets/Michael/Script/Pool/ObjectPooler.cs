@@ -8,11 +8,10 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-
     public List<GameObject> listOfPrefabs;
-    [HideInInspector]
     public List<GameObject> pool;
     public List<GameObject> activeElementsPool;
+
     public GameObject parent;
     private GameObject lastGen;
 
@@ -21,6 +20,8 @@ public class ObjectPooler : MonoBehaviour
     public float safeZone;
 
     public float tileSize = 2.0f;
+    float errorMargin = 0.0f;
+    float distanceBtTiles = 0.0f;
 
     public float speed;
 
@@ -48,26 +49,25 @@ public class ObjectPooler : MonoBehaviour
         lastGen = el;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
+        distanceBtTiles = parent.transform.position.z - lastGen.transform.position.z;
+        if (distanceBtTiles >= tileSize)
+        {
+            errorMargin = distanceBtTiles - tileSize;
+            distanceBtTiles -= errorMargin;
+        }
 
-        if (parent.transform.position.z - lastGen.transform.position.z > tileSize)
+        if (distanceBtTiles == tileSize)
         {
             GameObject el = GetObjectFromPool();
             MoveTile(el);
             lastGen = el;
         }
-        else
-        {
-            return;
-        }
     }
-
 
     public GameObject GetObjectFromPool()
     {
-
-   //     if (parent.transform.position.z - lastGen.transform.position.z > tileSize)
         {
             if (pool.Count == 0)
             {
@@ -78,7 +78,7 @@ public class ObjectPooler : MonoBehaviour
             }
             else
             {
-                GameObject element = pool[Random.Range(0, (int)pool.Count)];
+                GameObject element = pool[Random.Range(0, pool.Count)];
                 element.SetActive(true);
                 activeElementsPool.Add(element);
                 pool.Remove(element);
@@ -86,10 +86,6 @@ public class ObjectPooler : MonoBehaviour
                 return element;
             }
         }
-     //   else
-       //     return null;
-
-
     }
 
     public void ReturnObjectToPool(GameObject toreturn)
@@ -103,8 +99,5 @@ public class ObjectPooler : MonoBehaviour
     public void MoveTile(GameObject element)
     {
         element.GetComponent<Rigidbody>().velocity = Vector3.forward * speed;
-    
     }
-
 }
-
