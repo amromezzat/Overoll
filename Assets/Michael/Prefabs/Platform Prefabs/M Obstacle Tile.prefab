@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 4750847133268742}
   - component: {fileID: 54031848311858388}
   - component: {fileID: 114201111368266796}
+  - component: {fileID: 114454708090139384}
   m_Layer: 0
   m_Name: M Obstacle Tile
   m_TagString: Untagged
@@ -1343,3 +1344,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
+--- !u!114 &114454708090139384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1429535681098330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f3c5a50ce4c82458d3f253c6adade9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multipler: 1
+  speed: {fileID: 11400000, guid: 9e1ebe0d3c8e55c4594fb41626ea8f6d, type: 2}
