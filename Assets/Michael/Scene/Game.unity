@@ -290,14 +290,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfPrefabs:
-  - {fileID: 114586481737611822, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
-  - {fileID: 114965003874906572, guid: 0c5098c42ad909e408a8646fa96ce4d2, type: 2}
-  - {fileID: 114201111368266796, guid: 6917a1016dd73d044be7965046fac0d9, type: 2}
-  - {fileID: 114100082511615424, guid: 5ed6569d553167148bf6fedf3bf4d85b, type: 2}
-  poolSize: 100
+  - {fileID: 114364581031453510, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
+  - {fileID: 114714147133525592, guid: 0c5098c42ad909e408a8646fa96ce4d2, type: 2}
+  - {fileID: 114638491480144286, guid: 6917a1016dd73d044be7965046fac0d9, type: 2}
+  - {fileID: 114295257427472574, guid: 5ed6569d553167148bf6fedf3bf4d85b, type: 2}
+  poolSize: 10
   pool: []
   activeElementsPool: []
-  parent: {fileID: 504488628}
 --- !u!4 &504488630
 Transform:
   m_ObjectHideFlags: 0
@@ -324,6 +323,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shift: {x: 0, y: 0, z: 2}
+  disFromPlayer: 10
+  tc: {fileID: 11400000, guid: 85384127e1859a746b18494fd97829eb, type: 2}
+  time: 0.4
 --- !u!1 &974694251
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +494,11 @@ Prefab:
       value: 
       objectReference: {fileID: 114100082511615424, guid: 5ed6569d553167148bf6fedf3bf4d85b,
         type: 2}
+    - target: {fileID: 114242999212644510, guid: da9d9610175d8e84cb7c5af1f158997c,
+        type: 2}
+      propertyPath: poolSize
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da9d9610175d8e84cb7c5af1f158997c, type: 2}
   m_IsPrefabParent: 0

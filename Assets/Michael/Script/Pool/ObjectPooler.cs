@@ -8,14 +8,13 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public List<ForTile> listOfPrefabs;
+    public List<Returner> listOfPrefabs;
     public int poolSize;
     public List<GameObject> pool;
     /// <summary>
     /// Just to see in editor (malhosh lazma awi)
     /// </summary>
     public List<GameObject> activeElementsPool;
-    public GameObject parent;
 
     private void Start()
     {
@@ -44,7 +43,7 @@ public class ObjectPooler : MonoBehaviour
 
     public void ReturnObjectToPool(GameObject toreturn)
     {
-        toreturn.transform.position = parent.transform.position;
+        toreturn.transform.position = gameObject.transform.position;
         toreturn.SetActive(false);
         pool.Add(toreturn);
         activeElementsPool.Remove(toreturn);
@@ -53,8 +52,7 @@ public class ObjectPooler : MonoBehaviour
     void AddToPool()
     {
         var index = Random.Range(0, listOfPrefabs.Count);
-        var obj = Instantiate<ForTile>(listOfPrefabs[index], parent.transform);
-        obj.pool = this;
+        var obj = Instantiate<Returner>(listOfPrefabs[index], gameObject.transform);
         obj.gameObject.SetActive(false);
         pool.Add(obj.gameObject);
 

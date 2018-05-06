@@ -30,6 +30,14 @@ public class Lanes : ScriptableObject
         }
     }
 
+    public List<LaneName> GridLanes
+    {
+        get
+        {
+            return gridLanes;
+        }
+    }
+
     private void OnEnable()
     {
         //start with middle lane
