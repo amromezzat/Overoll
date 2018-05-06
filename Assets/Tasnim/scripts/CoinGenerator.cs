@@ -22,7 +22,7 @@ public class CoinGenerator : MonoBehaviour {
             GameObject generatedcoin = coinpoolscript.GetCoinFromPool();
             //call get coin from the coin pool
 
-            generatedcoin.transform.position
+            //generatedcoin.transform.position
         }
         
     }
