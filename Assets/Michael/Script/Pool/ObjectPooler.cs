@@ -8,61 +8,20 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public List<GameObject> listOfPrefabs;
+    public List<ForTile> listOfPrefabs;
+    public int poolSize;
     public List<GameObject> pool;
+    /// <summary>
+    /// Just to see in editor (malhosh lazma awi)
+    /// </summary>
     public List<GameObject> activeElementsPool;
-
     public GameObject parent;
-    private GameObject lastGen;
-
-    public Transform player;
-
-    public float safeZone;
-
-    public float tileSize = 2.0f;
-    float errorMargin = 0.0f;
-    float distanceBtTiles = 0.0f;
-
-    public float speed;
-
-    public void Awake()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-
-        for (int i = 0; i < 10; i++)
-        {
-            int index = 0;
-            if (i > 4)
-            {
-                index = i % 4;
-            }
-            GameObject obj = Instantiate(listOfPrefabs[index], parent.transform);
-            obj.SetActive(false);
-            pool.Add(obj);
-        }
-    }
 
     private void Start()
     {
-        GameObject el = GetObjectFromPool();
-        MoveTile(el);
-        lastGen = el;
-    }
-
-    public void FixedUpdate()
-    {
-        distanceBtTiles = parent.transform.position.z - lastGen.transform.position.z;
-        if (distanceBtTiles >= tileSize)
+        for (int i = 0; i < poolSize; i++)
         {
-            errorMargin = distanceBtTiles - tileSize;
-            distanceBtTiles -= errorMargin;
-        }
-
-        if (distanceBtTiles == tileSize)
-        {
-            GameObject el = GetObjectFromPool();
-            MoveTile(el);
-            lastGen = el;
+            AddToPool();
         }
     }
 
@@ -71,20 +30,15 @@ public class ObjectPooler : MonoBehaviour
         {
             if (pool.Count == 0)
             {
-                GameObject obj = Instantiate(listOfPrefabs[0], parent.transform);
-                obj.SetActive(false);
-                pool.Add(obj);
-                return null;
+                AddToPool();
+
             }
-            else
-            {
-                GameObject element = pool[Random.Range(0, pool.Count)];
-                element.SetActive(true);
-                activeElementsPool.Add(element);
-                pool.Remove(element);
-                lastGen = element;
-                return element;
-            }
+
+            GameObject element = pool[Random.Range(0, pool.Count)];
+            element.SetActive(true);
+            activeElementsPool.Add(element);
+            pool.Remove(element);
+            return element;
         }
     }
 
@@ -96,8 +50,14 @@ public class ObjectPooler : MonoBehaviour
         activeElementsPool.Remove(toreturn);
     }
 
-    public void MoveTile(GameObject element)
+    void AddToPool()
     {
-        element.GetComponent<Rigidbody>().velocity = Vector3.forward * speed;
+        var index = Random.Range(0, listOfPrefabs.Count);
+        var obj = Instantiate<ForTile>(listOfPrefabs[index], parent.transform);
+        obj.pool = this;
+        obj.gameObject.SetActive(false);
+        pool.Add(obj.gameObject);
+
     }
+
 }
