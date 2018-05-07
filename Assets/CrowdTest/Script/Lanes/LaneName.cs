@@ -4,6 +4,14 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "LaneName", menuName = "Config/LaneName")]
 public class LaneName : ScriptableObject {
-    public int laneNum;
+    private int laneNum;
     public float laneCenter;
+
+    public int LaneNum
+    {
+        get
+        {
+            return laneNum;
+        }
+    }
 }
