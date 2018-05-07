@@ -10,11 +10,9 @@ public class ObjectPooler : MonoBehaviour
 {
     public List<Returner> listOfPrefabs;
     public int poolSize;
+    //[HideInInspector]
     public List<GameObject> pool;
-    /// <summary>
-    /// Just to see in editor (malhosh lazma awi)
-    /// </summary>
-    public List<GameObject> activeElementsPool;
+    public int activeTileCount = 0;
 
     private void Start()
     {
@@ -26,6 +24,7 @@ public class ObjectPooler : MonoBehaviour
 
     public GameObject GetObjectFromPool()
     {
+        activeTileCount++;
         {
             if (pool.Count == 0)
             {
@@ -35,7 +34,6 @@ public class ObjectPooler : MonoBehaviour
 
             GameObject element = pool[Random.Range(0, pool.Count)];
             element.SetActive(true);
-            activeElementsPool.Add(element);
             pool.Remove(element);
             return element;
         }
@@ -43,10 +41,10 @@ public class ObjectPooler : MonoBehaviour
 
     public void ReturnObjectToPool(GameObject toreturn)
     {
+        activeTileCount--;
         toreturn.transform.position = gameObject.transform.position;
         toreturn.SetActive(false);
         pool.Add(toreturn);
-        activeElementsPool.Remove(toreturn);
     }
 
     void AddToPool()
