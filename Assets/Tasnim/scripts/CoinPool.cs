@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class coinbool : MonoBehaviour {
+public class CoinPool : MonoBehaviour {
 
     public GameObject prefab;
-    public int coinpoolSize;
-    public List<GameObject> CoinPool;
+    public int coinPoolSize;
+    public List<GameObject> coinPool;
+    public GameObject coinParent;
 
     // we need random position to start in random lanes 
-
+    
 	// Use this for initialization
 	void Start () {
 
-        for (int i = 0; i < coinpoolSize; i++)
+        for (int i = 0; i < coinPoolSize; i++)
         {
             AddToCoinPool();
         }
@@ -22,28 +23,28 @@ public class coinbool : MonoBehaviour {
     //------------------------------------------------
     public GameObject GetCoinFromPool()
     {
-        if (CoinPool.Count == 0)
+        if (coinPool.Count == 0)
         {
             AddToCoinPool();
         }
-        GameObject Element = CoinPool[1];
+        GameObject Element = coinPool[0];
         Element.SetActive(true);
-       
-        CoinPool.Remove(Element);
+        Debug.Log("coin did active");
+        coinPool.Remove(Element);
         return Element;
     } 
     //----------------------------------------------
     public void ReturnCoinToPool(GameObject ObjToReturn)
     {
         ObjToReturn.SetActive(false);
-        CoinPool.Add(ObjToReturn);
+        coinPool.Add(ObjToReturn);
     }
     //----------------------------------------------
     void AddToCoinPool()
     {
-        var obj = Instantiate(prefab);
+        var obj = Instantiate(prefab,coinParent.transform);
         obj.SetActive(false);
-        CoinPool.Add(obj);
+        coinPool.Add(obj);
 
     }
 	

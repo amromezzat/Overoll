@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class pickupcoin : MonoBehaviour {
-
+    CoinPool coinPool;
     public int CoinCount;
 
 	// Use this for initialization
