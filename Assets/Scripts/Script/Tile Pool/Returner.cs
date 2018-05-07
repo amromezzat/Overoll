@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// This class returns the tile back to the pool
+/// </summary>
 public class Returner : MonoBehaviour
 {
     public TileConfig tc;
-    public ObjectPooler op;
+    private ObjectPooler op;
 
     private void Start()
     {

@@ -294,7 +294,7 @@ MonoBehaviour:
   - {fileID: 114714147133525592, guid: 0c5098c42ad909e408a8646fa96ce4d2, type: 2}
   - {fileID: 114638491480144286, guid: 6917a1016dd73d044be7965046fac0d9, type: 2}
   - {fileID: 114295257427472574, guid: 5ed6569d553167148bf6fedf3bf4d85b, type: 2}
-  poolSize: 10
+  poolSize: 100
   pool: []
   activeElementsPool: []
 --- !u!4 &504488630
@@ -358,7 +358,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3b5472767f2ea3448b423d071da79e4f, type: 2}
+  - {fileID: 2100000, guid: 125660309d12757448c14ab7408a879f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -497,7 +497,7 @@ Prefab:
     - target: {fileID: 114242999212644510, guid: da9d9610175d8e84cb7c5af1f158997c,
         type: 2}
       propertyPath: poolSize
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da9d9610175d8e84cb7c5af1f158997c, type: 2}
