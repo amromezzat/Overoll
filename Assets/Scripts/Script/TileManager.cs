@@ -6,7 +6,7 @@ using UnityEngine;
 /// This class is depricated Now. Reference to class named ObjectPooler
 /// </summary>
 
-public class Tile_Manager : MonoBehaviour
+public class TileManager : MonoBehaviour
 {
 
     public GameObject[] tilePrefabs;

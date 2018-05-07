@@ -38,21 +38,29 @@ public class Lanes : ScriptableObject
         }
     }
 
+    public List<LaneName> OnGridLanes
+    {
+        get
+        {
+            return onGridLanes;
+        }
+    }
+
     private void OnEnable()
     {
         //start with middle lane
         currentLaneIndex = 2;
         currentLane = gridLanes[2];
         onGridLanes = new List<LaneName>();
-        onGridLanes.Add(currentLane);
+        OnGridLanes.Add(currentLane);
 
         //initialize left and right lanes
         for (int i = 1; i < laneCount / 2; i++)
         {
             gridLanes[2 - i].laneCenter = -laneWidth * i;
-            onGridLanes.Insert(0, gridLanes[2 - i]);
+            OnGridLanes.Insert(0, gridLanes[2 - i]);
             gridLanes[2 + i].laneCenter = laneWidth * i;
-            onGridLanes.Add(gridLanes[2 + i]);
+            OnGridLanes.Add(gridLanes[2 + i]);
         }
 
     }
@@ -60,13 +68,17 @@ public class Lanes : ScriptableObject
     //get lane by index
     public LaneName this[int index]
     {
-        get { return onGridLanes[index]; }
+        get
+        {
+            index %= onGridLanes.Count;
+            return onGridLanes[index];
+        }
     }
 
     //get lane index by lane
     public int this[LaneName laneName]
     {
-        get { return onGridLanes.IndexOf(laneName); }
+        get { return OnGridLanes.IndexOf(laneName); }
     }
 
     //return the next lane left
@@ -78,7 +90,7 @@ public class Lanes : ScriptableObject
             return currentLane.laneCenter;
         }
         lastLane = currentLane;
-        currentLane = onGridLanes[--currentLaneIndex];
+        currentLane = OnGridLanes[--currentLaneIndex];
         return currentLane.laneCenter;
     }
 
@@ -87,12 +99,12 @@ public class Lanes : ScriptableObject
     //or the same lane if it were that last to the right
     public float GoRight()
     {
-        if (currentLaneIndex == onGridLanes.Count - 1)
+        if (currentLaneIndex == OnGridLanes.Count - 1)
         {
             return currentLane.laneCenter;
         }
         lastLane = currentLane;
-        currentLane = onGridLanes[++currentLaneIndex];
+        currentLane = OnGridLanes[++currentLaneIndex];
         return currentLane.laneCenter;
     }
 
@@ -100,10 +112,10 @@ public class Lanes : ScriptableObject
     public bool AddLeft()
     {
         //add a lane to the left if there is no more than 1 lane to the left
-        if (onGridLanes[0].laneNum > 0)
+        if (OnGridLanes[0].LaneNum > 0)
         {
-            gridLanes[onGridLanes[0].laneNum - 1].laneCenter = laneWidth * (gridLanes[onGridLanes[0].laneNum - 1].laneNum - 2);
-            onGridLanes.Insert(0, gridLanes[onGridLanes[0].laneNum - 1]);
+            gridLanes[OnGridLanes[0].LaneNum - 1].laneCenter = laneWidth * (gridLanes[OnGridLanes[0].LaneNum - 1].LaneNum - 2);
+            OnGridLanes.Insert(0, gridLanes[OnGridLanes[0].LaneNum - 1]);
             return true;
         }
         return false;
@@ -113,10 +125,10 @@ public class Lanes : ScriptableObject
     public bool AddRight()
     {
         //add a lane to the right if there is no more than 1 lane to the right
-        if (onGridLanes[onGridLanes.Count - 1].laneNum < 4)
+        if (OnGridLanes[OnGridLanes.Count - 1].LaneNum < 4)
         {
-            gridLanes[onGridLanes[0].laneNum + 1].laneCenter = laneWidth * (gridLanes[onGridLanes[0].laneNum + 1].laneNum - 2);
-            onGridLanes.Add(gridLanes[onGridLanes[onGridLanes.Count - 1].laneNum + 1]);
+            gridLanes[OnGridLanes[0].LaneNum + 1].laneCenter = laneWidth * (gridLanes[OnGridLanes[0].LaneNum + 1].LaneNum - 2);
+            OnGridLanes.Add(gridLanes[OnGridLanes[OnGridLanes.Count - 1].LaneNum + 1]);
             return true;
         }
         return false;
@@ -126,9 +138,9 @@ public class Lanes : ScriptableObject
     public bool RemoveLeft()
     {
         //remove a lane from the left if there is at least two lanes to the left of the middle one
-        if (onGridLanes[0].laneNum < 1)
+        if (OnGridLanes[0].LaneNum < 1)
         {
-            onGridLanes.RemoveAt(0);
+            OnGridLanes.RemoveAt(0);
             return true;
         }
         return false;
@@ -138,9 +150,9 @@ public class Lanes : ScriptableObject
     public bool RemoveRight()
     {
         //remove a lane from the right if there is at least two lanes to the right of the middle one
-        if (onGridLanes[onGridLanes.Count - 1].laneNum > 3)
+        if (OnGridLanes[OnGridLanes.Count - 1].LaneNum > 3)
         {
-            onGridLanes.RemoveAt(onGridLanes.Count - 1);
+            OnGridLanes.RemoveAt(OnGridLanes.Count - 1);
             return true;
         }
         return false;

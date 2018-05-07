@@ -7,20 +7,8 @@ using UnityEngine;
 public class PositionWorker : MonoBehaviour
 {
     Rigidbody rb;
-    Vector2 newVelocity;
+    Vector2 steeringForce;
     public WorkerConfig wc;
-
-    float timeToJump = 0;
-    float timeToSlide = 0;
-
-    bool jumping = false;
-    bool turningRight = false;
-    bool turningLeft = false;
-    float jumpt0;//jump start time
-    float turnt0;//turn start time
-
-    Vector3 newVel;
-    Vector3 newPos;
 
     // Use this for initialization
     void Start()
@@ -30,21 +18,10 @@ public class PositionWorker : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void FixedUpdate()
     {
-        newVelocity = Vector2.ClampMagnitude(SteeringForce(), wc.maxSpeed);
-        rb.AddForce(new Vector3(newVelocity.x, 0, newVelocity.y));
-
-        newPos = transform.position;
-        newVel = rb.velocity;
-
-        StopJumping();
+        steeringForce = Vector2.ClampMagnitude(SteeringForce(), wc.maxSpeed);
+        rb.AddForce(new Vector3(steeringForce.x, 0, steeringForce.y));
     }
 
     Vector2 SteeringForce()
@@ -120,57 +97,5 @@ public class PositionWorker : MonoBehaviour
     float CalculateDisFrom(GameObject entity)
     {
         return (entity.transform.position - transform.position).magnitude;
-    }
-
-    public void OnEnable()
-    {
-        wc.onJump.AddListener(Jump);
-        wc.onSlide.AddListener(Slide);
-    }
-
-    private void Slide()
-    {
-        //throw new NotImplementedException();
-    }
-
-    //applying gravitational force to the body
-    void StopJumping()
-    {
-        if (jumping)
-        {
-
-            newVel.y -= wc.gravityFactor * (Time.time - jumpt0);
-            rb.velocity = newVel;
-            // And test that the character is not on the ground again.
-            //calculate platform height from equation platformHeigt(at x pos)
-            if (transform.position.y < 0)
-            {
-                //set within platfrom height from equation platformHeigt(at x pos)
-                newPos.y = 0;
-                transform.position = newPos;
-                newVel.y = 0;
-                rb.velocity = newVel;
-                jumping = false;
-            }
-        }
-    }
-
-    private void Jump()
-    {
-        timeToJump = (wc.leader.transform.position.z - transform.position.z) / 5;//TODO:(5) must be replaced with platform velocity
-        StartCoroutine(JumpAfterDelay());
-    }
-    IEnumerator JumpAfterDelay()
-    {
-        yield return new WaitForSeconds(timeToJump);
-        rb.velocity += Vector3.up * wc.jumpSpeed;
-        jumping = true;
-        jumpt0 = Time.time;
-    }
-
-    public void OnDisable()
-    {
-        wc.onJump.RemoveListener(Jump);
-        wc.onSlide.RemoveListener(Slide);
     }
 }
