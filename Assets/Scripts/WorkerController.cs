@@ -39,6 +39,7 @@ public class WorkerController : MonoBehaviour
     {
         if (!turningRight && !turningLeft)
         {
+            print(lanes.laneCount);
             lanes.GoRight();
             rb.velocity += wc.turnSpeed * Vector3.right;
             turningRight = true;

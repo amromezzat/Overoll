@@ -11,15 +11,24 @@ public class WorkerConfig : ScriptableObject {
     public Rigidbody leaderRb;
 
     //Events available for other classes to register to
+    [HideInInspector]
     public UnityEvent onLeft;
+    [HideInInspector]
     public UnityEvent onRight;
+    [HideInInspector]
     public UnityEvent onJump;
+    [HideInInspector]
     public UnityEvent onSlide;
 
-    public int jumpSpeed = 15;
-    public int turnSpeed = 15;
-    public float gravityFactor = 10;
+    [Header("Jump Attributes")]
+    public int jumpSpeed = 20;
+    public float gravityFactor = 20;
+    public float groundLevel = 0.25f;//worker y position
 
+    [Header("Moving Attributes")]
+    public int turnSpeed = 15;
+
+    [Header("Crowd Behavior")]
     public float workersSepDis = 5;//distance workers keep from each other
     public float arrivalSlowingRad = 5;//slow when entering this rad
     public float maxSepForce = 10;
@@ -31,6 +40,9 @@ public class WorkerConfig : ScriptableObject {
     public List<GameObject> workers;
     [HideInInspector]
     public List<Rigidbody> workersRb;
+
+    [Header("Worker Prefab")]
+    public GameObject workerPrefab;
 
     private void OnEnable()
     {

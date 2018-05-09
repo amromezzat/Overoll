@@ -32,11 +32,11 @@ public class WorkerJump : MonoBehaviour {
             rb.velocity = newVel;
             // And test that the character is not on the ground again.
             //calculate platform height from equation platformHeigt(at x pos)
-            if (transform.position.y < 0)
+            if (transform.position.y < wc.groundLevel)
             {
                 //set within platfrom height from equation platformHeigt(at x pos)
                 Vector3 newPos = transform.position;
-                newPos.y = 0;
+                newPos.y = wc.groundLevel;
                 transform.position = newPos;
                 newVel.y = 0;
                 rb.velocity = newVel;

@@ -23,4 +23,10 @@ public class WorkersManager : MonoBehaviour
     private void FixedUpdate()
     {
     }
+
+    public void AddWorker()
+    {
+        Instantiate(wc.workerPrefab, transform.position + new Vector3(Random.Range(-5,5), 0, Random.Range(-5, 5)),
+            Quaternion.identity, transform);
+    }
 }
