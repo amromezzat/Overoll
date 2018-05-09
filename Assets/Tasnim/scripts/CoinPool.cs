@@ -47,6 +47,4 @@ public class CoinPool : MonoBehaviour {
         coinPool.Add(obj);
 
     }
-	
-	
 }

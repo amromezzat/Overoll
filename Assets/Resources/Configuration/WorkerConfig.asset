@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 821b61d5fc7621b4f9c2a701059088dd, type: 3}
-  m_Name: WorkerConfigInst
+  m_Name: WorkerConfig
   m_EditorClassIdentifier: 
   leader: {fileID: 0}
   leaderRb: {fileID: 0}
@@ -33,42 +33,21 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  jumpSpeed: 15
-  turnSpeed: 15
-  gravityFactor: 10
+  jumpSpeed: 10
+  gravityFactor: 5
+  groundLevel: 0.25
+  turnSpeed: 10
   workersSepDis: 1
   arrivalSlowingRad: 1
   maxSepForce: 20
   maxFolForce: 20
   maxSpeed: 20
-  aheadFollowPoint: -4.9
+  aheadFollowPoint: -5
   workers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   workersRb:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  workerPrefab: {fileID: 1433989353999650, guid: 38e5d4f2605b5774e8df2e13c1ec9946,
+    type: 2}
