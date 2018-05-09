@@ -38,19 +38,19 @@ public class InputManager : MonoBehaviour
     
     void WindowsControls()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyUp(KeyCode.UpArrow))
         {
             wc.onJump.Invoke();
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKeyUp(KeyCode.DownArrow))
         {
             wc.onSlide.Invoke();
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
         {
             wc.onRight.Invoke();
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             wc.onLeft.Invoke();
         }

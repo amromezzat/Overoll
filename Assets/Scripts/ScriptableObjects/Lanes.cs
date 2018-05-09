@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Lanes", menuName = "Config/Lanes")]
+[CreateAssetMenu(fileName = "Lanes", menuName = "Config/Lane/Lanes")]
 public class Lanes : ScriptableObject
 {
-    public int laneWidth = 5;//width of each seperate lane
+    public TileConfig tc;
     public float laneCount = 3;//number of available lanes
+    public float laneWidth;//width of each seperate lane
+
+    [SerializeField]
     List<LaneName> onGridLanes;
     [SerializeField]
     List<LaneName> gridLanes;
+
+    [SerializeField]
     private LaneName currentLane;
+    [SerializeField]
     private LaneName lastLane;
     private int currentLaneIndex;
 
@@ -48,6 +54,8 @@ public class Lanes : ScriptableObject
 
     private void OnEnable()
     {
+        laneWidth = tc.laneWidth;
+
         //start with middle lane
         currentLaneIndex = 2;
         currentLane = gridLanes[2];
