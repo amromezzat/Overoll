@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Name: Lanes
   m_EditorClassIdentifier: 
   tc: {fileID: 11400000, guid: 85384127e1859a746b18494fd97829eb, type: 2}
-  laneCount: 3
   laneWidth: 1
+  onGridLanes:
+  - {fileID: 11400000, guid: cba95281777e90b448593c343dfb2e70, type: 2}
+  - {fileID: 11400000, guid: 264baaf8d28a68f4f8964c2a89a3235f, type: 2}
+  - {fileID: 11400000, guid: 1fffb283c30e1dd46b100810e1a39062, type: 2}
   gridLanes:
   - {fileID: 11400000, guid: 7a8fca0b55c1a96418d97f7de85c1748, type: 2}
   - {fileID: 11400000, guid: cba95281777e90b448593c343dfb2e70, type: 2}

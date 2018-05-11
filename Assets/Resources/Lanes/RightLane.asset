@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: RightLane
   m_EditorClassIdentifier: 
   laneNum: 3
-  laneCenter: 5
+  laneCenter: 1

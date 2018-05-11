@@ -4,6 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "LaneName", menuName = "Config/Lane/LaneName")]
 public class LaneName : ScriptableObject {
+    [SerializeField]
     private int laneNum;
     public float laneCenter;
 
