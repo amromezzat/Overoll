@@ -11,8 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18802101ab2bc8468f285b20f016a4e, type: 3}
   m_Name: Lanes
   m_EditorClassIdentifier: 
-  tc: {fileID: 11400000, guid: 85384127e1859a746b18494fd97829eb, type: 2}
-  laneWidth: 1
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   onGridLanes:
   - {fileID: 11400000, guid: cba95281777e90b448593c343dfb2e70, type: 2}
   - {fileID: 11400000, guid: 264baaf8d28a68f4f8964c2a89a3235f, type: 2}

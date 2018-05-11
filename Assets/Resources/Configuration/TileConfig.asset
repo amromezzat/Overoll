@@ -11,11 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fe0ea0738a4514ab3bc969c22450b6, type: 3}
   m_Name: TileConfig
   m_EditorClassIdentifier: 
-  tileSpeed: 10
-  tileSize: 2
+  tileSpeed: 5
+  tileSize: 1
   laneWidth: 1
-<<<<<<< HEAD:Assets/Scripts/Script/ScriptableObject/Tile Config.asset
   spawnTime: 0.2
-=======
-  spawnTime: 0.4
->>>>>>> 3242c6366cc8999fa7f2a347563af7e06ed44de2:Assets/Resources/Configuration/TileConfig.asset

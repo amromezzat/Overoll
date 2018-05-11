@@ -7,7 +7,7 @@ public class Lanes : ScriptableObject
 {
     public TileConfig tc;
 
-    public float laneWidth;//width of each seperate lane
+    private float laneWidth;//width of each seperate lane
 
     [SerializeField]
     List<LaneName> onGridLanes;
@@ -50,6 +50,19 @@ public class Lanes : ScriptableObject
         }
     }
 
+    public float LaneWidth
+    {
+        get
+        {
+            return laneWidth;
+        }
+
+        set
+        {
+            laneWidth = value;
+        }
+    }
+
     //get lane by index
 
     public LaneName this[int index]
@@ -65,7 +78,7 @@ public class Lanes : ScriptableObject
     {
         for(int i = 0; i < gridLanes.Count; i++)
         {
-            gridLanes[i].laneCenter = (gridLanes[i].LaneNum - 2) * laneWidth;
+            gridLanes[i].laneCenter = (gridLanes[i].LaneNum - 2) * LaneWidth;
         }
     }
 

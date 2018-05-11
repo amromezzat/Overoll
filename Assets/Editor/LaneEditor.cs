@@ -45,8 +45,7 @@ public class LaneEditor : Editor {
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.EndVertical();
 
-        if (GUI.changed)
-        {
+        if(GUILayout.Button("Recalculate lanes center")){
             lanes.RecalculateLanesCenter();
         }
     }
