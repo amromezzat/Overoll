@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
-  tc: {fileID: 11400000, guid: 85384127e1859a746b18494fd97829eb, type: 2}
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
 --- !u!137 &137060067018891820
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
