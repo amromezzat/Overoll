@@ -42,12 +42,8 @@ MonoBehaviour:
   maxSepForce: 20
   maxFolForce: 20
   maxSpeed: 20
-  aheadFollowPoint: -5
-  workers:
-  - {fileID: 0}
-  - {fileID: 0}
-  workersRb:
-  - {fileID: 0}
-  - {fileID: 0}
+  aheadFollowPoint: -1
+  workers: []
+  workersRb: []
   workerPrefab: {fileID: 1433989353999650, guid: 38e5d4f2605b5774e8df2e13c1ec9946,
     type: 2}
