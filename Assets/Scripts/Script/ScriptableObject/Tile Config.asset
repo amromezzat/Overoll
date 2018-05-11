@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fe0ea0738a4514ab3bc969c22450b6, type: 3}
   m_Name: Tile Config
   m_EditorClassIdentifier: 
-  tileSpeed: 5
+  tileSpeed: 10
   tileSize: 2
   laneWidth: 1
-  spawnTime: 0.030769233
+  spawnTime: 0.2
