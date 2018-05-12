@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(Lanes))]
-public class LaneEditor : Editor {
+public class LaneEditor : Editor
+{
 
     Lanes lanes;
+    bool showEditLanes;
 
     private void OnEnable()
     {
         lanes = (Lanes)target;
+        showEditLanes = true;
     }
 
     public override void OnInspectorGUI()
@@ -19,34 +22,42 @@ public class LaneEditor : Editor {
 
         EditorGUILayout.Separator();
 
-        EditorGUILayout.BeginVertical();
-        EditorGUILayout.LabelField("Edit Lanes");
+        showEditLanes = EditorGUILayout.Foldout(showEditLanes, "Edit Lanes");
+        if (showEditLanes)
+        {
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Add a left lane"))
+            {
+                lanes.AddLeft();
+            }
+            if (GUILayout.Button("Add a right lane"))
+            {
+                lanes.AddRight();
+            }
+            EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Add a left lane"))
-        {
-            lanes.AddLeft();
-        }
-        if (GUILayout.Button("Add a right lane"))
-        {
-            lanes.AddRight();
-        }
-        EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Remove a left lane"))
+            {
+                lanes.RemoveLeft();
+            }
+            if (GUILayout.Button("Remove a right lane"))
+            {
+                lanes.RemoveRight();
+            }
+            EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Remove a left lane"))
-        {
-            lanes.RemoveLeft();
-        }
-        if (GUILayout.Button("Remove a right lane"))
-        {
-            lanes.RemoveRight();
-        }
-        EditorGUILayout.EndHorizontal();
-        EditorGUILayout.EndVertical();
+            EditorGUILayout.Separator();
 
-        if(GUILayout.Button("Recalculate lanes center")){
-            lanes.RecalculateLanesCenter();
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label("Lane Width");
+            EditorGUILayout.TextArea(lanes.LaneWidth.ToString());
+            EditorGUILayout.EndHorizontal();
+
+            if (GUILayout.Button("Recalculate lanes center"))
+            {
+                lanes.RecalculateLanesCenter();
+            }
         }
     }
 }

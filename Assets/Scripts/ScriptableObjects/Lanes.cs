@@ -76,9 +76,10 @@ public class Lanes : ScriptableObject
 
     public void RecalculateLanesCenter()
     {
+        laneWidth = tc.laneWidth;
         for(int i = 0; i < gridLanes.Count; i++)
         {
-            gridLanes[i].laneCenter = (gridLanes[i].LaneNum - 2) * LaneWidth;
+            gridLanes[i].laneCenter = (gridLanes[i].LaneNum - 2) * laneWidth;
         }
     }
 
