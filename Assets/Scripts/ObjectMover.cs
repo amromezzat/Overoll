@@ -14,7 +14,7 @@ public class ObjectMover : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         rb.velocity = Vector3.forward * -tc.tileSpeed;
     }
