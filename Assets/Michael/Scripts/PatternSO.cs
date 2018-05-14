@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pattern : ScriptableObject
+public class PatternSO : ScriptableObject
 {
     public int difficulty;
     public float length;

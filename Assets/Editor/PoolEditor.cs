@@ -31,12 +31,9 @@ public class PoolEditor : Editor
 
         if (GUILayout.Button("Add"))
         {
-            TileType ss = (TileType)ScriptableObject.CreateInstance("EnumValue");
+            TileType ss = (TileType)ScriptableObject.CreateInstance("TileType");
             ss.name = "sss";
             poolableDB.prefabsDict.Add(ss, new PoolableObj());
         }
-
-
-
     }
 }
