@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ObjectPool))]
 [CustomEditor(typeof(PoolableDatabase))]
 public class PoolEditor : Editor
 {
 
-    ObjectPool objPool;
-
     PoolableDatabase poolableDB;
     private void OnEnable()
     {
-        objPool = (ObjectPool)target;
         poolableDB = (PoolableDatabase)target;
     }
 
@@ -21,8 +17,6 @@ public class PoolEditor : Editor
     {
         base.OnInspectorGUI();
 
-        int i = 1;
-        foreach (KeyValuePair<EnumValue, PrefabCount> entry in ObjectPool.instance.prefabsDict)
 
 
         //List<EnumValue> keys = poolableDB.Keys;
