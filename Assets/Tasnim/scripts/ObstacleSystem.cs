@@ -9,16 +9,18 @@ public class ObstacleSystem : ScriptableObject {
 
   public  Dictionary<string, EnumValue> ListOfObstacles= new Dictionary<string, EnumValue>();
 
+
    void OnEnable()
     {
         for (int i = 0; i < Obstacles.Count; i++)
         {
             ListOfObstacles.Add(Obstacles[i].name, Obstacles[i]);
-        }
+           
+
+         }
        
-
-    }
-
+     }
+   
 
 }
 
