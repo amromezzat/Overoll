@@ -19,7 +19,7 @@ public class PoolEditor : Editor
         base.OnInspectorGUI();
 
         int i = 1;
-        foreach (KeyValuePair<EnumValue, PrefabCount> entry in ObjectPool.instance.prefabsDict)
+        foreach (KeyValuePair<TileType, PrefabCount> entry in ObjectPool.instance.prefabsDict)
         {
             GUILayout.Label(i.ToString());
             //EditorGUILayout.TextArea(ObjectPool.instance.prefabsDict.Values);

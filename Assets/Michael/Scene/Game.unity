@@ -326,7 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shift: {x: 0, y: 0, z: 2}
   disFromPlayer: 10
-  tc: {fileID: 11400000, guid: 85384127e1859a746b18494fd97829eb, type: 2}
+  tc: {fileID: 0}
 --- !u!114 &504488632
 MonoBehaviour:
   m_ObjectHideFlags: 0
