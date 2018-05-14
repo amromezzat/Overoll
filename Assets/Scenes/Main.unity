@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 0.5
-  minSwipeDis: 50
+  minSwipeDis: 500
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
 --- !u!1 &1735440517
 GameObject:
@@ -695,6 +695,7 @@ GameObject:
   - component: {fileID: 1906287970}
   - component: {fileID: 1906287972}
   - component: {fileID: 1906287971}
+  - component: {fileID: 1906287973}
   m_Layer: 0
   m_Name: Tile Generator
   m_TagString: Untagged
@@ -748,6 +749,18 @@ MonoBehaviour:
   poolSize: 10
   pool: []
   activeTileCount: 0
+--- !u!114 &1906287973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1906287969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf82ba43902f7fb4ab2bed81e100e128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
 --- !u!1 &2021476667
 GameObject:
   m_ObjectHideFlags: 0
