@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Lanes", menuName = "Config/Pool/PoolDatabase")]
 public class PoolableDatabase : ScriptableObject
 {
-
     public Dictionary<EnumValue, PoolableObj> prefabsDict = new Dictionary<EnumValue, PoolableObj>();
     int count = 0;
     List<EnumValue> keys;

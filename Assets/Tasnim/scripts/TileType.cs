@@ -4,6 +4,6 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName ="ObsticaleTypeEnumValue", menuName="Obsticals/EnumValueType" ,order = 9)]
-public class EnumValue : ScriptableObject {
+public class TileType : ScriptableObject {
 
 }
