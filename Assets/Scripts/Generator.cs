@@ -17,7 +17,7 @@ public class Generator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        pool = gameObject.GetComponent<ObjectPooler>();
+        pool = gameObject.GetComponent<EnvPooler>();
         lastTile = this.transform;
         //StartCoroutine(GenerateCoroutine());
 	}

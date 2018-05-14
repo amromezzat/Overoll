@@ -11,7 +11,7 @@ public class Returner : MonoBehaviour
 
     private void Start()
     {
-        op = GetComponentInParent<ObjectPooler>();
+        op = GetComponentInParent<EnvPooler>();
     }
 
     private void Update()
