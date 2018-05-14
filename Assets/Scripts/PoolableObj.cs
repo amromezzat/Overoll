@@ -10,7 +10,7 @@ public struct PoolableObj {
     public GameObject prefab;
     public GameObject parent;
 
-    PoolableObj(int _count, GameObject _prefab, GameObject _parent, EnumValue _type)
+    PoolableObj(int _count, GameObject _prefab, GameObject _parent)
     {
         count = _count;
         prefab = _prefab;
