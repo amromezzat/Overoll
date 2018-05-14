@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is a data type not a component on any gameobject
+/// </summary>
 
-
-public class Segment 
+[System.Serializable]
+public class Segment : MonoBehaviour
 {
-     public List<EnumValue> segment= new List<EnumValue>(5);
+     public List<TileType> segment= new List<TileType>(5);
     
-    public EnumValue this [int i]
+    public TileType this [int i]
     {
 
         get
