@@ -5,7 +5,7 @@ using UnityEngine;
 public class Generator : MonoBehaviour {
     public Vector3 shift;
     public float disFromPlayer=10;
-    ObjectPooler pool;
+    EnvPooler pool;
     Transform lastTile;
 
     public TileConfig tc;
