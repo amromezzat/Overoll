@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Lanes", menuName = "Config/Pool/PoolDatabase")]
 public class PoolableDatabase : ScriptableObject
 {
-    public Dictionary<EnumValue, PoolableObj> prefabsDict = new Dictionary<EnumValue, PoolableObj>();
+    public Dictionary<TileType, PoolableObj> prefabsDict = new Dictionary<TileType, PoolableObj>();
     int count = 0;
-    List<EnumValue> keys;
+    List<TileType> keys;
 
-    public PoolableObj this[EnumValue instType]
+    public PoolableObj this[TileType instType]
     {
         get
         {
@@ -21,7 +21,7 @@ public class PoolableDatabase : ScriptableObject
         }
     }
 
-    public EnumValue this[int index]
+    public TileType this[int index]
     {
         get
         {
@@ -38,12 +38,12 @@ public class PoolableDatabase : ScriptableObject
         }
     }
 
-    public List<EnumValue> Keys
+    public List<TileType> Keys
     {
         get
         {
-            List<EnumValue> keysList = new List<EnumValue>(Count);
-            foreach (EnumValue key in keys)
+            List<TileType> keysList = new List<TileType>(Count);
+            foreach (TileType key in keys)
             {
                 keysList.Add(key);
             }

@@ -4,10 +4,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ObstacleSystem : ScriptableObject {
 
- public    List<EnumValue> Obstacles;
+ public    List<TileType> Obstacles;
 
 
-  public  Dictionary<string, EnumValue> ListOfObstacles= new Dictionary<string, EnumValue>();
+  public  Dictionary<string, TileType> ListOfObstacles= new Dictionary<string, TileType>();
 
 
    void OnEnable()

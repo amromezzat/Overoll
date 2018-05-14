@@ -7,7 +7,7 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool instance;
     public PoolableDatabase pd;
 
-    Dictionary<EnumValue, Queue<GameObject>> poolDict;
+    Dictionary<TileType, Queue<GameObject>> poolDict;
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class ObjectPool : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        foreach (EnumValue pcType in pd.Keys)
+        foreach (TileType pcType in pd.Keys)
         {
             Queue<GameObject> instancesQueue = new Queue<GameObject>(pd[pcType].count);
             for (int i = 0; i < pd[pcType].count; i++)
@@ -30,7 +30,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public GameObject GetFromPool(EnumValue instType)
+    public GameObject GetFromPool(TileType instType)
     {
         if (poolDict.ContainsKey(instType))
         {
@@ -48,7 +48,7 @@ public class ObjectPool : MonoBehaviour
         return null;
     }
 
-    public void ReturnToPool(EnumValue instType, GameObject inst)
+    public void ReturnToPool(TileType instType, GameObject inst)
     {
         if (poolDict.ContainsKey(instType))
         {

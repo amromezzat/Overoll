@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class Segment 
 {
-     public List<EnumValue> segment= new List<EnumValue>(5);
+     public List<TileType> segment= new List<TileType>(5);
     
-    public EnumValue this [int i]
+    public TileType this [int i]
     {
 
         get
