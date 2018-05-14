@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// This class represents segment which consists of list of TileType
+/// </summary>
 
 public class Segment 
 {
