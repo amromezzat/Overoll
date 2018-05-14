@@ -6,7 +6,7 @@ using UnityEngine;
 /// This Class used to move the ground and act like the player keeps moving forward
 /// </summary>
 
-public class ObjectPooler : MonoBehaviour
+public class EnvPooler: MonoBehaviour
 {
     public List<Returner> listOfPrefabs;
     public int poolSize;

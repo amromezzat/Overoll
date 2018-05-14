@@ -5,9 +5,9 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour {
 
     public static ObjectPool instance;
-    public Dictionary<string, PrefabCount> prefabsDict;
+    public Dictionary<EnumValue, PrefabCount> prefabsDict;
 
-    Dictionary<string, Queue<GameObject>> poolDict;
+    Dictionary<EnumValue, Queue<GameObject>> poolDict;
 
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class ObjectPool : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		foreach(string pcName in prefabsDict.Keys)
+		foreach(EnumValue pcName in prefabsDict.Keys)
         {
             Queue < GameObject > instancesQueue = new Queue<GameObject>(prefabsDict[pcName].count);
             for(int i = 0; i < prefabsDict[pcName].count; i++)
@@ -29,33 +29,33 @@ public class ObjectPool : MonoBehaviour {
         }
 	}
 
-    public GameObject GetFromPool(string instName)
+    public GameObject GetFromPool(EnumValue instType)
     {
-        if (poolDict.ContainsKey(instName))
+        if (poolDict.ContainsKey(instType))
         {
-            Queue<GameObject> instQueue = poolDict[instName];
+            Queue<GameObject> instQueue = poolDict[instType];
             if (instQueue.Count > 0)
             {
                 GameObject pooledObj = instQueue.Dequeue();
                 pooledObj.SetActive(true);
                 return pooledObj;
             }
-            GameObject newGameObj = Instantiate(prefabsDict[instName].prefab, prefabsDict[instName].parent.transform);
+            GameObject newGameObj = Instantiate(prefabsDict[instType].prefab, prefabsDict[instType].parent.transform);
             return newGameObj;
         }
-        Debug.LogError("Instance name is invalid");
+        Debug.LogError("Instance is invalid");
         return null;
     }
 
-    public void ReturnToPool(string instName, GameObject inst)
+    public void ReturnToPool(EnumValue instType, GameObject inst)
     {
-        if (poolDict.ContainsKey(instName))
+        if (poolDict.ContainsKey(instType))
         {
-            Queue<GameObject> instQueue = poolDict[instName];
+            Queue<GameObject> instQueue = poolDict[instType];
             inst.SetActive(false);
-            inst.transform.position = prefabsDict[instName].parent.transform.position;
+            inst.transform.position = prefabsDict[instType].parent.transform.position;
             instQueue.Enqueue(inst);
         }
-        Debug.LogError("Instance name is invalid");
+        Debug.LogError("Instance is invalid");
     }
 }
