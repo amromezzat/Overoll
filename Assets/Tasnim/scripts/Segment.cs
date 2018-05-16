@@ -12,19 +12,19 @@ public class Segment
     /// <summary>
     /// This is not segment this is TileTypeList
     /// </summary>
-    public List<TileType> segment = new List<TileType>(5);
+    public List<TileType> ListOfTiles = new List<TileType>(5);
 
     public TileType this[int i]
     {
 
         get
         {
-            return segment[i];
+            return ListOfTiles[i];
         }
 
         set
         {
-            segment[i] = value;
+            ListOfTiles[i] = value;
         }
     }
 
@@ -32,7 +32,7 @@ public class Segment
     {
         get
         {
-            return segment.Count;
+            return ListOfTiles.Count;
         }
     }
 }
