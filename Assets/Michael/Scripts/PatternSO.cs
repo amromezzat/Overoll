@@ -6,6 +6,7 @@ public class PatternSO : ScriptableObject
 {
     public int difficulty;
     public float length;
-    public float sectionLength;
+    public float sectionLength; // Represnt the number of lanes JUST FOR NOW
+
    //public List<ObjectSO>;
 }
