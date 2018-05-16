@@ -7,11 +7,14 @@ using UnityEngine;
 /// </summary>
 
 [System.Serializable]
-public class Segment 
+public class Segment
 {
-     public List<TileType> segment= new List<TileType>(5);
-    
-    public TileType this [int i]
+    /// <summary>
+    /// This is not segment this is TileTypeList
+    /// </summary>
+    public List<TileType> segment = new List<TileType>(5);
+
+    public TileType this[int i]
     {
 
         get
@@ -22,6 +25,14 @@ public class Segment
         set
         {
             segment[i] = value;
+        }
+    }
+
+    public int Count
+    {
+        get
+        {
+            return segment.Count;
         }
     }
 }
