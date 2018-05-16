@@ -12,21 +12,26 @@ public class ObjectPool : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        poolDict = new Dictionary<TileType, Queue<GameObject>>(pd.poolableList.Count);
     }
 
     // Use this for initialization
     void Start()
     {
-        foreach (TileType pcType in pd.Keys)
+        foreach (PoolableObj po in pd.poolableList)
         {
-            Queue<GameObject> instancesQueue = new Queue<GameObject>(pd[pcType].count);
-            for (int i = 0; i < pd[pcType].count; i++)
+            Queue<GameObject> instancesQueue = new Queue<GameObject>(po.count);
+            for (int i = 0; i < po.count; i++)
             {
-                GameObject newGameObj = Instantiate(pd[pcType].prefab, pd[pcType].parent.transform);
+                GameObject newGameObj;
+                if (po.parent)
+                    newGameObj = Instantiate(po.prefab, po.parent.transform);
+                else
+                    newGameObj = Instantiate(po.prefab);
                 newGameObj.SetActive(false);
                 instancesQueue.Enqueue(newGameObj);
             }
-            poolDict[pcType] = instancesQueue;
+            poolDict[po.type] = instancesQueue;
         }
     }
 

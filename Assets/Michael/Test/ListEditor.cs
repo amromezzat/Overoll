@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(SegementsList))]
+//[CustomEditor(typeof(SegementsList))]
 public class ListEditor : Editor
 {
 

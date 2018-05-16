@@ -7,7 +7,17 @@ using UnityEditor;
 public class PoolEditor : Editor
 {
 
-    PoolableDatabase poolableDB;
+    public PoolableDatabase poolableDB;
+    Vector2 scrollPos = Vector2.zero;//list of prefabs scroll position
+    bool removingAll = false;//remove all confirmation button
+
+    //current editable values
+    public TileType tileType;
+    public GameObject parent;
+    public GameObject prefab;
+    public int instNum;
+
+
     private void OnEnable()
     {
         poolableDB = (PoolableDatabase)target;
@@ -17,23 +27,152 @@ public class PoolEditor : Editor
     {
         base.OnInspectorGUI();
 
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        EditorGUILayout.Separator();
 
+        DisplayCurrentPrefabs();
 
-        //List<EnumValue> keys = poolableDB.Keys;
+        EditorGUILayout.Separator();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        EditorGUILayout.Separator();
+
+        CreateNewPrefab();
+    }
+
+    void DisplayCurrentPrefabs()
+    {
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Current Prefabs: ", EditorStyles.boldLabel);
         GUILayout.Label(poolableDB.Count.ToString());
-        for(int i=0;i< poolableDB.Count; i++)
+        GUILayout.EndHorizontal();
+
+        EditorGUILayout.Separator();
+        EditorGUILayout.Separator();
+
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.ExpandWidth(true), GUILayout.MaxHeight(250));
+
+        //Display current included prefabs
+        for (int i = 0; i < poolableDB.Count; i++)
         {
+            EditorGUILayout.BeginHorizontal("HelpBox");
+            GUILayout.Label(i.ToString(), EditorStyles.centeredGreyMiniLabel);
+            EditorGUILayout.LabelField(poolableDB[i].Name+"("+poolableDB[i].count.ToString()+")", EditorStyles.miniLabel);
             EditorGUILayout.BeginHorizontal();
-            GUILayout.Label(i.ToString());
-            EditorGUILayout.LabelField(poolableDB[i].ToString());
+            if (GUILayout.Button("Edit"))
+            {
+                tileType = poolableDB[i].type;
+                parent = poolableDB[i].parent;
+                prefab = poolableDB[i].prefab;
+                instNum = poolableDB[i].count;
+            }
+            if (GUILayout.Button("Delete"))
+            {
+                poolableDB.RemoveAt(i);
+                return;
+            }
+            EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndHorizontal();
         }
 
-        if (GUILayout.Button("Add"))
+        if (poolableDB.poolableList.Count == 0)
         {
-            TileType ss = (TileType)ScriptableObject.CreateInstance("TileType");
-            ss.name = "sss";
-            poolableDB.prefabsDict.Add(ss, new PoolableObj());
+            EditorGUILayout.LabelField("Empty", EditorStyles.textField);
+        }
+
+        EditorGUILayout.EndScrollView();
+
+        EditorGUILayout.Separator();
+        EditorGUILayout.Separator();
+
+        RemoveAllButton();
+    }
+
+    void CreateNewPrefab()
+    {
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Create New Prefab: ", EditorStyles.boldLabel);
+        GUILayout.EndHorizontal();
+
+        EditorGUILayout.Separator();
+        EditorGUILayout.Separator();
+
+        tileType = (TileType)EditorGUILayout.ObjectField("Type", tileType, typeof(TileType), false);
+
+        instNum = EditorGUILayout.IntField("Instances Number", instNum);
+
+        prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", prefab, typeof(GameObject), false);
+
+        parent = (GameObject)EditorGUILayout.ObjectField("Parent", parent, typeof(GameObject), true);
+
+        EditorGUILayout.Separator();
+
+        AddEditButtons();
+    }
+
+    void AddEditButtons()
+    {
+        bool showAddNotEdit = true;
+        bool addEnabled = false;
+
+        //check if type already exists
+        for (int i = 0; i < poolableDB.poolableList.Count; i++)
+        {
+            if (tileType && tileType.name == poolableDB.poolableList[i].Name)
+            {
+                showAddNotEdit = false;
+            }
+        }
+
+        //check data correctness
+        if (!tileType)
+        {
+            EditorGUILayout.HelpBox("Type must be set", MessageType.Warning);
+            addEnabled = true;
+        }
+        if (!prefab)
+        {
+            EditorGUILayout.HelpBox("Prefab must be set", MessageType.Warning);
+            addEnabled = true;
+        }
+        if (instNum < 1)
+        {
+            EditorGUILayout.HelpBox("Prefab instances must be at least 1", MessageType.Warning);
+            addEnabled = true;
+        }
+
+        EditorGUI.BeginDisabledGroup(addEnabled);
+
+        if (showAddNotEdit && GUILayout.Button("Add"))
+        {
+            poolableDB.poolableList.Add(new PoolableObj(tileType, instNum, prefab, parent));
+        }
+
+        if (!showAddNotEdit && GUILayout.Button("Edit"))
+        {
+            poolableDB[tileType] = new PoolableObj(tileType, instNum, prefab, parent);
+        }
+
+        EditorGUI.EndDisabledGroup();
+    }
+
+    void RemoveAllButton()
+    {
+        bool removeAll = false;
+
+        if (removingAll)
+        {
+            removingAll = false;
+            removeAll = EditorUtility.DisplayDialog("Deleting all!", "Are you Certain you want to do this crazy act!?", "Yes I'm Crazy", "I'm Crazy but not now");
+        }
+
+        if (removeAll)
+        {
+            poolableDB.RemoveAll();
+        }
+
+        if (poolableDB.Count > 0 && GUILayout.Button("Remove All"))
+        {
+            removingAll = true;
         }
     }
 }

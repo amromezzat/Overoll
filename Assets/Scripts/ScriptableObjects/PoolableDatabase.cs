@@ -1,53 +1,71 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "Lanes", menuName = "Config/Pool/PoolDatabase")]
 public class PoolableDatabase : ScriptableObject
 {
-    public Dictionary<TileType, PoolableObj> prefabsDict = new Dictionary<TileType, PoolableObj>();
-    int count = 0;
-    List<TileType> keys;
-
-    public PoolableObj this[TileType instType]
-    {
-        get
-        {
-            if (prefabsDict.ContainsKey(instType))
-            {
-                return prefabsDict[instType];
-            }
-            return new PoolableObj();
-        }
-    }
-
-    public TileType this[int index]
-    {
-        get
-        {
-            return Keys[index];
-        }
-    }
+    public List<PoolableObj> poolableList;
 
     public int Count
     {
         get
         {
-            count = prefabsDict.Count;
-            return count;
+            return poolableList.Count;
         }
     }
 
-    public List<TileType> Keys
+    public PoolableObj this[int index]
     {
         get
         {
-            List<TileType> keysList = new List<TileType>(Count);
-            foreach (TileType key in keys)
-            {
-                keysList.Add(key);
-            }
-            return keysList;
+            return poolableList[index];
         }
+        set
+        {
+            poolableList[index] = value;
+        }
+    }
+
+    public PoolableObj this[TileType type]
+    {
+        get
+        {
+            return poolableList.FirstOrDefault(po => po.type == type);
+        }
+        set
+        {
+            int poIndex = poolableList.FindIndex(po => po.type == type);
+            poolableList[poIndex] = value;
+        }
+    }
+
+    public void Add(PoolableObj item)
+    {
+        if (!poolableList.Any(po => po.type == item.type))
+            poolableList.Add(item);
+    }
+
+    public bool Remove(PoolableObj item)
+    {
+        return poolableList.Remove(item);
+    }
+
+    public void RemoveAt(int index)
+    {
+        poolableList.RemoveAt(index);
+    }
+
+    public bool Contains(TileType type)
+    {
+        if (poolableList.Any(po => po.type == type))
+            return true;
+        return false;
+    }
+
+    public void RemoveAll()
+    {
+        poolableList.RemoveAll(_none=>true);
     }
 }
