@@ -54,9 +54,13 @@ public class PoolEditor : Editor
         //Display current included prefabs
         for (int i = 0; i < poolableDB.Count; i++)
         {
+            EditorGUILayout.BeginVertical("HelpBox");
+            LoadPrefabText(poolableDB[i].Name);
+
             EditorGUILayout.BeginHorizontal("HelpBox");
             GUILayout.Label(i.ToString(), EditorStyles.centeredGreyMiniLabel);
-            EditorGUILayout.LabelField(poolableDB[i].Name+"("+poolableDB[i].count.ToString()+")", EditorStyles.miniLabel);
+            EditorGUILayout.LabelField(poolableDB[i].Name + "(" + poolableDB[i].count.ToString() + ")", EditorStyles.miniLabel);
+
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Edit"))
             {
@@ -72,6 +76,7 @@ public class PoolEditor : Editor
             }
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
         }
 
         if (poolableDB.poolableList.Count == 0)
@@ -174,5 +179,15 @@ public class PoolEditor : Editor
         {
             removingAll = true;
         }
+    }
+
+    void LoadPrefabText(string name)
+    {
+        string texture = "Assets/Resources/Textures/Obstacles/" + name + ".png";
+        Texture2D inputTexture = (Texture2D)AssetDatabase.LoadAssetAtPath(texture, typeof(Texture2D));
+        if (!inputTexture)
+            return;
+        
+        GUILayout.Label(inputTexture, GUILayout.MaxHeight(70), GUILayout.MaxWidth(70));
     }
 }
