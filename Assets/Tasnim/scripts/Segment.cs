@@ -6,6 +6,7 @@ using UnityEngine;
 /// This class represents segment which consists of list of TileType
 /// </summary>
 
+[System.Serializable]
 public class Segment 
 {
      public List<TileType> segment= new List<TileType>(5);
