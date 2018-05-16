@@ -66,6 +66,6 @@ public class PoolableDatabase : ScriptableObject
 
     public void RemoveAll()
     {
-        poolableList.RemoveAll(_none=>true);
+        poolableList.RemoveAll(_=>true);
     }
 }
