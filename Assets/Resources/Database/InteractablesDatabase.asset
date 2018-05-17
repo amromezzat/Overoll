@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 393c9ec4fa1e9354ba4d1cbf00d9bffb, type: 3}
-  m_Name: Obstacle System
+  m_Name: InteractablesDatabase
   m_EditorClassIdentifier: 
-  Obstacles:
+  tileTypeList:
   - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
   - {fileID: 11400000, guid: 0c648183860a32f4f933c855a3dc8399, type: 2}
   - {fileID: 11400000, guid: 72ce584de62251d47aaa17aadfb49ce3, type: 2}
@@ -21,3 +21,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd2b8244391ae1c4da983597919acbe4, type: 2}
   - {fileID: 11400000, guid: 36da0725d5697de4ea45050fac37a359, type: 2}
   - {fileID: 11400000, guid: f521693dd8d8c064a87cc55360d1cdcb, type: 2}
+  interactablesNames:
+  - Coin
+  - DownObstacle
+  - ForwardObstacle
+  - JumbObstacle
+  - LeftSideObstacle
+  - PowerUp
+  - RightSideObstacle
+  - SlideObstacle
+  - UpObstacle
