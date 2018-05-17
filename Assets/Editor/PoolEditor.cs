@@ -16,7 +16,7 @@ public class PoolEditor : Editor
     public GameObject parent;
     public GameObject prefab;
     public int instNum;
-    InteractablesDatabase interactablesDatabase;//tiles database to select from
+    InteractablesDatabase interactablesDB;//tiles database to select from
     public int selectedTile = 0;
 
     private void OnEnable()
@@ -24,7 +24,7 @@ public class PoolEditor : Editor
         poolableDB = (PoolableDatabase)target;
 
         string interactablesDBPath = "Assets/Resources/Database/InteractablesDatabase.asset";
-        interactablesDatabase = (InteractablesDatabase)AssetDatabase.LoadAllAssetsAtPath(interactablesDBPath)[0];
+        interactablesDB = (InteractablesDatabase)AssetDatabase.LoadAllAssetsAtPath(interactablesDBPath)[0];
     }
 
     public override void OnInspectorGUI()
@@ -110,7 +110,9 @@ public class PoolEditor : Editor
         EditorGUILayout.Separator();
         EditorGUILayout.Separator();
 
-        tileType = (TileType)EditorGUILayout.ObjectField("Type", tileType, typeof(TileType), false);
+        selectedTile = EditorGUILayout.Popup("Label", selectedTile, 
+            interactablesDB.interactablesNames.ToArray());
+        //tileType = (TileType)EditorGUILayout.ObjectField("Type", tileType, typeof(TileType), false);
 
         instNum = (int)EditorGUILayout.Slider("Instances Number", instNum, 1, 20);
 
