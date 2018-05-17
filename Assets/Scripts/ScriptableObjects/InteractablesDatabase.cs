@@ -19,7 +19,7 @@ public class InteractablesDatabase : ScriptableObject
         }
     }
 
-    TileType this[string name]
+    public TileType this[string name]
     {
         get
         {
@@ -33,7 +33,7 @@ public class InteractablesDatabase : ScriptableObject
         }
     }
 
-    TileType this[int index]
+    public TileType this[int index]
     {
         get
         {
