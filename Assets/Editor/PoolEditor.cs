@@ -21,6 +21,7 @@ public class PoolEditor : Editor
     private void OnEnable()
     {
         poolableDB = (PoolableDatabase)target;
+
     }
 
     public override void OnInspectorGUI()
@@ -49,7 +50,9 @@ public class PoolEditor : Editor
         EditorGUILayout.Separator();
         EditorGUILayout.Separator();
 
-        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.ExpandWidth(true), GUILayout.MaxHeight(250));
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, 
+            GUILayout.ExpandWidth(true), GUILayout.MaxHeight(250),
+            GUILayout.MinHeight(120));
 
         //Display current included prefabs
         for (int i = 0; i < poolableDB.Count; i++)
