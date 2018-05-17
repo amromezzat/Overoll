@@ -27,7 +27,17 @@ public class InteractablesDatabase : ScriptableObject
         }
         set
         {
-            tileTypeList[interactablesNames.IndexOf(name)] = value;
+            int index = interactablesNames.IndexOf(name);
+            tileTypeList[index] = value;
+            interactablesNames[index] = value.name;
+        }
+    }
+
+    TileType this[int index]
+    {
+        get
+        {
+            return tileTypeList[index];
         }
     }
 
@@ -37,16 +47,19 @@ public class InteractablesDatabase : ScriptableObject
     {
         if (!tileTypeList.Contains(tile))
             tileTypeList.Add(tile);
+        interactablesNames.Add(tile.name);
     }
 
     public bool Remove(TileType tile)
     {
+        interactablesNames.Remove(tile.name);
         return tileTypeList.Remove(tile);
     }
 
     public void RemoveAt(int index)
     {
         tileTypeList.RemoveAt(index);
+        interactablesNames.RemoveAt(index);
     }
 
 }
