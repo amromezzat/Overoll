@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName ="ObsticaleTypeEnumValue", menuName="Obsticals/TileType" ,order = 9)]
+[CreateAssetMenu(fileName ="TileType", menuName= "Config/Obstacles/TileType")]
 public class TileType : ScriptableObject {
 
 }

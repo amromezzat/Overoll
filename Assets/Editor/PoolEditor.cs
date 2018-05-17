@@ -62,6 +62,7 @@ public class PoolEditor : Editor
             EditorGUILayout.LabelField(poolableDB[i].Name + "(" + poolableDB[i].count.ToString() + ")", EditorStyles.miniLabel);
 
             EditorGUILayout.BeginHorizontal();
+
             if (GUILayout.Button("Edit"))
             {
                 tileType = poolableDB[i].type;
@@ -69,11 +70,13 @@ public class PoolEditor : Editor
                 prefab = poolableDB[i].prefab;
                 instNum = poolableDB[i].count;
             }
+
             if (GUILayout.Button("Delete"))
             {
                 poolableDB.RemoveAt(i);
                 return;
             }
+
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndVertical();
@@ -103,7 +106,7 @@ public class PoolEditor : Editor
 
         tileType = (TileType)EditorGUILayout.ObjectField("Type", tileType, typeof(TileType), false);
 
-        instNum = EditorGUILayout.IntField("Instances Number", instNum);
+        instNum = (int)EditorGUILayout.Slider("Instances Number", instNum, 1, 20);
 
         prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", prefab, typeof(GameObject), false);
 
@@ -139,11 +142,11 @@ public class PoolEditor : Editor
             EditorGUILayout.HelpBox("Prefab must be set", MessageType.Warning);
             addEnabled = true;
         }
-        if (instNum < 1)
-        {
-            EditorGUILayout.HelpBox("Prefab instances must be at least 1", MessageType.Warning);
-            addEnabled = true;
-        }
+        //if (instNum < 1)
+        //{
+        //    EditorGUILayout.HelpBox("Prefab instances must be at least 1", MessageType.Warning);
+        //    addEnabled = true;
+        //}
 
         EditorGUI.BeginDisabledGroup(addEnabled);
 
@@ -183,7 +186,7 @@ public class PoolEditor : Editor
 
     void LoadPrefabText(string name)
     {
-        string texture = "Assets/Resources/Textures/Obstacles/" + name + ".png";
+        string texture = "Assets/Resources/Textures/Interactables/" + name + ".png";
         Texture2D inputTexture = (Texture2D)AssetDatabase.LoadAssetAtPath(texture, typeof(Texture2D));
         if (!inputTexture)
             return;
