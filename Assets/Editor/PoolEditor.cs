@@ -112,6 +112,8 @@ public class PoolEditor : Editor
 
         selectedTile = EditorGUILayout.Popup("Label", selectedTile, 
             interactablesDB.interactablesNames.ToArray());
+        tileType = interactablesDB[selectedTile];
+
         //tileType = (TileType)EditorGUILayout.ObjectField("Type", tileType, typeof(TileType), false);
 
         instNum = (int)EditorGUILayout.Slider("Instances Number", instNum, 1, 20);
@@ -140,11 +142,11 @@ public class PoolEditor : Editor
         }
 
         //check data correctness
-        if (!tileType)
-        {
-            EditorGUILayout.HelpBox("Type must be set", MessageType.Warning);
-            addEnabled = true;
-        }
+        //if (!tileType)
+        //{
+        //    EditorGUILayout.HelpBox("Type must be set", MessageType.Warning);
+        //    addEnabled = true;
+        //}
         if (!prefab)
         {
             EditorGUILayout.HelpBox("Prefab must be set", MessageType.Warning);
