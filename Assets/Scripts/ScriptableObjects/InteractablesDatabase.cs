@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu]
-public class ObstacleSystem : ScriptableObject {
+public class InteractableDatabase : ScriptableObject {
 
  public    List<TileType> Obstacles;
 
