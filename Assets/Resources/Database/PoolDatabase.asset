@@ -28,10 +28,6 @@ MonoBehaviour:
     count: 1
     prefab: {fileID: 1636399051536342, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
     parent: {fileID: 1775681525812836, guid: 5ed6569d553167148bf6fedf3bf4d85b, type: 2}
-  - type: {fileID: 11400000, guid: 38c61632ef91a2441b82a708f3aa0d44, type: 2}
-    count: 1
-    prefab: {fileID: 1636399051536342, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
-    parent: {fileID: 1775681525812836, guid: 5ed6569d553167148bf6fedf3bf4d85b, type: 2}
   - type: {fileID: 11400000, guid: bd2b8244391ae1c4da983597919acbe4, type: 2}
     count: 1
     prefab: {fileID: 1636399051536342, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
