@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -761,6 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf82ba43902f7fb4ab2bed81e100e128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PatternDatabase: {fileID: 11400000, guid: a7283fdd27bf9fb4f9ae0759553ae871, type: 2}
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
 --- !u!1 &2021476667
 GameObject:
