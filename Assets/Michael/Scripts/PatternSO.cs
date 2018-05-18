@@ -9,7 +9,6 @@ public class PatternSO : ScriptableObject
     public int difficulty;
     public float length;
     public float sectionLength;
-    //public List<ObjectSO>;
 
     public List<Segment> segmentList = new List<Segment>();
 
