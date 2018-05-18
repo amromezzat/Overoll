@@ -35,5 +35,13 @@ public class Segment
             return ListOfTiles.Count;
         }
     }
+
+    public Segment(TileType tile)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            ListOfTiles.Add(tile);
+        }
+    }
 }
 
