@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStats : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+[CreateAssetMenu(fileName = "Game Stats", menuName = "Config/GameStat")]
+public class GameStats : ScriptableObject
+{
+    public int difficulty;
+    [HideInInspector]
+    public int workersNum;
+    [HideInInspector]
+    public int hrNum;
+    [HideInInspector]
+    public int bossNum;
+    [HideInInspector]
+    public TileType leadrType;
 }
+
