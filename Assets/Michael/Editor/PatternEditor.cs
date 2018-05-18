@@ -118,17 +118,17 @@ public class PatternEditor : Editor
     void Edit()
     {
         EditorGUI.BeginDisabledGroup(currentInstance.segmentList.Count == 0);
-        { 
-        IndexSlider();
-        GUILayout.BeginHorizontal();
         {
-            
-            if (GUILayout.Button("Edit"))
+            IndexSlider();
+            GUILayout.BeginHorizontal();
             {
-                currentInstance[segmentIndex] = empty;
+
+                if (GUILayout.Button("Edit"))
+                {
+                    currentInstance[segmentIndex] = empty;
+                }
             }
-        }
-        GUILayout.EndHorizontal();
+            GUILayout.EndHorizontal();
         }
         EditorGUI.EndDisabledGroup();
     }
@@ -164,13 +164,10 @@ public class PatternEditor : Editor
 
     void RemoveAll()
     {
-        GUILayout.BeginVertical();
+        GUILayout.Label("Danger Zone!", EditorStyles.boldLabel);
+        if (GUILayout.Button("Remove All"))
         {
-            GUILayout.Label("Danger Zone!", EditorStyles.boldLabel);
-            if (GUILayout.Button("Remove All"))
-            {
-                currentInstance.segmentList.RemoveAll(listItem => true);
-            }
+            currentInstance.segmentList.RemoveAll(listItem => true);
         }
     }
 
@@ -205,5 +202,4 @@ public class PatternEditor : Editor
             segmentIndex = currentInstance.segmentList.Count;
         }
     }
-
 }
