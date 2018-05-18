@@ -7,44 +7,28 @@ using UnityEditor;
 
 public class PatternDB : ScriptableObject {
 
-    public int CurrentCountOfPatternInCertainDifficultyLevel;
-    public List<List<PatternSO>> PatternDBList = new List<List<PatternSO>>();
-    public List<TileType> segment = new List<TileType>(5);
+
+    public List<Difficulty> PatternDBList = new List<Difficulty>();
+    // public List<TileType> segment = new List<TileType>(5);
 
     public int Count
     {
         get
         {
-            return PatternDBList.Count;
+            return PatternDBList.Count;//PatternDBList.Count;
         }
     }
 
-
-
-    ////NO Need For this function in the current time 
-
-    //int CurrentCountOfPatternInCertainDifficulty()
-    //{
-    //    for (int i = 0; i < Count; i++)
-    //    {
-    //        CurrentCountOfPatternInCertainDifficultyLevel = PatternDBList[i].Count;
-    //    }
-    //    return CurrentCountOfPatternInCertainDifficultyLevel;
-    //}
-    
-   
-
-
-    void onEnable()
+    public Difficulty this[int index]
     {
-        //List<PatternSO> psoList = new List<PatternSO>();
-        //PatternDBList[1] = psoList;
-        //PatternDBList[2] = psoList;
-
-        //  psoList.Add(AssetDatabase.FindAssets("t:" + typeof(PatternSO).Name));
-
-
-
+        get
+        {
+            return PatternDBList[index];
+        }
+        set
+        {
+            PatternDBList[index]= value;
+        }
     }
 
 }
