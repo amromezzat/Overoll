@@ -48,6 +48,9 @@ public class PatternEditor : Editor
         EditorUtility.SetDirty(currentInstance); // to save the changes
     }
 
+    /// <summary>
+    /// draws the pattern added
+    /// </summary>
     void Show()
     {
         GUILayout.Label("Show Window", EditorStyles.boldLabel);
@@ -57,9 +60,9 @@ public class PatternEditor : Editor
         }
         for (int i = 0; i < currentInstance.Count; i++)
         {
+                var segTemp = currentInstance[i];
             GUILayout.BeginHorizontal();
             {
-                var segTemp = currentInstance[i];
                 for (int j = 0; j < segTemp.Count; j++)
                 {
                     var tileTemp = segTemp[j];
@@ -76,10 +79,9 @@ public class PatternEditor : Editor
                 if (GUILayout.Button("Edit"))
                 {
                     segmentIndex = i;
-                    for (int j = 0; j < currentInstance.segmentList[i].Count; j++)
+                    for (int j = 0; j < seg.Count; j++)
                     {
-                    seg[j] = currentInstance.segmentList[i].ListOfTiles[j];
-
+                        interactableSelected[j] = idb.interactablesNames.IndexOf(segTemp[j].name);
                     }
                 }
                 if (GUILayout.Button("Remove"))
@@ -91,6 +93,9 @@ public class PatternEditor : Editor
         }
     }
 
+    /// <summary>
+    /// just draws the Add/edit window to choose between both
+    /// </summary>
     void ShowWithEdit()
     {
         string[] options = new string[] { "Add", "Edit" };
@@ -105,17 +110,17 @@ public class PatternEditor : Editor
             if (currentInstance.segmentList.Count > 0)
             {
                 DrawEdit();
-
             }
             else
             {
                 return;
-   
             }
         }
-        
     }
 
+    /// <summary>
+    /// called when select to edit the segment
+    /// </summary>
     void DrawEdit()
     {
         GUILayout.BeginHorizontal();
@@ -124,7 +129,7 @@ public class PatternEditor : Editor
             {
                 GUILayout.BeginVertical();
                 interactableSelected[i] = EditorGUILayout.Popup(interactableSelected[i], idb.interactablesNames.ToArray());
-                seg[i] = idb[interactableSelected[i]];
+                seg[i] =  idb[interactableSelected[i]];
                 //EditorGUILayout.ObjectField(empty[i], typeof(TileType), false);
                 LoadPrefabTexture(seg[i].name);
                 GUILayout.EndVertical();
@@ -139,7 +144,8 @@ public class PatternEditor : Editor
             {
                 if (GUILayout.Button("Save"))
                 {
-                   currentInstance.segmentList[segmentIndex] = seg;
+                   currentInstance.segmentList[segmentIndex] = new Segment (seg);
+                    
                 }
             }
             GUILayout.EndHorizontal();
@@ -147,12 +153,14 @@ public class PatternEditor : Editor
         EditorGUI.EndDisabledGroup();
     }
 
+    /// <summary>
+    /// called when add chosen
+    /// </summary>
     void Add()
     {
         Segment empty = new Segment(idb[0]);
         GUILayout.BeginHorizontal();
         {
-
             for (int i = 0; i < empty.Count; i++)
             {
                 GUILayout.BeginVertical();
@@ -190,20 +198,22 @@ public class PatternEditor : Editor
             }
         }
         GUILayout.EndHorizontal();
-
-
     }
 
+    /// <summary>
+    /// used to show the texture of the interactable object
+    /// </summary>
+    /// <param name="name"></param>
     void LoadPrefabTexture(string name)
     {
         string texture = "Assets/Resources/Textures/Interactables/" + name + ".png";
         Texture2D inputTexture = (Texture2D)AssetDatabase.LoadAssetAtPath(texture, typeof(Texture2D));
-        //if (!inputTexture)
-        //    return;
-
         GUILayout.Label(inputTexture, GUILayout.MaxHeight(70), GUILayout.MaxWidth(80));
     }
 
+    /// <summary>
+    /// to show the index as a range
+    /// </summary>
     void IndexSlider()
     {
         segmentIndex = (int)EditorGUILayout.Slider("Index", segmentIndex, 0, currentInstance.segmentList.Count);
@@ -213,6 +223,9 @@ public class PatternEditor : Editor
         }
     }
 
+    /// <summary>
+    /// function called to remove all segments in pattern
+    /// </summary>
     void RemoveAll()
     {
         GUILayout.Label("Danger Zone!", EditorStyles.boldLabel);
