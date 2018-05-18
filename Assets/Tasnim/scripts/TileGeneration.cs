@@ -5,13 +5,13 @@ using UnityEngine;
 public class TileGeneration : MonoBehaviour {
 
     public Lanes lanes;
-    ObjectPool PoolOfObstacles;
+    //ObjectPool PoolOfObstacles;
  
 
 
 	// Use this for initialization
 	void Start () {
-        PoolOfObstacles = GetComponent<ObjectPool>();
+        //PoolOfObstacles = GetComponent<ObjectPool>();
         
      
     }
@@ -33,9 +33,9 @@ public class TileGeneration : MonoBehaviour {
 
             }
 
-            var obj = PoolOfObstacles.GetFromPool(segment[i]);
-            Vector3 objpos = obj.transform.position;
-             objpos.x = lanes[i].laneCenter;
+            //var obj = PoolOfObstacles.GetFromPool(segment[i]);
+            //Vector3 objpos = obj.transform.position;
+             //objpos.x = lanes[i].laneCenter;
         }
         
 
