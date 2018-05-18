@@ -12,11 +12,12 @@ public class ObjectMover : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.forward * -tc.tileSpeed;
     }
 
     private void Update()
     {
-        rb.velocity = Vector3.forward * -tc.tileSpeed;
+
     }
 }
 
