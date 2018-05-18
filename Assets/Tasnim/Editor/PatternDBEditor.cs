@@ -24,12 +24,13 @@ public class PatternDataBaseEditor : Editor
         DifficultyNumber = PatternDataBase.Count;
         selected = 0;
         AddinitialPatternsToTest();
+
     }
 
     //-----------------------------------------------------------------
     public override void OnInspectorGUI()
     {
-        //  base.OnInspectorGUI();
+        base.OnInspectorGUI();
         UpdateDifficultyList();
         AddListOfpatternstoDifficulty();
 
@@ -63,10 +64,6 @@ public class PatternDataBaseEditor : Editor
         if (GUILayout.Button("ADD"))
         {
             addpatterntoDifficulty(selected, AddedPattern);
-
-
-
-
         }
 
 
@@ -106,14 +103,6 @@ public class PatternDataBaseEditor : Editor
 
 
         }
-
-
-
-
-
-
-
-
     }
 
     void UpdateDifficultyList()
@@ -142,7 +131,7 @@ public class PatternDataBaseEditor : Editor
             for (int i = 0; i < N; i++)
             {
 
-                PatternDataBase.PatternDBList.Add(new List<PatternSO>());
+                PatternDataBase.PatternDBList.Add(new Difficulty());
 
             }
 
@@ -151,7 +140,7 @@ public class PatternDataBaseEditor : Editor
         {
             int N = PatternDataBase.Count - DifficultyNumber;
             PatternDataBase.PatternDBList.RemoveRange(DifficultyNumber, N);
-            if (selected > DifficultyNumber-1)
+            if (selected > DifficultyNumber - 1)
             {
                 selected = DifficultyNumber - 1;
             }
@@ -167,7 +156,7 @@ public class PatternDataBaseEditor : Editor
 
         if (!PatternDataBase.PatternDBList[selected].Contains(AddedPattern))
         {
-        PatternDataBase.PatternDBList[selected].Add(AddedPattern);
+            PatternDataBase.PatternDBList[selected].Add(AddedPattern);
 
         }
         else
@@ -180,8 +169,8 @@ public class PatternDataBaseEditor : Editor
     void AddinitialPatternsToTest()
     {
         // Adding empty list of patterns to the database
-        List<PatternSO> PsoListD0 = new List<PatternSO>();
-        List<PatternSO> PsoListD1 = new List<PatternSO>();
+        Difficulty PsoListD0 = new Difficulty();
+        Difficulty PsoListD1 = new Difficulty();
         PsoListD0.Add(new PatternSO());
         PsoListD0.Add(new PatternSO());
         PsoListD0.Add(new PatternSO());

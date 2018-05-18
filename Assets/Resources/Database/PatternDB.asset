@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08bbfe0530a04c942a51c3d4c808f06d, type: 3}
-  m_Name: Test pattern Data Base
+  m_Name: PatternDB
   m_EditorClassIdentifier: 
   CurrentCountOfPatternInCertainDifficultyLevel: 0
   segment: []
