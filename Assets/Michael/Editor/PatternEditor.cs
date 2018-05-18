@@ -140,7 +140,7 @@ public class PatternEditor : Editor
             endAdd = GUILayout.Toggle(endAdd, "Add at End");
             EditorGUI.BeginDisabledGroup(endAdd);
             {
-                segmentIndex = (int)EditorGUILayout.Slider("Index", segmentIndex, 0, empty.Count);
+                segmentIndex = (int)EditorGUILayout.Slider("Index", segmentIndex, 0, currentInstance.segmentList.Count);
                 if (segmentIndex > empty.Count)
                 {
                     segmentIndex = empty.Count;
