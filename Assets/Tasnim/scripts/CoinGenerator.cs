@@ -11,15 +11,15 @@ public class CoinGenerator : MonoBehaviour
     public Generator gen;
     public GameObject player;
     public float playerPosY = 0.75f;
-    public float timeBetweenFollowedCoins=1.0f;
+    public float timeBetweenFollowedCoins = 1.0f;
     public float shift;
 
     void Start()
     {
         coinPoolScript = this.GetComponent<CoinPool>();
         StartCoroutine(Generate());
-        
-       
+
+
     }
 
     IEnumerator Generate()
@@ -31,11 +31,11 @@ public class CoinGenerator : MonoBehaviour
             //call get coin from the coin pool
             Vector3 pos = generatedcoin.transform.position;
 
-            
+
             pos.x = lanes[laneNumber].laneCenter;
 
-            shift = i*2;
-            generatedcoin.transform.position = new Vector3(pos.x, playerPosY, gen.transform.position.z+shift);
+            shift = i * 2;
+            generatedcoin.transform.position = new Vector3(pos.x, playerPosY, gen.transform.position.z + shift);
             yield return null;
         }
         yield return new WaitForSeconds(5);

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : MonoBehaviour {
+public class Generator : MonoBehaviour
+{
     public Vector3 shift;
-    public float disFromPlayer=10;
+    public float disFromPlayer = 10;
     EnvPooler pool;
     Transform lastTile;
 
@@ -14,20 +15,21 @@ public class Generator : MonoBehaviour {
     /// t = d/v, d per prefab
     /// </summary>
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         pool = gameObject.GetComponent<EnvPooler>();
         lastTile = this.transform;
         //StartCoroutine(GenerateCoroutine());
-	}
+    }
 
     private void Update()
     {
-        if(pool.activeTileCount < 8)
+        if (pool.activeTileCount < 8)
         {
             GenerateTile();
-        }    
+        }
     }
 
     void GenerateTile()
