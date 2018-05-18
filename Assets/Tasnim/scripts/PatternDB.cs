@@ -21,16 +21,16 @@ public class PatternDB : ScriptableObject {
 
 
 
-    //NO Need For this function in the current time 
+    ////NO Need For this function in the current time 
 
-    int CurrentCountOfPatternInCertainDifficulty()
-    {
-        for (int i = 0; i < Count; i++)
-        {
-            CurrentCountOfPatternInCertainDifficultyLevel = PatternDBList[i].Count;
-        }
-        return CurrentCountOfPatternInCertainDifficultyLevel;
-    }
+    //int CurrentCountOfPatternInCertainDifficulty()
+    //{
+    //    for (int i = 0; i < Count; i++)
+    //    {
+    //        CurrentCountOfPatternInCertainDifficultyLevel = PatternDBList[i].Count;
+    //    }
+    //    return CurrentCountOfPatternInCertainDifficultyLevel;
+    //}
     
    
 
