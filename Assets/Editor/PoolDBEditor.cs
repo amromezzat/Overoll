@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(PoolableDatabase))]
-public class PoolEditor : Editor
+public class PoolDBEditor : Editor
 {
 
     public PoolableDatabase poolableDB;
@@ -56,7 +56,6 @@ public class PoolEditor : Editor
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos, 
             GUILayout.ExpandWidth(true), GUILayout.MaxHeight(250),
             GUILayout.MinHeight(160));
-
         //Display current included prefabs
         for (int i = 0; i < poolableDB.Count; i++)
         {
