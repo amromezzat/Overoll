@@ -43,5 +43,13 @@ public class Segment
             ListOfTiles.Add(tile);
         }
     }
+
+    public Segment (Segment segment)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            ListOfTiles.Add(segment.ListOfTiles[i]);
+        }
+    }
 }
 
