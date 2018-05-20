@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LaneType", menuName = "Config/Types/Lane")]
-public class LaneName : ScriptableObject {
+public class LaneType : ScriptableObject {
     [SerializeField]
     private int laneNum;
     public float laneCenter;

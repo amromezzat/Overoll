@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-[CreateAssetMenu(fileName = "PoolablesDatabase", menuName = "Database/Poolables")]
-public class PoolablesDatabase : ScriptableObject
+[CreateAssetMenu(fileName = "PoolDatabase", menuName = "Database/Pool")]
+public class PoolDatabase : ScriptableObject
 {
     public List<PoolableObj> poolableList;
 

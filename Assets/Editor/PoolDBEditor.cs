@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(PoolablesDatabase))]
+[CustomEditor(typeof(PoolDatabase))]
 public class PoolDBEditor : Editor
 {
 
-    public PoolablesDatabase poolableDB;
+    public PoolDatabase poolableDB;
     Vector2 scrollPos = Vector2.zero;//list of prefabs scroll position
     bool removingAll = false;//remove all confirmation button
 
@@ -15,13 +15,13 @@ public class PoolDBEditor : Editor
     public PoolableType tileType;
     public GameObject parent;
     public GameObject prefab;
-    public int instNum;
+    public int instNum = 10;
     InteractablesDatabase interactablesDB;//tiles database to select from
     public int selectedTile = 0;
 
     private void OnEnable()
     {
-        poolableDB = (PoolablesDatabase)target;
+        poolableDB = (PoolDatabase)target;
 
         string interactablesDBPath = "Assets/Resources/Database/InteractablesDatabase.asset";
         interactablesDB = (InteractablesDatabase)AssetDatabase.LoadAllAssetsAtPath(interactablesDBPath)[0];
@@ -113,8 +113,6 @@ public class PoolDBEditor : Editor
             interactablesDB.interactablesNames.ToArray());
         tileType = interactablesDB[selectedTile];
 
-        //tileType = (TileType)EditorGUILayout.ObjectField("Type", tileType, typeof(TileType), false);
-
         instNum = (int)EditorGUILayout.Slider("Instances Number", instNum, 1, 20);
 
         prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", prefab, typeof(GameObject), false);
@@ -140,22 +138,11 @@ public class PoolDBEditor : Editor
             }
         }
 
-        //check data correctness
-        //if (!tileType)
-        //{
-        //    EditorGUILayout.HelpBox("Type must be set", MessageType.Warning);
-        //    addEnabled = true;
-        //}
         if (!prefab)
         {
             EditorGUILayout.HelpBox("Prefab must be set", MessageType.Warning);
             addEnabled = true;
         }
-        //if (instNum < 1)
-        //{
-        //    EditorGUILayout.HelpBox("Prefab instances must be at least 1", MessageType.Warning);
-        //    addEnabled = true;
-        //}
 
         EditorGUI.BeginDisabledGroup(addEnabled);
 
@@ -195,7 +182,7 @@ public class PoolDBEditor : Editor
 
     void LoadPrefabText(string name)
     {
-        string texture = "Assets/Resources/Textures/Interactables/" + name + ".png";
+        string texture = "Assets/Resources/Textures/PoolableAssets/" + name + ".png";
         Texture2D inputTexture = (Texture2D)AssetDatabase.LoadAssetAtPath(texture, typeof(Texture2D));
         if (!inputTexture)
             return;

@@ -10,14 +10,14 @@ public class LanesDatabase : ScriptableObject
     private float laneWidth;//width of each seperate lane
 
     [SerializeField]
-    List<LaneName> onGridLanes;
+    List<LaneType> onGridLanes;
     [SerializeField]
-    List<LaneName> gridLanes;
+    List<LaneType> gridLanes;
 
-    private LaneName currentLane;
+    private LaneType currentLane;
     private int currentLaneIndex;
 
-    public LaneName CurrentLane
+    public LaneType CurrentLane
     {
         get
         {
@@ -33,7 +33,7 @@ public class LanesDatabase : ScriptableObject
         }
     }
 
-    public List<LaneName> GridLanes
+    public List<LaneType> GridLanes
     {
         get
         {
@@ -41,7 +41,7 @@ public class LanesDatabase : ScriptableObject
         }
     }
 
-    public List<LaneName> OnGridLanes
+    public List<LaneType> OnGridLanes
     {
         get
         {
@@ -64,7 +64,7 @@ public class LanesDatabase : ScriptableObject
 
     //get lane by index
 
-    public LaneName this[int index]
+    public LaneType this[int index]
     {
         get
         {
@@ -83,7 +83,7 @@ public class LanesDatabase : ScriptableObject
     }
 
     //get lane index by lane
-    public int this[LaneName laneName]
+    public int this[LaneType laneName]
     {
         get { return OnGridLanes.IndexOf(laneName); }
     }
@@ -119,7 +119,7 @@ public class LanesDatabase : ScriptableObject
         //add a lane to the left if there is no more than 1 lane to the left
         if (OnGridLanes[0].LaneNum > 0)
         {
-            LaneName newLeftLane = gridLanes[OnGridLanes[0].LaneNum - 1];
+            LaneType newLeftLane = gridLanes[OnGridLanes[0].LaneNum - 1];
             OnGridLanes.Insert(0, newLeftLane);
             return true;
         }
@@ -132,7 +132,7 @@ public class LanesDatabase : ScriptableObject
         //add a lane to the right if there is no more than 1 lane to the right
         if (OnGridLanes[OnGridLanes.Count - 1].LaneNum < 4)
         {
-            LaneName newRightLane = gridLanes[OnGridLanes[OnGridLanes.Count - 1].LaneNum + 1];
+            LaneType newRightLane = gridLanes[OnGridLanes[OnGridLanes.Count - 1].LaneNum + 1];
             onGridLanes.Add(newRightLane);
             return true;
         }
