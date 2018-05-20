@@ -6,7 +6,7 @@ public class CoinGenerator : MonoBehaviour
 {
     CoinPool coinPoolScript;
     public Vector3 disBetweenCoins;
-    public Lanes lanes;
+    public LanesDatabase lanes;
     public int numberFollowedCoins;
     public EnvGenerator gen;
     public GameObject player;

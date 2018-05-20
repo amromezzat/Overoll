@@ -13,6 +13,6 @@ public class GameStats : ScriptableObject
     [HideInInspector]
     public int bossNum;
     [HideInInspector]
-    public TileType leadrType;
+    public PoolableType leadrType;
 }
 

@@ -5,14 +5,14 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool instance;
-    public PoolableDatabase pd;
+    public PoolablesDatabase pd;
 
-    Dictionary<TileType, Queue<GameObject>> poolDict;
+    Dictionary<PoolableType, Queue<GameObject>> poolDict;
 
     private void Awake()
     {
         instance = this;
-        poolDict = new Dictionary<TileType, Queue<GameObject>>(pd.poolableList.Count);
+        poolDict = new Dictionary<PoolableType, Queue<GameObject>>(pd.poolableList.Count);
     }
 
     // Use this for initialization
@@ -35,7 +35,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public GameObject GetFromPool(TileType instType)
+    public GameObject GetFromPool(PoolableType instType)
     {
         if (poolDict.ContainsKey(instType))
         {
@@ -53,7 +53,7 @@ public class ObjectPool : MonoBehaviour
         return null;
     }
 
-    public void ReturnToPool(TileType instType, GameObject inst)
+    public void ReturnToPool(PoolableType instType, GameObject inst)
     {
         if (poolDict.ContainsKey(instType))
         {

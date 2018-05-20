@@ -6,21 +6,21 @@ using UnityEditor;
 /// <summary>
 /// Editor to show and Delete the patterns inside certain selected difficulty.
 /// </summary>
-[CustomEditor(typeof(PatternDB))]
+[CustomEditor(typeof(PatternDatabase))]
 public class PatternDataBaseEditor : Editor
 {
     // variables 
     int selected;
     int DifficultyNumber;
     string str;
-    public PatternDB PatternDataBase;
-    public PatternSO AddedPattern;
+    public PatternDatabase PatternDataBase;
+    public Pattern AddedPattern;
     List<string> options;
 
     //----------------------------------------------------------------------
     void OnEnable()
     {
-        PatternDataBase = (PatternDB)target;
+        PatternDataBase = (PatternDatabase)target;
         DifficultyNumber = PatternDataBase.Count;
         selected = 0;
     }
@@ -57,7 +57,7 @@ public class PatternDataBaseEditor : Editor
         //-----------------------------------------------------------
         // Add button and drag and drop object in it.
 
-        AddedPattern = (PatternSO)EditorGUILayout.ObjectField("Added Pattern :", AddedPattern, typeof(PatternSO), false);
+        AddedPattern = (Pattern)EditorGUILayout.ObjectField("Added Pattern :", AddedPattern, typeof(Pattern), false);
 
         if (GUILayout.Button("ADD"))
         {
@@ -134,7 +134,7 @@ public class PatternDataBaseEditor : Editor
         }
     }
 
-    void AddPatternToDifficulty(int selected, PatternSO addedPattern)
+    void AddPatternToDifficulty(int selected, Pattern addedPattern)
     {
 
         if (!PatternDataBase.PatternDBList[selected].Contains(addedPattern))

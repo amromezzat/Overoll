@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(PoolableDatabase))]
+[CustomEditor(typeof(PoolablesDatabase))]
 public class PoolDBEditor : Editor
 {
 
-    public PoolableDatabase poolableDB;
+    public PoolablesDatabase poolableDB;
     Vector2 scrollPos = Vector2.zero;//list of prefabs scroll position
     bool removingAll = false;//remove all confirmation button
 
     //current editable values
-    public TileType tileType;
+    public PoolableType tileType;
     public GameObject parent;
     public GameObject prefab;
     public int instNum;
@@ -21,7 +21,7 @@ public class PoolDBEditor : Editor
 
     private void OnEnable()
     {
-        poolableDB = (PoolableDatabase)target;
+        poolableDB = (PoolablesDatabase)target;
 
         string interactablesDBPath = "Assets/Resources/Database/InteractablesDatabase.asset";
         interactablesDB = (InteractablesDatabase)AssetDatabase.LoadAllAssetsAtPath(interactablesDBPath)[0];

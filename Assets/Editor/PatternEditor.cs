@@ -7,11 +7,11 @@ using UnityEditor;
 /// This script is used to modify obstacles in patterns tile by tile and construct a segment
 /// </summary>
 
-[CustomEditor(typeof(PatternSO))]
+[CustomEditor(typeof(Pattern))]
 public class PatternEditor : Editor
 {
     int segmentNum;
-    PatternSO pattternSO;
+    Pattern pattternSO;
 
     InteractablesDatabase idb;//available interactables
 
@@ -27,7 +27,7 @@ public class PatternEditor : Editor
     void OnEnable()
     {
         interactableSelected = new int[5];
-        pattternSO = target as PatternSO;
+        pattternSO = target as Pattern;
         idb = (InteractablesDatabase)AssetDatabase.LoadAllAssetsAtPath("Assets/Resources/Database/InteractablesDatabase.asset")[0];
         seg = new Segment(idb[0]);
     }

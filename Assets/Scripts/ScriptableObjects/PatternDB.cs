@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CreateAssetMenu(fileName = "pattern Data Base", menuName = "PatternDataBase/Pattern")]
+[CreateAssetMenu(fileName = "PatternDatabase", menuName = "Database/Pattern")]
 
-public class PatternDB : ScriptableObject {
+public class PatternDatabase: ScriptableObject {
 
 
     public List<Difficulty> PatternDBList = new List<Difficulty>();

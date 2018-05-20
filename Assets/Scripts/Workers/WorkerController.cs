@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WorkerController : MonoBehaviour
 {
-    public Lanes lanes;
+    public LanesDatabase lanes;
     public WorkerConfig wc;
 
     Rigidbody rb;

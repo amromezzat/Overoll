@@ -42,9 +42,9 @@ public class WorkerConfig : ScriptableObject {
     public List<Rigidbody> workersRb;
 
     [Header("Workers Types")]
-    public TileType worker;
-    public TileType HR;
-    public TileType Manager;
+    public PoolableType worker;
+    public PoolableType HR;
+    public PoolableType Manager;
 
     private void OnEnable()
     {

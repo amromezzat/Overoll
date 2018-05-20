@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (menuName ="Config/Tile Config")]
+[CreateAssetMenu (menuName ="Config/TileConfig")]
 public class TileConfig : ScriptableObject
 {
     public float tileSpeed;
