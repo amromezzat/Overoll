@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : MonoBehaviour
+public class EnvGenerator : MonoBehaviour
 {
     public Vector3 shift;
     public float disFromPlayer = 10;
