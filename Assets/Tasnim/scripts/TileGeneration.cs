@@ -9,7 +9,7 @@ public class TileGeneration : MonoBehaviour {
     public PatternDB PatternDatabase;
     public Lanes lanes;
  
-
+    //gamestates->diffuculty
 
 	
 	void Start () {
