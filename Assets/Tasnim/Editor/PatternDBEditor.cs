@@ -23,8 +23,6 @@ public class PatternDataBaseEditor : Editor
         PatternDataBase = (PatternDB)target;
         DifficultyNumber = PatternDataBase.Count;
         selected = 0;
-        AddinitialPatternsToTest();
-
     }
 
     //-----------------------------------------------------------------
@@ -32,7 +30,7 @@ public class PatternDataBaseEditor : Editor
     {
         base.OnInspectorGUI();
         UpdateDifficultyList();
-        AddListOfpatternstoDifficulty();
+        AddListOfPatternsToDifficulty();
 
 
 
@@ -50,7 +48,7 @@ public class PatternDataBaseEditor : Editor
         EditorGUILayout.Separator();
         //-----------------------------------------------------------
 
-        DisplayPatterninthisLevel(selected);
+        DisplayDifficultyPatterns(selected);
 
         //------------------------------------------------------------
         EditorGUILayout.Separator();
@@ -63,15 +61,11 @@ public class PatternDataBaseEditor : Editor
 
         if (GUILayout.Button("ADD"))
         {
-            addpatterntoDifficulty(selected, AddedPattern);
+            AddPatternToDifficulty(selected, AddedPattern);
         }
-
-
-
-
     }
 
-    void DisplayPatterninthisLevel(int selected)
+    void DisplayDifficultyPatterns(int selected)
     {
         GUILayout.BeginHorizontal();
         GUILayout.Label("Patterns in this level of Difficulty: ", EditorStyles.boldLabel);
@@ -95,13 +89,8 @@ public class PatternDataBaseEditor : Editor
             if (GUILayout.Button("Delete"))
             {
                 PatternDataBase.PatternDBList[selected].RemoveAt(j);
-
                 return;
             }
-
-            // EditorGUILayout.EndHorizontal();
-
-
         }
     }
 
@@ -116,12 +105,10 @@ public class PatternDataBaseEditor : Editor
             // turn the number of Difficulties to string 
             str = i.ToString();
             options.Add(str);
-
-
         }
-
     }
-    void AddListOfpatternstoDifficulty()
+
+    void AddListOfPatternsToDifficulty()
     {
 
         if (DifficultyNumber > PatternDataBase.Count)
@@ -145,39 +132,21 @@ public class PatternDataBaseEditor : Editor
                 selected = DifficultyNumber - 1;
             }
         }
-
-
-
-
     }
 
-    void addpatterntoDifficulty(int selected, PatternSO AddedPattern)
+    void AddPatternToDifficulty(int selected, PatternSO addedPattern)
     {
 
-        if (!PatternDataBase.PatternDBList[selected].Contains(AddedPattern))
+        if (!PatternDataBase.PatternDBList[selected].Contains(addedPattern))
         {
-            PatternDataBase.PatternDBList[selected].Add(AddedPattern);
+            PatternDataBase.PatternDBList[selected].Add(addedPattern);
 
         }
         else
         {
-            EditorUtility.DisplayDialog("ADD Erorr", "This Pattern is already Existed", "OK");
+            EditorUtility.DisplayDialog("ADD Error", "This Pattern Already Exists", "OK");
         }
 
-    }
-
-    void AddinitialPatternsToTest()
-    {
-        // Adding empty list of patterns to the database
-        Difficulty PsoListD0 = new Difficulty();
-        Difficulty PsoListD1 = new Difficulty();
-        PsoListD0.Add(new PatternSO());
-        PsoListD0.Add(new PatternSO());
-        PsoListD0.Add(new PatternSO());
-
-        PatternDataBase.PatternDBList.Add(PsoListD0);
-        PatternDataBase.PatternDBList.Add(PsoListD1);
-        DifficultyNumber = PatternDataBase.Count;
     }
 }
 

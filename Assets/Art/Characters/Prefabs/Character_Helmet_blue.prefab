@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 4804876850577820}
   - component: {fileID: 95628363478939354}
   m_Layer: 0
-  m_Name: Character_Rigged Final
+  m_Name: Character_Helmet_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

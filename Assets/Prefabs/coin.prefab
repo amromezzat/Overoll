@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4189107161293234}
   - component: {fileID: 33846538375294748}
   - component: {fileID: 23891165233140956}
-  - component: {fileID: 114952256726992508}
   - component: {fileID: 114007770157972168}
   - component: {fileID: 136741334619294076}
   - component: {fileID: 54946387369867220}
@@ -113,18 +112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
---- !u!114 &114952256726992508
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1464054825589332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cc16573803c02246a5ec720693c0c76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CoinCount: 0
 --- !u!136 &136741334619294076
 CapsuleCollider:
   m_ObjectHideFlags: 1
