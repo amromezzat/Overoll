@@ -6,46 +6,65 @@ using UnityEngine;
 /// </summary>
 public class TileGeneration : MonoBehaviour {
 
-    public PatternDatabase PatternDatabase;
+
+    public  PatternDatabase patternDB;
     public LanesDatabase lanes;
- 
+    public Pattern currentPattern;
+    public GameStats gamestate;
+    public int diff;
+    public Pattern currentTile;
+    public int indexInCurrentPattern;
+
+
+
     //gamestates->diffuculty
 
-	
-	void Start () {
-        var firstsegment = PatternDatabase.PatternDBList[0][0].segmentList[0];
-        TileGenerator(firstsegment);
+
+    void Start()
+    {
+      
+        //-----------------------------------------
+        diff = gamestate.difficulty;
+        indexInCurrentPattern = 0;
+        currentPattern = patternDB.PatternDBList[diff][Random.Range(0, 10)];
+ 
+        // Check If the pattern had been displayed
+     
 
     }
 
 
-
-     void TileGenerator(Segment segment)
+    bool IfPatternWasDisplayed()
     {
-        // i represent thelaneNumber
-        for (int i = 0; i < 5; i++)
+        if(indexInCurrentPattern== currentPattern.Count)
         {
-            
-            if (!segment[i])
+
+        }
+        return true;
+
+    }
+
+    void GetNextSegment()
+    {
+        Segment segmentena = currentPattern[indexInCurrentPattern++];
+        // i represent thelaneNumber
+        for (int i = 0; i < lanes.OnGridLanes.Count; i++)
+        {
+
+            if (!segmentena[i])
             {
                 continue;
 
             }
 
-           var obj = ObjectPool.instance.GetFromPool(segment[i]);
-            
+            var obj = ObjectPool.instance.GetFromPool(segmentena[i]);
+
             Vector3 objpos = obj.transform.position;
             objpos.x = lanes[i].laneCenter;
             obj.transform.position = objpos;
             Debug.Log("coin generated");
         }
-        
+
 
     }
-
-
-  //  void RetunTileToPool()
-    //{
-
-    //}
 }
