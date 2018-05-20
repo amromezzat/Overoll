@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InteractablesDB", menuName = "Database/Interactables")]
+[CreateAssetMenu(fileName = "InteractablesDatabase", menuName = "Database/Interactables")]
 public class InteractablesDatabase : ScriptableObject
 {
 

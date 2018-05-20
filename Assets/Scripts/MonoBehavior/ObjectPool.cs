@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool instance;
-    public PoolablesDatabase pd;
+    public PoolDatabase pd;
 
     Dictionary<PoolableType, Queue<GameObject>> poolDict;
 

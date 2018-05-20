@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd2b8244391ae1c4da983597919acbe4, type: 2}
   - {fileID: 11400000, guid: 36da0725d5697de4ea45050fac37a359, type: 2}
   - {fileID: 11400000, guid: f521693dd8d8c064a87cc55360d1cdcb, type: 2}
+  - {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
   interactablesNames:
   - Coin
   - DownObstacle
@@ -31,3 +32,4 @@ MonoBehaviour:
   - RightSideObstacle
   - SlideObstacle
   - UpObstacle
+  - Worker
