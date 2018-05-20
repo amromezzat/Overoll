@@ -41,8 +41,10 @@ public class WorkerConfig : ScriptableObject {
     [HideInInspector]
     public List<Rigidbody> workersRb;
 
-    [Header("Worker Prefab")]
-    public GameObject workerPrefab;
+    [Header("Workers Types")]
+    public TileType worker;
+    public TileType HR;
+    public TileType Manager;
 
     private void OnEnable()
     {

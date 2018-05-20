@@ -11,8 +11,6 @@ public class WorkerController : MonoBehaviour
     bool turningRight = false;
     bool turningLeft = false;
 
-    float turnt0;//turn start time
-
     // Use this for initialization
     void Start()
     {
@@ -31,7 +29,6 @@ public class WorkerController : MonoBehaviour
             lanes.GoLeft();
             rb.velocity += wc.turnSpeed * Vector3.left;
             turningLeft = true;
-            turnt0 = Time.time;
         }
     }
 
@@ -42,7 +39,6 @@ public class WorkerController : MonoBehaviour
             lanes.GoRight();
             rb.velocity += wc.turnSpeed * Vector3.right;
             turningRight = true;
-            turnt0 = Time.time;
         }
     }
 
