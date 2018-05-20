@@ -8,7 +8,7 @@ public class CoinGenerator : MonoBehaviour
     public Vector3 disBetweenCoins;
     public Lanes lanes;
     public int numberFollowedCoins;
-    public Generator gen;
+    public EnvGenerator gen;
     public GameObject player;
     public float playerPosY = 0.75f;
     public float timeBetweenFollowedCoins = 1.0f;
