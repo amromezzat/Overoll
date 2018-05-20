@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-[CreateAssetMenu(fileName = "Lanes", menuName = "Config/Pool/PoolDatabase")]
-public class PoolableDatabase : ScriptableObject
+[CreateAssetMenu(fileName = "PoolablesDatabase", menuName = "Database/Poolables")]
+public class PoolablesDatabase : ScriptableObject
 {
     public List<PoolableObj> poolableList;
 
@@ -28,7 +28,7 @@ public class PoolableDatabase : ScriptableObject
         }
     }
 
-    public PoolableObj this[TileType type]
+    public PoolableObj this[PoolableType type]
     {
         get
         {
@@ -57,7 +57,7 @@ public class PoolableDatabase : ScriptableObject
         poolableList.RemoveAt(index);
     }
 
-    public bool Contains(TileType type)
+    public bool Contains(PoolableType type)
     {
         if (poolableList.Any(po => po.type == type))
             return true;

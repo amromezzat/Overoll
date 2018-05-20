@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Difficulty {
 
-    public List<PatternSO> ListOfPatterns =new List<PatternSO>();
+    public List<Pattern> ListOfPatterns =new List<Pattern>();
     
     public int Count
     {
@@ -15,7 +15,7 @@ public class Difficulty {
         }
     }
 
-    public PatternSO this [int index]
+    public Pattern this [int index]
     {
         get
         {
@@ -32,12 +32,12 @@ public class Difficulty {
         ListOfPatterns.RemoveAt(index);
     }
 
-    public bool Contains(PatternSO pattern)
+    public bool Contains(Pattern pattern)
     {
         return ListOfPatterns.Contains(pattern);
     }
 
-    public void Add(PatternSO pattern)
+    public void Add(Pattern pattern)
     {
         ListOfPatterns.Add(pattern);
     }

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Lanes))]
+[CustomEditor(typeof(LanesDatabase))]
 public class LaneEditor : Editor
 {
 
-    Lanes lanes;
+    LanesDatabase lanes;
     bool showEditLanes;
 
     private void OnEnable()
     {
-        lanes = (Lanes)target;
+        lanes = (LanesDatabase)target;
         showEditLanes = true;
     }
 

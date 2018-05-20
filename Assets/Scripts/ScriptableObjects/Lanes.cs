@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Lanes", menuName = "Config/Lane/Lanes")]
-public class Lanes : ScriptableObject
+[CreateAssetMenu(fileName = "LanesDatabase", menuName = "Database/Lanes")]
+public class LanesDatabase : ScriptableObject
 {
     public TileConfig tc;
 

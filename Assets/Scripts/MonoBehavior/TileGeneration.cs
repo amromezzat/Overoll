@@ -6,8 +6,8 @@ using UnityEngine;
 /// </summary>
 public class TileGeneration : MonoBehaviour {
 
-    public PatternDB PatternDatabase;
-    public Lanes lanes;
+    public PatternDatabase PatternDatabase;
+    public LanesDatabase lanes;
  
     //gamestates->diffuculty
 

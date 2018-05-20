@@ -12,9 +12,9 @@ public class Segment
     /// <summary>
     /// This is not segment this is TileTypeList
     /// </summary>
-    public List<TileType> ListOfTiles = new List<TileType>(5);
+    public List<PoolableType> ListOfTiles = new List<PoolableType>(5);
 
-    public TileType this[int i]
+    public PoolableType this[int i]
     {
 
         get
@@ -36,7 +36,7 @@ public class Segment
         }
     }
 
-    public Segment(TileType tile)
+    public Segment(PoolableType tile)
     {
         for (int i = 0; i < 5; i++)
         {
