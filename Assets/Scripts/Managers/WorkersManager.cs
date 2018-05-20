@@ -26,7 +26,8 @@ public class WorkersManager : MonoBehaviour
 
     public void AddWorker()
     {
-        Instantiate(wc.workerPrefab, transform.position + new Vector3(Random.Range(-5,5), 0, Random.Range(-5, 5)),
-            Quaternion.identity, transform);
+        ObjectPool.instance.GetFromPool(wc.worker);
+        //Instantiate(wc.workerPrefab, transform.position + new Vector3(Random.Range(-5,5), 0, Random.Range(-5, 5)),
+        //    Quaternion.identity, transform);
     }
 }

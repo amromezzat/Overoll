@@ -15,7 +15,6 @@ public class Lanes : ScriptableObject
     List<LaneName> gridLanes;
 
     private LaneName currentLane;
-    private LaneName lastLane;
     private int currentLaneIndex;
 
     public LaneName CurrentLane
@@ -97,7 +96,6 @@ public class Lanes : ScriptableObject
         {
             return currentLane.laneCenter;
         }
-        lastLane = currentLane;
         currentLane = OnGridLanes[--currentLaneIndex];
         return currentLane.laneCenter;
     }
@@ -111,7 +109,6 @@ public class Lanes : ScriptableObject
         {
             return currentLane.laneCenter;
         }
-        lastLane = currentLane;
         currentLane = OnGridLanes[++currentLaneIndex];
         return currentLane.laneCenter;
     }
