@@ -73,6 +73,11 @@ public class LanesDatabase : ScriptableObject
         }
     }
 
+    private void OnEnable()
+    {
+        RecalculateLanesCenter();
+    }
+
     public void RecalculateLanesCenter()
     {
         laneWidth = tc.laneWidth;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu (menuName ="Config/TileConfig")]
 public class TileConfig : ScriptableObject
@@ -10,6 +11,8 @@ public class TileConfig : ScriptableObject
     public float laneWidth;
     [Header("Don't Change!")]
     public float spawnTime;//changed by game manager
+    [HideInInspector]
+    public UnityEvent produceNextSegment;
 
     private void OnEnable()
     {
