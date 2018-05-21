@@ -35,7 +35,6 @@ public class TileGeneration : MonoBehaviour
 
     void GetNextSegment()
     {
-        Debug.Log(currentSegmentIndex);
         Segment currentSegment = currentPattern[currentSegmentIndex++];
         if(currentSegmentIndex == currentPattern.Count)
         {
