@@ -6,21 +6,20 @@ using UnityEditor;
 /// <summary>
 /// Editor to show and Delete the patterns inside certain selected difficulty.
 /// </summary>
-[CustomEditor(typeof(PatternDB))]
+[CustomEditor(typeof(PatternDatabase))]
 public class PatternDataBaseEditor : Editor
 {
     // variables 
     int selected;
     int DifficultyNumber;
-    string str;
-    public PatternDB PatternDataBase;
-    public PatternSO AddedPattern;
-    List<string> options;
+    public PatternDatabase PatternDataBase;
+    public Pattern AddedPattern;
+    List<string> poolableList;
 
     //----------------------------------------------------------------------
     void OnEnable()
     {
-        PatternDataBase = (PatternDB)target;
+        PatternDataBase = (PatternDatabase)target;
         DifficultyNumber = PatternDataBase.Count;
         selected = 0;
     }
@@ -32,16 +31,13 @@ public class PatternDataBaseEditor : Editor
         UpdateDifficultyList();
         AddListOfPatternsToDifficulty();
 
-
-
-        options.Add(str);
-        DifficultyNumber = EditorGUILayout.IntField("Difficulty Number:", DifficultyNumber);
+        DifficultyNumber = EditorGUILayout.IntSlider("Number of difficulties:", DifficultyNumber, 1, 10);
         //-------------------------------------------------------
         EditorGUILayout.Separator();
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         EditorGUILayout.Separator();
         //-----------------------------------------------------------
-        selected = EditorGUILayout.Popup("Select The Difficulty", selected, options.ToArray());
+        selected = EditorGUILayout.Popup("Select Difficulty", selected, poolableList.ToArray());
         //-------------------------------------------------------
         EditorGUILayout.Separator();
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
@@ -57,9 +53,9 @@ public class PatternDataBaseEditor : Editor
         //-----------------------------------------------------------
         // Add button and drag and drop object in it.
 
-        AddedPattern = (PatternSO)EditorGUILayout.ObjectField("Added Pattern :", AddedPattern, typeof(PatternSO), false);
+        AddedPattern = (Pattern)EditorGUILayout.ObjectField("Pattern:", AddedPattern, typeof(Pattern), false);
 
-        if (GUILayout.Button("ADD"))
+        if (GUILayout.Button("Add"))
         {
             AddPatternToDifficulty(selected, AddedPattern);
         }
@@ -84,8 +80,6 @@ public class PatternDataBaseEditor : Editor
 
             EditorGUILayout.EndHorizontal();
 
-            // EditorGUILayout.BeginHorizontal();
-
             if (GUILayout.Button("Delete"))
             {
                 PatternDataBase.PatternDBList[selected].RemoveAt(j);
@@ -96,15 +90,15 @@ public class PatternDataBaseEditor : Editor
 
     void UpdateDifficultyList()
     {
-        options = new List<string>();
+        poolableList = new List<string>();
 
         //--------------------------------------------------
         // Get the number of Difficulties 
         for (int i = 0; i < PatternDataBase.Count; i++)
         {
             // turn the number of Difficulties to string 
-            str = i.ToString();
-            options.Add(str);
+            string poolableStr = i.ToString();
+            poolableList.Add(poolableStr);
         }
     }
 
@@ -134,7 +128,7 @@ public class PatternDataBaseEditor : Editor
         }
     }
 
-    void AddPatternToDifficulty(int selected, PatternSO addedPattern)
+    void AddPatternToDifficulty(int selected, Pattern addedPattern)
     {
 
         if (!PatternDataBase.PatternDBList[selected].Contains(addedPattern))

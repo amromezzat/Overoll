@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Game Stats", menuName = "Config/GameStat")]
-public class GameStats : ScriptableObject
+[CreateAssetMenu(fileName = "GameState", menuName = "Config/GameState")]
+public class GameState : ScriptableObject
 {
     public int difficulty;
     [HideInInspector]
@@ -13,6 +13,6 @@ public class GameStats : ScriptableObject
     [HideInInspector]
     public int bossNum;
     [HideInInspector]
-    public TileType leadrType;
+    public PoolableType leaderType;
 }
 

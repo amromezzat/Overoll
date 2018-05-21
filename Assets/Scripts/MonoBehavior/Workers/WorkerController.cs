@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class WorkerController : MonoBehaviour
 {
-    public Lanes lanes;
+    public LanesDatabase lanes;
     public WorkerConfig wc;
 
     Rigidbody rb;

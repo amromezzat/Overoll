@@ -8,10 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa27f646f3c08944887e92b070bc06c, type: 3}
-  m_Name: Pattern 1
+  m_Script: {fileID: 11500000, guid: 1045a08652328574f9d27d3f6e99e1f4, type: 3}
+  m_Name: GameState
   m_EditorClassIdentifier: 
   difficulty: 0
-  length: 0
-  sectionLength: 0
-  segmentList: []
+  workersNum: 0
+  hrNum: 0
+  bossNum: 0
+  leadrType: {fileID: 0}

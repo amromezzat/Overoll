@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a18802101ab2bc8468f285b20f016a4e, type: 3}
-  m_Name: Lanes
+  m_Name: LanesDatabase
   m_EditorClassIdentifier: 
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   onGridLanes:

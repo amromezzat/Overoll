@@ -7,29 +7,30 @@ using UnityEditor;
 /// This script is used to modify obstacles in patterns tile by tile and construct a segment
 /// </summary>
 
-[CustomEditor(typeof(PatternSO))]
+[CustomEditor(typeof(Pattern))]
 public class PatternEditor : Editor
 {
     int segmentNum;
-    PatternSO pattternSO;
+    Pattern pattern;
 
     InteractablesDatabase idb;//available interactables
 
     int selected = 0;
 
-    int[] interactableSelected;
+    int[] selectedInteractable = new int[5];
 
-    Segment seg;
+    Segment editAreaSeg;
 
     int segmentIndex;
-    bool addAtEnd = false;
+    bool addAtEnd = true;
+
+    Vector2 scrollPos = Vector2.zero;//Pattern Show Scroll
 
     void OnEnable()
     {
-        interactableSelected = new int[5];
-        pattternSO = target as PatternSO;
+        pattern = target as Pattern;
         idb = (InteractablesDatabase)AssetDatabase.LoadAllAssetsAtPath("Assets/Resources/Database/InteractablesDatabase.asset")[0];
-        seg = new Segment(idb[0]);
+        editAreaSeg = new Segment(idb[0]);
     }
 
     public override void OnInspectorGUI()
@@ -45,7 +46,7 @@ public class PatternEditor : Editor
         GUILayout.Label("", GUI.skin.horizontalSlider);
         RemoveAll();
 
-        EditorUtility.SetDirty(pattternSO); // to save the changes
+        EditorUtility.SetDirty(pattern); // to save the changes
     }
 
     /// <summary>
@@ -54,17 +55,18 @@ public class PatternEditor : Editor
     void ShowPattern()
     {
         GUILayout.Label("Pattern", EditorStyles.boldLabel);
-        if (pattternSO.segmentList.Count == 0)
+        if (pattern.segmentList.Count == 0)
         {
             GUILayout.Label("Empty!", EditorStyles.textField);
         }
 
-
-        for (int i = 0; i < pattternSO.Count; i++)
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.ExpandWidth(true), GUILayout.MaxHeight(250),
+            GUILayout.MinHeight(160));
+        for (int i = 0; i < pattern.Count; i++)
         {
             GUILayout.BeginHorizontal("HelpBox");
             {
-                var segTemp = pattternSO[i];
+                var segTemp = pattern[i];
                 GUILayout.BeginHorizontal("HelpBox");
                 for (int j = 0; j < segTemp.Count; j++)
                 {
@@ -82,21 +84,22 @@ public class PatternEditor : Editor
                 if (GUILayout.Button(i.ToString(), EditorStyles.foldout))
                 {
                     segmentIndex = i;
-                    for (int j = 0; j < seg.Count; j++)
+                    for (int j = 0; j < editAreaSeg.Count; j++)
                     {
-                        interactableSelected[j] = idb.interactablesNames.IndexOf(segTemp[j].name);
+                        selectedInteractable[j] = idb.interactablesNames.IndexOf(segTemp[j].name);
                         selected = 1;
                     }
                 }
 
                 if (GUILayout.Button("Remove"))
                 {
-                    pattternSO.segmentList.RemoveAt(i);
+                    pattern.segmentList.RemoveAt(i);
                 }
                 GUILayout.EndVertical();
             }
             GUILayout.EndHorizontal();
         }
+        EditorGUILayout.EndScrollView();
     }
 
     /// <summary>
@@ -113,7 +116,7 @@ public class PatternEditor : Editor
         }
         else if (selected == 1)
         {
-            if (pattternSO.segmentList.Count > 0)
+            if (pattern.segmentList.Count > 0)
             {
                 EditArea();
             }
@@ -131,26 +134,25 @@ public class PatternEditor : Editor
     {
         GUILayout.BeginHorizontal("HelpBox");
         {
-            for (int i = 0; i < seg.Count; i++)
+            for (int i = 0; i < editAreaSeg.Count; i++)
             {
                 GUILayout.BeginVertical();
-                interactableSelected[i] = EditorGUILayout.Popup(interactableSelected[i], idb.interactablesNames.ToArray());
-                seg[i] = idb[interactableSelected[i]];
-                DisplayPrefabTexture(seg[i].name);
+                selectedInteractable[i] = EditorGUILayout.Popup(selectedInteractable[i], idb.interactablesNames.ToArray());
+                editAreaSeg[i] = idb[selectedInteractable[i]];
+                DisplayPrefabTexture(editAreaSeg[i].name);
                 GUILayout.EndVertical();
             }
         }
         GUILayout.EndHorizontal();
 
-        EditorGUI.BeginDisabledGroup(pattternSO.segmentList.Count == 0);
+        EditorGUI.BeginDisabledGroup(pattern.segmentList.Count == 0);
         {
             IndexSlider();
             GUILayout.BeginHorizontal();
             {
                 if (GUILayout.Button("Save"))
                 {
-                    pattternSO.segmentList[segmentIndex] = new Segment(seg);
-
+                    pattern.segmentList[segmentIndex] = new Segment(editAreaSeg);
                 }
             }
             GUILayout.EndHorizontal();
@@ -163,16 +165,16 @@ public class PatternEditor : Editor
     /// </summary>
     void AddArea()
     {
-        Segment empty = new Segment(idb[0]);
+        Segment newSegment = new Segment(idb[0]);
         GUILayout.BeginHorizontal("HelpBox");
         {
-            for (int i = 0; i < empty.Count; i++)
+            for (int i = 0; i < newSegment.Count; i++)
             {
                 GUILayout.BeginVertical();
-                interactableSelected[i] = EditorGUILayout.Popup(interactableSelected[i], idb.interactablesNames.ToArray());
-                empty[i] = idb[interactableSelected[i]];
+                selectedInteractable[i] = EditorGUILayout.Popup(selectedInteractable[i], idb.interactablesNames.ToArray());
+                newSegment[i] = idb[selectedInteractable[i]];
                 //EditorGUILayout.ObjectField(empty[i], typeof(TileType), false);
-                DisplayPrefabTexture(empty.ListOfTiles[i].name);
+                DisplayPrefabTexture(newSegment.ListOfTiles[i].name);
                 GUILayout.EndVertical();
             }
         }
@@ -183,23 +185,28 @@ public class PatternEditor : Editor
             addAtEnd = GUILayout.Toggle(addAtEnd, "Add at End");
             EditorGUI.BeginDisabledGroup(addAtEnd);
             {
-                segmentIndex = (int)EditorGUILayout.Slider("Index", segmentIndex, 0, pattternSO.segmentList.Count - 1);
-                if (segmentIndex > empty.Count)
+                segmentIndex = (int)EditorGUILayout.Slider("Index", segmentIndex, 0, pattern.segmentList.Count - 1);
+                if (segmentIndex > newSegment.Count)
                 {
-                    segmentIndex = empty.Count;
+                    segmentIndex = newSegment.Count;
                 }
             }
             EditorGUI.EndDisabledGroup();
             GUILayout.EndHorizontal();
             if (GUILayout.Button("Add"))
             {
-                if (!addAtEnd)
-                {
-                    pattternSO.segmentList.Insert(segmentIndex, empty);
-                }
                 if (addAtEnd)
                 {
-                    pattternSO.segmentList.Add(empty);
+                    pattern.segmentList.Add(newSegment);
+                    scrollPos += new Vector2(0, 100);
+                }
+                else
+                {
+                    pattern.segmentList.Insert(segmentIndex, newSegment);
+                }
+                for(int i = 0; i < newSegment.Count; i++)
+                {
+                    selectedInteractable[i] = 0;
                 }
             }
         }
@@ -208,10 +215,10 @@ public class PatternEditor : Editor
     /// <summary>
     /// used to show the texture of the interactable object
     /// </summary>
-    /// <param name="name"></param>
+    /// <param name="name">Get Prefab Texture by its name</param>
     void DisplayPrefabTexture(string name)
     {
-        string texture = "Assets/Resources/Textures/Interactables/" + name + ".png";
+        string texture = "Assets/Resources/Textures/PoolableAssets/" + name + ".png";
         Texture2D inputTexture = (Texture2D)AssetDatabase.LoadAssetAtPath(texture, typeof(Texture2D));
         GUILayout.Label(inputTexture, GUILayout.MaxHeight(70), GUILayout.MaxWidth(80));
     }
@@ -221,10 +228,10 @@ public class PatternEditor : Editor
     /// </summary>
     void IndexSlider()
     {
-        segmentIndex = (int)EditorGUILayout.Slider("Index", segmentIndex, 0, pattternSO.segmentList.Count - 1);
-        if (segmentIndex > pattternSO.segmentList.Count)
+        segmentIndex = (int)EditorGUILayout.Slider("Index", segmentIndex, 0, pattern.segmentList.Count - 1);
+        if (segmentIndex > pattern.segmentList.Count)
         {
-            segmentIndex = pattternSO.segmentList.Count;
+            segmentIndex = pattern.segmentList.Count;
         }
     }
 
@@ -236,7 +243,7 @@ public class PatternEditor : Editor
         GUILayout.Label("Danger Zone!", EditorStyles.boldLabel);
         if (GUILayout.Button("Remove All"))
         {
-            pattternSO.segmentList.RemoveAll(listItem => true);
+            pattern.segmentList.RemoveAll(listItem => true);
         }
     }
 }
