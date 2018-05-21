@@ -42,7 +42,7 @@ MonoBehaviour:
   maxSepForce: 20
   maxFolForce: 20
   maxSpeed: 20
-  aheadFollowPoint: -1
+  aheadFollowPoint: -3.08
   workers: []
   workersRb: []
   worker: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
