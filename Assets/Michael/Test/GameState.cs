@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "GameState", menuName = "Config/GameState")]
 public class GameState : ScriptableObject
@@ -14,5 +15,17 @@ public class GameState : ScriptableObject
     public int bossNum;
     [HideInInspector]
     public PoolableType leaderType;
+
+    [HideInInspector]
+    public bool isPaused;
+
+    public UnityEvent OnResume;
+    public UnityEvent onPause;
+
+    private void OnEnable()
+    {
+        isPaused = false;
+    }
+
 }
 

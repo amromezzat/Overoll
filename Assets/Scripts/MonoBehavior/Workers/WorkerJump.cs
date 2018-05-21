@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class WorkerJump : MonoBehaviour {
+public class WorkerJump : MonoBehaviour,IListen {
 
     Vector2 newVelocity;
     Rigidbody rb;
@@ -13,6 +13,9 @@ public class WorkerJump : MonoBehaviour {
     float jumpt0;//jump start time
     public WorkerConfig wc;
     public TileConfig tc;
+
+    public GameState gamestat;
+
 
     private void Start()
     {
@@ -66,10 +69,24 @@ public class WorkerJump : MonoBehaviour {
 
     public void OnEnable()
     {
+        gamestat.onPause.AddListener(UnRegisterListeners);
+        gamestat.OnResume.AddListener(RegisterListeners);
         wc.onJump.AddListener(Jump);
     }
 
     public void OnDisable()
+    {
+        gamestat.onPause.RemoveListener(UnRegisterListeners);
+        gamestat.OnResume.RemoveListener(RegisterListeners);
+        wc.onJump.RemoveListener(Jump);
+    }
+
+    public void RegisterListeners()
+    {
+        wc.onJump.AddListener(Jump);
+    }
+
+    public void UnRegisterListeners()
     {
         wc.onJump.RemoveListener(Jump);
     }
