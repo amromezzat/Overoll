@@ -25,6 +25,8 @@ public class PoolDBEditor : Editor
 
         string interactablesDBPath = "Assets/Resources/Database/InteractablesDatabase.asset";
         interactablesDB = (InteractablesDatabase)AssetDatabase.LoadAllAssetsAtPath(interactablesDBPath)[0];
+
+        tileType = interactablesDB[0];
     }
 
     public override void OnInspectorGUI()
@@ -104,12 +106,16 @@ public class PoolDBEditor : Editor
         EditorGUILayout.Separator();
         EditorGUILayout.Separator();
 
+        //center texture
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("", GUILayout.ExpandWidth(true));
         LoadPrefabText(tileType.name);
+        GUILayout.Label("", GUILayout.ExpandWidth(true));
+        GUILayout.EndHorizontal();
 
         selectedTile = EditorGUILayout.Popup("Poolable Type", selectedTile, 
             interactablesDB.interactablesNames.ToArray());
         tileType = interactablesDB[selectedTile];
-
 
 
         instNum = (int)EditorGUILayout.Slider("Instances Number", instNum, 1, 20);
