@@ -53,8 +53,7 @@ public class PoolDBEditor : Editor
         EditorGUILayout.Separator();
         EditorGUILayout.Separator();
 
-        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, 
-            GUILayout.ExpandWidth(true), GUILayout.MaxHeight(250),
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.ExpandWidth(true), GUILayout.MaxHeight(250),
             GUILayout.MinHeight(160));
         //Display current included prefabs
         for (int i = 0; i < poolableDB.Count; i++)
@@ -151,7 +150,7 @@ public class PoolDBEditor : Editor
             poolableDB.poolableList.Add(new PoolableObj(tileType, instNum, prefab, parent));
         }
 
-        if (!showAddNotEdit && GUILayout.Button("Edit"))
+        if (!showAddNotEdit && GUILayout.Button("Save"))
         {
             poolableDB[tileType] = new PoolableObj(tileType, instNum, prefab, parent);
         }

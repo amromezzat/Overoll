@@ -24,10 +24,7 @@ public class ObjectPool : MonoBehaviour
             for (int i = 0; i < po.count; i++)
             {
                 GameObject newGameObj;
-                if (po.parent)
-                    newGameObj = Instantiate(po.prefab, po.parent.transform);
-                else
-                    newGameObj = Instantiate(po.prefab);
+                newGameObj = Instantiate(po.prefab, po.parent.transform);
                 newGameObj.SetActive(false);
                 instancesQueue.Enqueue(newGameObj);
             }
