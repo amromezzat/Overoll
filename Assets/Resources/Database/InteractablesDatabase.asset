@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393c9ec4fa1e9354ba4d1cbf00d9bffb, type: 3}
   m_Name: InteractablesDatabase
   m_EditorClassIdentifier: 
-  tileTypeList:
+  poolableTypeList:
   - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
   - {fileID: 11400000, guid: 0c648183860a32f4f933c855a3dc8399, type: 2}
   - {fileID: 11400000, guid: 72ce584de62251d47aaa17aadfb49ce3, type: 2}
