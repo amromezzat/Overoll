@@ -29,11 +29,6 @@ public class PoolDBEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        //base.OnInspectorGUI();
-
-        //EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-        //EditorGUILayout.Separator();
-
         DisplayCurrentPrefabs();
 
         EditorGUILayout.Separator();
@@ -69,7 +64,8 @@ public class PoolDBEditor : Editor
 
             if (GUILayout.Button("Edit"))
             {
-                tileType = poolableDB[i].type;
+                selectedTile = interactablesDB.interactablesNames.IndexOf(poolableDB[i].Name);
+                //tileType = poolableDB[i].type;
                 parent = poolableDB[i].parent;
                 prefab = poolableDB[i].prefab;
                 instNum = poolableDB[i].count;
@@ -102,15 +98,19 @@ public class PoolDBEditor : Editor
     void CreateNewPrefab()
     {
         GUILayout.BeginHorizontal();
-        GUILayout.Label("Create New Prefab: ", EditorStyles.boldLabel);
+        GUILayout.Label("Create New Poolable Prefab: ", EditorStyles.boldLabel);
         GUILayout.EndHorizontal();
 
         EditorGUILayout.Separator();
         EditorGUILayout.Separator();
 
-        selectedTile = EditorGUILayout.Popup("Label", selectedTile, 
+        LoadPrefabText(tileType.name);
+
+        selectedTile = EditorGUILayout.Popup("Poolable Type", selectedTile, 
             interactablesDB.interactablesNames.ToArray());
         tileType = interactablesDB[selectedTile];
+
+
 
         instNum = (int)EditorGUILayout.Slider("Instances Number", instNum, 1, 20);
 
@@ -126,7 +126,7 @@ public class PoolDBEditor : Editor
     void AddEditButtons()
     {
         bool showAddNotEdit = true;
-        bool addEnabled = false;
+        bool editButtonDisabled = false;
 
         //check if type already exists
         for (int i = 0; i < poolableDB.poolableList.Count; i++)
@@ -140,10 +140,16 @@ public class PoolDBEditor : Editor
         if (!prefab)
         {
             EditorGUILayout.HelpBox("Prefab must be set", MessageType.Warning);
-            addEnabled = true;
+            editButtonDisabled = true;
         }
 
-        EditorGUI.BeginDisabledGroup(addEnabled);
+        if (!parent)
+        {
+            EditorGUILayout.HelpBox("Parent must be set", MessageType.Warning);
+            editButtonDisabled = true;
+        }
+
+        EditorGUI.BeginDisabledGroup(editButtonDisabled);
 
         if (showAddNotEdit && GUILayout.Button("Add"))
         {

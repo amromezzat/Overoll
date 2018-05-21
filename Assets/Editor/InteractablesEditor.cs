@@ -21,20 +21,35 @@ public class InteractablesEditor : Editor
         ShowInteractablesNames = EditorGUILayout.Foldout(ShowInteractablesNames, "Interactables Names");
         if (ShowInteractablesNames)
         {
-            EditorGUI.BeginDisabledGroup(true);
             EditorGUI.indentLevel++;
-            for (int i = 0; i < interactablesDB.interactablesNames.Count; i++)
+            for (int i = 0; i < interactablesDB.Count; i++)
             {
-                EditorGUILayout.LabelField(interactablesDB.interactablesNames[i]);
+                GUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField(interactablesDB.interactablesNames[i],
+                    EditorStyles.helpBox, GUILayout.MaxWidth(200));
+
+                EditorGUI.BeginDisabledGroup(i == 0);
+                if (GUILayout.Button("▲", EditorStyles.label))
+                {
+                    interactablesDB.SwapByIndex(i, i - 1);
+                }
+                EditorGUI.EndDisabledGroup();
+
+                EditorGUI.BeginDisabledGroup(i == interactablesDB.interactablesNames.Count - 1);
+                if (GUILayout.Button("▼", EditorStyles.label))
+                {
+                    interactablesDB.SwapByIndex(i, i + 1);
+                }
+                EditorGUI.EndDisabledGroup();
+                GUILayout.EndHorizontal();
             }
             EditorGUI.indentLevel--;
-            EditorGUI.EndDisabledGroup();
         }
 
         if (GUI.changed)
         {
             interactablesDB.interactablesNames = new List<string>(interactablesDB.Count);
-            for(int i = 0; i < interactablesDB.Count; i++)
+            for (int i = 0; i < interactablesDB.Count; i++)
             {
                 interactablesDB.interactablesNames.Add(interactablesDB[i].name);
             }

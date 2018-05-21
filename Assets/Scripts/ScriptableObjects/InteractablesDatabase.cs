@@ -6,7 +6,7 @@ using UnityEngine;
 public class InteractablesDatabase : ScriptableObject
 {
 
-    public List<PoolableType> tileTypeList;
+    public List<PoolableType> poolableTypeList;
 
     [HideInInspector]
     public List<string> interactablesNames;
@@ -15,7 +15,7 @@ public class InteractablesDatabase : ScriptableObject
     {
         get
         {
-            return tileTypeList.Count;
+            return poolableTypeList.Count;
         }
     }
 
@@ -23,12 +23,12 @@ public class InteractablesDatabase : ScriptableObject
     {
         get
         {
-            return tileTypeList[interactablesNames.IndexOf(name)];
+            return poolableTypeList[interactablesNames.IndexOf(name)];
         }
         set
         {
             int index = interactablesNames.IndexOf(name);
-            tileTypeList[index] = value;
+            poolableTypeList[index] = value;
             interactablesNames[index] = value.name;
         }
     }
@@ -37,7 +37,7 @@ public class InteractablesDatabase : ScriptableObject
     {
         get
         {
-            return tileTypeList[index];
+            return poolableTypeList[index];
         }
     }
 
@@ -45,21 +45,32 @@ public class InteractablesDatabase : ScriptableObject
 
     public void Add(PoolableType tile)
     {
-        if (!tileTypeList.Contains(tile))
-            tileTypeList.Add(tile);
+        if (!poolableTypeList.Contains(tile))
+            poolableTypeList.Add(tile);
         interactablesNames.Add(tile.name);
     }
 
     public bool Remove(PoolableType tile)
     {
         interactablesNames.Remove(tile.name);
-        return tileTypeList.Remove(tile);
+        return poolableTypeList.Remove(tile);
     }
 
     public void RemoveAt(int index)
     {
-        tileTypeList.RemoveAt(index);
+        poolableTypeList.RemoveAt(index);
         interactablesNames.RemoveAt(index);
+    }
+
+    public void SwapByIndex(int num1, int num2)
+    {
+        PoolableType poolableTemp = poolableTypeList[num1];
+        poolableTypeList[num1] = poolableTypeList[num2];
+        poolableTypeList[num2] = poolableTemp;
+
+        string interactableNameTemp = interactablesNames[num1];
+        interactablesNames[num1] = interactablesNames[num2];
+        interactablesNames[num2] = interactableNameTemp;
     }
 
 }
