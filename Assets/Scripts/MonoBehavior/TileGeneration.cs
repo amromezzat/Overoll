@@ -1,51 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 /// <summary>
-/// generate tiles for each segment.
+/// generate pattern segment by segment
 /// </summary>
-public class TileGeneration : MonoBehaviour {
+public class TileGeneration : MonoBehaviour
+{
+    public PatternDatabase patternDB;//[]->difficulty, [][]->pattern
+    public LanesDatabase lanes;
+    public GameState gs;
+    public TileConfig tc;
 
-    public PatternDB PatternDatabase;
-    public Lanes lanes;
- 
-    //gamestates->diffuculty
+    Pattern currentPattern;
+    int currentSegmentIndex;
 
-	
-	void Start () {
-        var firstsegment = PatternDatabase.PatternDBList[0][0].segmentList[0];
-        TileGenerator(firstsegment);
-
+    private void OnEnable()
+    {
+        tc.produceNextSegment.AddListener(GetNextSegment);
     }
 
-
-
-     void TileGenerator(Segment segment)
+    void Start()
     {
-        // i represent thelaneNumber
-        for (int i = 0; i < 5; i++)
+        InitPattern();
+        GetNextSegment();
+    }
+
+    void InitPattern()
+    {
+        currentSegmentIndex = 0;
+        //get a random pattern
+        currentPattern = patternDB[gs.difficulty][Random.Range(0, patternDB.Count)];
+    }
+
+    void GetNextSegment()
+    {
+        Debug.Log(currentSegmentIndex);
+        Segment currentSegment = currentPattern[currentSegmentIndex++];
+        if(currentSegmentIndex == currentPattern.Count)
         {
-            
-            if (!segment[i])
+            InitPattern();
+        }
+
+        //generate on available lanes
+        for (int i = 0; i < lanes.OnGridLanes.Count; i++)
+        {
+            if (!currentSegment[i])
             {
                 continue;
-
             }
-
-           var obj = ObjectPool.instance.GetFromPool(segment[i]);
-            
-            Vector3 objpos = obj.transform.position;
+            GameObject tile = ObjectPool.instance.GetFromPool(currentSegment[i]);
+            Vector3 objpos = tile.transform.position;
             objpos.x = lanes[i].laneCenter;
-            obj.transform.position = objpos;
-            Debug.Log("coin generated");
+            tile.transform.position = objpos;
         }
-        
-
     }
-
-
-  //  void RetunTileToPool()
-    //{
-
-    //}
 }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "InteractablesDatabase", menuName = "Database/Interactables")]
 public class InteractablesDatabase : ScriptableObject
 {
 
-    public List<TileType> tileTypeList;
+    public List<PoolableType> tileTypeList;
 
     [HideInInspector]
     public List<string> interactablesNames;
@@ -19,7 +19,7 @@ public class InteractablesDatabase : ScriptableObject
         }
     }
 
-    public TileType this[string name]
+    public PoolableType this[string name]
     {
         get
         {
@@ -33,7 +33,7 @@ public class InteractablesDatabase : ScriptableObject
         }
     }
 
-    public TileType this[int index]
+    public PoolableType this[int index]
     {
         get
         {
@@ -43,14 +43,14 @@ public class InteractablesDatabase : ScriptableObject
 
 
 
-    public void Add(TileType tile)
+    public void Add(PoolableType tile)
     {
         if (!tileTypeList.Contains(tile))
             tileTypeList.Add(tile);
         interactablesNames.Add(tile.name);
     }
 
-    public bool Remove(TileType tile)
+    public bool Remove(PoolableType tile)
     {
         interactablesNames.Remove(tile.name);
         return tileTypeList.Remove(tile);
