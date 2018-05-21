@@ -27,7 +27,6 @@ public class PatternDataBaseEditor : Editor
     //-----------------------------------------------------------------
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
         UpdateDifficultyList();
         AddListOfPatternsToDifficulty();
 
