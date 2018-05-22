@@ -1,15 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 interface IListen
 {
     void RegisterListeners();
 
-    void UnRegisterListeners();
-    
-    
+    void UnRegisterListeners(); 
 }
 
 	
