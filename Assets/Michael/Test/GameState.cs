@@ -22,6 +22,9 @@ public class GameState : ScriptableObject
     public UnityEvent OnResume;
     public UnityEvent onPause;
 
+    public int CoinCount;
+    public int safeZone = -5;
+
     private void OnEnable()
     {
         isPaused = false;
