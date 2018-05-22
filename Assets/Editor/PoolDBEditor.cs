@@ -13,7 +13,7 @@ public class PoolDBEditor : Editor
 
     //current editable values
     public PoolableType tileType;
-    public GameObject parent;
+    public float zOrigin = 0;
     public GameObject prefab;
     public int instNum = 10;
     InteractablesDatabase interactablesDB;//tiles database to select from
@@ -68,7 +68,7 @@ public class PoolDBEditor : Editor
             {
                 selectedTile = interactablesDB.interactablesNames.IndexOf(poolableDB[i].Name);
                 //tileType = poolableDB[i].type;
-                parent = poolableDB[i].parent;
+                zOrigin = poolableDB[i].zOrigin;
                 prefab = poolableDB[i].prefab;
                 instNum = poolableDB[i].count;
             }
@@ -109,7 +109,7 @@ public class PoolDBEditor : Editor
         //center texture
         GUILayout.BeginHorizontal();
         GUILayout.Label("", GUILayout.ExpandWidth(true));
-        LoadPrefabText(tileType.name);
+        LoadPrefabText(tileType.name, 120, 120);
         GUILayout.Label("", GUILayout.ExpandWidth(true));
         GUILayout.EndHorizontal();
 
@@ -122,7 +122,7 @@ public class PoolDBEditor : Editor
 
         prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", prefab, typeof(GameObject), false);
 
-        parent = (GameObject)EditorGUILayout.ObjectField("Parent", parent, typeof(GameObject), true);
+        zOrigin = EditorGUILayout.FloatField("Z Origin", zOrigin);
 
         EditorGUILayout.Separator();
 
@@ -149,22 +149,16 @@ public class PoolDBEditor : Editor
             editButtonDisabled = true;
         }
 
-        if (!parent)
-        {
-            EditorGUILayout.HelpBox("Parent must be set", MessageType.Warning);
-            editButtonDisabled = true;
-        }
-
         EditorGUI.BeginDisabledGroup(editButtonDisabled);
 
         if (showAddNotEdit && GUILayout.Button("Add"))
         {
-            poolableDB.poolableList.Add(new PoolableObj(tileType, instNum, prefab, parent));
+            poolableDB.poolableList.Add(new PoolableObj(tileType, instNum, prefab, zOrigin));
         }
 
         if (!showAddNotEdit && GUILayout.Button("Save"))
         {
-            poolableDB[tileType] = new PoolableObj(tileType, instNum, prefab, parent);
+            poolableDB[tileType] = new PoolableObj(tileType, instNum, prefab, zOrigin);
         }
 
         EditorGUI.EndDisabledGroup();
@@ -191,13 +185,14 @@ public class PoolDBEditor : Editor
         }
     }
 
-    void LoadPrefabText(string name)
+    void LoadPrefabText(string name, int minHeight = 70, int minWidth = 70)
     {
         string texture = "Assets/Resources/Textures/PoolableAssets/" + name + ".png";
         Texture2D inputTexture = (Texture2D)AssetDatabase.LoadAssetAtPath(texture, typeof(Texture2D));
         if (!inputTexture)
             return;
         
-        GUILayout.Label(inputTexture, GUILayout.MaxHeight(70), GUILayout.MaxWidth(70));
+        GUILayout.Label(inputTexture, GUILayout.MaxHeight(70), GUILayout.MaxWidth(70),
+            GUILayout.MinHeight(minHeight), GUILayout.MinWidth(minWidth));
     }
 }
