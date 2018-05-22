@@ -8,8 +8,12 @@ using UnityEditor;
 public class PatternDatabase: ScriptableObject {
 
 
-    public List<Difficulty> PatternDBList = new List<Difficulty>();
-    // public List<TileType> segment = new List<TileType>(5);
+    public List<Difficulty> PatternDBList;
+
+    public PatternDatabase()
+    {
+        PatternDBList = new List<Difficulty>();
+    }
 
     public int Count
     {
@@ -29,6 +33,26 @@ public class PatternDatabase: ScriptableObject {
         {
             PatternDBList[index]= value;
         }
+    }
+
+    public void Add(Difficulty diff)
+    {
+        PatternDBList.Add(diff);
+    }
+
+    public void Remove(Difficulty diff)
+    {
+        PatternDBList.Remove(diff);
+    }
+
+    public void RemoveAt(int index)
+    {
+        PatternDBList.RemoveAt(index);
+    }
+
+    public void RemoveRange(int index, int count)
+    {
+        PatternDBList.RemoveRange(index, count);
     }
 
 }

@@ -12,7 +12,30 @@ public class Segment
     /// <summary>
     /// This is not segment this is TileTypeList
     /// </summary>
-    public List<PoolableType> ListOfTiles = new List<PoolableType>(5);
+    public List<PoolableType> ListOfTiles;
+
+    public Segment()
+    {
+        ListOfTiles = new List<PoolableType>();
+    }
+
+    public Segment(PoolableType tile)
+    {
+        ListOfTiles = new List<PoolableType>();
+        for (int i = 0; i < 5; i++)
+        {
+            ListOfTiles.Add(tile);
+        }
+    }
+
+    public Segment(Segment segment)
+    {
+        ListOfTiles = new List<PoolableType>();
+        for (int i = 0; i < 5; i++)
+        {
+            ListOfTiles.Add(segment.ListOfTiles[i]);
+        }
+    }
 
     public PoolableType this[int i]
     {
@@ -33,22 +56,6 @@ public class Segment
         get
         {
             return ListOfTiles.Count;
-        }
-    }
-
-    public Segment(PoolableType tile)
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            ListOfTiles.Add(tile);
-        }
-    }
-
-    public Segment (Segment segment)
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            ListOfTiles.Add(segment.ListOfTiles[i]);
         }
     }
 }

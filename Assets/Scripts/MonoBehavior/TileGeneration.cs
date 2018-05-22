@@ -30,7 +30,7 @@ public class TileGeneration : MonoBehaviour
     {
         currentSegmentIndex = 0;
         //get a random pattern
-        currentPattern = patternDB[gs.difficulty][Random.Range(0, patternDB.Count)];
+        currentPattern = patternDB[gs.difficulty][Random.Range(0, patternDB[gs.difficulty].Count)];
     }
 
     void GetNextSegment()
