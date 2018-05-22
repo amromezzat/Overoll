@@ -5,15 +5,16 @@ using UnityEngine;
 public class PickUpCoin : MonoBehaviour {
 
     public GameState gstate;
-    public CoinReturner cReturn;
+    CoinReturner cReturn;
   
      void OnEnable()
     {
         cReturn=GetComponent<CoinReturner>();
     }
-    public void onTriggerEnter(Collider other)
+
+    public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "worker")
+        if (other.gameObject.tag == "Worker")
         {
             cReturn.CoinToPool();
             gstate.CoinCount += 1;

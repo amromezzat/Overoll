@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class CoinReturner : MonoBehaviour {
 
-    public ObjectPool objPool;
     public InteractablesDatabase iDB;
-    public PoolableType poolablename;
     public GameState gState;
-   public void CoinToPool()
+    public PoolableType poolableType;
+
+    public void CoinToPool()
     {
-        poolablename = iDB[gameObject.name];
-        objPool.ReturnToPool(poolablename, gameObject);
+        ObjectPool.instance.ReturnToPool(poolableType, gameObject);
     }
+
     void Update()
     {
 
         if (gameObject.transform.position.z < gState.safeZone)
         {
-            objPool.ReturnToPool(poolablename, gameObject);
+            ObjectPool.instance.ReturnToPool(poolableType, gameObject);
         }
     }
 }
