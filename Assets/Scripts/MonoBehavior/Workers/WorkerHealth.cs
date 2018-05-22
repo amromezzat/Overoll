@@ -15,7 +15,7 @@ public class WorkerHealth : MonoBehaviour {
     public int workerHealth;
     public int obsH;
     public BaseObstacle baseObs;
-    public int CoinCount;
+ 
 
     //------------------------------------------------
 
@@ -33,13 +33,7 @@ public class WorkerHealth : MonoBehaviour {
            Other.reactToCollision(wh);
         }
 
-        if (other.gameObject.tag == "coin")
-        {
-            Destroy(other);
-            //return to the coin pool
-            CoinCount += 1;
-            Debug.Log(CoinCount);
-        }
+      
 
 
     }
