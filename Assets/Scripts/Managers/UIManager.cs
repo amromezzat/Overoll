@@ -10,17 +10,12 @@ public class UIManager : MonoBehaviour
     public Button settingsBtn;
     public Button storeBtn;
 
-
-	void Start () {
-        
-	}
-	
-
-	void Update () {
-		
-	}
+    public Animator settingAnim;
+    public Animator storeAnim;
 
     public void PlayMoveBtn () {
-        var setBtn = settingsBtn.gameObject.transform.position;
+        settingAnim.SetBool("SetBtnIsOut", false);
+        storeAnim.SetBool("StoreBtnIsOut", false);
+    
     }
 }
