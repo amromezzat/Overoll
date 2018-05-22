@@ -56,15 +56,16 @@ public class ObjectPool : MonoBehaviour
 
     public void ReturnToPool(PoolableType instType, GameObject inst)
     {
-        if (poolDict.ContainsKey(instType))
+        if (!poolDict.ContainsKey(instType))
         {
-            Queue<GameObject> instQueue = poolDict[instType];
-            inst.SetActive(false);
-            Vector3 originPos = inst.transform.position;
-            originPos.z = pd[instType].zOrigin;
-            inst.transform.position = originPos;
-            instQueue.Enqueue(inst);
+            Debug.LogError("Instance is invalid", instType);
         }
-        Debug.LogError("Instance is invalid", instType);
+        Queue<GameObject> instQueue = poolDict[instType];
+        inst.SetActive(false);
+        Vector3 originPos = inst.transform.position;
+        originPos.z = pd[instType].zOrigin;
+        inst.transform.position = originPos;
+        instQueue.Enqueue(inst);
+
     }
 }
