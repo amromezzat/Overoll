@@ -10,40 +10,46 @@ using UnityEditor;
 public class PatternDataBaseEditor : Editor
 {
     // variables 
-    int selected;
-    int DifficultyNumber;
-    public PatternDatabase PatternDataBase;
-    public Pattern AddedPattern;
+    int selectedDifficulty;
+    int difficultyNum;
+    public PatternDatabase patternDatabase;
+    public Pattern patternToBeAdd;
     List<string> poolableList;
 
     //----------------------------------------------------------------------
     void OnEnable()
     {
-        PatternDataBase = (PatternDatabase)target;
-        DifficultyNumber = PatternDataBase.Count;
-        selected = 0;
+        patternDatabase = (PatternDatabase)target;
+        difficultyNum = patternDatabase.Count;
+        selectedDifficulty = 0;
     }
 
     //-----------------------------------------------------------------
     public override void OnInspectorGUI()
     {
+        difficultyNum = EditorGUILayout.IntSlider("Number of Difficulties:", difficultyNum, 0, 10);
         UpdateDifficultyList();
-        AddListOfPatternsToDifficulty();
 
-        DifficultyNumber = EditorGUILayout.IntSlider("Number of difficulties:", DifficultyNumber, 1, 10);
+        if (difficultyNum == 0)
+        {
+            return;
+        }
+
+        UpdateDropDownMenu();
+
         //-------------------------------------------------------
         EditorGUILayout.Separator();
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         EditorGUILayout.Separator();
         //-----------------------------------------------------------
-        selected = EditorGUILayout.Popup("Select Difficulty", selected, poolableList.ToArray());
+        selectedDifficulty = EditorGUILayout.Popup("Select Difficulty", selectedDifficulty, poolableList.ToArray());
         //-------------------------------------------------------
         EditorGUILayout.Separator();
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         EditorGUILayout.Separator();
         //-----------------------------------------------------------
 
-        DisplayDifficultyPatterns(selected);
+        DisplayCurrentDifficultyPatterns();
 
         //------------------------------------------------------------
         EditorGUILayout.Separator();
@@ -52,88 +58,94 @@ public class PatternDataBaseEditor : Editor
         //-----------------------------------------------------------
         // Add button and drag and drop object in it.
 
-        AddedPattern = (Pattern)EditorGUILayout.ObjectField("Pattern:", AddedPattern, typeof(Pattern), false);
+        patternToBeAdd = (Pattern)EditorGUILayout.ObjectField("Pattern:", patternToBeAdd, typeof(Pattern), false);
 
         if (GUILayout.Button("Add"))
         {
-            AddPatternToDifficulty(selected, AddedPattern);
+            AddPatternToDifficulty(selectedDifficulty, patternToBeAdd);
         }
     }
 
-    void DisplayDifficultyPatterns(int selected)
+    void DisplayCurrentDifficultyPatterns()
     {
         GUILayout.BeginHorizontal();
         GUILayout.Label("Patterns in this level of Difficulty: ", EditorStyles.boldLabel);
-        GUILayout.Label(selected.ToString());
+        GUILayout.Label(patternDatabase[selectedDifficulty].Count.ToString());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.Separator();
         EditorGUILayout.Separator();
 
-        for (int j = 0; j < PatternDataBase.PatternDBList[selected].Count; j++)
+        for (int i = 0; i < patternDatabase[selectedDifficulty].Count; i++)
         {
 
             EditorGUILayout.BeginHorizontal("HelpBox");
-            GUILayout.Label(j.ToString(), EditorStyles.centeredGreyMiniLabel);
-            EditorGUILayout.LabelField(PatternDataBase.PatternDBList[selected][j].name, EditorStyles.miniLabel);
-
+            GUILayout.Label(i.ToString(), EditorStyles.miniLabel);
+            EditorGUILayout.LabelField(patternDatabase[selectedDifficulty][i].name, EditorStyles.helpBox);
             EditorGUILayout.EndHorizontal();
 
             if (GUILayout.Button("Delete"))
             {
-                PatternDataBase.PatternDBList[selected].RemoveAt(j);
+                patternDatabase[selectedDifficulty].RemoveAt(i);
                 return;
             }
         }
+
+        if (patternDatabase[selectedDifficulty].Count == 0)
+        {
+            EditorGUILayout.LabelField("Empty", EditorStyles.textField);
+        }
     }
 
-    void UpdateDifficultyList()
+    void UpdateDropDownMenu()
     {
         poolableList = new List<string>();
 
         //--------------------------------------------------
         // Get the number of Difficulties 
-        for (int i = 0; i < PatternDataBase.Count; i++)
+        for (int i = 0; i < patternDatabase.Count; i++)
         {
-            // turn the number of Difficulties to string 
-            string poolableStr = i.ToString();
-            poolableList.Add(poolableStr);
+            //add string expressing difficulty to list
+            poolableList.Add(i.ToString());
         }
     }
 
-    void AddListOfPatternsToDifficulty()
+    void UpdateDifficultyList()
     {
 
-        if (DifficultyNumber > PatternDataBase.Count)
+        if (difficultyNum > patternDatabase.Count)
         {
 
-            int N = DifficultyNumber - PatternDataBase.Count;
+            int N = difficultyNum - patternDatabase.Count;
             for (int i = 0; i < N; i++)
             {
+                patternDatabase.Add(new Difficulty());
+            }
 
-                PatternDataBase.PatternDBList.Add(new Difficulty());
-
+            if (difficultyNum == 1)
+            {
+                selectedDifficulty = 0;
             }
 
         }
-        else if (DifficultyNumber < PatternDataBase.Count)
+
+        else if (difficultyNum < patternDatabase.Count)
         {
-            int N = PatternDataBase.Count - DifficultyNumber;
-            PatternDataBase.PatternDBList.RemoveRange(DifficultyNumber, N);
-            if (selected > DifficultyNumber - 1)
+            int N = patternDatabase.Count - difficultyNum;
+            patternDatabase.RemoveRange(difficultyNum, N);
+            if (selectedDifficulty > difficultyNum - 1)
             {
-                selected = DifficultyNumber - 1;
+                selectedDifficulty = difficultyNum - 1;
             }
         }
     }
 
-    void AddPatternToDifficulty(int selected, Pattern addedPattern)
+    void AddPatternToDifficulty(int selected, Pattern patternToBeAdd)
     {
 
-        if (!PatternDataBase.PatternDBList[selected].Contains(addedPattern))
+        if (!patternDatabase[selected].Contains(patternToBeAdd))
         {
-            PatternDataBase.PatternDBList[selected].Add(addedPattern);
-
+            patternDatabase[selected].Add(patternToBeAdd);
         }
         else
         {

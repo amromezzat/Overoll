@@ -5,7 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class Difficulty {
 
-    public List<Pattern> ListOfPatterns =new List<Pattern>();
+    public List<Pattern> ListOfPatterns;
+
+    public Difficulty()
+    {
+        ListOfPatterns = new List<Pattern>();
+    }
     
     public int Count
     {

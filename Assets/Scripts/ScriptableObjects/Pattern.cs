@@ -10,7 +10,13 @@ public class Pattern : ScriptableObject
     public float length;
     public float sectionLength;
 
-    public List<Segment> segmentList = new List<Segment>();
+    public List<Segment> segmentList;
+
+    public Pattern()
+    {
+        segmentList = new List<Segment>();
+    }
+
 
     public Segment this[int index]
     {
