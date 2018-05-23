@@ -7,18 +7,19 @@ using UnityEditor;
 public class LaneEditor : Editor
 {
 
-    LanesDatabase lanes;
+    LanesDatabase lanesDatabase;
     bool showEditLanes;
 
     private void OnEnable()
     {
-        lanes = (LanesDatabase)target;
+        lanesDatabase = (LanesDatabase)target;
         showEditLanes = true;
     }
 
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        serializedObject.Update();
 
         EditorGUILayout.Separator();
 
@@ -28,22 +29,22 @@ public class LaneEditor : Editor
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Add a left lane"))
             {
-                lanes.AddLeft();
+                lanesDatabase.AddLeft();
             }
             if (GUILayout.Button("Add a right lane"))
             {
-                lanes.AddRight();
+                lanesDatabase.AddRight();
             }
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Remove a left lane"))
             {
-                lanes.RemoveLeft();
+                lanesDatabase.RemoveLeft();
             }
             if (GUILayout.Button("Remove a right lane"))
             {
-                lanes.RemoveRight();
+                lanesDatabase.RemoveRight();
             }
             EditorGUILayout.EndHorizontal();
 
@@ -51,13 +52,16 @@ public class LaneEditor : Editor
 
             EditorGUILayout.BeginHorizontal();
             GUILayout.Label("Lane Width");
-            EditorGUILayout.TextArea(lanes.LaneWidth.ToString());
+            EditorGUILayout.TextArea(lanesDatabase.LaneWidth.ToString());
             EditorGUILayout.EndHorizontal();
 
             if (GUILayout.Button("Recalculate lanes center"))
             {
-                lanes.RecalculateLanesCenter();
+                lanesDatabase.RecalculateLanesCenter();
             }
         }
+
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(lanesDatabase);
     }
 }

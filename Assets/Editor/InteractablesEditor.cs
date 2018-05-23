@@ -17,6 +17,7 @@ public class InteractablesEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        serializedObject.Update();
 
         ShowInteractablesNames = EditorGUILayout.Foldout(ShowInteractablesNames, "Interactables Names");
         if (ShowInteractablesNames)
@@ -44,6 +45,9 @@ public class InteractablesEditor : Editor
                 GUILayout.EndHorizontal();
             }
             EditorGUI.indentLevel--;
+
+            serializedObject.ApplyModifiedProperties();
+            EditorUtility.SetDirty(interactablesDB);
         }
 
         if (GUI.changed)

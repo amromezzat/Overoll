@@ -13,14 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolableTypeList:
   - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
-  - {fileID: 11400000, guid: 0c648183860a32f4f933c855a3dc8399, type: 2}
-  - {fileID: 11400000, guid: 72ce584de62251d47aaa17aadfb49ce3, type: 2}
-  - {fileID: 11400000, guid: 38c61632ef91a2441b82a708f3aa0d44, type: 2}
-  - {fileID: 11400000, guid: 5e8cca6fa38a31647840b218ccf1e55d, type: 2}
-  - {fileID: 11400000, guid: 80ece0891c3b0e0418392121d8397eaa, type: 2}
-  - {fileID: 11400000, guid: bd2b8244391ae1c4da983597919acbe4, type: 2}
-  - {fileID: 11400000, guid: 36da0725d5697de4ea45050fac37a359, type: 2}
-  - {fileID: 11400000, guid: f521693dd8d8c064a87cc55360d1cdcb, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
   interactablesNames:
   - Coin
