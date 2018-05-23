@@ -27,10 +27,14 @@ public class PositionWorker : MonoBehaviour
     Vector2 SteeringForce()
     {
         // Creates a force to arrive at the behind point
-        Vector2 steeringForce = FollowLeader(); // 50 is the arrive radius
+        Vector2 steeringForce = FollowLeader(); 
 
-        //seperate workers
+        //Seperate workers
         steeringForce += StayAway();
+
+        //Keep workers in a formation
+        steeringForce += KeepFormation();
+
         return steeringForce;
 
     }
@@ -90,8 +94,19 @@ public class PositionWorker : MonoBehaviour
         Vector2 folForce = Vector2.zero;
         folForce.x = desiredVelocity.x - rb.velocity.x;
         folForce.y = desiredVelocity.y - rb.velocity.z;
-        folForce = Vector2.ClampMagnitude(folForce, wc.maxFolForce);
-        return folForce;
+        //folForce = Vector2.ClampMagnitude(folForce, wc.maxFolForce);
+        return folForce.normalized * wc.maxFolForce;
+    }
+
+    Vector2 KeepFormation()
+    {
+        Vector2 formationForce = Vector2.zero;
+        formationForce.x = wc.leader.transform.position.x + wc.leftWingShape.Evaluate(transform.position.z) +
+            wc.rightWingShape.Evaluate(transform.position.z);
+        formationForce.x -= transform.position.x;
+        formationForce.y = wc.centerShape.Evaluate(transform.position.x);
+        formationForce.y -= transform.position.z;
+        return formationForce.normalized * wc.maxFormForce;
     }
 
     float CalculateDisFrom(GameObject entity)

@@ -75,7 +75,7 @@ public class LanesDatabase : ScriptableObject
 
     private void OnEnable()
     {
-        RecalculateLanesCenter();
+        //RecalculateLanesCenter();
     }
 
     public void RecalculateLanesCenter()

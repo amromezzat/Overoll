@@ -37,14 +37,83 @@ MonoBehaviour:
   gravityFactor: 5
   groundLevel: 0.25
   turnSpeed: 10
-  workersSepDis: 1
+  workersSepDis: 0.4
   arrivalSlowingRad: 1
-  maxSepForce: 20
-  maxFolForce: 20
-  maxSpeed: 20
-  aheadFollowPoint: -3.08
-  workers: []
-  workersRb: []
+  maxSepForce: 30
+  maxFolForce: 10
+  maxFormForce: 5
+  maxSpeed: 10
+  aheadFollowPoint: -2
+  rightWingShape:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.50515366
+      value: 0.95124817
+      inSlope: 0.10518314
+      outSlope: 0.10518314
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0.09722884
+      outSlope: 0.09722884
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  centerShape:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: -0.49741912
+      value: -0.49976933
+      inSlope: 0.00079996896
+      outSlope: 0.00079996896
+      tangentMode: 0
+    - serializedVersion: 2
+      time: -0.0929656
+      value: -0.095967665
+      inSlope: 0.78276515
+      outSlope: 0.78276515
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.16167618
+      value: -0.09274021
+      inSlope: -0.81336856
+      outSlope: -0.81336856
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.4984131
+      value: -0.50265884
+      inSlope: 0.062403373
+      outSlope: 0.062403373
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  leftWingShape:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.49817657
+      value: -0.49580765
+      inSlope: -1.0433414
+      outSlope: -1.0433414
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1.0007812
+      value: -0.99402976
+      inSlope: -0.96154076
+      outSlope: -0.96154076
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  workers:
+  - {fileID: 0}
+  workersRb:
+  - {fileID: 0}
   worker: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
   HR: {fileID: 0}
   Manager: {fileID: 0}

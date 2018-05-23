@@ -6,6 +6,7 @@ public class WorkersManager : MonoBehaviour
 {
     public GameObject leader;
     public WorkerConfig wc;
+    public TileConfig tc;
 
     // Use this for initialization
     void Start()
@@ -26,8 +27,9 @@ public class WorkersManager : MonoBehaviour
 
     public void AddWorker()
     {
-        ObjectPool.instance.GetFromPool(wc.worker);
-        //Instantiate(wc.workerPrefab, transform.position + new Vector3(Random.Range(-5,5), 0, Random.Range(-5, 5)),
-        //    Quaternion.identity, transform);
+        GameObject worker= ObjectPool.instance.GetFromPool(wc.worker);
+        float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
+        float newZPos = Random.Range(leader.transform.position.z - tc.laneWidth, leader.transform.position.z + tc.laneWidth);
+        worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
     }
 }
