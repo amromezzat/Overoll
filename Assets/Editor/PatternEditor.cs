@@ -35,9 +35,8 @@ public class PatternEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        //EditorGUILayout.LabelField(interactableSelected.Length.ToString());
-        // DrawDefaultInspector();
-        //segmentNum = EditorGUILayout.IntField("segements number", 0);
+        serializedObject.Update();
+
         ShowPattern();
         EditorGUILayout.Separator();
         GUILayout.Label("", GUI.skin.horizontalSlider);
@@ -46,7 +45,8 @@ public class PatternEditor : Editor
         GUILayout.Label("", GUI.skin.horizontalSlider);
         RemoveAll();
 
-        EditorUtility.SetDirty(pattern); // to save the changes
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(pattern);
     }
 
     /// <summary>

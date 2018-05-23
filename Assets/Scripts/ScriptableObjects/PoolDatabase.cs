@@ -6,12 +6,14 @@ using System.Linq;
 [CreateAssetMenu(fileName = "PoolDatabase", menuName = "Database/Pool")]
 public class PoolDatabase : ScriptableObject
 {
-    public List<PoolableObj> poolableList = new List<PoolableObj>();
+    public List<PoolableObj> poolableList;
 
     public int Count
     {
         get
         {
+            if (poolableList == null)
+                return 0;
             return poolableList.Count;
         }
     }

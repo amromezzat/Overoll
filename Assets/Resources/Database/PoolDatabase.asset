@@ -11,4 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0748bee12fde2f844a26554fd650b4dc, type: 3}
   m_Name: PoolDatabase
   m_EditorClassIdentifier: 
-  poolableList: []
+  poolableList:
+  - type: {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
+    count: 10
+    prefab: {fileID: 1448736720025150, guid: 4463a7e7c6daaac4b92d0c2b1955695d, type: 2}
+    zOrigin: 10
+  - type: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
+    count: 10
+    prefab: {fileID: 1433989353999650, guid: 38e5d4f2605b5774e8df2e13c1ec9946, type: 2}
+    zOrigin: 0

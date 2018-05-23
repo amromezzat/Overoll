@@ -31,6 +31,8 @@ public class PoolDBEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
+
         DisplayCurrentPrefabs();
 
         EditorGUILayout.Separator();
@@ -38,6 +40,9 @@ public class PoolDBEditor : Editor
         EditorGUILayout.Separator();
 
         CreateNewPrefab();
+
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(poolableDB);
     }
 
     void DisplayCurrentPrefabs()

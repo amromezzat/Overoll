@@ -19,7 +19,7 @@ public class PatternDatabase: ScriptableObject {
     {
         get
         {
-            return PatternDBList.Count;//PatternDBList.Count;
+            return PatternDBList.Count;
         }
     }
 

@@ -27,6 +27,8 @@ public class PatternDataBaseEditor : Editor
     //-----------------------------------------------------------------
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
+
         difficultyNum = EditorGUILayout.IntSlider("Number of Difficulties:", difficultyNum, 0, 10);
         UpdateDifficultyList();
 
@@ -64,6 +66,9 @@ public class PatternDataBaseEditor : Editor
         {
             AddPatternToDifficulty(selectedDifficulty, patternToBeAdd);
         }
+
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(patternDatabase);
     }
 
     void DisplayCurrentDifficultyPatterns()
