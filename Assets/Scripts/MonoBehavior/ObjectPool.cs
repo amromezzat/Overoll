@@ -15,7 +15,6 @@ public class ObjectPool : MonoBehaviour
         poolDict = new Dictionary<PoolableType, Queue<GameObject>>(pd.poolableList.Count);
     }
 
-    // Use this for initialization
     void Start()
     {
         foreach (PoolableObj po in pd.poolableList)

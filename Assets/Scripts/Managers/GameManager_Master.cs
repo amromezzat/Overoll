@@ -11,6 +11,8 @@ public class GameManager_Master : MonoBehaviour
     public Text pauseBtnTxt;
     public Text gamePausedTxt;
 
+    //public
+
 
     public void ExchangeState()
     {
