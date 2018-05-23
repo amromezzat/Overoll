@@ -6,7 +6,7 @@ using System.Linq;
 [CreateAssetMenu(fileName = "PoolDatabase", menuName = "Database/Pool")]
 public class PoolDatabase : ScriptableObject
 {
-    public List<PoolableObj> poolableList;
+    public List<PoolableObj> poolableList = new List<PoolableObj>();
 
     public int Count
     {

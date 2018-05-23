@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class WorkerJump : MonoBehaviour,IListen {
 
-    Vector2 newVelocity;
     Rigidbody rb;
     float timeToJump = 0;
     bool jumping = false;

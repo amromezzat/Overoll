@@ -11,32 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0748bee12fde2f844a26554fd650b4dc, type: 3}
   m_Name: PoolDatabase
   m_EditorClassIdentifier: 
-  poolableList:
-  - type: {fileID: 11400000, guid: 72ce584de62251d47aaa17aadfb49ce3, type: 2}
-    count: 2
-    prefab: {fileID: 1636399051536342, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
-    parent: {fileID: 0}
-  - type: {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
-    count: 2
-    prefab: {fileID: 100000, guid: 11de9d883ba29e7408300ad1c2cc424b, type: 3}
-    parent: {fileID: 0}
-  - type: {fileID: 11400000, guid: 80ece0891c3b0e0418392121d8397eaa, type: 2}
-    count: 2
-    prefab: {fileID: 1636399051536342, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
-    parent: {fileID: 0}
-  - type: {fileID: 11400000, guid: 0c648183860a32f4f933c855a3dc8399, type: 2}
-    count: 1
-    prefab: {fileID: 1636399051536342, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
-    parent: {fileID: 1775681525812836, guid: 5ed6569d553167148bf6fedf3bf4d85b, type: 2}
-  - type: {fileID: 11400000, guid: bd2b8244391ae1c4da983597919acbe4, type: 2}
-    count: 1
-    prefab: {fileID: 1636399051536342, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
-    parent: {fileID: 1775681525812836, guid: 5ed6569d553167148bf6fedf3bf4d85b, type: 2}
-  - type: {fileID: 11400000, guid: 36da0725d5697de4ea45050fac37a359, type: 2}
-    count: 2
-    prefab: {fileID: 1636399051536342, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
-    parent: {fileID: 0}
-  - type: {fileID: 11400000, guid: 5e8cca6fa38a31647840b218ccf1e55d, type: 2}
-    count: 2
-    prefab: {fileID: 1636399051536342, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
-    parent: {fileID: 0}
+  poolableList: []
