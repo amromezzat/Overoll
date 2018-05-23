@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135123608719967398}
   - component: {fileID: 54085142096316720}
   - component: {fileID: 114936955104218882}
-  - component: {fileID: 114627062952981014}
+  - component: {fileID: 114213112302465454}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -149,19 +149,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114279595685951186
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1448736720025150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f3c5a50ce4c82458d3f253c6adade9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
---- !u!114 &114627062952981014
+--- !u!114 &114213112302465454
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -175,6 +163,18 @@ MonoBehaviour:
   iDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
   gState: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   poolableType: {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
+--- !u!114 &114279595685951186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448736720025150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f3c5a50ce4c82458d3f253c6adade9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
 --- !u!114 &114936955104218882
 MonoBehaviour:
   m_ObjectHideFlags: 1
