@@ -292,7 +292,7 @@ ModelImporter:
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
@@ -427,7 +427,7 @@ ModelImporter:
         weight: 1
       maskType: 1
       maskSource: {fileID: 101100000, guid: 4ebc95c8618479f4d8251c7dafa10029, type: 2}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 15
     isReadable: 1
   meshes:
     lODScreenPercentages: []
