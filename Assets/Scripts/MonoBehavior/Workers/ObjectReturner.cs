@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinReturner : MonoBehaviour {
+public class ObjectReturner : MonoBehaviour {
 
     public InteractablesDatabase iDB;
     public GameState gState;
     public PoolableType poolableType;
 
-    public void CoinToPool()
+    public void ReturnToObjectPool()
     {
         ObjectPool.instance.ReturnToPool(poolableType, gameObject);
     }
