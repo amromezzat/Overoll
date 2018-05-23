@@ -33,8 +33,13 @@ public class WorkerConfig : ScriptableObject {
     public float arrivalSlowingRad = 5;//slow when entering this rad
     public float maxSepForce = 10;
     public float maxFolForce = 10;
+    public float maxFormForce = 10;
     public float maxSpeed = 10;
-    public float aheadFollowPoint = 5;//distance infront of workers to follow
+    public float aheadFollowPoint = 5;//distance infront of leader for workers to follow
+    [Header("Workers Formation")]
+    public AnimationCurve rightWingShape;
+    public AnimationCurve centerShape;
+    public AnimationCurve leftWingShape;
 
     [HideInInspector]
     public List<GameObject> workers;
