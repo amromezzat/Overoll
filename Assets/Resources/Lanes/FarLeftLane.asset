@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: FarLeftLane
   m_EditorClassIdentifier: 
   laneNum: 0
-  laneCenter: -10
+  laneCenter: -2
