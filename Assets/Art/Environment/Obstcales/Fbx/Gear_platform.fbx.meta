@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: 82125281ffd52aa478f4d41a5ac68efd
-timeCreated: 1526990798
+guid: 7bb8a15b4cb80264f90d855f468fc504
+timeCreated: 1527035462
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: Broken Platform.000
+    100002: Broken Platform.001
+    100004: Gear
+    100006: //RootNode
+    400000: Broken Platform.000
+    400002: Broken Platform.001
+    400004: Gear
+    400006: //RootNode
     2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cylinder.002
+    2300000: Broken Platform.000
+    2300002: Broken Platform.001
+    2300004: Gear
+    3300000: Broken Platform.000
+    3300002: Broken Platform.001
+    3300004: Gear
+    4300000: Broken Platform.000
+    4300002: Broken Platform.001
+    4300004: Gear
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -66,7 +78,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
