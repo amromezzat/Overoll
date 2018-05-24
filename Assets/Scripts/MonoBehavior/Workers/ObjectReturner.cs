@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ObjectReturner : MonoBehaviour {
 
-    public InteractablesDatabase iDB;
-    public GameState gState;
+    public InteractablesDatabase interactablesDB;
+    public GameState gameState;
     public PoolableType poolableType;
 
     public void ReturnToObjectPool()
@@ -15,8 +15,7 @@ public class ObjectReturner : MonoBehaviour {
 
     void Update()
     {
-
-        if (gameObject.transform.position.z < gState.safeZone)
+        if (gameObject.transform.position.z < gameState.safeZone)
         {
             ObjectPool.instance.ReturnToPool(poolableType, gameObject);
         }

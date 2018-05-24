@@ -3,55 +3,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface Collidable
+[RequireComponent(typeof(ObjectReturner))]
+public class BaseObstacle : MonoBehaviour, ICollidable
 {
-
-    void reactToCollision(int collidedHealth);
-    int Gethealth();
-}
-
-
-public class BaseObstacle :MonoBehaviour, Collidable {
 
     public int obsHealth;
     public Vector3 obsVelocity;
-    public WorkerHealth WH;
-    
+    ObjectReturner objReturner;
+    obstacleState state = obstacleState.Idle;
+
     enum obstacleState
     {
-        Idle=1, // No one collide with it yet
-        Destroied=2, //the obstacle is destroid 
-        Broken=3  // lesa feh shewaia health metb2e
+        Idle = 1, // No one collide with it yet
+        Destroyed = 2, //the obstacle is destroid 
+        Broken = 3  // lesa feh shewaia health metb2e
     }
 
-    obstacleState state= obstacleState.Idle;
+    private void Start()
+    {
+        objReturner = GetComponent<ObjectReturner>();
+    }
 
-
-    public void reactToCollision(int collidedHealth)
+    public void ReactToCollision(int collidedHealth)
     {
         obsHealth = obsHealth - collidedHealth;
-
-
-
         if (obsHealth <= 0)
         {
-            state = obstacleState.Destroied;
+            state = obstacleState.Destroyed;
+            objReturner.ReturnToObjectPool();
         }
         else
         {
             state = obstacleState.Broken;
         }
-        //-----------------------------------------
-
-       
+        //-----------------------------------------      
     }
 
     public int Gethealth()
     {
-      
         return obsHealth;
-       
     }
     //-----------------------------------------------------------------------------------------
-  
+
 }
