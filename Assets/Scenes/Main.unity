@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1735440518}
-  m_IndirectSpecularColor: {r: 0.19247851, g: 0.876114, b: 1.3221749, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb4d9bd051a71f48a18edd27bce7c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.89
+  threshold: 1.01
   intensity: 0.92
   blurSize: 1
   blurIterations: 2
@@ -390,12 +390,12 @@ MonoBehaviour:
   shader: {fileID: 4800000, guid: 882e54c96926fba41a8f998a4d293b44, type: 3}
   Exposure: 0.3
   Contrast: 1
-  Saturation: 0.2
-  Gamma: 0.51
-  vignetteIntensity: 0.233
+  Saturation: 0.05
+  Gamma: 0.9
+  vignetteIntensity: 0.444
   R: 0
-  G: 30
-  B: 0
+  G: 20
+  B: 10
 --- !u!1 &1023650109 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1505689317082964, guid: 7f4f0b87ba29ab848933777b7868d0b6,
