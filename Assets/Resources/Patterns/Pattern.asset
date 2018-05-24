@@ -21,3 +21,15 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
     - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
     - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
+  - ListOfTiles:
+    - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+    - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+    - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+    - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+    - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+  - ListOfTiles:
+    - {fileID: 11400000, guid: a5f362da046748b4d8f81a220673f65f, type: 2}
+    - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
+    - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
+    - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
+    - {fileID: 11400000, guid: 04341e926ab72b043b23ec993f18dbce, type: 2}
