@@ -11,3 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c93058685ab53044bc4cb46f1ec0f38, type: 3}
   m_Name: SlidePipe
   m_EditorClassIdentifier: 
+  containTiles: 0

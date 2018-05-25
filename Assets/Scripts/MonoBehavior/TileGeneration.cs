@@ -11,6 +11,7 @@ public class TileGeneration : MonoBehaviour
     public LanesDatabase lanes;
     public GameState gs;
     public TileConfig tc;
+    public PoolableType tileType;
 
     Pattern currentPattern;
     int currentSegmentIndex;
@@ -44,14 +45,16 @@ public class TileGeneration : MonoBehaviour
         //generate on available lanes
         for (int i = 0; i < lanes.OnGridLanes.Count; i++)
         {
-            if (!currentSegment[i])
-            {
-                continue;
-            }
             GameObject tile = ObjectPool.instance.GetFromPool(currentSegment[i]);
             Vector3 objpos = tile.transform.position;
             objpos.x = lanes[i].laneCenter;
             tile.transform.position = objpos;
+            if (!currentSegment[i].containTiles)
+            {
+                tile = ObjectPool.instance.GetFromPool(tileType);
+                objpos.y = tile.transform.position.y;
+                tile.transform.position = objpos;
+            }
         }
     }
 }
