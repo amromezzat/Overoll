@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9991ca1443aa0564ca354a54fd074234
-timeCreated: 1527262792
+guid: 9434c9489333ae746a7c49817adfe1a9
+timeCreated: 1527262791
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,7 +10,7 @@ ModelImporter:
     2100000: Default_Material
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Main Platform.004
+    4300000: Main Platform.001
   externalObjects: {}
   materials:
     importMaterials: 0

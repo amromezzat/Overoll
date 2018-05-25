@@ -385,17 +385,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689a69a166f1ffb44b516f5f90d602cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toneMapping: 0
+  toneMapping: 1
   colorMaterial: {fileID: 2100000, guid: 77186bd7b34e247499b027bcaa655dc3, type: 2}
   shader: {fileID: 4800000, guid: 882e54c96926fba41a8f998a4d293b44, type: 3}
   Exposure: 0.3
   Contrast: 1
-  Saturation: 0.05
-  Gamma: 0.9
+  Saturation: 0
+  Gamma: 1
   vignetteIntensity: 0.444
   R: 0
-  G: 20
-  B: 10
+  G: 40
+  B: 30
 --- !u!1 &1023650109 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1505689317082964, guid: 7f4f0b87ba29ab848933777b7868d0b6,
