@@ -17,10 +17,15 @@ public class FireSegmentGen : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (rb.transform.position.z < 8)
+        if (rb.transform.position.z < 9)
         {
             rb.transform.position = parentPos;
             tc.produceNextSegment.Invoke();
         }
 	}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireCube(transform.position, Vector3.one);
+    }
 }

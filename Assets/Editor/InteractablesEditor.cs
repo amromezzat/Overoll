@@ -23,7 +23,7 @@ public class InteractablesEditor : Editor
         if (ShowInteractablesNames)
         {
             EditorGUI.indentLevel++;
-            for (int i = 0; i < interactablesDB.Count; i++)
+            for (int i = 0; i < interactablesDB.interactablesNames.Count; i++)
             {
                 GUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField(interactablesDB.interactablesNames[i],
