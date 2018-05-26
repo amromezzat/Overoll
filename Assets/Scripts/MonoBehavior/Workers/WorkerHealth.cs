@@ -14,24 +14,24 @@ public class WorkerHealth : MonoBehaviour
 
     workerState state = workerState.Idle;
     public int workerHealth;
-    public int obsH;
-    public BaseObstacle baseObs;
-
 
     //------------------------------------------------
 
-    public void onTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.tag == "Obstacle")
         {
             ICollidable Other = other.GetComponent<ICollidable>();
 
-            obsH = Other.Gethealth();
-            int wh = workerHealth;
-            workerHealth = workerHealth - obsH;
+            int obsHealth = Other.Gethealth();
+            int preCollisionWH = workerHealth;
+            workerHealth = workerHealth - obsHealth;
 
-            Other.ReactToCollision(wh);
+            Other.ReactToCollision(preCollisionWH);
+            if (workerHealth <= 0)
+            {
+
+            }
         }
 
 

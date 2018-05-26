@@ -186,10 +186,6 @@ public class PatternEditor : Editor
             EditorGUI.BeginDisabledGroup(addAtEnd);
             {
                 segmentIndex = (int)EditorGUILayout.Slider("Index", segmentIndex, 0, pattern.segmentList.Count - 1);
-                if (segmentIndex > newSegment.Count)
-                {
-                    segmentIndex = newSegment.Count;
-                }
             }
             EditorGUI.EndDisabledGroup();
             GUILayout.EndHorizontal();
