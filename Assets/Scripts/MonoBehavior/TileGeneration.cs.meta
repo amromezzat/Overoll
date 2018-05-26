@@ -5,7 +5,12 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - patternDB: {fileID: 11400000, guid: a7283fdd27bf9fb4f9ae0759553ae871, type: 2}
+  - lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
+  - gs: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  - tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  - tileType: {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
