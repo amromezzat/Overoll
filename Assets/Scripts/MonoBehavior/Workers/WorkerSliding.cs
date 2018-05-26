@@ -79,6 +79,7 @@ public class WorkerSliding : MonoBehaviour
             //-------------------------------------
             // for following workers to slide 
             timeToSlide = (wc.leader.transform.position.z - transform.position.z) / tc.tileSpeed;
+            //Debug.Log(timeToSlide);
             StartCoroutine(slideAfterDelay());
 
         }
@@ -88,6 +89,7 @@ public class WorkerSliding : MonoBehaviour
 
     IEnumerator slideAfterDelay()
     {
+        
         yield return new WaitForSeconds(timeToSlide);
         SlidingAction();
 

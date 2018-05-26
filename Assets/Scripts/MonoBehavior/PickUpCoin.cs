@@ -18,7 +18,7 @@ public class PickUpCoin : MonoBehaviour {
         {
             cReturn.ReturnToObjectPool();
             gstate.CoinCount += 1;
-            Debug.Log(gstate.CoinCount);
+          //  Debug.Log(gstate.CoinCount);
         }
      }
 }
