@@ -11,6 +11,7 @@ public class BaseObstacle : MonoBehaviour, ICollidable
     public Vector3 obsVelocity;
     ObjectReturner objReturner;
     obstacleState state = obstacleState.Idle;
+    Rigidbody rb;
 
     enum obstacleState
     {
@@ -22,6 +23,8 @@ public class BaseObstacle : MonoBehaviour, ICollidable
     private void Start()
     {
         objReturner = GetComponent<ObjectReturner>();
+        rb = GetComponent<Rigidbody>();
+        rb.velocity += obsVelocity;
     }
 
     public void ReactToCollision(int collidedHealth)

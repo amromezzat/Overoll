@@ -279,6 +279,8 @@ GameObject:
   - component: {fileID: 65619182727466928}
   - component: {fileID: 114117177596516776}
   - component: {fileID: 114268208552956630}
+  - component: {fileID: 114261946345422252}
+  - component: {fileID: 114505871977258896}
   m_Layer: 0
   m_Name: Leader
   m_TagString: Worker
@@ -1288,8 +1290,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.048183706, y: 0.15354891, z: 0.023639234}
-  m_Center: {x: 0.0013380558, y: 0.08084645, z: 0.0028616074}
+  m_Size: {x: 0.5, y: 1.2, z: 0.6}
+  m_Center: {x: 0, y: 0.6, z: 0.56}
 --- !u!95 &95628363478939354
 Animator:
   serializedVersion: 3
@@ -1321,6 +1323,21 @@ MonoBehaviour:
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gamestat: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+--- !u!114 &114261946345422252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505689317082964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e021a3a4289a4f24f88b0b2e1e804f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSlideTime: 1.5
+  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  gamestat: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &114268208552956630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1335,6 +1352,18 @@ MonoBehaviour:
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   gamestate: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+--- !u!114 &114505871977258896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505689317082964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95d9c92ec41f474fad2ba1047fa37a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workerHealth: 1
 --- !u!137 &137077095471294956
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
