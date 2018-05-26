@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114001088696422884}
   m_Layer: 0
   m_Name: SpoolDynamic
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsHealth: 1
-  obsVelocity: {x: 0, y: 0, z: 0}
+  obsVelocity: {x: 0, y: 0, z: -5}
 --- !u!114 &114483019376836810
 MonoBehaviour:
   m_ObjectHideFlags: 1

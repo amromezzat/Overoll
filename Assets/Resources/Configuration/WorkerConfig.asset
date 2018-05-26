@@ -33,10 +33,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  jumpSpeed: 10
-  gravityFactor: 5
+  jumpSpeed: 5
+  gravityFactor: 1
   groundLevel: 0.25
-  turnSpeed: 10
+  turnSpeed: 20
   workersSepDis: 0.8
   arrivalSlowingRad: 1
   maxSepForce: 30

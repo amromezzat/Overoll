@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 65619182727466928}
   - component: {fileID: 114103244772713320}
   - component: {fileID: 114117177596516776}
+  - component: {fileID: 114887355307981340}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Worker
@@ -1333,6 +1334,18 @@ MonoBehaviour:
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gamestat: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+--- !u!114 &114887355307981340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505689317082964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95d9c92ec41f474fad2ba1047fa37a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workerHealth: 1
 --- !u!137 &137077095471294956
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

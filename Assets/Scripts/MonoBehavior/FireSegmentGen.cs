@@ -17,7 +17,7 @@ public class FireSegmentGen : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (rb.transform.position.z < 9)
+        if (rb.transform.position.z < parentPos.z - 0.5)
         {
             rb.transform.position = parentPos;
             tc.produceNextSegment.Invoke();

@@ -13,7 +13,6 @@ public class PoolDBEditor : Editor
 
     //current editable values
     public PoolableType tileType;
-    public float zOrigin = 0;
     public GameObject prefab;
     public int instNum = 10;
     InteractablesDatabase interactablesDB;//tiles database to select from
@@ -73,7 +72,6 @@ public class PoolDBEditor : Editor
             {
                 selectedTile = interactablesDB.interactablesNames.IndexOf(poolableDB[i].Name);
                 //tileType = poolableDB[i].type;
-                zOrigin = poolableDB[i].zOrigin;
                 prefab = poolableDB[i].prefab;
                 instNum = poolableDB[i].count;
             }
@@ -127,8 +125,6 @@ public class PoolDBEditor : Editor
 
         prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", prefab, typeof(GameObject), false);
 
-        zOrigin = EditorGUILayout.FloatField("Z Origin", zOrigin);
-
         EditorGUILayout.Separator();
 
         AddEditButtons();
@@ -158,12 +154,12 @@ public class PoolDBEditor : Editor
 
         if (showAddNotEdit && GUILayout.Button("Add"))
         {
-            poolableDB.poolableList.Add(new PoolableObj(tileType, instNum, prefab, zOrigin));
+            poolableDB.poolableList.Add(new PoolableObj(tileType, instNum, prefab));
         }
 
         if (!showAddNotEdit && GUILayout.Button("Save"))
         {
-            poolableDB[tileType] = new PoolableObj(tileType, instNum, prefab, zOrigin);
+            poolableDB[tileType] = new PoolableObj(tileType, instNum, prefab);
         }
 
         EditorGUI.EndDisabledGroup();

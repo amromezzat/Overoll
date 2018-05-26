@@ -8,7 +8,6 @@ public class PoolableObj {
     public PoolableType type;
     public int count;
     public GameObject prefab;
-    public float zOrigin;
 
     public string Name
     {
@@ -18,11 +17,10 @@ public class PoolableObj {
         }
     }
 
-    public PoolableObj(PoolableType _type, int _count, GameObject _prefab, float _zOrigin)
+    public PoolableObj(PoolableType _type, int _count, GameObject _prefab)
     {
         type = _type;
         count = _count;
         prefab = _prefab;
-        zOrigin = _zOrigin;
     }
 }

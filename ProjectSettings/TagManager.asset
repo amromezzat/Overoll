@@ -7,6 +7,7 @@ TagManager:
   - Worker
   - Coin
   - Tile Manager
+  - Obstacle
   layers:
   - Default
   - TransparentFX
