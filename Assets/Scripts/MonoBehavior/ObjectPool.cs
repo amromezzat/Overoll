@@ -22,7 +22,7 @@ public class ObjectPool : MonoBehaviour
             Queue<GameObject> instancesQueue = new Queue<GameObject>(po.count);
             for (int i = 0; i < po.count; i++)
             {
-                GameObject newGameObj = InstantiateGameObj(po.prefab, po.zOrigin);
+                GameObject newGameObj = InstantiateGameObj(po.prefab);
                 instancesQueue.Enqueue(newGameObj);
             }
             poolDict[po.type] = instancesQueue;
@@ -40,7 +40,7 @@ public class ObjectPool : MonoBehaviour
                 pooledObj.SetActive(true);
                 return pooledObj;
             }
-            return InstantiateGameObj(pd[instType].prefab, pd[instType].zOrigin, true); ;
+            return InstantiateGameObj(pd[instType].prefab, true); ;
         }
         Debug.LogError("Instance is invalid", instType);
         return null;
@@ -54,19 +54,13 @@ public class ObjectPool : MonoBehaviour
         }
         Queue<GameObject> instQueue = poolDict[instType];
         inst.SetActive(false);
-        Vector3 originPos = inst.transform.position;
-        originPos.z = pd[instType].zOrigin;
-        inst.transform.position = originPos;
         instQueue.Enqueue(inst);
 
     }
 
-    public GameObject InstantiateGameObj(GameObject prefab, float zPos, bool active = false)
+    public GameObject InstantiateGameObj(GameObject prefab, bool active = false)
     {
         GameObject newGameObj = Instantiate(prefab);
-        Vector3 originPos = newGameObj.transform.position;
-        originPos.z = zPos;
-        newGameObj.transform.position = originPos;
         newGameObj.SetActive(active);
         return newGameObj;
     }

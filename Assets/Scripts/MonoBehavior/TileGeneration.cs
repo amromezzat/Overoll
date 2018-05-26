@@ -46,7 +46,8 @@ public class TileGeneration : MonoBehaviour
         for (int i = 0; i < lanes.OnGridLanes.Count; i++)
         {
             GameObject tile = ObjectPool.instance.GetFromPool(currentSegment[i]);
-            Vector3 objpos = tile.transform.position;
+            Vector3 objpos = transform.position;
+            objpos.y = tile.transform.position.y;
             objpos.x = lanes[i].laneCenter;
             tile.transform.position = objpos;
             if (!currentSegment[i].containTiles)
