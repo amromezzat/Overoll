@@ -104,7 +104,6 @@ GameObject:
   - component: {fileID: 4004693031333974}
   - component: {fileID: 33788492856524194}
   - component: {fileID: 23844019179711728}
-  - component: {fileID: 65227692573899002}
   m_Layer: 0
   m_Name: Broken Platform.000
   m_TagString: Untagged
@@ -259,7 +258,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1547401272317942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.054582, y: -0.0023209, z: 0.0000010729}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4004693031333974}
@@ -594,18 +593,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65227692573899002
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1610221534827960}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.007830825, y: 0.009999999, z: 0.015103741}
-  m_Center: {x: 0.0010845849, y: 1.4967257e-17, z: 0.00505187}
 --- !u!65 &65827235863744830
 BoxCollider:
   m_ObjectHideFlags: 1
