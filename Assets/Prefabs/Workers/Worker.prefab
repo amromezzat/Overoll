@@ -206,6 +206,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1374416313535270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4564015388926280}
+  - component: {fileID: 119179932371958120}
+  m_Layer: 0
+  m_Name: BlobShadowProjector custom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1401476420164010
 GameObject:
   m_ObjectHideFlags: 1
@@ -596,7 +612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4005799750040216}
   - component: {fileID: 137077095471294956}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RetopoGroup1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1017,6 +1033,19 @@ Transform:
   m_Father: {fileID: 4873597359058264}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4564015388926280
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1374416313535270}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4804876850577820}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4567401815904134
 Transform:
   m_ObjectHideFlags: 1
@@ -1114,6 +1143,7 @@ Transform:
   m_Children:
   - {fileID: 4342649849663360}
   - {fileID: 4005799750040216}
+  - {fileID: 4564015388926280}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1289,8 +1319,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.048183706, y: 0.15354891, z: 0.023639234}
-  m_Center: {x: 0.0013380558, y: 0.08084645, z: 0.0028616074}
+  m_Size: {x: 0.5, y: 1.2, z: 0.6}
+  m_Center: {x: 0, y: 0.6, z: 0.56}
 --- !u!95 &95628363478939354
 Animator:
   serializedVersion: 3
@@ -1346,6 +1376,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workerHealth: 1
+--- !u!119 &119179932371958120
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1374416313535270}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: 0.3
+  m_FarClipPlane: 2
+  m_FieldOfView: 1
+  m_AspectRatio: 1.1
+  m_Orthographic: 1
+  m_OrthographicSize: 0.35
+  m_Material: {fileID: 2100000, guid: e30ff3588e719f34bbf0c66f22d97487, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!137 &137077095471294956
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

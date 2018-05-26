@@ -190,7 +190,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1720995405}
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1001 &747807490
+--- !u!1001 &620606093
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -396,7 +396,7 @@ MonoBehaviour:
 GameObject:
   m_PrefabParentObject: {fileID: 1505689317082964, guid: 7f4f0b87ba29ab848933777b7868d0b6,
     type: 2}
-  m_PrefabInternal: {fileID: 747807490}
+  m_PrefabInternal: {fileID: 620606093}
 --- !u!1 &1119034326
 GameObject:
   m_ObjectHideFlags: 0
