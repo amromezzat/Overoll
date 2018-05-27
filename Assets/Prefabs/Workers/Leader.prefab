@@ -278,9 +278,8 @@ GameObject:
   - component: {fileID: 54320175008334722}
   - component: {fileID: 65619182727466928}
   - component: {fileID: 114117177596516776}
-  - component: {fileID: 114268208552956630}
   - component: {fileID: 114261946345422252}
-  - component: {fileID: 114505871977258896}
+  - component: {fileID: 114864412415524812}
   m_Layer: 0
   m_Name: Leader
   m_TagString: Worker
@@ -1320,8 +1319,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.2, z: 0.6}
-  m_Center: {x: 0, y: 0.6, z: 0.56}
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0.6, z: 0.05}
 --- !u!95 &95628363478939354
 Animator:
   serializedVersion: 3
@@ -1331,7 +1330,7 @@ Animator:
   m_GameObject: {fileID: 1505689317082964}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c1d27a81fe4a75c40a881eb5220b06bb, type: 3}
-  m_Controller: {fileID: 9100000, guid: c850e3bec147c404eb70b4a78c93b149, type: 2}
+  m_Controller: {fileID: 9100000, guid: ac962050cbbe0489db92de70dadee5c7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1352,7 +1351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  gamestat: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &114261946345422252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1364,11 +1362,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e021a3a4289a4f24f88b0b2e1e804f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSlideTime: 1.5
+  maxSlideTime: 0.5
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  gamestat: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
---- !u!114 &114268208552956630
+--- !u!114 &114864412415524812
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1376,24 +1373,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1505689317082964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 739f9d91efdf57e49a9f3ced1fc7836f, type: 3}
+  m_Script: {fileID: 11500000, guid: 175c8778b04441945860605ebdfd9fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
-  gamestate: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
---- !u!114 &114505871977258896
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1505689317082964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f95d9c92ec41f474fad2ba1047fa37a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  workerHealth: -2
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  strafeTime: 0.1
 --- !u!119 &119848178480229200
 Projector:
   m_ObjectHideFlags: 1

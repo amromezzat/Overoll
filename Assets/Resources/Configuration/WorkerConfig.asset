@@ -33,10 +33,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  jumpSpeed: 5
-  gravityFactor: 1
+  jumpSpeed: 10
+  gravityFactor: 1.5
   groundLevel: 0.25
-  turnSpeed: 20
+  turnSpeed: 25
   workersSepDis: 0.8
   arrivalSlowingRad: 1
   maxSepForce: 30
@@ -110,8 +110,32 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 0
-  workers: []
-  workersRb: []
+  workers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  workersRb:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   worker: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
   HR: {fileID: 0}
   Manager: {fileID: 0}

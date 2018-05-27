@@ -17,6 +17,7 @@ public class LanesDatabase : ScriptableObject
     private LaneType currentLane;
     private int currentLaneIndex;
 
+
     public LaneType CurrentLane
     {
         get
@@ -75,7 +76,8 @@ public class LanesDatabase : ScriptableObject
 
     private void OnEnable()
     {
-        //RecalculateLanesCenter();
+        currentLane = gridLanes[2];
+        currentLaneIndex = 2;
     }
 
     public void RecalculateLanesCenter()
