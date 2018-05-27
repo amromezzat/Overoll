@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class WorkerController : MonoBehaviour,IListen
+public class WorkerController : MonoBehaviour
 {
     public LanesDatabase lanes;
     public WorkerConfig wc;
@@ -11,27 +11,45 @@ public class WorkerController : MonoBehaviour,IListen
     Rigidbody rb;
     bool turningRight = false;
     bool turningLeft = false;
-
-    public GameState gamestate;
+    float turnT0;//turn start time
+    Animator animator;
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
-        StopTurning();
+        if (turningRight)
+        {
+            if (lanes.CurrentLane.laneCenter < transform.position.x)
+            {
+                StopTurning();
+                animator.SetBool("StrafeRightAnim", false);
+            }
+        }
+        else if (turningLeft)
+        {
+            if (lanes.CurrentLane.laneCenter  > transform.position.x)
+            {
+                StopTurning();
+                animator.SetBool("StrafeLeftAnim", false);
+            }
+        }
     }
 
     void MoveLeft()
     {
         if (!turningRight && !turningLeft)
         {
+            animator.SetBool("StrafeLeftAnim", true);
             lanes.GoLeft();
-            rb.velocity += wc.turnSpeed * Vector3.left;
+            rb.AddForce(wc.turnSpeed * Vector3.left, ForceMode.Impulse);
             turningLeft = true;
+            turnT0 = Time.time;
         }
     }
 
@@ -39,53 +57,33 @@ public class WorkerController : MonoBehaviour,IListen
     {
         if (!turningRight && !turningLeft)
         {
+            animator.SetBool("StrafeRightAnim", true);
             lanes.GoRight();
-            rb.velocity += wc.turnSpeed * Vector3.right;
+            rb.AddForce(wc.turnSpeed * Vector3.right, ForceMode.Impulse);
             turningRight = true;
+            turnT0 = Time.time;
         }
     }
 
-    //when worker reaches lane center make him stick to it
     void StopTurning()
     {
-        if ((turningRight && lanes.CurrentLane.laneCenter < transform.position.x)
-    || (turningLeft && lanes.CurrentLane.laneCenter > transform.position.x))
-        {
-            //set within platfrom height from equation platformHeigt(at x pos)
-            Vector3 newPos = transform.position;
-            Vector3 newVel = rb.velocity;
-            newPos.x = lanes.CurrentLane.laneCenter;
-            transform.position = newPos;
-            newVel.x = 0;
-            rb.velocity = newVel;
-            turningRight = false;
-            turningLeft = false;
-        }
+        Vector3 newPos = transform.position;
+        Vector3 newVel = rb.velocity;
+        newPos.x = lanes.CurrentLane.laneCenter;
+        transform.position = newPos;
+        newVel.x = 0;
+        rb.velocity = newVel;
+        turningRight = false;
+        turningLeft = false;
     }
 
     public void OnEnable()
     {
-        gamestate.onPause.AddListener(UnRegisterListeners);
-        gamestate.OnResume.AddListener(RegisterListeners);
         wc.onLeft.AddListener(MoveLeft);
         wc.onRight.AddListener(MoveRight);
     }
 
     public void OnDisable()
-    {
-        gamestate.onPause.RemoveListener(UnRegisterListeners);
-        gamestate.OnResume.RemoveListener(RegisterListeners);
-        wc.onLeft.RemoveListener(MoveLeft);
-        wc.onRight.RemoveListener(MoveRight);
-    }
-
-    public void RegisterListeners()
-    {
-        wc.onLeft.AddListener(MoveLeft);
-        wc.onRight.AddListener(MoveRight);
-    }
-
-    public void UnRegisterListeners()
     {
         wc.onLeft.RemoveListener(MoveLeft);
         wc.onRight.RemoveListener(MoveRight);

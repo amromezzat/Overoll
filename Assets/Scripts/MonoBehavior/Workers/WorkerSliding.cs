@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class WorkerSliding : MonoBehaviour
 {
-
-    Rigidbody rb;
     bool sliding = false;
     float slideTimer = 0f;
     public float maxSlideTime = 0.5f;
@@ -17,9 +15,6 @@ public class WorkerSliding : MonoBehaviour
     public TileConfig tc;
 
     BoxCollider m_Collider;
-    float m_ScaleX, m_ScaleY, m_ScaleZ;
-
-    public GameState gamestat;
 
     Animator animator;
 
@@ -27,98 +22,79 @@ public class WorkerSliding : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
         m_Collider = GetComponent<BoxCollider>();
-
-        m_ScaleX = 1.0f;
-        m_ScaleY = 1.0f;
-        m_ScaleZ = 1.0f;
-
     }
 
     private void FixedUpdate()
     {
         if (sliding)
         {
-            Debug.Log("sliding");
             slideTimer += Time.deltaTime;
             if (slideTimer > maxSlideTime)
             {
-                sliding = false;
-                animator.SetBool("isSliding", false);
-
-                // return the collider size to its original 
-                m_ScaleX = 2.0f;
-                m_ScaleY = 2.0f;
-                m_ScaleZ = 2.0f;
-                m_Collider.size = new Vector3(m_Collider.size.x * m_ScaleX, m_Collider.size.y * m_ScaleY, m_Collider.size.z * m_ScaleZ);
+                StopSliding();
             }
         }
     }
 
-    void SlidingAction()
+    void StopSliding()
     {
-        slideTimer = 0f;
-        animator.SetBool("isSliding", true);
-
-        // reduce  collider size by half during sliding ..
-
-        m_ScaleX = 0.5f;
-        m_ScaleY = 0.5f;
-        m_ScaleZ = 0.5f;
-        m_Collider.size = new Vector3(m_Collider.size.x * m_ScaleX, m_Collider.size.y * m_ScaleY, m_Collider.size.z * m_ScaleZ);
-
-        sliding = true;
+        if (sliding)
+        {
+            sliding = false;
+            animator.SetBool("DuckAnim", false);
+            Vector3 newColliderSize = m_Collider.size;
+            newColliderSize.y *= 2;
+            m_Collider.size = newColliderSize;
+            Vector3 colliderNewPos = m_Collider.transform.position;
+            colliderNewPos.y *= 2;
+            m_Collider.transform.position = colliderNewPos;
+            Vector3 newPos = transform.position;
+            newPos.y = wc.groundLevel;
+            transform.position = newPos;
+        }
     }
+
     //------------------------------------------------------------
     void Slide()
     {
         if (!sliding)
         {
-            SlidingAction();
             //-------------------------------------
             // for following workers to slide 
             timeToSlide = (wc.leader.transform.position.z - transform.position.z) / tc.tileSpeed;
-            //Debug.Log(timeToSlide);
-            StartCoroutine(slideAfterDelay());
-
+            StartCoroutine(SlideAfterDelay());
         }
     }
     //--------------------------------------------------
     // Coroutine for workers to slide
 
-    IEnumerator slideAfterDelay()
+    IEnumerator SlideAfterDelay()
     {
-        
         yield return new WaitForSeconds(timeToSlide);
-        SlidingAction();
+        slideTimer = 0f;
+        animator.SetBool("DuckAnim", true);
 
+        // reduce  collider size by half during sliding ..
+        Vector3 newColliderSize = m_Collider.size;
+        newColliderSize.y *= 0.5f;
+        m_Collider.size = newColliderSize;
+        Vector3 newPosition = m_Collider.transform.position;
+        newPosition.y *= 0.5f;
+        m_Collider.transform.position = newPosition;
+        sliding = true;
     }
 
     //---------------------------------------------
     //handling the states and listener to slide event 
     public void OnEnable()
     {
-        gamestat.onPause.AddListener(UnRegisterListeners);
-        gamestat.OnResume.AddListener(RegisterListeners);
         wc.onSlide.AddListener(Slide);
+        wc.onJump.AddListener(StopSliding);
     }
-
     public void OnDisable()
     {
-        gamestat.onPause.RemoveListener(UnRegisterListeners);
-        gamestat.OnResume.RemoveListener(RegisterListeners);
         wc.onSlide.RemoveListener(Slide);
+        wc.onJump.RemoveListener(StopSliding);
     }
-
-    public void RegisterListeners()
-    {
-        wc.onSlide.AddListener(Slide);
-    }
-
-    public void UnRegisterListeners()
-    {
-        wc.onSlide.RemoveListener(Slide);
-    }
-
 }

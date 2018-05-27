@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 65619182727466928}
   - component: {fileID: 114103244772713320}
   - component: {fileID: 114117177596516776}
-  - component: {fileID: 114887355307981340}
+  - component: {fileID: 114394853931688330}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Worker
@@ -1330,7 +1330,7 @@ Animator:
   m_GameObject: {fileID: 1505689317082964}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c1d27a81fe4a75c40a881eb5220b06bb, type: 3}
-  m_Controller: {fileID: 9100000, guid: c850e3bec147c404eb70b4a78c93b149, type: 2}
+  m_Controller: {fileID: 9100000, guid: ac962050cbbe0489db92de70dadee5c7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1363,8 +1363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  gamestat: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
---- !u!114 &114887355307981340
+--- !u!114 &114394853931688330
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1372,10 +1371,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1505689317082964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f95d9c92ec41f474fad2ba1047fa37a4, type: 3}
+  m_Script: {fileID: 11500000, guid: e021a3a4289a4f24f88b0b2e1e804f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  workerHealth: 1
+  maxSlideTime: 0.5
+  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
 --- !u!119 &119179932371958120
 Projector:
   m_ObjectHideFlags: 1
