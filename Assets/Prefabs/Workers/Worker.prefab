@@ -293,9 +293,9 @@ GameObject:
   - component: {fileID: 95628363478939354}
   - component: {fileID: 54320175008334722}
   - component: {fileID: 65619182727466928}
-  - component: {fileID: 114103244772713320}
   - component: {fileID: 114117177596516776}
   - component: {fileID: 114394853931688330}
+  - component: {fileID: 114103244772713320}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Worker
