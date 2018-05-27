@@ -1378,7 +1378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
-  strafeTime: 0.1
+  strafeTime: 0.05
 --- !u!119 &119848178480229200
 Projector:
   m_ObjectHideFlags: 1
