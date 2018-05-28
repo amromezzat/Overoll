@@ -515,17 +515,7 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 173071367}
-    - target: {fileID: 114643612175201690, guid: da96e29fe3a7ade49b8be1c2a094b162,
-        type: 2}
-      propertyPath: coinnum
-      value: 
-      objectReference: {fileID: 2018320720}
-    - target: {fileID: 1242844755465786, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114039664608365506, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1418835376
@@ -1089,9 +1079,3 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &2018320720 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114163233792838072, guid: da96e29fe3a7ade49b8be1c2a094b162,
-    type: 2}
-  m_PrefabInternal: {fileID: 1334711765}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
