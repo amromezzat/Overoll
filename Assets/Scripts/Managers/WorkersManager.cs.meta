@@ -5,7 +5,12 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - leader: {fileID: 1505689317082964, guid: 7f4f0b87ba29ab848933777b7868d0b6, type: 2}
+  - myButton: {instanceID: 0}
+  - wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+  - tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  - gstate: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
