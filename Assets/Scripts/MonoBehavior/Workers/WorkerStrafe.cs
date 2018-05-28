@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class WorkerStrafe : MonoBehaviour
+public class WorkerStrafe : MonoBehaviour,iHalt
 {
     public LanesDatabase lanes;
     public WorkerConfig wc;
@@ -61,13 +61,13 @@ public class WorkerStrafe : MonoBehaviour
         }
     }
 
-    public void OnEnable()
+    public void Halt()
     {
         wc.onLeft.AddListener(StrafeLeft);
         wc.onRight.AddListener(StrafeRight);
     }
 
-    public void OnDisable()
+    public void Resume()
     {
         wc.onLeft.RemoveListener(StrafeLeft);
         wc.onRight.RemoveListener(StrafeRight);

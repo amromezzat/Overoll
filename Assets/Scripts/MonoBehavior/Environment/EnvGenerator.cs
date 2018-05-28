@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnvGenerator : MonoBehaviour
+public class EnvGenerator : MonoBehaviour, iHalt
 {
     public Vector3 shift;
     public float disFromPlayer = 10;
     EnvPooler pool;
     Transform lastTile;
+
+    bool isHalt;
 
     public TileConfig tc;
 
@@ -18,7 +20,6 @@ public class EnvGenerator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         pool = gameObject.GetComponent<EnvPooler>();
         lastTile = this.transform;
         //StartCoroutine(GenerateCoroutine());
@@ -26,7 +27,7 @@ public class EnvGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (pool.activeTileCount < 8)
+        if (!isHalt && pool.activeTileCount < 8)
         {
             GenerateTile();
         }
@@ -52,5 +53,13 @@ public class EnvGenerator : MonoBehaviour
         Gizmos.DrawCube(transform.position, new Vector3(10, 10, 1));
     }
 
+    public void Halt()
+    {
+        isHalt = true;
+    }
 
+    public void Resume()
+    {
+        isHalt = false;
+    }
 }

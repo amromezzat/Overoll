@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectReturner : MonoBehaviour {
 
     public InteractablesDatabase interactablesDB;
-    public GameState gameState;
+    public GameData gameState;
     public PoolableType poolableType;
 
     public void ReturnToObjectPool()

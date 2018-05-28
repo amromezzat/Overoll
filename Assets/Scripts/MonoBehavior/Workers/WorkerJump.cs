@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class WorkerJump : MonoBehaviour
+public class WorkerJump : MonoBehaviour,iHalt
 {
 
     Rigidbody rb;
@@ -80,14 +80,14 @@ public class WorkerJump : MonoBehaviour
         rb.AddForce(Vector3.up * wc.jumpSpeed, ForceMode.Impulse);
         jumpT0 = Time.time;
     }
-
-    public void OnEnable()
+     
+    public void Halt()
     {
         wc.onJump.AddListener(Jump);
         wc.onSlide.AddListener(StopJumping);
     }
 
-    public void OnDisable()
+    public void Resume()
     {
         wc.onJump.RemoveListener(Jump);
         wc.onSlide.RemoveListener(StopJumping);

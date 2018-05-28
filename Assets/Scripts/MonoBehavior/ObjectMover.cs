@@ -6,19 +6,25 @@ using UnityEngine;
 /// This class resposiple for moving the tile
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
-public class ObjectMover : MonoBehaviour {
+public class ObjectMover : MonoBehaviour,iHalt
+{
     public TileConfig tc;
     private Rigidbody rb;
-    // Use this for initialization
-    void Start()
+ 
+
+    private void OnEnable()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.velocity += Vector3.forward * -tc.tileSpeed;
+        rb = GetComponent<Rigidbody>();  
     }
 
-    private void Update()
+    public void Halt()
     {
+        rb.velocity = Vector3.zero;
+    }
 
+    public void Resume()
+    {
+        rb.velocity += Vector3.forward * -tc.tileSpeed;
     }
 }
 

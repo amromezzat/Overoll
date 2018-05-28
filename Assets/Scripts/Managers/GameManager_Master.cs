@@ -3,52 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles In game management and Main menu UI management
+/// </summary>
 public class GameManager_Master : MonoBehaviour
 {
+    public GameData gameData;
+    public Button pauseBtn;
 
-    public GameState gamestat;
-    Button pauseBtn;
-    public Text pauseBtnTxt;
     public Text gamePausedTxt;
 
-    //public
+    public Sprite pauseSprite;
+    public Sprite resumeSprite;
 
+    public Button playBtn;
+    public Button settingsBtn;
+    public Button storeBtn;
 
-    public void ExchangeState()
+    Animator settingAnim;
+    Animator storeAnim;
+
+    public Canvas mainMenuCanvas;
+    public Canvas inGameCanvas;
+
+    private void OnEnable()
     {
-
-        if (gamestat.isPaused)
-        {
-            GameResume();
-            pauseBtnTxt.text = "Pause";
-            
-        }
-        else
-        {
-            GamePaused();
-            pauseBtnTxt.text = "Resume";
-            
-        }
-    }
-
-    public void GamePaused()
-    {
-        Time.timeScale = 0;
-        gamestat.isPaused = true;
-        gamePausedTxt.gameObject.SetActive(true);
-        gamestat.onPause.Invoke();
-    }
-
-    public void GameResume()
-    {
-        Time.timeScale = 1;
-        gamestat.isPaused = false;
+        GameStart();
         gamePausedTxt.gameObject.SetActive(false);
-        gamestat.OnResume.Invoke();
+        settingAnim = settingsBtn.GetComponent<Animator>();
+        storeAnim = storeBtn.GetComponent<Animator>();
     }
 
-    private void OnApplicationQuit()
+    void PlayBtnEntered()
     {
-        
+        settingAnim.SetBool("SetBtnIsOut", false);
+        storeAnim.SetBool("StoreBtnIsOut", false);
+        GameResume();
     }
+
+    void PauseBtnEntered()
+    {
+        gamePausedTxt.gameObject.SetActive(true);
+        GameHalt();
+    }
+
+    void ResumeBtnEntered()
+    {
+        gamePausedTxt.gameObject.SetActive(false);
+        GameResume();
+    }
+
+    void GameHalt()
+    {
+        gameData.gameState = GameState.pauseState;
+        gameData.onPause.Invoke();
+    }
+
+    void GameResume()
+    {
+        gameData.gameState = GameState.gamePlayState;
+        gameData.OnResume.Invoke();
+    }
+
+
+    /// <summary>
+    /// acts as pause but in the beginning of the game
+    /// </summary>
+    void GameStart()
+    {
+        inGameCanvas.gameObject.SetActive(false);
+        mainMenuCanvas.gameObject.SetActive(true);
+
+        gameData.gameState = GameState.startState;
+        gameData.OnStart.Invoke();
+    }
+
 }

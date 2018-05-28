@@ -12,7 +12,7 @@ public class ScoreSystem : MonoBehaviour {
     public int oldCoinCount;
     public Text scoreText;
     public Text coinnum;
-    public GameState gstate;
+    public GameData gstate;
     
 
     // Use this for initialization

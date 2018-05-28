@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class WorkerSliding : MonoBehaviour
+public class WorkerSliding : MonoBehaviour,iHalt
 {
     bool sliding = false;
     float slideTimer = 0f;
@@ -87,12 +87,14 @@ public class WorkerSliding : MonoBehaviour
 
     //---------------------------------------------
     //handling the states and listener to slide event 
-    public void OnEnable()
+  
+    public void Halt()
     {
         wc.onSlide.AddListener(Slide);
         wc.onJump.AddListener(StopSliding);
     }
-    public void OnDisable()
+
+    public void Resume()
     {
         wc.onSlide.RemoveListener(Slide);
         wc.onJump.RemoveListener(StopSliding);
