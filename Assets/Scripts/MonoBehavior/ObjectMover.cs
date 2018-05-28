@@ -10,11 +10,15 @@ public class ObjectMover : MonoBehaviour,iHalt
 {
     public TileConfig tc;
     private Rigidbody rb;
+
+    public GameData gameData;
  
 
     private void OnEnable()
     {
-        rb = GetComponent<Rigidbody>();  
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.forward * -tc.tileSpeed;
+        RegisterListeners();
     }
 
     public void Halt()
@@ -24,7 +28,14 @@ public class ObjectMover : MonoBehaviour,iHalt
 
     public void Resume()
     {
-        rb.velocity += Vector3.forward * -tc.tileSpeed;
+        rb.velocity = Vector3.forward * -tc.tileSpeed;
+    }
+
+    public void RegisterListeners()
+    {
+        gameData.OnStart.AddListener(Halt);
+        gameData.onPause.AddListener(Halt);
+        gameData.OnResume.AddListener(Resume);
     }
 }
 

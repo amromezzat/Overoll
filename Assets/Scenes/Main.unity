@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794461d0d47696546ad412882314f9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamestat: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   pauseBtn: {fileID: 1334711767}
   gamePausedTxt: {fileID: 1911234595}
   pauseSprite: {fileID: 21300000, guid: b63874d7599018340a0815a9f5b94414, type: 3}
@@ -241,6 +241,24 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0796b0d6ca8f1054dbe9fba7e1dca4dd, type: 2}
+    - target: {fileID: 114117177596516776, guid: 7f4f0b87ba29ab848933777b7868d0b6,
+        type: 2}
+      propertyPath: gameData
+      value: 
+      objectReference: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171,
+        type: 2}
+    - target: {fileID: 114261946345422252, guid: 7f4f0b87ba29ab848933777b7868d0b6,
+        type: 2}
+      propertyPath: gameData
+      value: 
+      objectReference: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171,
+        type: 2}
+    - target: {fileID: 114455672013628326, guid: 7f4f0b87ba29ab848933777b7868d0b6,
+        type: 2}
+      propertyPath: gameData
+      value: 
+      objectReference: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f4f0b87ba29ab848933777b7868d0b6, type: 2}
   m_IsPrefabParent: 0
@@ -277,12 +295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812fbff81c22212489791c0dd21e09fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
-  playBtn: {fileID: 362898308}
-  settingsBtn: {fileID: 180992306}
-  storeBtn: {fileID: 1955293558}
-  settingAnim: {fileID: 180992309}
-  storeAnim: {fileID: 1955293561}
 --- !u!1 &941316080
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +534,15 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 173071367}
+    - target: {fileID: 1752617940042926, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114704884620338092, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseBtnEntered
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
   m_IsPrefabParent: 0
@@ -606,6 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!1 &1702983875
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,11 +829,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 794619801}
+      objectReference: {fileID: 173071367}
     - target: {fileID: 114564676074196204, guid: 9c3f44c4644abb54d91a8afb45b61c80,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayMoveBtn
+      value: PlayBtnEntered
       objectReference: {fileID: 0}
     - target: {fileID: 114564676074196204, guid: 9c3f44c4644abb54d91a8afb45b61c80,
         type: 2}
@@ -825,7 +847,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1487952047271920, guid: 9c3f44c4644abb54d91a8afb45b61c80, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c3f44c4644abb54d91a8afb45b61c80, type: 2}
@@ -987,7 +1009,7 @@ MonoBehaviour:
   myButton: {fileID: 1196388978}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  gstate: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   workerPrice: 0
   wPFactor: 20
 --- !u!1 &1906287969
@@ -1036,6 +1058,7 @@ MonoBehaviour:
   shift: {x: 0, y: 0, z: 2}
   disFromPlayer: 10
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &1906287972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,7 +1088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patternDB: {fileID: 11400000, guid: a7283fdd27bf9fb4f9ae0759553ae871, type: 2}
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
-  gs: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   tileType: {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
 --- !u!114 &1911234595 stripped

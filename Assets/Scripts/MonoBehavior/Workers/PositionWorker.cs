@@ -12,7 +12,13 @@ public class PositionWorker : MonoBehaviour, iHalt
 
     bool isHalt;
 
-    // Use this for initialization
+    public GameData gameData;
+
+    private void OnEnable()
+    {
+        RegisterListeners();
+    }
+
     void Start()
     {
         wc.workers.Add(gameObject);
@@ -126,5 +132,10 @@ public class PositionWorker : MonoBehaviour, iHalt
         isHalt = false;
     }
 
-    
+    public void RegisterListeners()
+    {
+        gameData.OnStart.AddListener(Halt);
+        gameData.onPause.AddListener(Halt);
+        gameData.OnResume.AddListener(Resume);
+    }
 }

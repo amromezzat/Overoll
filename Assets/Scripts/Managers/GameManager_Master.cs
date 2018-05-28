@@ -26,7 +26,7 @@ public class GameManager_Master : MonoBehaviour
     public Canvas mainMenuCanvas;
     public Canvas inGameCanvas;
 
-    private void OnEnable()
+    private void Start()
     {
         GameStart();
         gamePausedTxt.gameObject.SetActive(false);
@@ -34,23 +34,31 @@ public class GameManager_Master : MonoBehaviour
         storeAnim = storeBtn.GetComponent<Animator>();
     }
 
-    void PlayBtnEntered()
+    public void PlayBtnEntered()
     {
         settingAnim.SetBool("SetBtnIsOut", false);
         storeAnim.SetBool("StoreBtnIsOut", false);
+        StartCoroutine(WaitforStart());
+        
         GameResume();
     }
 
-    void PauseBtnEntered()
+    public void PauseBtnEntered()
     {
-        gamePausedTxt.gameObject.SetActive(true);
-        GameHalt();
-    }
+        switch (gameData.gameState)
+        {
+            case GameState.gamePlayState:
+                gamePausedTxt.gameObject.SetActive(true);
+                pauseBtn.GetComponent<Image>().sprite = resumeSprite;
+                GameHalt();
+                break;
 
-    void ResumeBtnEntered()
-    {
-        gamePausedTxt.gameObject.SetActive(false);
-        GameResume();
+            case GameState.pauseState:
+                gamePausedTxt.gameObject.SetActive(false);
+                pauseBtn.GetComponent<Image>().sprite = pauseSprite;
+                GameResume();
+                break;
+        }
     }
 
     void GameHalt()
@@ -78,4 +86,10 @@ public class GameManager_Master : MonoBehaviour
         gameData.OnStart.Invoke();
     }
 
+    IEnumerator WaitforStart()
+    {
+        yield return new WaitForSeconds(0.5f);
+        mainMenuCanvas.gameObject.SetActive(false);
+        inGameCanvas.gameObject.SetActive(true);
+    }
 }

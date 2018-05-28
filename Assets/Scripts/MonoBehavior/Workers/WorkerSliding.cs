@@ -18,7 +18,15 @@ public class WorkerSliding : MonoBehaviour,iHalt
 
     Animator animator;
 
+    public GameData gameData;
+
     //-----------------------------------------------------------
+
+    private void OnEnable()
+    {
+        RegisterListeners();
+    }
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -90,13 +98,20 @@ public class WorkerSliding : MonoBehaviour,iHalt
   
     public void Halt()
     {
-        wc.onSlide.AddListener(Slide);
-        wc.onJump.AddListener(StopSliding);
+        wc.onSlide.RemoveListener(Slide);
+        wc.onJump.RemoveListener(StopSliding);
     }
 
     public void Resume()
     {
-        wc.onSlide.RemoveListener(Slide);
-        wc.onJump.RemoveListener(StopSliding);
+        wc.onSlide.AddListener(Slide);
+        wc.onJump.AddListener(StopSliding);
+    }
+
+    public void RegisterListeners()
+    {
+        gameData.OnStart.AddListener(Halt);
+        gameData.onPause.AddListener(Halt);
+        gameData.OnResume.AddListener(Resume);
     }
 }

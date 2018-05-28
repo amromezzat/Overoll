@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class WorkerStrafe : MonoBehaviour,iHalt
+public class WorkerStrafe : MonoBehaviour, iHalt
 {
     public LanesDatabase lanes;
     public WorkerConfig wc;
@@ -14,6 +14,13 @@ public class WorkerStrafe : MonoBehaviour,iHalt
 
     bool strafing = false;
     float strafeTimer = 0;
+
+    public GameData gameData;
+
+    private void OnEnable()
+    {
+        RegisterListeners();
+    }
 
     private void Start()
     {
@@ -63,13 +70,21 @@ public class WorkerStrafe : MonoBehaviour,iHalt
 
     public void Halt()
     {
-        wc.onLeft.AddListener(StrafeLeft);
-        wc.onRight.AddListener(StrafeRight);
+        wc.onLeft.RemoveListener(StrafeLeft);
+        wc.onRight.RemoveListener(StrafeRight);
     }
 
     public void Resume()
     {
-        wc.onLeft.RemoveListener(StrafeLeft);
-        wc.onRight.RemoveListener(StrafeRight);
+        wc.onLeft.AddListener(StrafeLeft);
+        wc.onRight.AddListener(StrafeRight);
     }
+
+    public void RegisterListeners()
+    {
+        gameData.OnStart.AddListener(Halt);
+        gameData.onPause.AddListener(Halt);
+        gameData.OnResume.AddListener(Resume);
+    }
+
 }

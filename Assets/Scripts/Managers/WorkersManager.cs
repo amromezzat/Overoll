@@ -45,7 +45,6 @@ public class WorkersManager : MonoBehaviour
         float newZPos = Random.Range(leader.transform.position.z - tc.laneWidth, leader.transform.position.z + tc.laneWidth);
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
         gData.workersNum += 1;
-        gData.CoinCount -= workerPrice;
-            
+        gData.CoinCount -= workerPrice;       
     }
 }
