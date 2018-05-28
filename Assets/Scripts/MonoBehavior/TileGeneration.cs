@@ -19,12 +19,7 @@ public class TileGeneration : MonoBehaviour
     private void OnEnable()
     {
         tc.produceNextSegment.AddListener(GetNextSegment);
-    }
-
-    void Start()
-    {
         InitPattern();
-        GetNextSegment();
     }
 
     void InitPattern()
