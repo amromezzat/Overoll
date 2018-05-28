@@ -15,12 +15,6 @@ public class WorkerStrafe : MonoBehaviour
     bool strafing = false;
     float strafeTimer = 0;
 
-    enum StrafeDirection
-    {
-        LEFT,
-        RIGHT
-    }
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -45,36 +39,37 @@ public class WorkerStrafe : MonoBehaviour
         }
     }
 
-    void Strafe(StrafeDirection direction)
+    void StrafeRight()
     {
         if (!strafing)
         {
             strafeTimer = 0;
+            animator.SetBool("StrafeRightAnim", true);
+            lanes.GoRight();
+            strafing = true;
+        }
+    }
 
-            switch (direction)
-            {
-                case StrafeDirection.RIGHT:
-                    animator.SetBool("StrafeRightAnim", true);
-                    lanes.GoRight();
-                    break;
-                case StrafeDirection.LEFT:
-                    animator.SetBool("StrafeLeftAnim", true);
-                    lanes.GoLeft();
-                    break;
-            }
+    void StrafeLeft()
+    {
+        if (!strafing)
+        {
+            strafeTimer = 0;
+            animator.SetBool("StrafeLeftAnim", true);
+            lanes.GoLeft();
             strafing = true;
         }
     }
 
     public void OnEnable()
     {
-        wc.onLeft.AddListener(delegate { Strafe(StrafeDirection.LEFT); });
-        wc.onRight.AddListener(delegate { Strafe(StrafeDirection.RIGHT); });
+        wc.onLeft.AddListener(StrafeLeft);
+        wc.onRight.AddListener(StrafeRight);
     }
 
     public void OnDisable()
     {
-        wc.onLeft.RemoveListener(delegate { Strafe(StrafeDirection.LEFT); });
-        wc.onRight.RemoveListener(delegate { Strafe(StrafeDirection.RIGHT); });
+        wc.onLeft.RemoveListener(StrafeLeft);
+        wc.onRight.RemoveListener(StrafeRight);
     }
 }
