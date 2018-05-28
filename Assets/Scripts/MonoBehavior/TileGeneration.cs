@@ -24,7 +24,6 @@ public class TileGeneration : MonoBehaviour
     void Start()
     {
         InitPattern();
-        GetNextSegment();
     }
 
     void InitPattern()
