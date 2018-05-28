@@ -236,29 +236,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 95628363478939354, guid: 7f4f0b87ba29ab848933777b7868d0b6,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 0796b0d6ca8f1054dbe9fba7e1dca4dd, type: 2}
-    - target: {fileID: 114117177596516776, guid: 7f4f0b87ba29ab848933777b7868d0b6,
-        type: 2}
-      propertyPath: gameData
-      value: 
-      objectReference: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171,
-        type: 2}
-    - target: {fileID: 114261946345422252, guid: 7f4f0b87ba29ab848933777b7868d0b6,
-        type: 2}
-      propertyPath: gameData
-      value: 
-      objectReference: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171,
-        type: 2}
-    - target: {fileID: 114455672013628326, guid: 7f4f0b87ba29ab848933777b7868d0b6,
-        type: 2}
-      propertyPath: gameData
-      value: 
-      objectReference: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f4f0b87ba29ab848933777b7868d0b6, type: 2}
   m_IsPrefabParent: 0
@@ -284,17 +261,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &794619801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 794619797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812fbff81c22212489791c0dd21e09fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &941316080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,7 +1016,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906287969}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47c6938446d84af4881f44c17b4bfb35, type: 3}
   m_Name: 
