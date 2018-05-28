@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickUpCoin : MonoBehaviour {
 
     public GameState gstate;
     ObjectReturner cReturn;
-  
-     void OnEnable()
+
+    void OnEnable()
     {
         cReturn=GetComponent<ObjectReturner>();
     }
