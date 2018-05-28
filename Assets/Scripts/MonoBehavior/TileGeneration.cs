@@ -9,7 +9,7 @@ public class TileGeneration : MonoBehaviour
 {
     public PatternDatabase patternDB;//[]->difficulty, [][]->pattern
     public LanesDatabase lanes;
-    public GameState gs;
+    public GameData gd;
     public TileConfig tc;
     public PoolableType tileType;
 
@@ -26,7 +26,7 @@ public class TileGeneration : MonoBehaviour
     {
         currentSegmentIndex = 0;
         //get a random pattern
-        currentPattern = patternDB[gs.difficulty][Random.Range(0, patternDB[gs.difficulty].Count)];
+        currentPattern = patternDB[gd.difficulty][Random.Range(0, patternDB[gd.difficulty].Count)];
     }
 
     void GetNextSegment()

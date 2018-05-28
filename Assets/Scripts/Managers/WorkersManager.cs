@@ -9,15 +9,15 @@ public class WorkersManager : MonoBehaviour
     public Button myButton;
     public WorkerConfig wc;
     public TileConfig tc;
-    public GameState gstate;
+    public GameData gData;
     public int workerPrice;
     public int wPFactor= 20;
 
 
    void Start()
     {
-        gstate.CoinCount = 0;
-        gstate.workersNum = 1;
+        gData.CoinCount = 0;
+        gData.workersNum = 1;
         wc.leader = leader;
         wc.leaderRb = leader.GetComponent<Rigidbody>();
         //wc.leaderRb.velocity = new Vector3(10, 0);
@@ -25,9 +25,9 @@ public class WorkersManager : MonoBehaviour
     
     void Update()
     {
-        workerPrice = gstate.workersNum * wPFactor;
+        workerPrice = gData.workersNum * wPFactor;
 
-        if (workerPrice > gstate.CoinCount)
+        if (workerPrice > gData.CoinCount)
         {
             myButton.GetComponent<Button>().interactable = false;
         }
@@ -44,8 +44,8 @@ public class WorkersManager : MonoBehaviour
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
         float newZPos = Random.Range(leader.transform.position.z - tc.laneWidth, leader.transform.position.z + tc.laneWidth);
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
-        gstate.workersNum += 1;
-        gstate.CoinCount -= workerPrice;
+        gData.workersNum += 1;
+        gData.CoinCount -= workerPrice;
             
     }
 }

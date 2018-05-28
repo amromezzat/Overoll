@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PickUpCoin : MonoBehaviour {
 
-    public GameState gstate;
+    public GameData gstate;
     ObjectReturner cReturn;
 
     void OnEnable()

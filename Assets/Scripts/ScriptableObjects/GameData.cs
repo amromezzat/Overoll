@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+    public enum GameState
+    {
+        startState,
+        gamePlayState,
+        pauseState
+    };
+
 [CreateAssetMenu(fileName = "GameState", menuName = "Config/GameState")]
-public class GameState : ScriptableObject
+public class GameData : ScriptableObject
 {
     public int difficulty;
     [HideInInspector]
@@ -16,9 +23,9 @@ public class GameState : ScriptableObject
     [HideInInspector]
     public PoolableType leaderType;
 
-    [HideInInspector]
-    public bool isPaused;
+    public GameState gameState;
 
+    public UnityEvent OnStart;
     public UnityEvent OnResume;
     public UnityEvent onPause;
 
@@ -28,7 +35,7 @@ public class GameState : ScriptableObject
 
     private void OnEnable()
     {
-        isPaused = false;
+        gameState = GameState.startState;
     }
 
 }

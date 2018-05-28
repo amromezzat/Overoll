@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PositionWorker : MonoBehaviour
+public class PositionWorker : MonoBehaviour, iHalt
 {
     Rigidbody rb;
     Vector2 steeringForce;
     public WorkerConfig wc;
+
+    bool isHalt;
 
     // Use this for initialization
     void Start()
@@ -26,8 +28,9 @@ public class PositionWorker : MonoBehaviour
 
     Vector2 SteeringForce()
     {
+        if (isHalt) { return Vector2.zero; }
         // Creates a force to arrive at the behind point
-        Vector2 steeringForce = FollowLeader(); 
+        Vector2 steeringForce = FollowLeader();
 
         //Seperate workers
         steeringForce += StayAway();
@@ -36,7 +39,6 @@ public class PositionWorker : MonoBehaviour
         steeringForce += KeepFormation();
 
         return steeringForce;
-
     }
 
     //seperating worker force
@@ -113,4 +115,16 @@ public class PositionWorker : MonoBehaviour
     {
         return (entity.transform.position - transform.position).magnitude;
     }
+
+    public void Halt()
+    {
+        isHalt = true;
+    }
+
+    public void Resume()
+    {
+        isHalt = false;
+    }
+
+    
 }
