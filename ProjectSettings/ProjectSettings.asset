@@ -7,7 +7,6 @@ PlayerSettings:
   productGUID: 8525652f13c70ba4cac71f52238f7574
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
-  defaultScreenOrientation: 4
   defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
@@ -47,7 +46,6 @@ PlayerSettings:
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
-  m_ActiveColorSpace: 1
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
@@ -57,11 +55,8 @@ PlayerSettings:
   iosAppInBackgroundBehavior: 0
   displayResolutionDialog: 1
   iosAllowHTTPDownload: 1
-  allowedAutorotateToPortrait: 0
   allowedAutorotateToPortrait: 1
   allowedAutorotateToPortraitUpsideDown: 0
-  allowedAutorotateToLandscapeRight: 1
-  allowedAutorotateToLandscapeLeft: 1
   allowedAutorotateToLandscapeRight: 0
   allowedAutorotateToLandscapeLeft: 0
   useOSAutorotation: 1
