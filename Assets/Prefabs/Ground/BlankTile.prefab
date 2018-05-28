@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4573352051089858}
   - component: {fileID: 33106188306851702}
   - component: {fileID: 23569442992581748}
-  - component: {fileID: 114558495249294632}
   - component: {fileID: 54739304232989262}
+  - component: {fileID: 114558495249294632}
   - component: {fileID: 114578969021365520}
   m_Layer: 0
   m_Name: BlankTile
