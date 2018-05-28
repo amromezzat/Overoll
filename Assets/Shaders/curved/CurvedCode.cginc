@@ -35,7 +35,7 @@ v2f vert(appdata v)
 
 	float dist = UNITY_Z_0_FAR_FROM_CLIPSPACE(o.vertex.z);
 
-	o.vertex.y += _CurveStrength * dist * dist * _ProjectionParams.x;
+	o.vertex.y += pow(0.3*_CurveStrength * dist * dist * _ProjectionParams.x, 3);
 
 	o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
