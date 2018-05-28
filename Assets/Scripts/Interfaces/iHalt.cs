@@ -5,7 +5,10 @@ interface iHalt
 {
     void Halt();
 
-    void Resume(); 
+    void Resume();
+
+    void RegisterListeners();
+    
 }
 
 	

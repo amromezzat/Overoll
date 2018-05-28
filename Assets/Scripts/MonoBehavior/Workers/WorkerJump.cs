@@ -16,6 +16,13 @@ public class WorkerJump : MonoBehaviour,iHalt
     public WorkerConfig wc;
     public TileConfig tc;
 
+    public GameData gameData;
+
+    private void OnEnable()
+    {
+        RegisterListeners();
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -83,13 +90,20 @@ public class WorkerJump : MonoBehaviour,iHalt
      
     public void Halt()
     {
-        wc.onJump.AddListener(Jump);
-        wc.onSlide.AddListener(StopJumping);
+        wc.onJump.RemoveListener(Jump);
+        wc.onSlide.RemoveListener(StopJumping);
     }
 
     public void Resume()
     {
-        wc.onJump.RemoveListener(Jump);
-        wc.onSlide.RemoveListener(StopJumping);
+        wc.onJump.AddListener(Jump);
+        wc.onSlide.AddListener(StopJumping);
+    }
+
+    public void RegisterListeners()
+    {
+        gameData.OnStart.AddListener(Halt);
+        gameData.onPause.AddListener(Halt);
+        gameData.OnResume.AddListener(Resume);
     }
 }

@@ -13,11 +13,17 @@ public class EnvGenerator : MonoBehaviour, iHalt
 
     public TileConfig tc;
 
+    public GameData gameData;
+
     /// <summary>
     /// t = d/v, d per prefab
     /// </summary>
 
-    // Use this for initialization
+    private void OnEnable()
+    {
+        RegisterListeners();
+    }
+
     void Start()
     {
         pool = gameObject.GetComponent<EnvPooler>();
@@ -61,5 +67,12 @@ public class EnvGenerator : MonoBehaviour, iHalt
     public void Resume()
     {
         isHalt = false;
+    }
+
+    public void RegisterListeners()
+    {
+        gameData.OnStart.AddListener(Halt);
+        gameData.onPause.AddListener(Halt);
+        gameData.OnResume.AddListener(Resume);
     }
 }

@@ -1350,6 +1350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &114117177596516776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1363,6 +1364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &114394853931688330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1377,6 +1379,7 @@ MonoBehaviour:
   maxSlideTime: 0.5
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!119 &119179932371958120
 Projector:
   m_ObjectHideFlags: 1
