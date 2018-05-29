@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class EnvPooler: MonoBehaviour
 {
-    public List<Returner> listOfPrefabs;
+    public List<EnvReturner> listOfPrefabs;
     public int poolSize;
     //[HideInInspector]
     public List<GameObject> pool;
@@ -50,7 +50,7 @@ public class EnvPooler: MonoBehaviour
     void AddToPool()
     {
         var index = Random.Range(0, listOfPrefabs.Count);
-        var obj = Instantiate<Returner>(listOfPrefabs[index], gameObject.transform);
+        var obj = Instantiate<EnvReturner>(listOfPrefabs[index], gameObject.transform);
         obj.gameObject.SetActive(false);
         pool.Add(obj.gameObject);
 
