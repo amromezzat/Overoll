@@ -15,7 +15,7 @@ public class WorkerHealth : MonoBehaviour
     workerState state = workerState.Idle;
     public int workerHealth;
     ObjectReturner objReturner;
-
+    GameData gData;
     ObjectMover ObjectMover;
     Animator animator;
     //------------------------------------------------
@@ -41,6 +41,7 @@ public class WorkerHealth : MonoBehaviour
         Debug.Log(workerHealth);
         animator.SetBool("DeathAnim", true);
         ObjectMover.enabled = true;
+        gData.workersNum -= 1;
         yield return new WaitForSeconds(2.0f);
         objReturner.ReturnToObjectPool();
     }
