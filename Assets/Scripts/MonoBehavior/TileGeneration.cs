@@ -12,6 +12,7 @@ public class TileGeneration : MonoBehaviour
     public GameData gd;
     public TileConfig tc;
     public PoolableType tileType;
+    public Transform lastSegTrans;
 
     Pattern currentPattern;
     int currentSegmentIndex;
@@ -20,6 +21,7 @@ public class TileGeneration : MonoBehaviour
     {
         tc.produceNextSegment.AddListener(GetNextSegment);
         InitPattern();
+        lastSegTrans = transform;
     }
 
     void InitPattern()
@@ -31,8 +33,10 @@ public class TileGeneration : MonoBehaviour
 
     void GetNextSegment()
     {
+
         Segment currentSegment = currentPattern[currentSegmentIndex++];
-        if(currentSegmentIndex == currentPattern.Count)
+
+        if (currentSegmentIndex == currentPattern.Count)
         {
             InitPattern();
         }
@@ -41,16 +45,21 @@ public class TileGeneration : MonoBehaviour
         for (int i = 0; i < lanes.OnGridLanes.Count; i++)
         {
             GameObject tile = ObjectPool.instance.GetFromPool(currentSegment[i]);
-            Vector3 objpos = transform.position;
-            objpos.y = tile.transform.position.y;
+
+            Vector3 objpos = tile.transform.position;
             objpos.x = lanes[i].laneCenter;
+            objpos.z = lastSegTrans.position.z + 1;
             tile.transform.position = objpos;
+
             if (!currentSegment[i].containTiles)
             {
                 tile = ObjectPool.instance.GetFromPool(tileType);
                 objpos.y = tile.transform.position.y;
                 tile.transform.position = objpos;
             }
+
+            if (i == 4)
+                lastSegTrans = tile.transform;
         }
     }
 }

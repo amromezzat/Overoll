@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1801975502669910
 GameObject:
   m_ObjectHideFlags: 1
@@ -385,7 +385,7 @@ MonoBehaviour:
   oldCoinCount: 0
   scoreText: {fileID: 114943290015075312}
   coinnum: {fileID: 114163233792838072}
-  gstate: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &114704884620338092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,7 +426,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: ExchangeState
+        m_MethodName: PauseBtnEntered
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

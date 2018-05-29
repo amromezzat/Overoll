@@ -8,7 +8,6 @@ public class BaseObstacle : MonoBehaviour, ICollidable
 {
 
     public int obsHealth;
-    public Vector3 obsVelocity;
     ObjectReturner objReturner;
     obstacleState state = obstacleState.Idle;
     Rigidbody rb;
@@ -24,7 +23,6 @@ public class BaseObstacle : MonoBehaviour, ICollidable
     {
         objReturner = GetComponent<ObjectReturner>();
         rb = GetComponent<Rigidbody>();
-        rb.velocity += obsVelocity;
     }
 
     public void ReactToCollision(int collidedHealth)

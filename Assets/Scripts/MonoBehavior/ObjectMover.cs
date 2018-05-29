@@ -12,7 +12,7 @@ public class ObjectMover : MonoBehaviour,iHalt
     private Rigidbody rb;
 
     public GameData gameData;
- 
+    public Vector3 ExtraVelocity = Vector3.zero; 
 
     private void OnEnable()
     {
@@ -28,7 +28,7 @@ public class ObjectMover : MonoBehaviour,iHalt
 
     public void Resume()
     {
-        rb.velocity = Vector3.forward * -tc.tileSpeed;
+        rb.velocity = Vector3.forward * -tc.tileSpeed + ExtraVelocity;
     }
 
     public void RegisterListeners()
