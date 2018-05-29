@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// This class returns the tile back to the pool
 /// </summary>
-public class Returner : MonoBehaviour
+public class EnvReturner : MonoBehaviour
 {
     public TileConfig tc;
     private EnvPooler op;
