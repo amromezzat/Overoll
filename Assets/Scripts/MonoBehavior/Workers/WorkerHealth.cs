@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum workerState
+{
+    Idle = 1,
+    Dead = 2,
+    Hit = 3
+}
 public class WorkerHealth : MonoBehaviour
 {
-    enum workerState
-    {
-        Idle = 1,
-        Dead = 2,
-        Hit = 3
-    }
 
-    workerState state = workerState.Idle;
+    public workerState state = workerState.Idle;
     public int workerHealth;
     ObjectReturner objReturner;
 
@@ -20,15 +20,12 @@ public class WorkerHealth : MonoBehaviour
     Animator animator;
     //------------------------------------------------
 
-
-      void OnEnable()
+    void OnEnable()
     {
         workerHealth = 1;
         objReturner = GetComponent<ObjectReturner>();
         animator = GetComponent<Animator>();
         ObjectMover = GetComponent<ObjectMover>();
-
-        
     }
 
     private void OnDisable()
@@ -59,18 +56,11 @@ public class WorkerHealth : MonoBehaviour
 
             if (workerHealth <= 0)
             {
-               state= workerState.Dead;
-               
+                state = workerState.Dead;
+
                 StartCoroutine(waitToAnimate());
 
             }
         }
-
-
-
-
     }
-
-
-
 }
