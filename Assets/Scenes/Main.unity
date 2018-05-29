@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 173071368}
   - component: {fileID: 173071367}
+  - component: {fileID: 173071369}
   m_Layer: 0
   m_Name: Game Manger
   m_TagString: Untagged
@@ -163,6 +164,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &173071369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 173071366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8261c46934553b46aff309c1ba14c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oldCoinCount: 0
+  scoreText: {fileID: 1032736094}
+  coinNum: {fileID: 1663203232}
+  gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!1 &180992304 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1980837503801966, guid: 9c3f44c4644abb54d91a8afb45b61c80,
@@ -387,6 +403,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1505689317082964, guid: 7f4f0b87ba29ab848933777b7868d0b6,
     type: 2}
   m_PrefabInternal: {fileID: 363957356}
+--- !u!114 &1032736094 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114943290015075312, guid: da96e29fe3a7ade49b8be1c2a094b162,
+    type: 2}
+  m_PrefabInternal: {fileID: 1334711765}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1196388978 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114805408070781126, guid: da96e29fe3a7ade49b8be1c2a094b162,
@@ -500,16 +522,12 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 173071367}
-    - target: {fileID: 1752617940042926, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 1086083331087278, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
+      propertyPath: m_Name
+      value: CoinNum
       objectReference: {fileID: 0}
-    - target: {fileID: 114704884620338092, guid: da96e29fe3a7ade49b8be1c2a094b162,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PauseBtnEntered
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114643612175201690, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
   m_IsPrefabParent: 0
 --- !u!223 &1334711766 stripped
@@ -594,6 +612,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  ExtraVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &1663203232 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114163233792838072, guid: da96e29fe3a7ade49b8be1c2a094b162,
+    type: 2}
+  m_PrefabInternal: {fileID: 1334711765}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1702983875
 GameObject:
   m_ObjectHideFlags: 0
