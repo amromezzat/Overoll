@@ -296,6 +296,9 @@ GameObject:
   - component: {fileID: 114117177596516776}
   - component: {fileID: 114394853931688330}
   - component: {fileID: 114103244772713320}
+  - component: {fileID: 114790454885139432}
+  - component: {fileID: 114231401252419644}
+  - component: {fileID: 114445262691697688}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Worker
@@ -1365,6 +1368,20 @@ MonoBehaviour:
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+--- !u!114 &114231401252419644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505689317082964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
+  gameState: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  poolableType: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
 --- !u!114 &114394853931688330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1376,10 +1393,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e021a3a4289a4f24f88b0b2e1e804f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSlideTime: 0.5
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  maxSlideTime: 0.5
+--- !u!114 &114445262691697688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505689317082964}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f3c5a50ce4c82458d3f253c6adade9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  ExtraVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &114790454885139432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505689317082964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95d9c92ec41f474fad2ba1047fa37a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workerHealth: 0
 --- !u!119 &119179932371958120
 Projector:
   m_ObjectHideFlags: 1
