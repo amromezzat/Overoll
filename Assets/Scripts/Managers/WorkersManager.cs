@@ -11,10 +11,10 @@ public class WorkersManager : MonoBehaviour
     public TileConfig tc;
     public GameData gData;
     public int workerPrice;
-    public int wPFactor= 20;
+    public int wPFactor = 20;
 
 
-   void Start()
+    void Start()
     {
         gData.CoinCount = 0;
         gData.workersNum = 1;
@@ -22,7 +22,7 @@ public class WorkersManager : MonoBehaviour
         wc.leaderRb = leader.GetComponent<Rigidbody>();
         //wc.leaderRb.velocity = new Vector3(10, 0);
     }
-    
+
     void Update()
     {
         workerPrice = gData.workersNum * wPFactor;
@@ -35,16 +35,27 @@ public class WorkersManager : MonoBehaviour
         {
             myButton.GetComponent<Button>().interactable = true;
         }
+
+        if (leader.GetComponent<WorkerHealth>().state == workerState.Dead)
+        {
+            ElectNewLeader();
+        }
     }
 
 
     public void AddWorker()
     {
-        GameObject worker= ObjectPool.instance.GetFromPool(wc.worker);
+        GameObject worker = ObjectPool.instance.GetFromPool(wc.worker);
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
         float newZPos = Random.Range(leader.transform.position.z - tc.laneWidth, leader.transform.position.z + tc.laneWidth);
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
         gData.workersNum += 1;
-        gData.CoinCount -= workerPrice;       
+        gData.CoinCount -= workerPrice;
+    }
+
+    public void ElectNewLeader()
+    {
+        leader = wc.workers[1];
+        leader.transform.position = new Vector3(0, 0.25f, 0);
     }
 }

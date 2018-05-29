@@ -44,8 +44,10 @@ public class WorkerConfig : ScriptableObject {
     [HideInInspector]
     public List<GameObject> workers;
     [HideInInspector]
-    public List<Rigidbody> workersRb;
-
+    public List<GameObject> hrWorkers;
+    [HideInInspector]
+    public List<GameObject> managerWorkers;
+   
     [Header("Workers Types")]
     public PoolableType worker;
     public PoolableType HR;
@@ -54,6 +56,5 @@ public class WorkerConfig : ScriptableObject {
     private void OnEnable()
     {
         workers = new List<GameObject>();
-        workersRb = new List<Rigidbody>();
     }
 }
