@@ -22,7 +22,6 @@ public class PositionWorker : MonoBehaviour, iHalt
     void Start()
     {
         wc.workers.Add(gameObject);
-        wc.workersRb.Add(GetComponent<Rigidbody>());
         rb = GetComponent<Rigidbody>();
     }
 
