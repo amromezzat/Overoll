@@ -46,13 +46,6 @@ public class EnvGenerator : MonoBehaviour, iHalt
         lastTile = obj.transform;
     }
 
-    //IEnumerator GenerateCoroutine()
-    //{
-    //    GenerateTile();
-    //    yield return new WaitForSeconds(tc.spawnTime);
-    //    StartCoroutine(GenerateCoroutine());
-    //}
-
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 0, 0, 0.5F);

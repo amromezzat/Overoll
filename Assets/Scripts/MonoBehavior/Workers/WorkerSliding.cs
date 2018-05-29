@@ -5,20 +5,18 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class WorkerSliding : MonoBehaviour,iHalt
 {
+    public WorkerConfig wc;
+    public TileConfig tc;
+    public GameData gameData;
+
     bool sliding = false;
     float slideTimer = 0f;
     public float maxSlideTime = 0.5f;
-
     float timeToSlide = 0;
-
-    public WorkerConfig wc;
-    public TileConfig tc;
 
     BoxCollider m_Collider;
 
     Animator animator;
-
-    public GameData gameData;
 
     //-----------------------------------------------------------
 
