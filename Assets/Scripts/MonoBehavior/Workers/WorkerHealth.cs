@@ -15,7 +15,6 @@ public class WorkerHealth : MonoBehaviour
     public workerState state = workerState.Idle;
     public int workerHealth;
     ObjectReturner objReturner;
-    GameData gData;
     public GameData gData;
     ObjectMover ObjectMover;
     Animator animator;

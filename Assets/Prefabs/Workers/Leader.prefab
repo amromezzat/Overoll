@@ -277,12 +277,11 @@ GameObject:
   - component: {fileID: 95628363478939354}
   - component: {fileID: 54320175008334722}
   - component: {fileID: 65619182727466928}
-  - component: {fileID: 114117177596516776}
-  - component: {fileID: 114261946345422252}
   - component: {fileID: 114455672013628326}
   - component: {fileID: 114850832258697188}
   - component: {fileID: 114465555001745342}
   - component: {fileID: 114319418734051042}
+  - component: {fileID: 114696148671500078}
   m_Layer: 0
   m_Name: Leader
   m_TagString: Worker
@@ -1341,35 +1340,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114117177596516776
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1505689317082964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad7ae2ea9fd4784abc2eff11c4a49b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
-  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
---- !u!114 &114261946345422252
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1505689317082964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e021a3a4289a4f24f88b0b2e1e804f09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
-  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
-  maxSlideTime: 0.5
 --- !u!114 &114319418734051042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1397,7 +1367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
-  strafeTime: 0.1
+  strafeDuration: 0.5
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &114465555001745342
 MonoBehaviour:
@@ -1413,6 +1383,20 @@ MonoBehaviour:
   interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
   gameState: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   poolableType: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
+--- !u!114 &114696148671500078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505689317082964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3137cc87fa99554a87887d7e6c6a12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+  gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  currentStateStr: 
 --- !u!114 &114850832258697188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1424,6 +1408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95d9c92ec41f474fad2ba1047fa37a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 1
   workerHealth: 0
 --- !u!119 &119848178480229200
 Projector:
