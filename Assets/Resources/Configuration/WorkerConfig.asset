@@ -43,7 +43,7 @@ MonoBehaviour:
   maxFolForce: 10
   maxFormForce: 5
   maxSpeed: 10
-  aheadFollowPoint: -4
+  aheadFollowPoint: -2.63
   rightWingShape:
     serializedVersion: 2
     m_Curve:
@@ -110,32 +110,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 0
-  workers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  workersRb:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  workers: []
+  hrWorkers: []
+  managerWorkers: []
   worker: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
   HR: {fileID: 0}
   Manager: {fileID: 0}

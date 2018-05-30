@@ -22,6 +22,8 @@ public class EnvGenerator : MonoBehaviour, iHalt
     private void OnEnable()
     {
         RegisterListeners();
+        Ray r = new Ray();
+        RaycastHit hit;
     }
 
     void Start()
