@@ -60,7 +60,6 @@ public class WorkerHealth : MonoBehaviour
                 state = workerState.Dead;
 
                 StartCoroutine(waitToAnimate());
-
             }
         }
     }
