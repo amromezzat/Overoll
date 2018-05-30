@@ -7,7 +7,8 @@ using UnityEngine.Events;
     {
         startState,
         gamePlayState,
-        pauseState
+        pauseState,
+        gameEnded
     };
 
 [CreateAssetMenu(fileName = "GameState", menuName = "Config/GameState")]
@@ -28,6 +29,7 @@ public class GameData : ScriptableObject
     public UnityEvent OnStart;
     public UnityEvent OnResume;
     public UnityEvent onPause;
+    public UnityEvent onEnd;
 
     public int CoinCount;
 

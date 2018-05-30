@@ -15,6 +15,7 @@ public class WorkerHealth : MonoBehaviour
     public workerState state = workerState.Idle;
     public int workerHealth;
     ObjectReturner objReturner;
+    GameData gData;
     public GameData gData;
     ObjectMover ObjectMover;
     Animator animator;
@@ -35,6 +36,7 @@ public class WorkerHealth : MonoBehaviour
 
     IEnumerator waitToAnimate()
     {
+        Debug.Log(workerHealth);
         animator.SetBool("DeathAnim", true);
         ObjectMover.enabled = true;
         print("ss");
@@ -49,11 +51,13 @@ public class WorkerHealth : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Obstacle")
       
 
         if (other.gameObject.tag == "Obstacle" )
         {
             ICollidable Other = other.GetComponent<ICollidable>();
+
             int obsHealth = Other.Gethealth();
             int preCollisionWH = workerHealth;
             workerHealth = workerHealth - obsHealth;
@@ -65,7 +69,6 @@ public class WorkerHealth : MonoBehaviour
                 state = workerState.Dead;
 
                 StartCoroutine(waitToAnimate());
-
             }
 
         }
