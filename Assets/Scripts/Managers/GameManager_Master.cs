@@ -27,7 +27,7 @@ public class GameManager_Master : MonoBehaviour
 
     public Canvas mainMenuCanvas;
     public Canvas inGameCanvas;
-    public Canvas endGameCanvas;
+   // public Canvas endGameCanvas;
 
     private void Start()
     {
@@ -90,7 +90,7 @@ public class GameManager_Master : MonoBehaviour
     void GameStart()
     {
         inGameCanvas.gameObject.SetActive(false);
-        endGameCanvas.gameObject.SetActive(false);
+        //endGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(true);
 
         gameData.gameState = GameState.startState;
@@ -104,7 +104,7 @@ public class GameManager_Master : MonoBehaviour
     {
         inGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(false);
-        endGameCanvas.gameObject.SetActive(true);
+        //endGameCanvas.gameObject.SetActive(true);
 
         gameData.gameState = GameState.gameEnded;
         //gameData.onEnd.Invoke();

@@ -12,7 +12,7 @@ public class TileGeneration : MonoBehaviour
     public GameData gd;
     public TileConfig tc;
     public PoolableType tileType;
-    public Transform lastSegTrans;
+    Transform lastSegTrans;
 
     Pattern currentPattern;
     int currentSegmentIndex;
