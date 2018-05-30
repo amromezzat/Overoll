@@ -11,6 +11,8 @@ public class GameManager_Master : MonoBehaviour
     public GameData gameData;
     public Button pauseBtn;
 
+    public Button restartBtn;
+
     public Text gamePausedTxt;
 
     public Sprite pauseSprite;
@@ -25,6 +27,7 @@ public class GameManager_Master : MonoBehaviour
 
     public Canvas mainMenuCanvas;
     public Canvas inGameCanvas;
+    public Canvas endGameCanvas;
 
     private void Start()
     {
@@ -40,6 +43,13 @@ public class GameManager_Master : MonoBehaviour
         storeAnim.SetBool("StoreBtnIsOut", false);
         StartCoroutine(WaitforStart());
         
+        GameResume();
+    }
+
+    public void RestartBtnEntered()
+    {
+        StartCoroutine(WaitforStart());
+
         GameResume();
     }
 
@@ -75,16 +85,31 @@ public class GameManager_Master : MonoBehaviour
 
 
     /// <summary>
-    /// acts as pause but in the beginning of the game
+    /// acts as pause but at the beginning of the game
     /// </summary>
     void GameStart()
     {
         inGameCanvas.gameObject.SetActive(false);
+        endGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(true);
 
         gameData.gameState = GameState.startState;
         gameData.OnStart.Invoke();
     }
+
+    /// <summary>
+    /// acts as a pause but at the end of the game
+    /// </summary>
+    void EndGame()
+    {
+        inGameCanvas.gameObject.SetActive(false);
+        mainMenuCanvas.gameObject.SetActive(false);
+        endGameCanvas.gameObject.SetActive(true);
+
+        gameData.gameState = GameState.gameEnded;
+        //gameData.onEnd.Invoke();
+    }
+
 
     IEnumerator WaitforStart()
     {

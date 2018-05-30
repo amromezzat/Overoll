@@ -22,6 +22,12 @@ public class WorkerStrafe : MonoBehaviour, iHalt
         RegisterListeners();
     }
 
+    //private void OnDisable()
+    //{
+    //    wc.onLeft.RemoveListener(StrafeLeft);
+    //    wc.onRight.RemoveListener(StrafeRight);
+    //}
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -86,5 +92,6 @@ public class WorkerStrafe : MonoBehaviour, iHalt
         gameData.onPause.AddListener(Halt);
         gameData.OnResume.AddListener(Resume);
     }
+
 
 }
