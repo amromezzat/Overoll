@@ -13,6 +13,11 @@ public class WorkersManager : MonoBehaviour
     public int workerPrice;
     public int wPFactor = 20;
 
+    private void OnEnable()
+    {
+        leader.GetComponent<WorkerStrafe>().enabled = true;
+        leader.GetComponent<PositionWorker>().enabled = false;
+    }
 
     void Start()
     {
@@ -36,12 +41,17 @@ public class WorkersManager : MonoBehaviour
             myButton.GetComponent<Button>().interactable = true;
         }
 
-        if (leader.GetComponent<WorkerHealth>().state == workerState.Dead)
+        if (leader.GetComponent<WorkerHealth>().state == workerState.Dead && wc.workers.Count > 0)
         {
             ElectNewLeader();
+            leader.transform.position = Vector3.Lerp(leader.transform.position, new Vector3(0, 0.25f, 0), Time.deltaTime);
+        }
+        else
+        {
+            gData.gameState = GameState.gameEnded;
+            //triger event el end game
         }
     }
-
 
     public void AddWorker()
     {
@@ -55,7 +65,11 @@ public class WorkersManager : MonoBehaviour
 
     public void ElectNewLeader()
     {
-        leader = wc.workers[1];
-        leader.transform.position = new Vector3(0, 0.25f, 0);
+        leader.GetComponent<WorkerStrafe>().enabled = false;
+        leader.GetComponent<PositionWorker>().enabled = true;
+        wc.workers.Remove(leader);
+        leader = wc.workers[0];
+        leader.GetComponent<WorkerStrafe>().enabled = true;
+        leader.GetComponent<PositionWorker>().enabled = false;
     }
 }
