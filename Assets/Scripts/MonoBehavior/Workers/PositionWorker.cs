@@ -64,7 +64,7 @@ public class PositionWorker : MonoBehaviour, iHalt
             }
         }
         if (neighborCount == 0)
-            return seperationForce;
+        return seperationForce;
         //get the average point to apply the seperation
         seperationForce /= neighborCount;
         //move in the opposite direction from the average direction from the workers
@@ -76,13 +76,9 @@ public class PositionWorker : MonoBehaviour, iHalt
     //chase leader while maintaining a distance behind him
     Vector2 FollowLeader()
     {
-        Vector2 traverseVec = Vector2.zero;
-        traverseVec.x = wc.leader.transform.position.x;
-        traverseVec.y = wc.leader.transform.position.z;
-        traverseVec = traverseVec.normalized + new Vector2(0, wc.aheadFollowPoint);
         Vector2 aheadDis = Vector2.zero;
-        aheadDis.x = wc.leader.transform.position.x + traverseVec.x;
-        aheadDis.y = wc.leader.transform.position.z + traverseVec.y;
+        aheadDis.x = wc.leader.transform.position.x;
+        aheadDis.y = wc.leader.transform.position.z + wc.aheadFollowPoint;
         // Calculate the desired velocity
         Vector2 desiredVelocity = Vector2.zero;
         desiredVelocity.x = aheadDis.x - transform.position.x;
