@@ -11,7 +11,6 @@ public class WorkersManager : MonoBehaviour
     public TileConfig tc;
     public GameData gData;
     public int workerPrice;
-    public int wPFactor = 20;
     public int wPFactor = 2;
 
     private void OnEnable()
@@ -58,7 +57,6 @@ public class WorkersManager : MonoBehaviour
     {
         GameObject worker = ObjectPool.instance.GetFromPool(wc.worker);
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
-        float newZPos = Random.Range(leader.transform.position.z - tc.laneWidth, leader.transform.position.z + tc.laneWidth);
         float newZPos = Random.Range(leader.transform.position.z -1, leader.transform.position.z -5);
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
         gData.workersNum += 1;
