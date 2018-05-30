@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Tile Manager
   - Obstacle
+  - collider
   layers:
   - Default
   - TransparentFX
