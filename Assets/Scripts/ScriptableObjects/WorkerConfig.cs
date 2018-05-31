@@ -29,11 +29,11 @@ public class WorkerConfig : ScriptableObject {
     public int turnSpeed = 15;
 
     [Header("Crowd Behavior")]
-    public float workersSepDis = 5;//distance workers keep from each other
-    public float arrivalSlowingRad = 5;//slow when entering this rad
-    public float maxSepForce = 10;
+    public float workersSepDis = 0.8f;//distance workers keep from each other
+    public float arrivalSlowingRad = 1;//slow when entering this rad
+    public float maxSepForce = 30;
     public float maxFolForce = 10;
-    public float maxFormForce = 10;
+    public float maxFormForce = 5;
     public float maxSpeed = 10;
     public float aheadFollowPoint = 5;//distance infront of leader for workers to follow
     [Header("Workers Formation")]
