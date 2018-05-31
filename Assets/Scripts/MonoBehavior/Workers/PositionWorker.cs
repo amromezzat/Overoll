@@ -41,7 +41,7 @@ public class PositionWorker : MonoBehaviour, iHalt
         steeringForce += StayAway();
 
         //Keep workers in a formation
-        steeringForce += KeepFormation();
+      //  steeringForce += KeepFormation();
 
         return steeringForce;
     }
@@ -112,6 +112,7 @@ public class PositionWorker : MonoBehaviour, iHalt
         return formationForce.normalized * wc.maxFormForce;
     }
 
+    
     float CalculateDisFrom(GameObject entity)
     {
         return (entity.transform.position - transform.position).magnitude;

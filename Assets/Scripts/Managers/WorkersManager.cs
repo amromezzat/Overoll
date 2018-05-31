@@ -16,7 +16,7 @@ public class WorkersManager : MonoBehaviour
     private void OnEnable()
     {
         leader.GetComponent<WorkerStrafe>().enabled = true;
-        leader.GetComponent<PositionWorker>().enabled = false;
+       // leader.GetComponent<PositionWorker>().enabled = true;
     }
 
     void Start()
@@ -30,6 +30,7 @@ public class WorkersManager : MonoBehaviour
 
     void Update()
     {
+        wc.aheadFollowPoint = gData.workersNum * (-0.35f);
         workerPrice = gData.workersNum * wPFactor;
 
         if (workerPrice > gData.CoinCount)
