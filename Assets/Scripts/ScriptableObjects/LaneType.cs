@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LaneType", menuName = "Config/Types/Lane")]
+[CreateAssetMenu(fileName = "LaneType", menuName = "Types/Lane")]
 public class LaneType : ScriptableObject {
     [SerializeField]
     private int laneNum;

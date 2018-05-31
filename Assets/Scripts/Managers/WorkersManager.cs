@@ -56,7 +56,7 @@ public class WorkersManager : MonoBehaviour
 
     public void AddWorker()
     {
-        GameObject worker = ObjectPool.instance.GetFromPool(wc.worker);
+        GameObject worker = ObjectPooler.instance.GetFromPool(wc.worker);
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
         float newZPos = Random.Range(leader.transform.position.z -1, leader.transform.position.z -5);
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);

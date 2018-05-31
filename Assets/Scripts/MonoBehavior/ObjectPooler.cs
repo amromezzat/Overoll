@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPool instance;
+    public static ObjectPooler instance;
     public PoolDatabase pd;
 
     Dictionary<PoolableType, Queue<GameObject>> poolDict;

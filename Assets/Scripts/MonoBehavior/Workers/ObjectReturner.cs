@@ -10,14 +10,14 @@ public class ObjectReturner : MonoBehaviour {
 
     public void ReturnToObjectPool()
     {
-        ObjectPool.instance.ReturnToPool(poolableType, gameObject);
+        ObjectPooler.instance.ReturnToPool(poolableType, gameObject);
     }
 
     void Update()
     {
         if (gameObject.transform.position.z < gameState.safeZone)
         {
-            ObjectPool.instance.ReturnToPool(poolableType, gameObject);
+            ObjectPooler.instance.ReturnToPool(poolableType, gameObject);
         }
     }
 }

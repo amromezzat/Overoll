@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreSystem : MonoBehaviour, iHalt
+public class ScoreManager : MonoBehaviour, iHalt
 {
     int timeScore;
     int coinScore;

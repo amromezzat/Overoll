@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HaltState : IDoAction
-{
+public class Run : IDoAction {
     public void OnStateEnter(Animator animator)
     {
-        animator.speed = 0;
     }
 
-    public bool OnStateExecution(Transform transform, float deltaTime)
+    public ActionState OnStateExecution(Transform transform, float deltaTime)
     {
-        return false;
+        return ActionState.RUNNING;
     }
 
     public void OnStateExit(Animator animator)
     {
-        animator.speed = 1;
     }
 }
