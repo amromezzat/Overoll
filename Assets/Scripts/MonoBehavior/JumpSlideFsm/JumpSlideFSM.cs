@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ActionState
+{
+    RUNNING,
+    FINISHED,
+    INTERRUPTED
+}
+
 public class JumpSlideFSM : MonoBehaviour, iHalt
 {
 
@@ -12,7 +19,7 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
     Slide slideState;
     Jump jumpState = new Jump();
     Run runState = new Run();
-    InterruptJump InterruptJumpState = new InterruptJump();
+    InterruptJump interruptJumpState = new InterruptJump();
     HaltState haltState = new HaltState();
     DelayState delayState = new DelayState();
     Dictionary<IDoAction, List<IDoAction>> actionsDic = new Dictionary<IDoAction, List<IDoAction>>();
@@ -32,24 +39,35 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         mAnimator = GetComponent<Animator>();
 
         slideState = new Slide(mCollider);
-        actionsDic[slideState] = new List<IDoAction>() { runState, jumpState };
-        actionsDic[jumpState] = new List<IDoAction>() { runState, InterruptJumpState };
-        actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState };
-        actionsDic[InterruptJumpState] = new List<IDoAction>() { runState, slideState };
+        actionsDic[slideState] = new List<IDoAction>() { runState, jumpState, haltState };
+        actionsDic[jumpState] = new List<IDoAction>() { runState, interruptJumpState, haltState };
+        actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState, haltState, delayState };
+        actionsDic[interruptJumpState] = new List<IDoAction>() { runState, slideState, haltState, delayState };
         actionsDic[haltState] = new List<IDoAction>() { runState, jumpState, slideState };
-        actionsDic[delayState] = new List<IDoAction>() { runState, jumpState, slideState };
+        actionsDic[delayState] = new List<IDoAction>() { jumpState, slideState, haltState };
         actionStack.Push(runState);
 
         currentState = runState;
-        RegisterListeners();
+    }
+
+    private void OnEnable()
+    {
+        wc.onJump.AddListener(Jump);
+        wc.onSlide.AddListener(Slide);
+    }
+
+    private void OnDisable()
+    {
+        wc.onJump.RemoveListener(Jump);
+        wc.onSlide.RemoveListener(Slide);
     }
 
     // Update is called once per frame
     void Update()
     {
         currentStateStr = currentState.ToString();
-        bool stateEnded = currentState.OnStateExecution(transform, Time.deltaTime);
-        if (stateEnded)
+        ActionState currentStateState = currentState.OnStateExecution(transform, Time.deltaTime);
+        if (currentStateState == ActionState.FINISHED)
         {
             IDoAction nextState = actionStack.Pop();
             if (nextState == runState)
@@ -72,25 +90,47 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
 
     void Jump()
     {
-        ChangeState(jumpState);
+
+        float delayTime = (wc.leader.transform.position.z - transform.position.z) / tc.tileSpeed;
+        actionStack.Push(jumpState);
+        if (delayTime > 0)
+        {
+            if (currentState == delayState && actionStack.Peek() == slideState)
+            {
+                ((Slide)actionStack.Peek()).interruptTime = delayTime;
+            }
+            else
+            {
+                delayState.Delay = delayTime;
+                actionStack.Push(delayState);
+            }
+        }
+        ChangeState(actionStack.Pop());
     }
 
     void Slide()
     {
         float delayTime = (wc.leader.transform.position.z - transform.position.z) / tc.tileSpeed;
-        if(delayTime > 0)
-        {
-            delayState.Delay = delayTime;
-            actionStack.Push(delayState);
-        }
         if (currentState == jumpState)
         {
-            actionStack.Push(InterruptJumpState);
             actionStack.Push(slideState);
+            actionStack.Push(interruptJumpState);
         }
         else
         {
             actionStack.Push(slideState);
+        }
+        if (delayTime > 0)
+        {
+            if (currentState == delayState && actionStack.Peek() == jumpState)
+            {
+                ((Jump)actionStack.Peek()).interruptTime = delayTime;
+            }
+            else
+            {
+                delayState.Delay = delayTime;
+                actionStack.Push(delayState);
+            }
         }
         ChangeState(actionStack.Pop());
     }

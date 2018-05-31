@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Jump : IDoAction
 {
+    public float interruptTime = 10;
+
     float jumpTimer;
     float jumpDuration = 1;
     float jumpHeight = 2;
@@ -14,8 +16,10 @@ public class Jump : IDoAction
         jumpTimer = 0;
     }
 
-    public bool OnStateExecution(Transform transform, float deltaTime)
+    public ActionState OnStateExecution(Transform transform, float deltaTime)
     {
+        interruptTime -= deltaTime;
+
         Vector3 newPos = transform.position;
         jumpTimer += deltaTime;
         float completedPortion = jumpTimer / jumpDuration;
@@ -23,13 +27,14 @@ public class Jump : IDoAction
         transform.position = newPos;
         if (transform.position.y <= 0.25)
         {
-            return true;
+            return ActionState.FINISHED;
         }
-        return false;
+        return ActionState.RUNNING;
     }
 
     public void OnStateExit(Animator animator)
     {
+        interruptTime = 10;
         animator.SetBool("JumpAnim", false);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "Pattern", menuName = "Config/Types/Pattern")]
+[CreateAssetMenu(fileName = "Pattern", menuName = "Types/Pattern")]
 public class Pattern : ScriptableObject
 {
     public int difficulty;

@@ -33,27 +33,20 @@ public class WorkerHealth : MonoBehaviour
         ObjectMover.enabled = false;
     }
 
-    IEnumerator waitToAnimate()
+    IEnumerator WaitToAnimate()
     {
-        Debug.Log(workerHealth);
         animator.SetBool("DeathAnim", true);
         ObjectMover.enabled = true;
-        print("ss");
-        Debug.Log(gData.workersNum);
-
         gData.workersNum -= 1;
         yield return new WaitForSeconds(2.0f);
 
         objReturner.ReturnToObjectPool();
     }
-    
+
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Obstacle")
-      
-
-        if (other.gameObject.tag == "Obstacle" )
         {
             ICollidable Other = other.GetComponent<ICollidable>();
 
@@ -67,20 +60,15 @@ public class WorkerHealth : MonoBehaviour
             {
                 state = workerState.Dead;
 
-                StartCoroutine(waitToAnimate());
+                StartCoroutine(WaitToAnimate());
             }
 
         }
 
-        if(other.gameObject.tag == "collider")
+        if (other.gameObject.tag == "collider")
         {
-            Debug.Log("boundries hit");
-           
-                state = workerState.Dead;
-
-                StartCoroutine(waitToAnimate());
-
-            
+            state = workerState.Dead;
+            StartCoroutine(WaitToAnimate());
         }
     }
 }
