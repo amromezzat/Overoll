@@ -3,19 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-    public enum GameState
-    {
-        startState,
-        gamePlayState,
-        pauseState,
-        gameEnded
-    };
-
 [CreateAssetMenu(fileName = "GameState", menuName = "Config/GameState")]
 public class GameData : ScriptableObject
 {
-    public int difficulty;
     [HideInInspector]
+    public int difficulty;
     public int workersNum;
     [HideInInspector]
     public int hrNum;
@@ -26,18 +18,23 @@ public class GameData : ScriptableObject
 
     public GameState gameState;
 
+    [HideInInspector]
     public UnityEvent OnStart;
+    [HideInInspector]
     public UnityEvent OnResume;
+    [HideInInspector]
     public UnityEvent onPause;
+    [HideInInspector]
     public UnityEvent onEnd;
 
+    [HideInInspector]
     public int CoinCount;
 
     public int safeZone = -5;
 
     private void OnEnable()
     {
-        gameState = GameState.startState;
+        gameState = GameState.MainMenu;
     }
 
 }

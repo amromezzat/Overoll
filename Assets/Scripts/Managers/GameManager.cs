@@ -4,10 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+public enum GameState
+{
+    MainMenu,
+    Gameplay,
+    Pause,
+    GameOver
+};
+
 /// <summary>
 /// Handles In game management and Main menu UI management
 /// </summary>
-public class GameManager_Master : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public GameData gameData;
     public Button pauseBtn;
@@ -32,7 +40,7 @@ public class GameManager_Master : MonoBehaviour
 
     private void OnEnable()
     {
-        gameData.gameState = GameState.gameEnded;
+        gameData.gameState = GameState.MainMenu;
     }
 
     private void Start()
@@ -66,13 +74,13 @@ public class GameManager_Master : MonoBehaviour
     {
         switch (gameData.gameState)
         {
-            case GameState.startState:
+            case GameState.Gameplay:
                 gamePausedTxt.gameObject.SetActive(true);
                 pauseBtn.GetComponent<Image>().sprite = resumeSprite;
                 GameHalt();
                 break;
 
-            case GameState.pauseState:
+            case GameState.Pause:
                 gamePausedTxt.gameObject.SetActive(false);
                 pauseBtn.GetComponent<Image>().sprite = pauseSprite;
                 GameResume();
@@ -82,19 +90,19 @@ public class GameManager_Master : MonoBehaviour
 
     void GameHalt()
     {
-        gameData.gameState = GameState.pauseState;
+        gameData.gameState = GameState.Pause;
         gameData.onPause.Invoke();
     }
 
     void GameResume()
     {
-        gameData.gameState = GameState.gamePlayState;
+        gameData.gameState = GameState.Gameplay;
         gameData.OnResume.Invoke();
     }
 
     void GameStart()
     {
-        gameData.gameState = GameState.startState;
+        gameData.gameState = GameState.Gameplay;
         gameData.OnStart.Invoke();
     }
 
@@ -107,7 +115,7 @@ public class GameManager_Master : MonoBehaviour
         mainMenuCanvas.gameObject.SetActive(false);
         endGameCanvas.gameObject.SetActive(true);
 
-        gameData.gameState = GameState.gameEnded;
+        gameData.gameState = GameState.GameOver;
        
     }
 

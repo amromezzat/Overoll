@@ -765,6 +765,15 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114201102903279578, guid: 6f2e215c257f3424e9b0f96e775b6e2b,
+        type: 2}
+      propertyPath: strafeDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f2e215c257f3424e9b0f96e775b6e2b, type: 2}
   m_IsPrefabParent: 0
@@ -851,21 +860,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1505689317082964, guid: 6f2e215c257f3424e9b0f96e775b6e2b,
     type: 2}
   m_PrefabInternal: {fileID: 1369740738}
---- !u!114 &1600454078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1600454066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3137cc87fa99554a87887d7e6c6a12b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
-  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
-  currentStateStr: 
 --- !u!114 &1663203232 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114163233792838072, guid: da96e29fe3a7ade49b8be1c2a094b162,
@@ -1395,7 +1389,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shift: {x: 0, y: 0, z: 2}
-  disFromPlayer: 10
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &1906287972
@@ -1410,7 +1403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfPrefabs:
-  - {fileID: 114364581031453510, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
+  - {fileID: 1636399051536342, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
   poolSize: 10
   pool: []
   activeTileCount: 0

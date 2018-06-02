@@ -17,7 +17,7 @@ public class TileGeneration : MonoBehaviour
     Pattern currentPattern;
     int currentSegmentIndex;
 
-    private void OnEnable()
+    private void Awake()
     {
         tc.produceNextSegment.AddListener(GetNextSegment);
         InitPattern();

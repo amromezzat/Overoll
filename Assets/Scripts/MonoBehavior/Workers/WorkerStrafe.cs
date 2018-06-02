@@ -7,24 +7,17 @@ public class WorkerStrafe : MonoBehaviour, iHalt
 {
     public LanesDatabase lanes;
     public WorkerConfig wc;
-    public float strafeDuration = 0.5f;
+    public GameData gameData;
 
-    Rigidbody rb;
+    public float strafeDuration = 0.1f;
+
     Animator animator;
-
     bool strafing = false;
     float strafeTimer = 0;
 
-    public GameData gameData;
-
-    private void OnEnable()
+    private void Awake()
     {
         RegisterListeners();
-    }
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
 
@@ -48,6 +41,10 @@ public class WorkerStrafe : MonoBehaviour, iHalt
 
     void StrafeRight()
     {
+        if (!isActiveAndEnabled)
+        {
+            return;
+        }
         if (!strafing)
         {
             strafeTimer = 0;
@@ -59,6 +56,10 @@ public class WorkerStrafe : MonoBehaviour, iHalt
 
     void StrafeLeft()
     {
+        if (!isActiveAndEnabled)
+        {
+            return;
+        }
         if (!strafing)
         {
             strafeTimer = 0;

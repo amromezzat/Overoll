@@ -14,15 +14,28 @@ public class ObjectMover : MonoBehaviour, iHalt
     public GameData gameData;
     public Vector3 ExtraVelocity = Vector3.zero;
 
-    private void OnEnable()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
-        if (gameData.gameState == GameState.startState || gameData.gameState == GameState.gamePlayState)
-        {
-            rb.velocity = Vector3.forward * -tc.tileSpeed;
-        }
         RegisterListeners();
+    }
+
+    private void OnEnable()
+    {
+        if (gameData.gameState == GameState.Gameplay)
+        {
+            MoveObj();
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
+    }
+
+    void MoveObj()
+    {
+        rb.velocity = ExtraVelocity + Vector3.back * tc.tileSpeed;
     }
 
     public void Halt()
@@ -32,7 +45,7 @@ public class ObjectMover : MonoBehaviour, iHalt
 
     public void Resume()
     {
-        rb.velocity = Vector3.forward * -tc.tileSpeed + ExtraVelocity;
+        MoveObj();
     }
 
     public void RegisterListeners()
@@ -45,7 +58,7 @@ public class ObjectMover : MonoBehaviour, iHalt
 
     public void Begin()
     {
-        rb.velocity = Vector3.forward * -tc.tileSpeed;
+        MoveObj();
     }
 
     public void End()

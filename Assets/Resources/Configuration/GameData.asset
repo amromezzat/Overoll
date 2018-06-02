@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   difficulty: 0
-  workersNum: 0
+  workersNum: 3
   hrNum: 0
   bossNum: 0
   leaderType: {fileID: 0}
-  isPaused: 0
+  gameState: 1
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnResume:
     m_PersistentCalls:
       m_Calls: []
@@ -27,5 +32,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  CoinCount: 3284
-  safeZone: -5
+  onEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  CoinCount: 5
+  safeZone: -10

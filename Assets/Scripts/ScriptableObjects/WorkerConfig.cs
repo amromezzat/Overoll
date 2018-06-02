@@ -7,8 +7,6 @@ using UnityEngine.Events;
 public class WorkerConfig : ScriptableObject {
     [HideInInspector]
     public GameObject leader;
-    [HideInInspector]
-    public Rigidbody leaderRb;
 
     //Events available for other classes to register to
     [HideInInspector]
@@ -33,15 +31,10 @@ public class WorkerConfig : ScriptableObject {
     public float arrivalSlowingRad = 1;//slow when entering this rad
     public float maxSepForce = 30;
     public float maxFolForce = 10;
-    public float maxFormForce = 5;
     public float maxSpeed = 10;
-    public float aheadFollowPoint = 5;//distance infront of leader for workers to follow
-    [Header("Workers Formation")]
-    public AnimationCurve rightWingShape;
-    public AnimationCurve centerShape;
-    public AnimationCurve leftWingShape;
-
     [HideInInspector]
+    public float aheadFollowPoint = 5;//distance infront of leader for workers to follow
+  
     public List<GameObject> workers;
     [HideInInspector]
     public List<GameObject> hrWorkers;

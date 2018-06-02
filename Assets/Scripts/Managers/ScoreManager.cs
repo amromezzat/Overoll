@@ -16,6 +16,11 @@ public class ScoreManager : MonoBehaviour, iHalt
     public GameData gData;
     public IEnumerator scoreCoroutine;
 
+    private void Awake()
+    {
+        RegisterListeners();
+        scoreCoroutine = ScorePerSec();
+    }
 
     // Use this for initialization
     void OnEnable()
@@ -23,8 +28,6 @@ public class ScoreManager : MonoBehaviour, iHalt
         timeScore = 0;
         coinScore = 0;
         oldCoinCount = 0;
-        RegisterListeners();
-        scoreCoroutine = ScorePerSec();
     }
 
     // Update is called once per frame
@@ -33,12 +36,11 @@ public class ScoreManager : MonoBehaviour, iHalt
 
         coinScore = coinvalue * (gData.CoinCount - oldCoinCount) * gData.workersNum;
         // calc score
-        score = timeScore;
+        score = timeScore + coinScore;
         //Display score
         scoreText.text = score.ToString();
         coinNum.text = gData.CoinCount.ToString();
         oldCoinCount = gData.CoinCount;
-        Debug.Log(gData.gameState);
     }
 
     IEnumerator ScorePerSec()

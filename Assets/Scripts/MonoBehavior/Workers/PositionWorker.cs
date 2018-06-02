@@ -10,40 +10,36 @@ public class PositionWorker : MonoBehaviour, iHalt
     Vector2 steeringForce;
     public WorkerConfig wc;
 
-    bool isHalt;
+    bool onHalt;
 
     public GameData gameData;
 
     private void OnEnable()
     {
-        RegisterListeners();
-       
-        rb = GetComponent<Rigidbody>();
-        if (gameData.gameState == GameState.startState)
+        if (gameData.gameState == GameState.Gameplay)
         {
-            Begin();
+            Resume();
         }
         else
         {
-            isHalt = true;
+            onHalt = true;
         }
     }
 
     void Start()
     {
-        wc.workers.Add(gameObject);
+        rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
         steeringForce = Vector2.ClampMagnitude(SteeringForce(), wc.maxSpeed);
         rb.AddForce(new Vector3(steeringForce.x, 0, steeringForce.y));
-        Debug.Log(isHalt);
     }
 
     Vector2 SteeringForce()
     {
-        if (isHalt) { return Vector2.zero; }
+        if (onHalt) { return Vector2.zero; }
         // Creates a force to arrive at the behind point
         Vector2 steeringForce = FollowLeader();
 
@@ -111,18 +107,6 @@ public class PositionWorker : MonoBehaviour, iHalt
         return folForce.normalized * wc.maxFolForce;
     }
 
-    Vector2 KeepFormation()
-    {
-        Vector2 formationForce = Vector2.zero;
-        formationForce.x = wc.leader.transform.position.x + wc.leftWingShape.Evaluate(transform.position.z) +
-            wc.rightWingShape.Evaluate(transform.position.z);
-        formationForce.x -= transform.position.x;
-        formationForce.y = wc.centerShape.Evaluate(transform.position.x);
-        formationForce.y -= transform.position.z;
-        return formationForce.normalized * wc.maxFormForce;
-    }
-
-    
     float CalculateDisFrom(GameObject entity)
     {
         return (entity.transform.position - transform.position).magnitude;
@@ -138,21 +122,21 @@ public class PositionWorker : MonoBehaviour, iHalt
 
     public void Begin()
     {
-        isHalt = false;
+        onHalt = true;
     }
 
     public void Halt()
     {
-        isHalt = true;
+        onHalt = true;
     }
 
     public void Resume()
     {
-        isHalt = false;
+        onHalt = false;
     }
 
     public void End()
     {
-        isHalt = true;
+        onHalt = true;
     }
 }

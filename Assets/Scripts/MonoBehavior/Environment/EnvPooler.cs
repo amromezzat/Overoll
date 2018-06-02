@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This Class used to move the ground and act like the player keeps moving forward
+/// Move the environment around the player
 /// </summary>
 
 public class EnvPooler: MonoBehaviour
 {
-    public List<EnvReturner> listOfPrefabs;
+    public List<GameObject> listOfPrefabs;
     public int poolSize;
     //[HideInInspector]
     public List<GameObject> pool;
@@ -39,20 +39,20 @@ public class EnvPooler: MonoBehaviour
         }
     }
 
-    public void ReturnObjectToPool(GameObject toreturn)
+    public void ReturnObjectToPool(GameObject returnedObj)
     {
         activeTileCount--;
-        toreturn.transform.position = gameObject.transform.position;
-        toreturn.SetActive(false);
-        pool.Add(toreturn);
+        returnedObj.transform.position = gameObject.transform.position;
+        returnedObj.SetActive(false);
+        pool.Add(returnedObj);
     }
 
     void AddToPool()
     {
-        var index = Random.Range(0, listOfPrefabs.Count);
-        var obj = Instantiate<EnvReturner>(listOfPrefabs[index], gameObject.transform);
-        obj.gameObject.SetActive(false);
-        pool.Add(obj.gameObject);
+        int index = Random.Range(0, listOfPrefabs.Count);
+        GameObject obj = Instantiate(listOfPrefabs[index], gameObject.transform);
+        obj.SetActive(false);
+        pool.Add(obj);
 
     }
 
