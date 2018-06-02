@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Handles In game management and Main menu UI management
@@ -11,7 +12,7 @@ public class GameManager_Master : MonoBehaviour
     public GameData gameData;
     public Button pauseBtn;
 
-  //  public Button restartBtn;
+    public Button restartBtn;
 
     public Text gamePausedTxt;
 
@@ -27,14 +28,24 @@ public class GameManager_Master : MonoBehaviour
 
     public Canvas mainMenuCanvas;
     public Canvas inGameCanvas;
-   // public Canvas endGameCanvas;
+    public Canvas endGameCanvas;
+
+    private void OnEnable()
+    {
+        gameData.gameState = GameState.gameEnded;
+    }
 
     private void Start()
     {
-        GameStart();
+        inGameCanvas.gameObject.SetActive(false);
+        endGameCanvas.gameObject.SetActive(false);
+        mainMenuCanvas.gameObject.SetActive(true);
+
         gamePausedTxt.gameObject.SetActive(false);
         settingAnim = settingsBtn.GetComponent<Animator>();
         storeAnim = storeBtn.GetComponent<Animator>();
+
+        gameData.onEnd.AddListener(EndGame);
     }
 
     public void PlayBtnEntered()
@@ -42,22 +53,20 @@ public class GameManager_Master : MonoBehaviour
         settingAnim.SetBool("SetBtnIsOut", false);
         storeAnim.SetBool("StoreBtnIsOut", false);
         StartCoroutine(WaitforStart());
-        
-        GameResume();
+
+        GameStart();
     }
 
     public void RestartBtnEntered()
     {
-        StartCoroutine(WaitforStart());
-
-        GameResume();
+        SceneManager.LoadScene("Main");
     }
 
     public void PauseBtnEntered()
     {
         switch (gameData.gameState)
         {
-            case GameState.gamePlayState:
+            case GameState.startState:
                 gamePausedTxt.gameObject.SetActive(true);
                 pauseBtn.GetComponent<Image>().sprite = resumeSprite;
                 GameHalt();
@@ -83,16 +92,8 @@ public class GameManager_Master : MonoBehaviour
         gameData.OnResume.Invoke();
     }
 
-
-    /// <summary>
-    /// acts as pause but at the beginning of the game
-    /// </summary>
     void GameStart()
     {
-        inGameCanvas.gameObject.SetActive(false);
-      //  endGameCanvas.gameObject.SetActive(false);
-        mainMenuCanvas.gameObject.SetActive(true);
-
         gameData.gameState = GameState.startState;
         gameData.OnStart.Invoke();
     }
@@ -104,10 +105,10 @@ public class GameManager_Master : MonoBehaviour
     {
         inGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(false);
-       // endGameCanvas.gameObject.SetActive(true);
+        endGameCanvas.gameObject.SetActive(true);
 
         gameData.gameState = GameState.gameEnded;
-        //gameData.onEnd.Invoke();
+       
     }
 
 

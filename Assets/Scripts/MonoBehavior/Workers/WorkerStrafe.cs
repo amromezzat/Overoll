@@ -82,10 +82,21 @@ public class WorkerStrafe : MonoBehaviour, iHalt
 
     public void RegisterListeners()
     {
-        gameData.OnStart.AddListener(Halt);
+        gameData.OnStart.AddListener(Begin);
         gameData.onPause.AddListener(Halt);
         gameData.OnResume.AddListener(Resume);
+        gameData.onEnd.AddListener(End);
     }
 
+    public void Begin()
+    {
+        wc.onLeft.AddListener(StrafeLeft);
+        wc.onRight.AddListener(StrafeRight);
+    }
 
+    public void End()
+    {
+        wc.onLeft.RemoveListener(StrafeLeft);
+        wc.onRight.RemoveListener(StrafeRight);
+    }
 }

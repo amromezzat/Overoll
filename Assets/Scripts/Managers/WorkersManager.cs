@@ -41,16 +41,18 @@ public class WorkersManager : MonoBehaviour
         {
             myButton.GetComponent<Button>().interactable = true;
         }
-
-        if (leader.GetComponent<WorkerHealth>().state == workerState.Dead && wc.workers.Count > 0)
+        if (leader.GetComponent<WorkerHealth>().state == workerState.Dead)
         {
-            ElectNewLeader();
-            leader.transform.position = Vector3.Lerp(leader.transform.position, new Vector3(0, 0.25f, 0), Time.deltaTime);
-        }
-        else
-        {
-            gData.gameState = GameState.gameEnded;
-            //triger event el end game
+            if (wc.workers.Count > 0)
+            {
+                ElectNewLeader();
+                leader.transform.position = Vector3.Lerp(leader.transform.position, new Vector3(0, 0.25f, 0), Time.deltaTime);
+            }
+            else
+            {
+                gData.gameState = GameState.gameEnded;
+                gData.onEnd.Invoke();
+            }
         }
     }
 

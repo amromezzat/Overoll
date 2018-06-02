@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 222402176459023404}
   - component: {fileID: 114163233792838072}
   m_Layer: 5
-  m_Name: coinnum
+  m_Name: CoinNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,6 @@ GameObject:
   - component: {fileID: 224004935141133436}
   - component: {fileID: 222221075918858286}
   - component: {fileID: 114943290015075312}
-  - component: {fileID: 114643612175201690}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -371,21 +370,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114643612175201690
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1801975502669910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8261c46934553b46aff309c1ba14c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oldCoinCount: 0
-  scoreText: {fileID: 114943290015075312}
-  coinnum: {fileID: 114163233792838072}
-  gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &114704884620338092
 MonoBehaviour:
   m_ObjectHideFlags: 1

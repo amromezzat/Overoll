@@ -6,18 +6,22 @@ using UnityEngine;
 /// This class resposiple for moving the tile
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
-public class ObjectMover : MonoBehaviour,iHalt
+public class ObjectMover : MonoBehaviour, iHalt
 {
     public TileConfig tc;
     private Rigidbody rb;
 
     public GameData gameData;
-    public Vector3 ExtraVelocity = Vector3.zero; 
+    public Vector3 ExtraVelocity = Vector3.zero;
 
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = Vector3.forward * -tc.tileSpeed;
+        rb.velocity = Vector3.zero;
+        if (gameData.gameState == GameState.startState || gameData.gameState == GameState.gamePlayState)
+        {
+            rb.velocity = Vector3.forward * -tc.tileSpeed;
+        }
         RegisterListeners();
     }
 
@@ -33,9 +37,19 @@ public class ObjectMover : MonoBehaviour,iHalt
 
     public void RegisterListeners()
     {
-        gameData.OnStart.AddListener(Halt);
+        gameData.OnStart.AddListener(Begin);
         gameData.onPause.AddListener(Halt);
         gameData.OnResume.AddListener(Resume);
+        gameData.onEnd.AddListener(End);
+    }
+
+    public void Begin()
+    {
+        rb.velocity = Vector3.forward * -tc.tileSpeed;
+    }
+
+    public void End()
+    {
+        rb.velocity = Vector3.zero;
     }
 }
-

@@ -22,8 +22,7 @@ public class EnvGenerator : MonoBehaviour, iHalt
     private void OnEnable()
     {
         RegisterListeners();
-        Ray r = new Ray();
-        RaycastHit hit;
+        isHalt = true;
     }
 
     void Start()
@@ -54,6 +53,19 @@ public class EnvGenerator : MonoBehaviour, iHalt
         Gizmos.DrawCube(transform.position, new Vector3(10, 10, 1));
     }
 
+    public void RegisterListeners()
+    {
+        gameData.OnStart.AddListener(Begin);
+        gameData.onPause.AddListener(Halt);
+        gameData.OnResume.AddListener(Resume);
+        gameData.onEnd.AddListener(End);
+    }
+
+    public void Begin()
+    {
+        isHalt = false;
+    }
+
     public void Halt()
     {
         isHalt = true;
@@ -64,10 +76,8 @@ public class EnvGenerator : MonoBehaviour, iHalt
         isHalt = false;
     }
 
-    public void RegisterListeners()
+    public void End()
     {
-        gameData.OnStart.AddListener(Halt);
-        gameData.onPause.AddListener(Halt);
-        gameData.OnResume.AddListener(Resume);
+        isHalt = true;
     }
 }

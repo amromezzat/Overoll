@@ -38,7 +38,7 @@ public class ScoreManager : MonoBehaviour, iHalt
         scoreText.text = score.ToString();
         coinNum.text = gData.CoinCount.ToString();
         oldCoinCount = gData.CoinCount;
-
+        Debug.Log(gData.gameState);
     }
 
     IEnumerator ScorePerSec()
@@ -65,5 +65,19 @@ public class ScoreManager : MonoBehaviour, iHalt
         gData.OnStart.AddListener(Halt);
         gData.onPause.AddListener(Halt);
         gData.OnResume.AddListener(Resume);
+        gData.onEnd.AddListener(End);
+        
+    }
+
+    public void Begin()
+    {
+        timeScore = 0;
+        coinScore = 0;
+        oldCoinCount = 0;
+    }
+
+    public void End()
+    {
+        Halt();
     }
 }
