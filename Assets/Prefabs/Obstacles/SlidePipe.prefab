@@ -1091,7 +1091,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsHealth: 1
-  obsVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &114744341937837552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1104,7 +1103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
-  gameState: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   poolableType: {fileID: 11400000, guid: d158b12bdb0c1724dacf966c151628a3, type: 2}
 --- !u!114 &114798111730327094
 MonoBehaviour:
@@ -1119,3 +1118,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  ExtraVelocity: {x: 0, y: 0, z: 0}

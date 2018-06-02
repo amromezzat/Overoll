@@ -5,31 +5,30 @@ using UnityEngine;
 public class EnvGenerator : MonoBehaviour, iHalt
 {
     public Vector3 shift;
-    public float disFromPlayer = 10;
+
+    public TileConfig tc;
+    public GameData gameData;
+
     EnvPooler pool;
     Transform lastTile;
 
     bool isHalt;
 
-    public TileConfig tc;
-
-    public GameData gameData;
-
-    /// <summary>
-    /// t = d/v, d per prefab
-    /// </summary>
+    private void Awake()
+    {
+        RegisterListeners();
+    }
 
     private void OnEnable()
     {
-        RegisterListeners();
         isHalt = true;
     }
 
     void Start()
     {
         pool = gameObject.GetComponent<EnvPooler>();
-        lastTile = this.transform;
-        //StartCoroutine(GenerateCoroutine());
+        lastTile = transform;
+        
     }
 
     private void Update()

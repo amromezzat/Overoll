@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectReturner : MonoBehaviour {
 
     public InteractablesDatabase interactablesDB;
-    public GameData gameState;
+    public GameData gameData;
     public PoolableType poolableType;
 
     public void ReturnToObjectPool()
@@ -15,7 +15,7 @@ public class ObjectReturner : MonoBehaviour {
 
     void Update()
     {
-        if (gameObject.transform.position.z < gameState.safeZone)
+        if (gameObject.transform.position.z < gameData.safeZone)
         {
             ObjectPooler.instance.ReturnToPool(poolableType, gameObject);
         }

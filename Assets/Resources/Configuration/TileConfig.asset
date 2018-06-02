@@ -14,4 +14,10 @@ MonoBehaviour:
   tileSpeed: 5
   tileSize: 1
   laneWidth: 1
+  disableSafeDistance: -10
   spawnTime: 0.2
+  produceNextSegment:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

@@ -4,25 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectReturner))]
-public class BaseObstacle : MonoBehaviour, ICollidable
+public class ObstacleLifeCycle : MonoBehaviour, ICollidable
 {
 
     public int obsHealth;
     ObjectReturner objReturner;
-    obstacleState state = obstacleState.Idle;
-    Rigidbody rb;
+    HealthState obstacleState = HealthState.Healthy;
 
-    enum obstacleState
-    {
-        Idle = 1, // No one collide with it yet
-        Destroyed = 2, //the obstacle is destroid 
-        Broken = 3  // lesa feh shewaia health metb2e
-    }
-
-    private void Start()
+    private void Awake()
     {
         objReturner = GetComponent<ObjectReturner>();
-        rb = GetComponent<Rigidbody>();
     }
 
     public void ReactToCollision(int collidedHealth)
@@ -30,12 +21,13 @@ public class BaseObstacle : MonoBehaviour, ICollidable
         obsHealth = obsHealth - collidedHealth;
         if (obsHealth <= 0)
         {
-            state = obstacleState.Destroyed;
+            obstacleState = HealthState.Wrecked;
+            obsHealth = 1;
             objReturner.ReturnToObjectPool();
         }
         else
         {
-            state = obstacleState.Broken;
+            obstacleState = HealthState.Fractured;
         }
         //-----------------------------------------      
     }

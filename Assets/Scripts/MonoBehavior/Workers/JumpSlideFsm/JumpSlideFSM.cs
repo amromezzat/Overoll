@@ -31,15 +31,7 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
     BoxCollider mCollider;
     Animator mAnimator;
 
-    private void OnEnable()
-    {
-        RegisterListeners();
-
-        wc.onJump.RemoveListener(Jump);
-        wc.onSlide.RemoveListener(Slide);
-    }
-
-    void Start()
+    void Awake()
     {
         mCollider = GetComponent<BoxCollider>();
         mAnimator = GetComponent<Animator>();
@@ -54,12 +46,8 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         actionStack.Push(runState);
 
         currentState = runState;
-    }
 
-    private void OnDisable()
-    {
-        wc.onJump.RemoveListener(Jump);
-        wc.onSlide.RemoveListener(Slide);
+        RegisterListeners();
     }
 
     void Update()
@@ -89,7 +77,10 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
 
     void Jump()
     {
-
+        if (!isActiveAndEnabled)
+        {
+            return;
+        }
         float delayTime = (wc.leader.transform.position.z - transform.position.z) / tc.tileSpeed;
         actionStack.Push(jumpState);
         if (delayTime > 0)
@@ -109,6 +100,10 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
 
     void Slide()
     {
+        if (!isActiveAndEnabled)
+        {
+            return;
+        }
         float delayTime = (wc.leader.transform.position.z - transform.position.z) / tc.tileSpeed;
         if (currentState == jumpState)
         {
