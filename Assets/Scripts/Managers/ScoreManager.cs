@@ -23,8 +23,8 @@ public class ScoreManager : MonoBehaviour, iHalt
         timeScore = 0;
         coinScore = 0;
         oldCoinCount = 0;
-        scoreCoroutine = ScorePerSec();
         RegisterListeners();
+        scoreCoroutine = ScorePerSec();
     }
 
     // Update is called once per frame
@@ -50,19 +50,9 @@ public class ScoreManager : MonoBehaviour, iHalt
         }
     }
 
-    public void Halt()
-    {
-        StopCoroutine(scoreCoroutine);
-    }
-
-    public void Resume()
-    {
-        StartCoroutine(scoreCoroutine);
-    }
-
     public void RegisterListeners()
     {
-        gData.OnStart.AddListener(Halt);
+        gData.OnStart.AddListener(Begin);
         gData.onPause.AddListener(Halt);
         gData.OnResume.AddListener(Resume);
         gData.onEnd.AddListener(End);
@@ -74,6 +64,17 @@ public class ScoreManager : MonoBehaviour, iHalt
         timeScore = 0;
         coinScore = 0;
         oldCoinCount = 0;
+        StartCoroutine(scoreCoroutine);
+    }
+
+    public void Halt()
+    {
+        StopCoroutine(scoreCoroutine);
+    }
+
+    public void Resume()
+    {
+        StartCoroutine(scoreCoroutine);
     }
 
     public void End()
