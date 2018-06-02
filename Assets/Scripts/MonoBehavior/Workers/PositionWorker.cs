@@ -17,18 +17,28 @@ public class PositionWorker : MonoBehaviour, iHalt
     private void OnEnable()
     {
         RegisterListeners();
+       
+        rb = GetComponent<Rigidbody>();
+        if (gameData.gameState == GameState.startState)
+        {
+            Begin();
+        }
+        else
+        {
+            isHalt = true;
+        }
     }
 
     void Start()
     {
         wc.workers.Add(gameObject);
-        rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
         steeringForce = Vector2.ClampMagnitude(SteeringForce(), wc.maxSpeed);
         rb.AddForce(new Vector3(steeringForce.x, 0, steeringForce.y));
+        Debug.Log(isHalt);
     }
 
     Vector2 SteeringForce()
@@ -118,6 +128,19 @@ public class PositionWorker : MonoBehaviour, iHalt
         return (entity.transform.position - transform.position).magnitude;
     }
 
+    public void RegisterListeners()
+    {
+        gameData.OnStart.AddListener(Begin);
+        gameData.onPause.AddListener(Halt);
+        gameData.OnResume.AddListener(Resume);
+        gameData.onEnd.AddListener(End);
+    }
+
+    public void Begin()
+    {
+        isHalt = false;
+    }
+
     public void Halt()
     {
         isHalt = true;
@@ -128,10 +151,8 @@ public class PositionWorker : MonoBehaviour, iHalt
         isHalt = false;
     }
 
-    public void RegisterListeners()
+    public void End()
     {
-        gameData.OnStart.AddListener(Halt);
-        gameData.onPause.AddListener(Halt);
-        gameData.OnResume.AddListener(Resume);
+        isHalt = true;
     }
 }

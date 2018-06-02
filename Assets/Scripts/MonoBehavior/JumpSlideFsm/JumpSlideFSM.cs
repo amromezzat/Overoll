@@ -31,10 +31,16 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
     BoxCollider mCollider;
     Animator mAnimator;
 
-    // Use this for initialization
+    private void OnEnable()
+    {
+        RegisterListeners();
+
+        wc.onJump.RemoveListener(Jump);
+        wc.onSlide.RemoveListener(Slide);
+    }
+
     void Start()
     {
-
         mCollider = GetComponent<BoxCollider>();
         mAnimator = GetComponent<Animator>();
 
@@ -50,19 +56,12 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         currentState = runState;
     }
 
-    private void OnEnable()
-    {
-        wc.onJump.AddListener(Jump);
-        wc.onSlide.AddListener(Slide);
-    }
-
     private void OnDisable()
     {
         wc.onJump.RemoveListener(Jump);
         wc.onSlide.RemoveListener(Slide);
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentStateStr = currentState.ToString();
@@ -135,6 +134,20 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         ChangeState(actionStack.Pop());
     }
 
+    public void RegisterListeners()
+    {
+        gd.OnStart.AddListener(Begin);
+        gd.onPause.AddListener(Halt);
+        gd.OnResume.AddListener(Resume);
+        gd.onEnd.AddListener(End);
+    }
+
+    public void Begin()
+    {
+        wc.onJump.AddListener(Jump);
+        wc.onSlide.AddListener(Slide);
+    }
+
     public void Halt()
     {
         wc.onJump.RemoveListener(Jump);
@@ -146,11 +159,10 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         wc.onJump.AddListener(Jump);
         wc.onSlide.AddListener(Slide);
     }
-
-    public void RegisterListeners()
+    
+    public void End()
     {
-        gd.OnStart.AddListener(Halt);
-        gd.onPause.AddListener(Halt);
-        gd.OnResume.AddListener(Resume);
+        wc.onJump.RemoveListener(Jump);
+        wc.onSlide.RemoveListener(Slide);
     }
 }

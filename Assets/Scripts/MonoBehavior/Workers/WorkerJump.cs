@@ -106,4 +106,14 @@ public class WorkerJump : MonoBehaviour,iHalt
         gameData.onPause.AddListener(Halt);
         gameData.OnResume.AddListener(Resume);
     }
+
+    public void Begin()
+    {
+        Resume();
+    }
+
+    public void End()
+    {
+        Halt();
+    }
 }

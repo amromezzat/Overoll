@@ -108,8 +108,19 @@ public class WorkerSliding : MonoBehaviour,iHalt
 
     public void RegisterListeners()
     {
-        gameData.OnStart.AddListener(Halt);
+        gameData.OnStart.AddListener(Begin);
         gameData.onPause.AddListener(Halt);
         gameData.OnResume.AddListener(Resume);
+        gameData.onEnd.AddListener(End);
+    }
+
+    public void Begin()
+    {
+        Resume();
+    }
+
+    public void End()
+    {
+        Halt();
     }
 }
