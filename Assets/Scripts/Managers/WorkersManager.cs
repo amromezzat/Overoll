@@ -61,10 +61,8 @@ public class WorkersManager : MonoBehaviour
     public void ElectNewLeader()
     {
         wc.leader = wc.workers[0];
-        if (!wc.leader.activeSelf)
-        {
-            Debug.Log("bad");
-        }
+        wc.workers.Remove(wc.leader);
+        wc.leader.GetComponent<WorkerLifeCycle>().isLeader = true;
         wc.leader.GetComponent<WorkerStrafe>().enabled = true;
         wc.leader.GetComponent<SeekLeaderPosition>().enabled = true;
     }
