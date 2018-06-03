@@ -50,7 +50,7 @@ public class WorkerLifeCycle : MonoBehaviour
 
     IEnumerator DeathCoroutine()
     {
-        animator.SetBool("DeathAnim", true);
+        animator.SetTrigger("DeathAnim");
         positionWorker.enabled = false;
         workerStrafe.enabled = false;
         jumpSlideFSM.enabled = false;
@@ -60,6 +60,13 @@ public class WorkerLifeCycle : MonoBehaviour
         objReturner.ReturnToObjectPool();
     }
 
+    private void Update()
+    {
+        if(gData.gameState == GameState.GameOver)
+        {
+            rb.velocity = Vector3.zero;
+        }
+    }
 
     public void OnTriggerEnter(Collider other)
     {
