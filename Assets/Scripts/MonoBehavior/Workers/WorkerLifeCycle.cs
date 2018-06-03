@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(WorkerReturner))]
 public class WorkerLifeCycle : MonoBehaviour
 {
     public GameData gData;
@@ -15,21 +16,23 @@ public class WorkerLifeCycle : MonoBehaviour
     Rigidbody rb;
 
     public bool isLeader = false;
-    ObjectReturner objReturner;
+    WorkerReturner workerReturner;
     Animator animator;
     PositionWorker positionWorker;
     WorkerStrafe workerStrafe;
     JumpSlideFSM jumpSlideFSM;
+    SeekLeaderPosition seekLeaderPosition;
     //------------------------------------------------
 
     void Awake()
     {
         workerHealth = 1;
-        objReturner = GetComponent<ObjectReturner>();
+        workerReturner = GetComponent<WorkerReturner>();
         animator = GetComponent<Animator>();
         positionWorker = GetComponent<PositionWorker>();
         workerStrafe = GetComponent<WorkerStrafe>();
         jumpSlideFSM = GetComponent<JumpSlideFSM>();
+        seekLeaderPosition = GetComponent<SeekLeaderPosition>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -48,14 +51,16 @@ public class WorkerLifeCycle : MonoBehaviour
         positionWorker.enabled = false;
         workerStrafe.enabled = false;
         jumpSlideFSM.enabled = false;
+        seekLeaderPosition.enabled = false;
         rb.velocity = Vector3.back * tc.tileSpeed;
         wConfig.workers.Remove(gameObject);
         if (isLeader)
         {
             wConfig.onLeaderDeath.Invoke();
+            isLeader = false;
         }
         yield return new WaitForSeconds(2.0f);
-        objReturner.ReturnToObjectPool();
+        workerReturner.ReturnToObjectPool();
     }
 
     private void Update()
