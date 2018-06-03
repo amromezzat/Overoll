@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,8 +47,9 @@ public class PositionWorker : MonoBehaviour, iHalt
         steeringForce += StayAway();
 
         //Keep workers in a formation
-      //  steeringForce += KeepFormation();
+        //  steeringForce += KeepFormation();
 
+        steeringForce += RandomBehaviour();
         return steeringForce;
     }
 
@@ -105,6 +106,17 @@ public class PositionWorker : MonoBehaviour, iHalt
         folForce.y = desiredVelocity.y - rb.velocity.z;
         //folForce = Vector2.ClampMagnitude(folForce, wc.maxFolForce);
         return folForce.normalized * wc.maxFolForce;
+    }
+
+
+    Vector2 RandomBehaviour()
+    {
+        Vector2 RandomForce = Vector2.zero;
+        RandomForce.x = transform.position.x - Random.Range(5, 10);
+        RandomForce.y = transform.position.z - Random.Range(8, 10);
+        float ran = Random.Range(0, 9);
+        RandomForce = RandomForce.normalized * ran;
+        return RandomForce;
     }
 
     float CalculateDisFrom(GameObject entity)
