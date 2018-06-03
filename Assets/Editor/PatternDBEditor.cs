@@ -6,20 +6,20 @@ using UnityEditor;
 /// <summary>
 /// Editor to show and Delete the patterns inside certain selected difficulty.
 /// </summary>
-[CustomEditor(typeof(PatternDatabase))]
+[CustomEditor(typeof(PatternsDatabase))]
 public class PatternDataBaseEditor : Editor
 {
     // variables 
     int selectedDifficulty;
     int difficultyNum;
-    public PatternDatabase patternDatabase;
+    public PatternsDatabase patternDatabase;
     public Pattern patternToBeAdd;
     List<string> poolableList;
 
     //----------------------------------------------------------------------
     void OnEnable()
     {
-        patternDatabase = (PatternDatabase)target;
+        patternDatabase = (PatternsDatabase)target;
         difficultyNum = patternDatabase.Count;
         selectedDifficulty = 0;
     }

@@ -10,11 +10,11 @@ public class WorkerLifeCycle : MonoBehaviour
     public WorkerConfig wConfig;
     public TileConfig tc;
 
-    [HideInInspector]
     public HealthState healthState = HealthState.Healthy;
     public int workerHealth;
     Rigidbody rb;
 
+    public bool isLeader = false;
     ObjectReturner objReturner;
     Animator animator;
     PositionWorker positionWorker;
@@ -33,16 +33,10 @@ public class WorkerLifeCycle : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void OnEnable()
-    {
-        wConfig.workers.Add(gameObject);
-    }
-
     private void OnDisable()
     {
         workerHealth = 1;
         healthState = HealthState.Healthy;
-        wConfig.workers.Remove(gameObject);
         positionWorker.enabled = true;
         jumpSlideFSM.enabled = true;
         rb.velocity = Vector3.zero;
@@ -55,7 +49,11 @@ public class WorkerLifeCycle : MonoBehaviour
         workerStrafe.enabled = false;
         jumpSlideFSM.enabled = false;
         rb.velocity = Vector3.back * tc.tileSpeed;
-        gData.workersNum -= 1;
+        wConfig.workers.Remove(gameObject);
+        if (isLeader)
+        {
+            wConfig.onLeaderDeath.Invoke();
+        }
         yield return new WaitForSeconds(2.0f);
         objReturner.ReturnToObjectPool();
     }
@@ -72,13 +70,14 @@ public class WorkerLifeCycle : MonoBehaviour
     {
         if (other.gameObject.tag == "Obstacle")
         {
-            ICollidable Other = other.GetComponent<ICollidable>();
+            ICollidable collidableOther = other.GetComponent<ICollidable>();
 
-            int obsHealth = Other.Gethealth();
+            int obsHealth = collidableOther.Gethealth();
             int preCollisionWH = workerHealth;
             workerHealth = workerHealth - obsHealth;
+            collidableOther.ReactToCollision(preCollisionWH);
 
-            Other.ReactToCollision(preCollisionWH);
+            healthState = HealthState.Fractured;
 
             if (workerHealth <= 0)
             {

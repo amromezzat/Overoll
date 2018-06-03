@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "WorkerConfig", menuName = "Config/WorkerConfig")]
 public class WorkerConfig : ScriptableObject {
-    [HideInInspector]
+    
     public GameObject leader;
 
     //Events available for other classes to register to
@@ -17,6 +17,8 @@ public class WorkerConfig : ScriptableObject {
     public UnityEvent onJump;
     [HideInInspector]
     public UnityEvent onSlide;
+    [HideInInspector]
+    public UnityEvent onLeaderDeath;
 
     [Header("Jump Attributes")]
     public int jumpSpeed = 20;

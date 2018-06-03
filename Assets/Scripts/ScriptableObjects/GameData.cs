@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "GameState", menuName = "Config/GameState")]
+[CreateAssetMenu(fileName = "GameData", menuName = "Config/GameData")]
 public class GameData : ScriptableObject
 {
     [HideInInspector]
     public int difficulty;
-    public int workersNum;
     [HideInInspector]
     public int hrNum;
     [HideInInspector]
@@ -29,8 +28,6 @@ public class GameData : ScriptableObject
 
     [HideInInspector]
     public int CoinCount;
-
-    public int safeZone = -5;
 
     private void OnEnable()
     {

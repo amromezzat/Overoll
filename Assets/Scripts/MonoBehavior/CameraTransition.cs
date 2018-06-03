@@ -11,7 +11,7 @@ public class CameraTransition : MonoBehaviour,iHalt {
     public Transform beginTrans;
     public Transform midTrans;
     public Transform EndTrans;
-    public float transTime = 0.5f;
+    public float transTime = 2f;
 
     Transform current;
     Transform next;

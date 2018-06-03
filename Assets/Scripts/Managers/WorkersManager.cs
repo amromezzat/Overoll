@@ -16,14 +16,14 @@ public class WorkersManager : MonoBehaviour
     void Start()
     {
         gData.CoinCount = 0;
-        gData.workersNum = 1;
         wc.leader = leader;
+        wc.onLeaderDeath.AddListener(LeaderDied);
     }
 
     void Update()
     {
-        wc.aheadFollowPoint = gData.workersNum * (-0.35f);
-        workerPrice = gData.workersNum * wPFactor;
+        wc.aheadFollowPoint = wc.workers.Count * (-0.35f);
+        workerPrice = wc.workers.Count * wPFactor;
 
         if (workerPrice > gData.CoinCount)
         {
@@ -33,19 +33,6 @@ public class WorkersManager : MonoBehaviour
         {
             myButton.GetComponent<Button>().interactable = true;
         }
-        if (leader.GetComponent<WorkerLifeCycle>().healthState == HealthState.Wrecked)
-        {
-            if (gData.workersNum > 0)
-            {
-                ElectNewLeader();
-                leader.transform.position = Vector3.Lerp(leader.transform.position, new Vector3(0, 0.25f, 0), Time.deltaTime);
-            }
-            else
-            {
-                gData.gameState = GameState.GameOver;
-                gData.onEnd.Invoke();
-            }
-        }
     }
 
     public void AddWorker()
@@ -54,17 +41,31 @@ public class WorkersManager : MonoBehaviour
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
         float newZPos = Random.Range(tc.disableSafeDistance + 5, tc.disableSafeDistance + 8);
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
-        gData.workersNum += 1;
+        wc.workers.Add(worker);
         gData.CoinCount -= workerPrice;
+    }
+
+    void LeaderDied()
+    {
+        if (wc.workers.Count > 0)
+        {
+            ElectNewLeader();
+        }
+        else
+        {
+            gData.gameState = GameState.GameOver;
+            gData.onEnd.Invoke();
+        }
     }
 
     public void ElectNewLeader()
     {
-        wc.leader.GetComponent<WorkerStrafe>().enabled = false;
-        wc.leader.GetComponent<PositionWorker>().enabled = true;
-        wc.workers.Remove(leader);
         wc.leader = wc.workers[0];
+        if (!wc.leader.activeSelf)
+        {
+            Debug.Log("bad");
+        }
         wc.leader.GetComponent<WorkerStrafe>().enabled = true;
-        wc.leader.GetComponent<PositionWorker>().enabled = false;
+        wc.leader.GetComponent<SeekLeaderPosition>().enabled = true;
     }
 }

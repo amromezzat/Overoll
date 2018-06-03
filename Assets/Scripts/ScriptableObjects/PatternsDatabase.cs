@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PatternDatabase", menuName = "Database/Pattern")]
+[CreateAssetMenu(fileName = "PatternDatabase", menuName = "Database/Patterns")]
 
-public class PatternDatabase: ScriptableObject {
+public class PatternsDatabase: ScriptableObject {
 
 
     public List<Difficulty> PatternDBList;
 
-    public PatternDatabase()
+    public PatternsDatabase()
     {
         PatternDBList = new List<Difficulty>();
     }
