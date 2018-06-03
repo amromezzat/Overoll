@@ -295,10 +295,10 @@ GameObject:
   - component: {fileID: 65619182727466928}
   - component: {fileID: 114103244772713320}
   - component: {fileID: 114790454885139432}
-  - component: {fileID: 114231401252419644}
   - component: {fileID: 114201102903279578}
   - component: {fileID: 114149315908789534}
   - component: {fileID: 114521662834685148}
+  - component: {fileID: 114441310432068500}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Worker
@@ -1384,7 +1384,7 @@ MonoBehaviour:
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   strafeDuration: 0.05
---- !u!114 &114231401252419644
+--- !u!114 &114441310432068500
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1392,7 +1392,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1505689317082964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
+  m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
