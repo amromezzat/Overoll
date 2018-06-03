@@ -228,6 +228,7 @@ MonoBehaviour:
   scoreText: {fileID: 1032736094}
   coinNum: {fileID: 1663203232}
   gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  wConfig: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
 --- !u!1 &180992304 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1980837503801966, guid: 9c3f44c4644abb54d91a8afb45b61c80,
@@ -2180,6 +2181,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114790454885139432, guid: 6f2e215c257f3424e9b0f96e775b6e2b,
+        type: 2}
+      propertyPath: isLeader
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f2e215c257f3424e9b0f96e775b6e2b, type: 2}
   m_IsPrefabParent: 0
@@ -3645,7 +3651,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906287969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1418835377}

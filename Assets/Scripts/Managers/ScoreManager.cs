@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour, iHalt
     public Text scoreText;
     public Text coinNum;
     public GameData gData;
+    public WorkerConfig wConfig;
     public IEnumerator scoreCoroutine;
 
     private void Awake()
@@ -34,7 +35,7 @@ public class ScoreManager : MonoBehaviour, iHalt
     void Update()
     {
 
-        coinScore = coinvalue * (gData.CoinCount - oldCoinCount) * gData.workersNum;
+        coinScore = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
         // calc score
         score = timeScore + coinScore;
         //Display score
