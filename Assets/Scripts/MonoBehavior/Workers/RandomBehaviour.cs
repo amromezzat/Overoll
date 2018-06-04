@@ -2,72 +2,72 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomBehaviour : MonoBehaviour {
+public class RandomBehaviour : MonoBehaviour
+{
     public LanesDatabase lanes;
-    PositionWorker pWactive;
     public float strafeDuration = 0.1f;
+
+    PositionWorker pWactive;
     float strafeTimer = 0;
-    public float exponentialPortion;
     Rigidbody rb;
+    bool strafing = false;
+    float newXPos = 0;
 
     void Awake()
     {
-        
-        pWactive =GetComponent<PositionWorker>();
+
+        pWactive = GetComponent<PositionWorker>();
         rb = GetComponent<Rigidbody>();
     }
 
-   void OnEnable()
+    void OnEnable()
     {
-        
-        StartCoroutine(randomworker());
+
+        StartCoroutine(RandomWorker());
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        float completedPortion = strafeTimer / strafeDuration;
-         exponentialPortion = completedPortion * completedPortion;
-       // changeposition();
+        if (strafing)
+        {
+            strafeTimer += Time.deltaTime;
+            float completedPortion = strafeTimer / strafeDuration;
+            float squarePortion = completedPortion * completedPortion;
+            Vector3 newPos = transform.position;
+            newPos.x = Mathf.Lerp(transform.position.x, newXPos, squarePortion);
+            transform.position = newPos;
+            if (squarePortion >= 1)
+            {
+                strafeTimer = 0;
+                strafing = false;
+            }
+        }
     }
 
-    IEnumerator randomworker()
+    IEnumerator RandomWorker()
     {
         while (true)
         {
             yield return new WaitForSeconds(5f);
-
+            if (strafing)
+            {
+                yield return null;
+            }
             var r = Random.Range(0, 100);
             if (r < 80)
             {
                 pWactive.enabled = true;
             }
-
             else
             {
+                strafing = true;
                 pWactive.enabled = false;
-                //float xPos = Mathf.Lerp(transform.position.x, lanes[(int)Random.Range(0, 4)].laneCenter, exponentialPortion);
-                //strafeTimer += Time.deltaTime;
-                //transform.position = new Vector3(lanes[(int)Random.Range(0, 4)].laneCenter, transform.position.y, transform.position.z);
-                //rb.velocity = new Vector3(0, 0, 0);
-                //Debug.Log("sss");
-                //pWactive.enabled = true;
-
-                transform.position = new Vector3((transform.position.x + Random.Range(-0.8f, 0.8f)), transform.position.y, transform.position.z);
-
-                rb.velocity = new Vector3(0, 0, 0);
-                
+                newXPos = transform.position.x + Random.Range(-0.8f, 0.8f);
+                rb.velocity = Vector3.zero;
 
             }
         }
 
-    }
-
-    void changeposition()
-    {
-        
-            rb.velocity = new Vector3(0, 0, 0);
-            transform.position = new Vector3((transform.position.x + Random.Range(-0.5f, 0.5f)), transform.position.y, transform.position.z);
-        
     }
 
 }
