@@ -6,6 +6,7 @@ public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler instance;
     public PoolDatabase pd;
+    public int segmentActiveCount = 0;
 
     Dictionary<PoolableType, Queue<GameObject>> poolDict;
 
@@ -51,6 +52,12 @@ public class ObjectPooler : MonoBehaviour
         if (!poolDict.ContainsKey(instType))
         {
             Debug.LogError("Instance is invalid", instType);
+        }
+        ObjectReturner instObjReturner = inst.GetComponent<ObjectReturner>();
+        if (instObjReturner.inActiveSegment)
+        {
+            instObjReturner.inActiveSegment = false;
+            segmentActiveCount--;
         }
         Queue<GameObject> instQueue = poolDict[instType];
         inst.SetActive(false);
