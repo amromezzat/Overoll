@@ -19,6 +19,7 @@ public class RandomBehaviour : MonoBehaviour {
 
    void OnEnable()
     {
+        
         StartCoroutine(randomworker());
     }
 
@@ -26,32 +27,47 @@ public class RandomBehaviour : MonoBehaviour {
     {
         float completedPortion = strafeTimer / strafeDuration;
          exponentialPortion = completedPortion * completedPortion;
-        strafeTimer += Time.deltaTime;
+       // changeposition();
     }
 
     IEnumerator randomworker()
     {
-        yield return new WaitForSeconds(5f);
-
-        var r = Random.Range(0, 100);
-        if (r < 60)
+        while (true)
         {
-             pWactive.enabled = true;
-        }
-       
-        else 
-        {
-            pWactive.enabled = false;
-           
-            float xPos = Mathf.Lerp(transform.position.x, lanes[(int)Random.Range(0, 4)].laneCenter, exponentialPortion);
-            transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
-            rb.velocity = new Vector3(0, 0, 0);
-            pWactive.enabled = true;
+            yield return new WaitForSeconds(5f);
 
+            var r = Random.Range(0, 100);
+            if (r < 80)
+            {
+                pWactive.enabled = true;
+            }
+
+            else
+            {
+                pWactive.enabled = false;
+                //float xPos = Mathf.Lerp(transform.position.x, lanes[(int)Random.Range(0, 4)].laneCenter, exponentialPortion);
+                //strafeTimer += Time.deltaTime;
+                //transform.position = new Vector3(lanes[(int)Random.Range(0, 4)].laneCenter, transform.position.y, transform.position.z);
+                //rb.velocity = new Vector3(0, 0, 0);
+                //Debug.Log("sss");
+                //pWactive.enabled = true;
+
+                transform.position = new Vector3((transform.position.x + Random.Range(-0.8f, 0.8f)), transform.position.y, transform.position.z);
+
+                rb.velocity = new Vector3(0, 0, 0);
+                
+
+            }
         }
+
     }
 
-  
-
+    void changeposition()
+    {
+        
+            rb.velocity = new Vector3(0, 0, 0);
+            transform.position = new Vector3((transform.position.x + Random.Range(-0.5f, 0.5f)), transform.position.y, transform.position.z);
+        
+    }
 
 }
