@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ObjectReturner))]
+[RequireComponent(typeof(TileReturner))]
 public class ObstacleLifeCycle : MonoBehaviour, ICollidable
 {
 
     public int obsHealth;
-    ObjectReturner objReturner;
+    TileReturner objReturner;
     HealthState obstacleState = HealthState.Healthy;
 
     private void Awake()
     {
-        objReturner = GetComponent<ObjectReturner>();
+        objReturner = GetComponent<TileReturner>();
     }
 
     public void ReactToCollision(int collidedHealth)

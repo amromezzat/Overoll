@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(WorkerReturner))]
 public class WorkerLifeCycle : MonoBehaviour
 {
     public GameData gData;
@@ -16,7 +15,7 @@ public class WorkerLifeCycle : MonoBehaviour
     Rigidbody rb;
 
     public bool isLeader = false;
-    WorkerReturner workerReturner;
+    TileReturner workerReturner;
     Animator animator;
     PositionWorker positionWorker;
     WorkerStrafe workerStrafe;
@@ -28,7 +27,7 @@ public class WorkerLifeCycle : MonoBehaviour
     void Awake()
     {
         workerHealth = 1;
-        workerReturner = GetComponent<WorkerReturner>();
+        workerReturner = GetComponent<TileReturner>();
         animator = GetComponent<Animator>();
         positionWorker = GetComponent<PositionWorker>();
         workerStrafe = GetComponent<WorkerStrafe>();

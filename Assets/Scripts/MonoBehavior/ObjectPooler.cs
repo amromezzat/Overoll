@@ -55,7 +55,7 @@ public class ObjectPooler : MonoBehaviour
         {
             Debug.LogError("Instance is invalid", instType);
         }
-        ObjectReturner instObjReturner = inst.GetComponent<ObjectReturner>();
+        TileReturner instObjReturner = inst.GetComponent<TileReturner>();
         if (instObjReturner.inActiveSegment)
         {
             instObjReturner.inActiveSegment = false;
