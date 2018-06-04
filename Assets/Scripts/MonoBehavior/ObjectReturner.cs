@@ -8,6 +8,8 @@ public class ObjectReturner : MonoBehaviour {
     public TileConfig tileConfig;
     public PoolableType poolableType;
 
+    public bool inActiveSegment = false;
+
     public void ReturnToObjectPool()
     {
         ObjectPooler.instance.ReturnToPool(poolableType, gameObject);

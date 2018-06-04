@@ -31,6 +31,14 @@ public class TileGeneration : MonoBehaviour
         currentPattern = patternDB[gd.difficulty][Random.Range(0, patternDB[gd.difficulty].Count)];
     }
 
+    private void Update()
+    {
+        if(ObjectPooler.instance.segmentActiveCount < tc.activeTilesNum)
+        {
+            GetNextSegment();
+        }
+    }
+
     void GetNextSegment()
     {
 
@@ -40,6 +48,7 @@ public class TileGeneration : MonoBehaviour
         {
             InitPattern();
         }
+        ObjectPooler.instance.segmentActiveCount++;
 
         //generate on available lanes
         for (int i = 0; i < lanes.OnGridLanes.Count; i++)
@@ -59,7 +68,11 @@ public class TileGeneration : MonoBehaviour
             }
 
             if (i == 4)
+            {
                 lastSegTrans = tile.transform;
+                tile.GetComponent<ObjectReturner>().inActiveSegment = true;
+            }
+            
         }
     }
 }
