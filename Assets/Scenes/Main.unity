@@ -3087,7 +3087,6 @@ GameObject:
   - component: {fileID: 1702983878}
   - component: {fileID: 1702983877}
   - component: {fileID: 1702983876}
-  - component: {fileID: 1702983879}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3140,19 +3139,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1702983879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1702983875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce60eae4d4cdfc49886d6df1c98c7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pd: {fileID: 11400000, guid: 6ce7bcf4feb19ec47b499e4c47ea3322, type: 2}
-  segmentActiveCount: 0
 --- !u!1001 &1711547740
 Prefab:
   m_ObjectHideFlags: 0
@@ -3637,6 +3623,7 @@ GameObject:
   - component: {fileID: 1906287972}
   - component: {fileID: 1906287971}
   - component: {fileID: 1906287973}
+  - component: {fileID: 1906287974}
   m_Layer: 0
   m_Name: Tile Generator
   m_TagString: Untagged
@@ -3704,6 +3691,19 @@ MonoBehaviour:
   gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   tileType: {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
+--- !u!114 &1906287974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1906287969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce60eae4d4cdfc49886d6df1c98c7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pd: {fileID: 11400000, guid: 6ce7bcf4feb19ec47b499e4c47ea3322, type: 2}
+  segmentActiveCount: 0
 --- !u!1 &1909448822
 GameObject:
   m_ObjectHideFlags: 0
