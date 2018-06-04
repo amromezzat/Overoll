@@ -22,6 +22,7 @@ public class WorkerLifeCycle : MonoBehaviour
     WorkerStrafe workerStrafe;
     JumpSlideFSM jumpSlideFSM;
     SeekLeaderPosition seekLeaderPosition;
+    RandomBehaviour randomBehaviour;
     //------------------------------------------------
 
     void Awake()
@@ -33,6 +34,7 @@ public class WorkerLifeCycle : MonoBehaviour
         workerStrafe = GetComponent<WorkerStrafe>();
         jumpSlideFSM = GetComponent<JumpSlideFSM>();
         seekLeaderPosition = GetComponent<SeekLeaderPosition>();
+        randomBehaviour = GetComponent<RandomBehaviour>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -42,6 +44,7 @@ public class WorkerLifeCycle : MonoBehaviour
         healthState = HealthState.Healthy;
         positionWorker.enabled = true;
         jumpSlideFSM.enabled = true;
+        randomBehaviour.enabled = true;
         rb.velocity = Vector3.zero;
     }
 
