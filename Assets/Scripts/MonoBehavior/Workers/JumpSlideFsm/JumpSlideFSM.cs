@@ -43,16 +43,17 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         actionsDic[interruptJumpState] = new List<IDoAction>() { runState, slideState, haltState, delayState };
         actionsDic[haltState] = new List<IDoAction>() { runState, jumpState, slideState };
         actionsDic[delayState] = new List<IDoAction>() { jumpState, slideState, haltState };
-        actionStack.Push(runState);
 
-        currentState = runState;
 
         RegisterListeners();
     }
 
     private void OnEnable()
     {
-        if(gd.gameState == GameState.Gameplay)
+        actionStack = new Stack<IDoAction>();
+        actionStack.Push(runState);
+        currentState = runState;
+        if (gd.gameState == GameState.Gameplay)
         {
             mAnimator.SetBool("RunAnim", true);
         }
@@ -147,7 +148,7 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
 
     public void Begin()
     {
-        if(isActiveAndEnabled)
+        if (isActiveAndEnabled)
             StartCoroutine(StartRunning());
         wc.onJump.AddListener(Jump);
         wc.onSlide.AddListener(Slide);
@@ -164,7 +165,7 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         wc.onJump.AddListener(Jump);
         wc.onSlide.AddListener(Slide);
     }
-    
+
     public void End()
     {
         wc.onJump.RemoveListener(Jump);
