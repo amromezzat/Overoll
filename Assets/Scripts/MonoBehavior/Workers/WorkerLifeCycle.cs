@@ -10,12 +10,15 @@ public class WorkerLifeCycle : MonoBehaviour
     public WorkerConfig wConfig;
     public TileConfig tc;
 
+    [HideInInspector]
     public HealthState healthState = HealthState.Healthy;
+    [HideInInspector]
     public int workerHealth;
+    [HideInInspector]
     Rigidbody rb;
 
     public bool isLeader = false;
-    TileReturner workerReturner;
+    ObjectReturner workerReturner;
     Animator animator;
     PositionWorker positionWorker;
     WorkerStrafe workerStrafe;
@@ -27,7 +30,7 @@ public class WorkerLifeCycle : MonoBehaviour
     void Awake()
     {
         workerHealth = 1;
-        workerReturner = GetComponent<TileReturner>();
+        workerReturner = GetComponent<ObjectReturner>();
         animator = GetComponent<Animator>();
         positionWorker = GetComponent<PositionWorker>();
         workerStrafe = GetComponent<WorkerStrafe>();
