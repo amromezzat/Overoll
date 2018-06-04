@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 54085142096316720}
   - component: {fileID: 114279595685951186}
   - component: {fileID: 114936955104218882}
-  - component: {fileID: 114627062952981014}
+  - component: {fileID: 114221965419489442}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -149,6 +149,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114221965419489442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448736720025150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
+  tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  poolableType: {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
+  inActiveSegment: 0
 --- !u!114 &114279595685951186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -163,20 +178,6 @@ MonoBehaviour:
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   ExtraVelocity: {x: 0, y: 0, z: 0}
---- !u!114 &114627062952981014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1448736720025150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
-  tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  poolableType: {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
 --- !u!114 &114936955104218882
 MonoBehaviour:
   m_ObjectHideFlags: 1
