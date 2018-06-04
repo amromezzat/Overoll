@@ -156,9 +156,9 @@ GameObject:
   - component: {fileID: 4365560028493826}
   - component: {fileID: 54954345666869628}
   - component: {fileID: 65048607356321992}
-  - component: {fileID: 114851496409502030}
   - component: {fileID: 114276512581577702}
   - component: {fileID: 114266556604895650}
+  - component: {fileID: 114785912936059398}
   m_Layer: 0
   m_Name: GearLeft
   m_TagString: Obstacle
@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsHealth: 1
---- !u!114 &114851496409502030
+--- !u!114 &114785912936059398
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -656,9 +656,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865114421742296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
+  m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
   tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   poolableType: {fileID: 11400000, guid: a5f362da046748b4d8f81a220673f65f, type: 2}
+  inActiveSegment: 0

@@ -70,7 +70,7 @@ public class TileGeneration : MonoBehaviour
             if (i == 4)
             {
                 lastSegTrans = tile.transform;
-                tile.GetComponent<ObjectReturner>().inActiveSegment = true;
+                tile.GetComponent<TileReturner>().inActiveSegment = true;
             }
             
         }

@@ -138,9 +138,9 @@ GameObject:
   - component: {fileID: 4456046558926034}
   - component: {fileID: 65827235863744830}
   - component: {fileID: 54070092645693576}
-  - component: {fileID: 114444649772268294}
   - component: {fileID: 114044558243186470}
   - component: {fileID: 114101494828426890}
+  - component: {fileID: 114817504586846418}
   m_Layer: 0
   m_Name: GearRight
   m_TagString: Obstacle
@@ -648,7 +648,7 @@ MonoBehaviour:
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   ExtraVelocity: {x: 0, y: 0, z: 0}
---- !u!114 &114444649772268294
+--- !u!114 &114817504586846418
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -656,9 +656,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867977476978328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
+  m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
   tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   poolableType: {fileID: 11400000, guid: 04341e926ab72b043b23ec993f18dbce, type: 2}
+  inActiveSegment: 0

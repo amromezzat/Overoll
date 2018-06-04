@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 23896366814507168}
   - component: {fileID: 65275429283145476}
   - component: {fileID: 54191973808170992}
-  - component: {fileID: 114450025160663256}
   - component: {fileID: 114213710364319600}
   - component: {fileID: 114240521858755328}
+  - component: {fileID: 114177793612305620}
   m_Layer: 0
   m_Name: CautionSign
   m_TagString: Obstacle
@@ -114,6 +114,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0046682884, y: 0.0022146977, z: 0.009875155}
   m_Center: {x: 0, y: 0, z: 0.004927818}
+--- !u!114 &114177793612305620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1548665004636794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
+  tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  poolableType: {fileID: 11400000, guid: f020894b4b1daa94c95d680ab240dea3, type: 2}
+  inActiveSegment: 0
 --- !u!114 &114213710364319600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,17 +155,3 @@ MonoBehaviour:
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   ExtraVelocity: {x: 0, y: 0, z: 0}
---- !u!114 &114450025160663256
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1548665004636794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
-  tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  poolableType: {fileID: 11400000, guid: f020894b4b1daa94c95d680ab240dea3, type: 2}
