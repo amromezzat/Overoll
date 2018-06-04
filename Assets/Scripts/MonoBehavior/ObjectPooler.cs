@@ -6,6 +6,8 @@ public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler instance;
     public PoolDatabase pd;
+
+    [HideInInspector]
     public int segmentActiveCount = 0;
 
     Dictionary<PoolableType, Queue<GameObject>> poolDict;
