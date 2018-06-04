@@ -3495,8 +3495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1807d485da3c354197923c08e9304fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 2
-  minSwipeDis: 50
+  minSwipeDis: 25
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
 --- !u!224 &1731499509 stripped
 RectTransform:
