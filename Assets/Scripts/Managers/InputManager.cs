@@ -5,19 +5,13 @@ using UnityEngine.Events;
 
 public class InputManager : MonoBehaviour
 {
-
-    public float maxTime;
-    public float minSwipeDis;
+    public float minSwipeDis = 125;
     public WorkerConfig wc;
-
-    float startTime;
-    float endTime;
 
     Vector3 startPos;
     Vector3 endPos;
 
     float swipeDis;
-    float swipeTime;
 
     private void Start()
     {
@@ -35,7 +29,7 @@ public class InputManager : MonoBehaviour
         WindowsControls();
 #endif
     }
-    
+
     void WindowsControls()
     {
         if (Input.GetKeyUp(KeyCode.UpArrow))
@@ -64,21 +58,18 @@ public class InputManager : MonoBehaviour
             //when screen touch starts record the time and position
             if (touch.phase == TouchPhase.Began)
             {
-                startTime = Time.time;
                 startPos = touch.position;
             }
             //when screen touch ends record the time and position
             //get the difference to determine if the touch
             //is considered a swipe and in what direction
-            else if (touch.phase == TouchPhase.Ended)
+            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
-                endTime = Time.time;
                 endPos = touch.position;
 
                 swipeDis = (endPos - startPos).magnitude;
-                swipeTime = (endTime - startTime);
 
-                if (swipeTime < maxTime && swipeDis > minSwipeDis)
+                if (swipeDis > minSwipeDis)
                 {
                     Swipe();
                 }
@@ -89,28 +80,28 @@ public class InputManager : MonoBehaviour
 
     void Swipe()
     {
-        Vector2 distance = startPos - endPos;
+        Vector2 delta = endPos - startPos;
 
-        if (Mathf.Abs(distance.x) > Mathf.Abs(distance.y))
+        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
         {
-            if (distance.x > 0)
+            if (delta.x < 0)
             {
                 wc.onLeft.Invoke();
             }
-            if (distance.x < 0)
+            else
             {
                 wc.onRight.Invoke();
             }
         }
 
-        else if (Mathf.Abs(distance.x) < Mathf.Abs(distance.y))
+        else
         {
-            if (distance.y > 0)
+            if (delta.y < 0)
             {
                 wc.onSlide.Invoke();
             }
 
-            if (distance.y < 0)
+            else
             {
                 wc.onJump.Invoke();
             }
