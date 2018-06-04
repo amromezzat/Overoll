@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class PickUpCoin : MonoBehaviour {
 
     public GameData gstate;
-    ObjectReturner cReturn;
+    TileReturner cReturn;
 
     void OnEnable()
     {
-        cReturn=GetComponent<ObjectReturner>();
+        cReturn=GetComponent<TileReturner>();
     }
 
     public void OnTriggerEnter(Collider other)
