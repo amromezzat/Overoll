@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     public Canvas inGameCanvas;
     public Canvas endGameCanvas;
 
+    AudioManager audioManager;
+
     private void OnEnable()
     {
         gameData.gameState = GameState.MainMenu;
@@ -53,7 +55,12 @@ public class GameManager : MonoBehaviour
         settingAnim = settingsBtn.GetComponent<Animator>();
         storeAnim = storeBtn.GetComponent<Animator>();
 
+        // will be used later with fx
+        audioManager = GetComponent<AudioManager>();
+;
+
         gameData.onEnd.AddListener(EndGame);
+
     }
 
     public void PlayBtnEntered()
