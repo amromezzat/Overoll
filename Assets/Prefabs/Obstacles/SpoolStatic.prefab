@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 23232451180924944}
   - component: {fileID: 65949401211691758}
   - component: {fileID: 54226079662615242}
-  - component: {fileID: 114820577579243220}
   - component: {fileID: 114239043982578304}
   - component: {fileID: 114742503601013164}
+  - component: {fileID: 114563296869936222}
   m_Layer: 0
   m_Name: SpoolStatic
   m_TagString: Obstacle
@@ -126,6 +126,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsHealth: 1
+--- !u!114 &114563296869936222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1052967250663098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
+  tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  poolableType: {fileID: 11400000, guid: 3e86c4a97f571eb438a8ba8bee42a600, type: 2}
+  inActiveSegment: 0
 --- !u!114 &114742503601013164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,17 +155,3 @@ MonoBehaviour:
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   ExtraVelocity: {x: 0, y: 0, z: 0}
---- !u!114 &114820577579243220
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1052967250663098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
-  tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  poolableType: {fileID: 11400000, guid: 3e86c4a97f571eb438a8ba8bee42a600, type: 2}

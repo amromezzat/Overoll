@@ -4,35 +4,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(WorkerReturner))]
 public class WorkerLifeCycle : MonoBehaviour
 {
     public GameData gData;
     public WorkerConfig wConfig;
     public TileConfig tc;
 
+    [HideInInspector]
     public HealthState healthState = HealthState.Healthy;
+    [HideInInspector]
     public int workerHealth;
+    [HideInInspector]
     Rigidbody rb;
 
     public bool isLeader = false;
-    WorkerReturner workerReturner;
+    ObjectReturner workerReturner;
     Animator animator;
     PositionWorker positionWorker;
     WorkerStrafe workerStrafe;
     JumpSlideFSM jumpSlideFSM;
     SeekLeaderPosition seekLeaderPosition;
+    RandomBehaviour randomBehaviour;
     //------------------------------------------------
 
     void Awake()
     {
         workerHealth = 1;
-        workerReturner = GetComponent<WorkerReturner>();
+        workerReturner = GetComponent<ObjectReturner>();
         animator = GetComponent<Animator>();
         positionWorker = GetComponent<PositionWorker>();
         workerStrafe = GetComponent<WorkerStrafe>();
         jumpSlideFSM = GetComponent<JumpSlideFSM>();
         seekLeaderPosition = GetComponent<SeekLeaderPosition>();
+        randomBehaviour = GetComponent<RandomBehaviour>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -42,6 +46,7 @@ public class WorkerLifeCycle : MonoBehaviour
         healthState = HealthState.Healthy;
         positionWorker.enabled = true;
         jumpSlideFSM.enabled = true;
+        randomBehaviour.enabled = true;
         rb.velocity = Vector3.zero;
     }
 

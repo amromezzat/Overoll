@@ -48,7 +48,7 @@ public class EnvGenerator : MonoBehaviour, iHalt
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1, 0, 0, 0.5F);
+        Gizmos.color = new Color(0,1, 0, 0.5F);
         Gizmos.DrawCube(transform.position, new Vector3(10, 10, 1));
     }
 

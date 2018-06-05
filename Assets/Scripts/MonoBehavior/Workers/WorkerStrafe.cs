@@ -26,11 +26,11 @@ public class WorkerStrafe : MonoBehaviour, iHalt
         if (strafing)
         {
             float completedPortion = strafeTimer / strafeDuration;
-            float exponentialPortion = completedPortion * completedPortion;
-            float xPos = Mathf.Lerp(transform.position.x, lanes.CurrentLane.laneCenter, exponentialPortion);
+            float squarePortion = completedPortion * completedPortion;
+            float xPos = Mathf.Lerp(transform.position.x, lanes.CurrentLane.laneCenter, squarePortion);
             transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
             strafeTimer += Time.deltaTime;
-            if (exponentialPortion >= 1)
+            if (squarePortion >= 1)
             {
                 strafing = false;
                 animator.SetBool("StrafeRightAnim", false);

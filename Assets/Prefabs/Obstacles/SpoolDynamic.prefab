@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 23232451180924944}
   - component: {fileID: 65949401211691758}
   - component: {fileID: 54986122697025080}
-  - component: {fileID: 114483019376836810}
   - component: {fileID: 114144136668395190}
   - component: {fileID: 114001088696422884}
+  - component: {fileID: 114618954772157720}
   m_Layer: 0
   m_Name: SpoolDynamic
   m_TagString: Obstacle
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsHealth: 1
---- !u!114 &114483019376836810
+--- !u!114 &114618954772157720
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -148,9 +148,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1052967250663098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
+  m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
   tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   poolableType: {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+  inActiveSegment: 0

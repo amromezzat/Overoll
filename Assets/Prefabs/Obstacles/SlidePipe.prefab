@@ -38,9 +38,9 @@ GameObject:
   - component: {fileID: 4413723064125132}
   - component: {fileID: 65222430610999932}
   - component: {fileID: 54959397831474836}
-  - component: {fileID: 114744341937837552}
   - component: {fileID: 114144674962963486}
   - component: {fileID: 114798111730327094}
+  - component: {fileID: 114489123268721338}
   m_Layer: 0
   m_Name: SlidePipe
   m_TagString: Obstacle
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsHealth: 1
---- !u!114 &114744341937837552
+--- !u!114 &114489123268721338
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1099,12 +1099,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1171129396798156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
+  m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
   tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   poolableType: {fileID: 11400000, guid: d158b12bdb0c1724dacf966c151628a3, type: 2}
+  inActiveSegment: 0
 --- !u!114 &114798111730327094
 MonoBehaviour:
   m_ObjectHideFlags: 1
