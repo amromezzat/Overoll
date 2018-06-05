@@ -43,10 +43,10 @@ MonoBehaviour:
   turnSpeed: 25
   workersSepDis: 0.8
   arrivalSlowingRad: 1
-  maxSepForce: 30
+  maxSepForce: 60
   maxFolForce: 10
   maxSpeed: 10
-  aheadFollowPoint: -0
+  aheadFollowPoint: -1.730449
   workers: []
   hrWorkers: []
   managerWorkers: []

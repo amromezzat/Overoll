@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 114149315908789534}
   - component: {fileID: 114521662834685148}
   - component: {fileID: 114492669693019288}
+  - component: {fileID: 114500639473722808}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Worker
@@ -1399,6 +1400,19 @@ MonoBehaviour:
   tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   poolableType: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
   inActiveSegment: 0
+--- !u!114 &114500639473722808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505689317082964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ffb03efc2a18134588baaf33a635501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
+  strafeDuration: 0.5
 --- !u!114 &114521662834685148
 MonoBehaviour:
   m_ObjectHideFlags: 1
