@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 173071368}
   - component: {fileID: 173071367}
   - component: {fileID: 173071369}
+  - component: {fileID: 173071370}
   m_Layer: 0
   m_Name: Game Manger
   m_TagString: Untagged
@@ -229,6 +230,24 @@ MonoBehaviour:
   coinNum: {fileID: 1663203232}
   gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   wConfig: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+--- !u!114 &173071370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 173071366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97bc00751d43534aa44ada037cd5656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: TempSoundTrack
+    clip: {fileID: 8300000, guid: dd1bb438ccb5a734f9f2135c10994098, type: 3}
+    volume: 1
+    pitch: 0.813
+    loop: 1
+    source: {fileID: 0}
 --- !u!1 &180992304 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1980837503801966, guid: 9c3f44c4644abb54d91a8afb45b61c80,
