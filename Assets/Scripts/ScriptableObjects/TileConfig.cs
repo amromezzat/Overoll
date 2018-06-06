@@ -11,6 +11,7 @@ public class TileConfig : ScriptableObject
     public float laneWidth = 1;
     public float disableSafeDistance = 10;
     public float activeTilesNum = 30;
+    public float keepInLaneForce = 1;
 
     [HideInInspector]
     public float spawnTime;//changed by game manager

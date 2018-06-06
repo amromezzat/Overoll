@@ -16,6 +16,7 @@ MonoBehaviour:
   laneWidth: 1
   disableSafeDistance: -10
   activeTilesNum: 30
+  keepInLaneForce: 3
   spawnTime: 0.2
   produceNextSegment:
     m_PersistentCalls:
