@@ -26,6 +26,7 @@ public class WorkerLifeCycle : MonoBehaviour
     SeekLeaderPosition seekLeaderPosition;
     RandomBehaviour randomBehaviour;
     bool fallingToDeath = false;
+
     //------------------------------------------------
 
     void Awake()
@@ -73,7 +74,7 @@ public class WorkerLifeCycle : MonoBehaviour
 
     private void Update()
     {
-        if(gData.gameState == GameState.GameOver)
+        if (gData.gameState == GameState.GameOver)
         {
             rb.velocity = Vector3.zero;
         }
