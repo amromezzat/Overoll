@@ -5,10 +5,10 @@ using UnityEngine;
 public class Jump : IDoAction
 {
     public float interruptTime = 10;
+    public float jumpDuration;
+    public float jumpHeight;
 
     float jumpTimer;
-    float jumpDuration = 1;
-    float jumpHeight = 2;
 
     public void OnStateEnter(Animator animator)
     {
