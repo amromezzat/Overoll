@@ -9,8 +9,6 @@ public class WorkerStrafe : MonoBehaviour, iHalt
     public WorkerConfig wc;
     public GameData gameData;
 
-    public float strafeDuration = 0.1f;
-
     Animator animator;
     bool strafing = false;
     float strafeTimer = 0;
@@ -25,7 +23,7 @@ public class WorkerStrafe : MonoBehaviour, iHalt
     {
         if (strafing)
         {
-            float completedPortion = strafeTimer / strafeDuration;
+            float completedPortion = strafeTimer / wc.strafeDuration;
             float squarePortion = completedPortion * completedPortion;
             float xPos = Mathf.Lerp(transform.position.x, lanes.CurrentLane.laneCenter, squarePortion);
             transform.position = new Vector3(xPos, transform.position.y, transform.position.z);

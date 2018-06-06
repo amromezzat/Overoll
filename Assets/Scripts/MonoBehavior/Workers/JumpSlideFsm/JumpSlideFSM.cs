@@ -37,6 +37,10 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         mAnimator = GetComponent<Animator>();
 
         slideState = new Slide(mCollider);
+        slideState.slideDuration = wc.slideDuration;
+        jumpState.jumpDuration = wc.jumpDuration;
+        jumpState.jumpHeight = wc.jumpHeight;
+
         actionsDic[slideState] = new List<IDoAction>() { runState, jumpState, haltState };
         actionsDic[jumpState] = new List<IDoAction>() { runState, interruptJumpState, haltState };
         actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState, haltState, delayState };
