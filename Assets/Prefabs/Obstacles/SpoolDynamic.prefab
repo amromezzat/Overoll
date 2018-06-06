@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114144136668395190}
   - component: {fileID: 114001088696422884}
   - component: {fileID: 114618954772157720}
+  - component: {fileID: 95977641855964850}
   m_Layer: 0
   m_Name: SpoolDynamic
   m_TagString: Obstacle
@@ -114,6 +115,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01859262, y: 0.01859262, z: 0.028132409}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95977641855964850
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1052967250663098}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 352a7bfb45f73eb4dbea5c7d5ad2a3be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114001088696422884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
-  ExtraVelocity: {x: 0, y: 0, z: 0}
+  ExtraVelocity: {x: 0, y: 0, z: -2}
 --- !u!114 &114144136668395190
 MonoBehaviour:
   m_ObjectHideFlags: 1
