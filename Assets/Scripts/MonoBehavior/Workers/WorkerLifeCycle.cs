@@ -88,6 +88,7 @@ public class WorkerLifeCycle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
+            FindObjectOfType<AudioManager>().PlaySound("WorkerDeath");
             ICollidable collidableOther = other.GetComponent<ICollidable>();
 
             int obsHealth = collidableOther.Gethealth();
