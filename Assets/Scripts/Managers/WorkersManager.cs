@@ -66,5 +66,6 @@ public class WorkersManager : MonoBehaviour
         wc.leader.GetComponent<WorkerStrafe>().enabled = true;
         wc.leader.GetComponent<SeekLeaderPosition>().enabled = true;
         wc.leader.GetComponent<RandomBehaviour>().enabled = false;
+        wc.leader.GetComponent<PositionWorker>().enabled = false;
     }
 }
