@@ -109,6 +109,7 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
             }
         }
         ChangeState(actionStack.Pop());
+        FindObjectOfType<AudioManager>().PlaySound("WorkerJump");
     }
 
     void Slide()

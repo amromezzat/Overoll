@@ -17,9 +17,10 @@ public class PickUpCoin : MonoBehaviour {
     {
         if (other.gameObject.tag == "Worker")
         {
+            FindObjectOfType<AudioManager>().PlaySound("Coin");
+
             cReturn.ReturnToObjectPool();
             gstate.CoinCount += 1;
-          //  Debug.Log(gstate.CoinCount);
         }
      }
 }
