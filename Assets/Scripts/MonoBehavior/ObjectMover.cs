@@ -35,7 +35,11 @@ public class ObjectMover : MonoBehaviour, iHalt
 
     void MoveObj()
     {
-        rb.velocity = ExtraVelocity + Vector3.back * tc.tileSpeed;
+        rb.velocity = Vector3.back * tc.tileSpeed;
+        if (transform.position.z > -3)
+        {
+            rb.velocity += ExtraVelocity;
+        }
     }
 
     public void Halt()
