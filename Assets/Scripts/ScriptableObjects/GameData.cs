@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "GameData", menuName = "Config/GameData")]
 public class GameData : ScriptableObject
 {
-    [HideInInspector]
+    
     public int difficulty;
     [HideInInspector]
     public int hrNum;
