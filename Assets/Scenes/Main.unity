@@ -3655,7 +3655,7 @@ MonoBehaviour:
   sounds:
   - name: TempSoundTrack
     clip: {fileID: 8300000, guid: dd1bb438ccb5a734f9f2135c10994098, type: 3}
-    volume: 0.855
+    volume: 0.357
     pitch: 0.813
     loop: 1
     source: {fileID: 0}
@@ -3667,14 +3667,14 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Coin
     clip: {fileID: 8300000, guid: 816b3b9b48cc97c4db3cb78c020be918, type: 3}
-    volume: 1
+    volume: 0.465
     pitch: 0.813
     loop: 0
     source: {fileID: 0}
-  - name: DeadSound
+  - name: WorkerDeath
     clip: {fileID: 8300000, guid: b7f4c76d414eac748addcfe74c2785b2, type: 3}
     volume: 1
-    pitch: 0.813
+    pitch: 2.5
     loop: 0
     source: {fileID: 0}
 --- !u!4 &1722877321
