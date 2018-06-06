@@ -23,7 +23,7 @@ public class WorkersManager : MonoBehaviour
     void Update()
     {
         wc.aheadFollowPoint = -Mathf.Log10(wc.workers.Count) - 0.5f;
-        workerPrice = wc.workers.Count * wPFactor;
+        workerPrice = (wc.workers.Count + 1) * wPFactor;
 
         if (workerPrice > gData.CoinCount)
         {
@@ -66,5 +66,6 @@ public class WorkersManager : MonoBehaviour
         wc.leader.GetComponent<WorkerStrafe>().enabled = true;
         wc.leader.GetComponent<SeekLeaderPosition>().enabled = true;
         wc.leader.GetComponent<RandomBehaviour>().enabled = false;
+        wc.leader.GetComponent<PositionWorker>().enabled = false;
     }
 }

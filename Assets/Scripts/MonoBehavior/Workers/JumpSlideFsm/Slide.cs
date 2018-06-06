@@ -5,9 +5,10 @@ using UnityEngine;
 public class Slide : IDoAction
 {
     public float interruptTime = 10;
+    public float slideDuration;
 
-    float slideTime;
     BoxCollider collider;
+    float slideTimer = 0;
 
     public Slide(BoxCollider _collider)
     {
@@ -16,7 +17,7 @@ public class Slide : IDoAction
 
     public void OnStateEnter(Animator animator)
     {
-        slideTime = 0.5f;
+        slideTimer = 0;
         animator.SetBool("DuckAnim", true);
         Vector3 newColliderSize = collider.size;
         newColliderSize.y *= 0.5f;
@@ -29,8 +30,8 @@ public class Slide : IDoAction
     public ActionState OnStateExecution(Transform transform, float deltaTime)
     {
         interruptTime -= deltaTime;
-        slideTime -= deltaTime;
-        if (slideTime <= 0)
+        slideTimer += deltaTime;
+        if (slideTimer >= slideDuration)
         {
             return ActionState.FINISHED;
         }
