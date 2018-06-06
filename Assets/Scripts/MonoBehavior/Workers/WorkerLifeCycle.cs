@@ -25,6 +25,7 @@ public class WorkerLifeCycle : MonoBehaviour
     JumpSlideFSM jumpSlideFSM;
     SeekLeaderPosition seekLeaderPosition;
     RandomBehaviour randomBehaviour;
+    bool fallingToDeath = false;
     //------------------------------------------------
 
     void Awake()
@@ -48,11 +49,13 @@ public class WorkerLifeCycle : MonoBehaviour
         jumpSlideFSM.enabled = true;
         randomBehaviour.enabled = true;
         rb.velocity = Vector3.zero;
+        fallingToDeath = false;
+        transform.position = new Vector3(0, wConfig.groundLevel, 0);
     }
 
     IEnumerator DeathCoroutine()
     {
-        animator.SetTrigger("DeathAnim");
+        healthState = HealthState.Wrecked;
         positionWorker.enabled = false;
         workerStrafe.enabled = false;
         jumpSlideFSM.enabled = false;
@@ -74,11 +77,15 @@ public class WorkerLifeCycle : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
         }
+        if (fallingToDeath)
+        {
+            transform.position -= new Vector3(0, 0.05f);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Obstacle")
+        if (other.gameObject.CompareTag("Obstacle"))
         {
             ICollidable collidableOther = other.GetComponent<ICollidable>();
 
@@ -91,16 +98,16 @@ public class WorkerLifeCycle : MonoBehaviour
 
             if (workerHealth <= 0)
             {
-                healthState = HealthState.Wrecked;
-
+                animator.SetTrigger("DeathAnim");
                 StartCoroutine(DeathCoroutine());
             }
 
         }
 
-        if (other.gameObject.tag == "collider")
+        if (other.gameObject.CompareTag("FallCollider"))
         {
-            healthState = HealthState.Wrecked;
+            animator.SetTrigger("FallToDeathAnim");
+            fallingToDeath = true;
             StartCoroutine(DeathCoroutine());
         }
     }
