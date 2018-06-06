@@ -88,6 +88,12 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         }
     }
 
+    void ResumeState(IDoAction resumedState)
+    {
+        currentState.OnStateExit(mAnimator);
+        currentState = resumedState;
+    }
+
     void Jump()
     {
         if (!isActiveAndEnabled)
@@ -161,12 +167,15 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
 
     public void Halt()
     {
+        actionStack.Push(currentState);
+        ChangeState(haltState);
         wc.onJump.RemoveListener(Jump);
         wc.onSlide.RemoveListener(Slide);
     }
 
     public void Resume()
     {
+        ResumeState(actionStack.Pop());
         wc.onJump.AddListener(Jump);
         wc.onSlide.AddListener(Slide);
     }
