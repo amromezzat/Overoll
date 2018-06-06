@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "WorkerConfig", menuName = "Config/WorkerConfig")]
-public class WorkerConfig : ScriptableObject {
-    
+public class WorkerConfig : ScriptableObject
+{
+
     public GameObject leader;
 
     //Events available for other classes to register to
@@ -20,13 +21,14 @@ public class WorkerConfig : ScriptableObject {
     [HideInInspector]
     public UnityEvent onLeaderDeath;
 
-    [Header("Jump Attributes")]
-    public int jumpSpeed = 20;
-    public float gravityFactor = 20;
+    [Header("Jump Slide Attributes")]
+    public float jumpDuration = 1;
+    public float slideDuration = 1;
+    public float jumpHeight = 2;
     public float groundLevel = 0.25f;//worker y position
 
     [Header("Moving Attributes")]
-    public int turnSpeed = 15;
+    public float strafeDuration = 0.1f;
 
     [Header("Crowd Behavior")]
     public float workersSepDis = 0.8f;//distance workers keep from each other
@@ -36,13 +38,13 @@ public class WorkerConfig : ScriptableObject {
     public float maxSpeed = 10;
     [HideInInspector]
     public float aheadFollowPoint = 5;//distance infront of leader for workers to follow
-  
+
     public List<GameObject> workers;
     [HideInInspector]
     public List<GameObject> hrWorkers;
     [HideInInspector]
     public List<GameObject> managerWorkers;
-   
+
     [Header("Workers Types")]
     public PoolableType worker;
     public PoolableType HR;
