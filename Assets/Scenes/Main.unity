@@ -4025,7 +4025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c6938446d84af4881f44c17b4bfb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shift: {x: 0, y: 0, z: 1}
+  shift: {x: 0, y: 0, z: 20}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &1906287972
@@ -4041,7 +4041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfPrefabs:
   - {fileID: 1173702119629512, guid: 88448855c6f66bf4fa851c65be65e1dd, type: 2}
-  poolSize: 1
+  poolSize: 5
   pool: []
   activeTileCount: 0
 --- !u!114 &1906287973
