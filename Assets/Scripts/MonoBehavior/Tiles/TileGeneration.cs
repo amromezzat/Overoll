@@ -19,7 +19,6 @@ public class TileGeneration : MonoBehaviour
 
     private void Awake()
     {
-        tc.produceNextSegment.AddListener(GetNextSegment);
         InitPattern();
         lastSegTrans = transform;
     }
@@ -41,6 +40,10 @@ public class TileGeneration : MonoBehaviour
 
     void GetNextSegment()
     {
+        if(currentPattern == null || currentSegmentIndex > currentPattern.Count)
+        {
+            print("ss");
+        }
 
         Segment currentSegment = currentPattern[currentSegmentIndex++];
 

@@ -20,10 +20,10 @@ public class Slide : IDoAction
         slideTimer = 0;
         animator.SetBool("DuckAnim", true);
         Vector3 newColliderSize = collider.size;
-        newColliderSize.y *= 0.5f;
+        newColliderSize.y *= 0.25f;
         collider.size = newColliderSize;
         Vector3 colliderNewPos = collider.transform.position;
-        colliderNewPos.y *= 0.5f;
+        colliderNewPos.y *= 0.25f;
         collider.transform.position = colliderNewPos;
     }
 
@@ -44,10 +44,10 @@ public class Slide : IDoAction
         interruptTime = 10;
         animator.SetBool("DuckAnim", false);
         Vector3 newColliderSize = collider.size;
-        newColliderSize.y *= 2;
+        newColliderSize.y *= 4;
         collider.size = newColliderSize;
         Vector3 colliderNewPos = collider.transform.position;
-        colliderNewPos.y *= 2;
+        colliderNewPos.y *= 4;
         collider.transform.position = colliderNewPos;
     }
 }
