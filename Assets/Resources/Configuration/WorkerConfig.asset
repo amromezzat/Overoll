@@ -37,16 +37,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  jumpSpeed: 10
-  gravityFactor: 1.5
+  jumpDuration: 0.6
+  slideDuration: 1
+  jumpHeight: 1.5
   groundLevel: 0.25
-  turnSpeed: 25
+  strafeDuration: 0.1
   workersSepDis: 0.8
   arrivalSlowingRad: 1
   maxSepForce: 60
   maxFolForce: 10
   maxSpeed: 10
-  aheadFollowPoint: -1.730449
+  aheadFollowPoint: Infinity
   workers: []
   hrWorkers: []
   managerWorkers: []

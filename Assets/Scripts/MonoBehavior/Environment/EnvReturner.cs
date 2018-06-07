@@ -16,7 +16,7 @@ public class EnvReturner : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.transform.position.z < -20)
+        if (gameObject.transform.position.z < -40)
         {
             op.ReturnObjectToPool(gameObject);
         }

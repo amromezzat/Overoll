@@ -3797,6 +3797,12 @@ MonoBehaviour:
     pitch: 2.5
     loop: 0
     source: {fileID: 0}
+  - name: WorkerJump
+    clip: {fileID: 8300000, guid: 3689aa5633808ed4ca1a563cd756e559, type: 3}
+    volume: 0.296
+    pitch: 2.5
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1722877321
 Transform:
   m_ObjectHideFlags: 0
@@ -4007,7 +4013,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906287969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 20}
+  m_LocalPosition: {x: 0, y: -1.8, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1418835377}
@@ -4025,7 +4031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c6938446d84af4881f44c17b4bfb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shift: {x: 0, y: 0, z: 20}
+  shift: {x: 0, y: 0, z: 40}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
 --- !u!114 &1906287972
