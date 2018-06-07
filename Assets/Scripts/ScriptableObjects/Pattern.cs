@@ -22,6 +22,10 @@ public class Pattern : ScriptableObject
     {
         get
         {
+            if(index >= segmentList.Count)
+            {
+                return segmentList[0];
+            }
             return segmentList[index];
         }
         set

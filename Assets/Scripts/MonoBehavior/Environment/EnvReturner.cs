@@ -4,7 +4,6 @@ using UnityEngine;
 /// <summary>
 /// This class returns the tile back to the pool
 /// </summary>
-[RequireComponent(typeof(EnvPooler))]
 public class EnvReturner : MonoBehaviour
 {
     public TileConfig tc;
@@ -17,7 +16,7 @@ public class EnvReturner : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.transform.position.z < tc.disableSafeDistance)
+        if (gameObject.transform.position.z < -20)
         {
             op.ReturnObjectToPool(gameObject);
         }
