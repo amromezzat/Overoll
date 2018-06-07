@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   difficulty: 0
-  workersNum: 0
   hrNum: 0
   bossNum: 0
   leaderType: {fileID: 0}
@@ -37,5 +36,4 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  CoinCount: 12
-  safeZone: -10
+  CoinCount: 20
