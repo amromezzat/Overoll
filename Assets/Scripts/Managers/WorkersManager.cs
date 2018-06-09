@@ -22,7 +22,7 @@ public class WorkersManager : MonoBehaviour
 
     void Update()
     {
-        wc.aheadFollowPoint = -Mathf.Log10(wc.workers.Count) - 0.5f;
+        wc.aheadFollowPoint = -Mathf.Log10(wc.workers.Count + 1) - 0.5f;
         workerPrice = (wc.workers.Count + 1) * wPFactor;
 
         if (workerPrice > gData.CoinCount)
