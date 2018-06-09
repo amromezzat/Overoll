@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 173071368}
   - component: {fileID: 173071367}
   - component: {fileID: 173071369}
+  - component: {fileID: 173071370}
   m_Layer: 0
   m_Name: Game Manger
   m_TagString: Untagged
@@ -203,6 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   pauseBtn: {fileID: 1334711767}
   restartBtn: {fileID: 1467370785}
   gamePausedTxt: {fileID: 1911234595}
@@ -243,6 +245,18 @@ MonoBehaviour:
   coinNum: {fileID: 1663203232}
   gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   wConfig: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+--- !u!114 &173071370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 173071366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad606f10029810b4f8c63fd4e6e553c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wManager: {fileID: 1802761230}
 --- !u!1 &180992304 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1980837503801966, guid: 9c3f44c4644abb54d91a8afb45b61c80,
@@ -264,6 +278,28 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3e9a28e3064a0d741b33403035c18175, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &220018269 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1658941036735590, guid: da96e29fe3a7ade49b8be1c2a094b162,
+    type: 2}
+  m_PrefabInternal: {fileID: 1334711765}
+--- !u!95 &220018271
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 220018269}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d0b2a64d4c80a264ab7b36704483db89, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2338,6 +2374,26 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224154430791426006, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 636
+      objectReference: {fileID: 0}
+    - target: {fileID: 224154430791426006, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 164
+      objectReference: {fileID: 0}
+    - target: {fileID: 224154430791426006, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -820
+      objectReference: {fileID: 0}
+    - target: {fileID: 224154430791426006, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 168
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114643612175201690, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 2}
@@ -3980,12 +4036,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leader: {fileID: 1600454066}
-  myButton: {fileID: 1196388978}
+  addWorkerBtn: {fileID: 1196388978}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   workerPrice: 0
   wPFactor: 2
+  boolForTutorial: 0
 --- !u!1 &1906287969
 GameObject:
   m_ObjectHideFlags: 0
