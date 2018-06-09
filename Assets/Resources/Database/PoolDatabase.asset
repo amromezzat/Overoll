@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolableList:
   - type: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
-    count: 10
+    count: 5
     prefab: {fileID: 1505689317082964, guid: 6f2e215c257f3424e9b0f96e775b6e2b, type: 2}
   - type: {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
-    count: 10
+    count: 5
     prefab: {fileID: 1448736720025150, guid: 070da05128664fc43bc280f53101b27d, type: 2}
   - type: {fileID: 11400000, guid: a5f362da046748b4d8f81a220673f65f, type: 2}
     count: 2
@@ -37,8 +37,8 @@ MonoBehaviour:
     count: 2
     prefab: {fileID: 1548665004636794, guid: e1cb3c4d39c839b4fb03361b69f98da3, type: 2}
   - type: {fileID: 11400000, guid: 6dcf70ceecc17bc47b536d4e00689755, type: 2}
-    count: 10
+    count: 2
     prefab: {fileID: 1572582197028154, guid: 990d85ea701ab9942b7c6185b5453241, type: 2}
   - type: {fileID: 11400000, guid: d158b12bdb0c1724dacf966c151628a3, type: 2}
-    count: 10
+    count: 2
     prefab: {fileID: 1965103934549522, guid: 28baffa021571bf46a4b761805b76fde, type: 2}
