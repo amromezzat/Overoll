@@ -74,7 +74,7 @@ public class LanesDatabase : ScriptableObject
         }
     }
 
-    public void ResetLanes()
+    private void OnEnable()
     {
         currentLane = gridLanes[2];
         currentLaneIndex = 2;
