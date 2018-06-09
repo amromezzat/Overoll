@@ -7,9 +7,9 @@ public class Run : IDoAction {
     {
     }
 
-    public ActionState OnStateExecution(Transform transform, float deltaTime)
+    public bool OnStateExecution(Transform transform, float deltaTime)
     {
-        return ActionState.RUNNING;
+        return true;
     }
 
     public void OnStateExit(Animator animator)

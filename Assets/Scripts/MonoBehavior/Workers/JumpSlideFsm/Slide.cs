@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Slide : IDoAction
 {
-    public float interruptTime = 10;
     public float slideDuration;
 
     BoxCollider collider;
@@ -27,22 +26,22 @@ public class Slide : IDoAction
         collider.transform.position = colliderNewPos;
     }
 
-    public ActionState OnStateExecution(Transform transform, float deltaTime)
+    public bool OnStateExecution(Transform transform, float deltaTime)
     {
-        interruptTime -= deltaTime;
         slideTimer += deltaTime;
         if (slideTimer >= slideDuration)
         {
-            return ActionState.FINISHED;
+            return false;
         }
-
-        return ActionState.RUNNING;
+        return true;
     }
 
     public void OnStateExit(Animator animator)
     {
-        interruptTime = 10;
-        animator.SetBool("DuckAnim", false);
+        if (animator.gameObject.activeSelf)
+        {
+            animator.SetBool("DuckAnim", false);
+        }
         Vector3 newColliderSize = collider.size;
         newColliderSize.y *= 4;
         collider.size = newColliderSize;

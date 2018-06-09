@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Jump : IDoAction
 {
-    public float interruptTime = 10;
     public float jumpDuration;
     public float jumpHeight;
 
@@ -16,9 +15,8 @@ public class Jump : IDoAction
         jumpTimer = 0;
     }
 
-    public ActionState OnStateExecution(Transform transform, float deltaTime)
+    public bool OnStateExecution(Transform transform, float deltaTime)
     {
-        interruptTime -= deltaTime;
 
         Vector3 newPos = transform.position;
         jumpTimer += deltaTime;
@@ -27,14 +25,16 @@ public class Jump : IDoAction
         transform.position = newPos;
         if (transform.position.y <= 0.25)
         {
-            return ActionState.FINISHED;
+            return false;
         }
-        return ActionState.RUNNING;
+        return true;
     }
 
     public void OnStateExit(Animator animator)
     {
-        interruptTime = 10;
-        animator.SetBool("JumpAnim", false);
+        if (animator.gameObject.activeSelf)
+        {
+            animator.SetBool("JumpAnim", false);
+        }
     }
 }

@@ -9,9 +9,9 @@ public class HaltState : IDoAction
         animator.speed = 0;
     }
 
-    public ActionState OnStateExecution(Transform transform, float deltaTime)
+    public bool OnStateExecution(Transform transform, float deltaTime)
     {
-        return ActionState.RUNNING;
+        return true;
     }
 
     public void OnStateExit(Animator animator)
