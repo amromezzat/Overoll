@@ -98,13 +98,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void GameHalt()
+    public void GameHalt()
     {
         gameData.gameState = GameState.Pause;
         gameData.onPause.Invoke();
     }
 
-    void GameResume()
+    public void GameResume()
     {
         gameData.gameState = GameState.Gameplay;
         gameData.OnResume.Invoke();
