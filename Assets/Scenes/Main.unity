@@ -184,7 +184,6 @@ GameObject:
   - component: {fileID: 173071368}
   - component: {fileID: 173071367}
   - component: {fileID: 173071369}
-  - component: {fileID: 173071370}
   m_Layer: 0
   m_Name: Game Manger
   m_TagString: Untagged
@@ -204,7 +203,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
-  lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   pauseBtn: {fileID: 1334711767}
   restartBtn: {fileID: 1467370785}
   gamePausedTxt: {fileID: 1911234595}
@@ -245,18 +243,6 @@ MonoBehaviour:
   coinNum: {fileID: 1663203232}
   gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   wConfig: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
---- !u!114 &173071370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 173071366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad606f10029810b4f8c63fd4e6e553c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wManager: {fileID: 1802761230}
 --- !u!1 &180992304 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1980837503801966, guid: 9c3f44c4644abb54d91a8afb45b61c80,

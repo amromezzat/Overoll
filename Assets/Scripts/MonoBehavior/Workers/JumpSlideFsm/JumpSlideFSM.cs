@@ -41,6 +41,7 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         jumpState.jumpDuration = wc.jumpDuration;
         jumpState.jumpHeight = wc.jumpHeight;
 
+        //allowed transition states
         actionsDic[slideState] = new List<IDoAction>() { runState, jumpState, haltState };
         actionsDic[jumpState] = new List<IDoAction>() { runState, interruptJumpState, haltState };
         actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState, haltState, delayState };
@@ -78,6 +79,7 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         }
     }
 
+    //change to a new state after concluding the current one
     void ChangeState(IDoAction nextState)
     {
         if (actionsDic[currentState].Contains(nextState))
@@ -88,6 +90,7 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         }
     }
 
+    //resume a paused state
     void ResumeState(IDoAction resumedState)
     {
         currentState.OnStateExit(mAnimator);
@@ -104,10 +107,12 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         actionStack.Push(jumpState);
         if (delayTime > 0)
         {
+            //if there is an already paused slide state add an interrupt to the current slide state
             if (currentState == delayState && actionStack.Peek() == slideState)
             {
                 ((Slide)actionStack.Peek()).interruptTime = delayTime;
             }
+            //else just add a delay before activating the jump
             else
             {
                 delayState.Delay = delayTime;
@@ -125,6 +130,7 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
             return;
         }
         float delayTime = (wc.leader.transform.position.z - transform.position.z) / tc.tileSpeed;
+        //if jumping interrupt jump and slide
         if (currentState == jumpState)
         {
             actionStack.Push(slideState);
@@ -134,12 +140,15 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         {
             actionStack.Push(slideState);
         }
+
         if (delayTime > 0)
         {
+            //if there is an already paused jump state add an interrupt to the current jump state
             if (currentState == delayState && actionStack.Peek() == jumpState)
             {
                 ((Jump)actionStack.Peek()).interruptTime = delayTime;
             }
+            //else just add a delay before activating the slide
             else
             {
                 delayState.Delay = delayTime;
