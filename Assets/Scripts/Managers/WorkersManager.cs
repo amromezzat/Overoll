@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class WorkersManager : MonoBehaviour
 {
     public GameObject leader;
-    public Button myButton;
+    public Button addWorkerBtn;
     public WorkerConfig wc;
     public TileConfig tc;
     public GameData gData;
     public int workerPrice;
     public int wPFactor = 2;
+
+    public bool boolForTutorial = false;        //used for tutorial
 
     void Start()
     {
@@ -27,12 +29,14 @@ public class WorkersManager : MonoBehaviour
 
         if (workerPrice > gData.CoinCount)
         {
-            myButton.GetComponent<Button>().interactable = false;
+            addWorkerBtn.GetComponent<Button>().interactable = false;
         }
         else
         {
-            myButton.GetComponent<Button>().interactable = true;
+            addWorkerBtn.GetComponent<Button>().interactable = true;
         }
+
+        boolForTutorial = false;        // used for tutorial
     }
 
     public void AddWorker()
@@ -43,6 +47,9 @@ public class WorkersManager : MonoBehaviour
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
         wc.workers.Add(worker);
         gData.CoinCount -= workerPrice;
+
+        boolForTutorial = true;         //used for tutorial
+
     }
 
     void LeaderDied()
