@@ -42,6 +42,7 @@ public class PositionWorker : MonoBehaviour, iHalt
         if (onHalt) { return Vector2.zero; }
         // Creates a force to arrive at the behind point
         Vector2 steeringForce = FollowLeader();
+
         //Seperate workers
         steeringForce += StayAway();
         return steeringForce;

@@ -18,7 +18,6 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public GameData gameData;
-    public LanesDatabase lanes;
     public Button pauseBtn;
 
     public Button restartBtn;
@@ -44,7 +43,6 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         gameData.gameState = GameState.MainMenu;
-        lanes.ResetLanes();
     }
 
     private void Start()
