@@ -33,13 +33,17 @@ public class PositionWorker : MonoBehaviour, iHalt
 
     private void FixedUpdate()
     {
+        if (onHalt)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
         steeringForce = Vector2.ClampMagnitude(SteeringForce(), wc.maxSpeed);
         rb.AddForce(new Vector3(steeringForce.x, 0, steeringForce.y));
     }
 
     Vector2 SteeringForce()
     {
-        if (onHalt) { return Vector2.zero; }
         // Creates a force to arrive at the behind point
         Vector2 steeringForce = FollowLeader();
 

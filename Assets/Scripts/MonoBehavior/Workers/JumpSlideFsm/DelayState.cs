@@ -22,14 +22,14 @@ public class DelayState : IDoAction
     public void OnStateEnter(Animator animator)
     { }
 
-    public ActionState OnStateExecution(Transform transform, float deltaTime)
+    public bool OnStateExecution(Transform transform, float deltaTime)
     {
         delay -= deltaTime;
         if(delay <= 0)
         {
-            return ActionState.FINISHED;
+            return false;
         }
-        return ActionState.RUNNING;
+        return true;
     }
 
     public void OnStateExit(Animator animator)

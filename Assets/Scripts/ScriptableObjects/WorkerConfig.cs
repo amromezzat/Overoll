@@ -29,6 +29,7 @@ public class WorkerConfig : ScriptableObject
 
     [Header("Moving Attributes")]
     public float strafeDuration = 0.1f;
+    public float takeLeadDuration = 1;
 
     [Header("Crowd Behavior")]
     public float workersSepDis = 0.8f;//distance workers keep from each other

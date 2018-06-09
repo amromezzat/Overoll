@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDoAction  {
     void OnStateEnter(Animator animator);
-    ActionState OnStateExecution(Transform transform, float deltaTime);
+    bool OnStateExecution(Transform transform, float deltaTime);
     void OnStateExit(Animator animator);
 }

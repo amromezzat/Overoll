@@ -1384,7 +1384,6 @@ MonoBehaviour:
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
-  strafeDuration: 0.05
 --- !u!114 &114492669693019288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1412,7 +1411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
-  strafeDuration: 0.5
+  gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
 --- !u!114 &114521662834685148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1425,6 +1425,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+  ld: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
 --- !u!114 &114790454885139432
 MonoBehaviour:
   m_ObjectHideFlags: 1

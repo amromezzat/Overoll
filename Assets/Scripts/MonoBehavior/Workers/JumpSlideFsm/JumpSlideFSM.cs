@@ -2,13 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ActionState
-{
-    RUNNING,
-    FINISHED,
-    INTERRUPTED
-}
-
 public class JumpSlideFSM : MonoBehaviour, iHalt
 {
 
@@ -67,8 +60,8 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
     void Update()
     {
         currentStateStr = currentState.ToString();
-        ActionState currentStateState = currentState.OnStateExecution(transform, Time.deltaTime);
-        if (currentStateState == ActionState.FINISHED)
+        bool stateRunning = currentState.OnStateExecution(transform, Time.deltaTime);
+        if (!stateRunning)
         {
             IDoAction nextState = actionStack.Pop();
             if (nextState == runState)
@@ -107,17 +100,8 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
         actionStack.Push(jumpState);
         if (delayTime > 0)
         {
-            //if there is an already paused slide state add an interrupt to the current slide state
-            if (currentState == delayState && actionStack.Peek() == slideState)
-            {
-                ((Slide)actionStack.Peek()).interruptTime = delayTime;
-            }
-            //else just add a delay before activating the jump
-            else
-            {
-                delayState.Delay = delayTime;
-                actionStack.Push(delayState);
-            }
+            delayState.Delay = delayTime;
+            actionStack.Push(delayState);
         }
         ChangeState(actionStack.Pop());
         FindObjectOfType<AudioManager>().PlaySound("WorkerJump");
@@ -143,17 +127,8 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
 
         if (delayTime > 0)
         {
-            //if there is an already paused jump state add an interrupt to the current jump state
-            if (currentState == delayState && actionStack.Peek() == jumpState)
-            {
-                ((Jump)actionStack.Peek()).interruptTime = delayTime;
-            }
-            //else just add a delay before activating the slide
-            else
-            {
-                delayState.Delay = delayTime;
-                actionStack.Push(delayState);
-            }
+            delayState.Delay = delayTime;
+            actionStack.Push(delayState);
         }
         ChangeState(actionStack.Pop());
     }

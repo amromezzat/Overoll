@@ -12,7 +12,7 @@ public class InterruptJump : IDoAction
         
     }
 
-    public ActionState OnStateExecution(Transform transform, float deltaTime)
+    public bool OnStateExecution(Transform transform, float deltaTime)
     {
         Vector3 newPos = transform.position;
         landTimer += deltaTime;
@@ -21,9 +21,9 @@ public class InterruptJump : IDoAction
         transform.position = newPos;
         if (transform.position.y <= 0.25)
         {
-            return ActionState.FINISHED;
+            return false;
         }
-        return ActionState.RUNNING;
+        return true;
     }
 
     public void OnStateExit(Animator animator)
