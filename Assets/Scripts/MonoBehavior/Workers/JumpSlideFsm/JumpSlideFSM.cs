@@ -144,7 +144,7 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
     public void Begin()
     {
         if (isActiveAndEnabled)
-            StartCoroutine(StartRunning());
+            mAnimator.SetBool("RunAnim", true);
         wc.onJump.AddListener(Jump);
         wc.onSlide.AddListener(Slide);
     }
@@ -168,11 +168,5 @@ public class JumpSlideFSM : MonoBehaviour, iHalt
     {
         wc.onJump.RemoveListener(Jump);
         wc.onSlide.RemoveListener(Slide);
-    }
-
-    IEnumerator StartRunning()
-    {
-        yield return new WaitForSeconds(4);
-        mAnimator.SetBool("RunAnim", true);
     }
 }

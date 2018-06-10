@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraTransition : MonoBehaviour,iHalt {
+public class CameraTransition : MonoBehaviour, iHalt
+{
 
     public GameData gd;
     public TileConfig tc;
     public GameObject startView;
     public GameObject backView;
     public Transform beginTrans;
-    public Transform midTrans;
     public Transform EndTrans;
     public float transTime = 2f;
 
     Transform current;
     Transform next;
     float timer = 0;
+    bool onHalt = true;
 
     private void Awake()
     {
@@ -23,24 +24,10 @@ public class CameraTransition : MonoBehaviour,iHalt {
     }
 
     public void Begin()
-    {
-        next = midTrans;
+    { 
         timer = 0;
-        StartCoroutine(SetGameplayView());
-    }
-
-    IEnumerator SetGameplayView()
-    {
-        yield return new WaitForSeconds(transTime);
-        timer = 0;
-        current = midTrans;
+        onHalt = false;
         next = EndTrans;
-        backView.SetActive(false);
-        yield return new WaitForSeconds(transTime);
-        startView.GetComponent<Rigidbody>().velocity = Vector3.back * tc.tileSpeed;
-        yield return new WaitForSeconds(transTime);
-        Destroy(startView);
-        enabled = false;
     }
 
     public void End()
@@ -50,7 +37,7 @@ public class CameraTransition : MonoBehaviour,iHalt {
 
     public void Halt()
     {
-        
+
     }
 
     public void RegisterListeners()
@@ -63,20 +50,37 @@ public class CameraTransition : MonoBehaviour,iHalt {
 
     public void Resume()
     {
-        
+
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         current = beginTrans;
         next = beginTrans;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (onHalt)
+        {
+            return;
+        }
         timer += Time.deltaTime;
         float completedPortion = timer / transTime;
-        transform.position = Vector3.Lerp(current.position, next.position, completedPortion);
-        transform.rotation = Quaternion.Lerp(current.rotation, next.rotation, completedPortion);
+        float sinPortion = Mathf.Sin(completedPortion * Mathf.PI/2);
+        transform.position = Vector3.Lerp(current.position, next.position, sinPortion);
+        transform.rotation = Quaternion.Lerp(current.rotation, next.rotation, sinPortion);
+        if(completedPortion >= 1)
+        {
+            Destroy(startView);
+            enabled = false;
+        }
+        else if(completedPortion >= 0.5f)
+        {
+            backView.SetActive(false);
+            startView.GetComponent<Rigidbody>().velocity = Vector3.back * tc.tileSpeed;
+        }
     }
 }

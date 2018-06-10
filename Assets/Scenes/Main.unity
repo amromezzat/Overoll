@@ -556,34 +556,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4878606254622636, guid: 9b4d8fffcc4f70b4890ef55793ac27df,
     type: 2}
   m_PrefabInternal: {fileID: 654078838}
---- !u!1 &429231072
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 429231073}
-  m_Layer: 0
-  m_Name: CameraMidTransition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &429231073
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 429231072}
-  m_LocalRotation: {x: -0.11360911, y: 0.7078087, z: -0.116998926, w: -0.6873218}
-  m_LocalPosition: {x: 7.3155575, y: 4.406901, z: 6.1866574}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1909448823}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &432764750
 Prefab:
   m_ObjectHideFlags: 0
@@ -972,7 +944,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1909448823}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 45, y: 350, z: 0}
 --- !u!1001 &654078838
 Prefab:
@@ -1504,7 +1476,6 @@ MonoBehaviour:
   startView: {fileID: 1054058254}
   backView: {fileID: 1258227640}
   beginTrans: {fileID: 1324947661}
-  midTrans: {fileID: 429231073}
   EndTrans: {fileID: 651305430}
   transTime: 2
 --- !u!114 &941316088
@@ -4057,7 +4028,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906287969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.8, z: 20}
+  m_LocalPosition: {x: 0, y: -1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1418835377}
@@ -4161,7 +4132,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1324947661}
-  - {fileID: 429231073}
   - {fileID: 651305430}
   m_Father: {fileID: 0}
   m_RootOrder: 11
