@@ -10,9 +10,13 @@ public class InputManager : MonoBehaviour
 
     Vector3 startPos;
     Vector3 endPos;
+    Vector3 movPos;
+
 
     float swipeDis;
+    float moveDis;
 
+    bool insideSwip;
     private void Start()
     {
 
@@ -52,45 +56,73 @@ public class InputManager : MonoBehaviour
 
     void AndroidControls()
     {
+        Debug.Log(insideSwip);
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+          
             //when screen touch starts record the time and position
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began && !insideSwip)
             {
                 startPos = touch.position;
+
             }
-            //when screen touch ends record the time and position
-            //get the difference to determine if the touch
-            //is considered a swipe and in what direction
-            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+ 
+            if (touch.phase == TouchPhase.Moved && !insideSwip)
             {
-                endPos = touch.position;
+                insideSwip = true;
+             
+                movPos = touch.position;
 
-                swipeDis = (endPos - startPos).magnitude;
+                moveDis = (movPos - startPos).magnitude;
 
-                if (swipeDis > minSwipeDis)
+                if (moveDis > minSwipeDis)
                 {
+                    Debug.Log("but why");
                     Swipe();
                 }
 
             }
+            //when screen touch ends record the time and position
+            //get the difference to determine if the touch
+            //is considered a swipe and in what direction
+            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+            {
+                insideSwip = false;
+              
+                //    endPos = touch.position;
+
+                //    swipeDis = (endPos - startPos).magnitude;
+
+                //    if (swipeDis > minSwipeDis)
+                //    {
+                //        Swipe();
+                //    }
+
+            }
+
+
         }
+
+      
     }
 
     void Swipe()
     {
-        Vector2 delta = endPos - startPos;
+        // Vector2 delta = endPos - startPos;
 
+        Vector2 delta = movPos - startPos;
         if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
         {
             if (delta.x < 0)
             {
                 wc.onLeft.Invoke();
+                insideSwip = true;
             }
             else
             {
                 wc.onRight.Invoke();
+                insideSwip = true;
             }
         }
 
@@ -99,11 +131,13 @@ public class InputManager : MonoBehaviour
             if (delta.y < 0)
             {
                 wc.onSlide.Invoke();
+                insideSwip = true;
             }
 
             else
             {
                 wc.onJump.Invoke();
+                insideSwip = true;
             }
         }
     }
