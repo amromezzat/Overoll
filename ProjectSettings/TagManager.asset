@@ -9,6 +9,7 @@ TagManager:
   - Tile Manager
   - Obstacle
   - FallCollider
+  - MagnetCollider
   layers:
   - Default
   - TransparentFX

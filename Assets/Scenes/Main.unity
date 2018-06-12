@@ -1500,9 +1500,10 @@ GameObject:
   - component: {fileID: 951194286}
   - component: {fileID: 951194287}
   - component: {fileID: 951194288}
+  - component: {fileID: 951194289}
   m_Layer: 0
   m_Name: MagnetCollider
-  m_TagString: Untagged
+  m_TagString: MagnetCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1547,6 +1548,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &951194289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 951194285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1547bbb3e02dec46aea58f1998766d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gstate: {fileID: 0}
 --- !u!1001 &970329892
 Prefab:
   m_ObjectHideFlags: 0
