@@ -17,7 +17,7 @@ public class InterruptJump : IDoAction
         Vector3 newPos = transform.position;
         landTimer += deltaTime;
         float completedPortion = landTimer / landDuration;
-        newPos.y = Mathf.Lerp(transform.position.y, 0.25f, Mathf.PI * completedPortion);
+        newPos.y = Mathf.Lerp(transform.position.y, 0.25f,  completedPortion);
         transform.position = newPos;
         if (transform.position.y <= 0.25)
         {
