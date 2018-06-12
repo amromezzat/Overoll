@@ -20,6 +20,11 @@ public class WorkerConfig : ScriptableObject
     public UnityEvent onSlide;
     [HideInInspector]
     public UnityEvent onLeaderDeath;
+    [HideInInspector]
+    public UnityEvent gotMagnet;
+    [HideInInspector]
+    public UnityEvent gotShield;
+
 
     [Header("Jump Slide Attributes")]
     public float jumpDuration = 1;
