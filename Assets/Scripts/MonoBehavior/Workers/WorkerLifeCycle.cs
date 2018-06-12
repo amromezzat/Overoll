@@ -86,6 +86,11 @@ public class WorkerLifeCycle : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+
+        if (CompareTag("MagnetCollider"))
+        {
+            return;
+        }
         if (other.gameObject.CompareTag("Obstacle"))
         {
             FindObjectOfType<AudioManager>().PlaySound("WorkerDeath");
@@ -114,3 +119,4 @@ public class WorkerLifeCycle : MonoBehaviour
         }
     }
 }
+
