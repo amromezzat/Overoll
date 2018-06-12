@@ -56,7 +56,6 @@ public class InputManager : MonoBehaviour
 
     void AndroidControls()
     {
-        //Debug.Log(insideSwip);
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);

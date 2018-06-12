@@ -19,7 +19,7 @@ public class PickUpCoin : MonoBehaviour {
         {
             FindObjectOfType<AudioManager>().PlaySound("Coin");
 
-            cReturn.ReturnToObjectPool();
+            cReturn.ReturnToPool();
             gstate.CoinCount += 1;
         }
      }

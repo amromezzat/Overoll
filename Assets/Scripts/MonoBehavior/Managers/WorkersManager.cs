@@ -48,6 +48,11 @@ public class WorkersManager : MonoBehaviour
         wc.workers.Add(worker);
         gData.CoinCount -= workerPrice;
 
+        if(wc.workers.Count > 5)
+        {
+
+        }
+
         boolForTutorial = true;         //used for tutorial
 
     }
@@ -69,10 +74,7 @@ public class WorkersManager : MonoBehaviour
     {
         wc.leader = wc.workers[0];
         wc.workers.Remove(wc.leader);
-        wc.leader.GetComponent<WorkerLifeCycle>().isLeader = true;
-        wc.leader.GetComponent<WorkerStrafe>().enabled = true;
         wc.leader.GetComponent<SeekLeaderPosition>().enabled = true;
-        wc.leader.GetComponent<RandomBehaviour>().enabled = false;
-        wc.leader.GetComponent<PositionWorker>().enabled = false;
+        wc.leader.GetComponent<WorkerFollowState>().followType = FollowType.Leader;
     }
 }

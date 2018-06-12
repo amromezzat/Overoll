@@ -6,13 +6,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PositionWorker : MonoBehaviour, iHalt
 {
-    Rigidbody rb;
-    Vector2 steeringForce;
+    public GameData gameData;
     public WorkerConfig wc;
 
-    bool onHalt;
+    Vector2 steeringForce;
+    Rigidbody rb;
+    WorkerMerge wm;
+    WorkerFollowState wfs;
 
-    public GameData gameData;
+    bool onHalt;
 
     private void OnEnable()
     {
@@ -26,9 +28,11 @@ public class PositionWorker : MonoBehaviour, iHalt
         }
     }
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        wm = GetComponent<WorkerMerge>();
+        wfs = GetComponent<WorkerFollowState>();
     }
 
     private void FixedUpdate()
@@ -45,10 +49,17 @@ public class PositionWorker : MonoBehaviour, iHalt
     Vector2 SteeringForce()
     {
         // Creates a force to arrive at the behind point
-        Vector2 steeringForce = FollowLeader();
-
-        //Seperate workers
-        steeringForce += StayAway();
+        Vector2 steeringForce = Vector2.zero;
+        if (wfs.follower || wfs.followerMergeMaster)
+        {
+            steeringForce = FollowLeader(wc.leader.transform.position, wc.aheadFollowPoint);
+            //Seperate workers
+            steeringForce += StayAway();
+        }
+        else if(wfs.followerMergeSlave)
+        {
+            steeringForce = FollowLeader(wm.followedTransform.position, 0, false);
+        }
         return steeringForce;
     }
 
@@ -80,11 +91,11 @@ public class PositionWorker : MonoBehaviour, iHalt
     }
 
     //chase leader while maintaining a distance behind him
-    Vector2 FollowLeader()
+    Vector2 FollowLeader(Vector3 followedPos, float aheadFollowPoint, bool slowDown = true)
     {
         Vector2 aheadDis = Vector2.zero;
-        aheadDis.x = wc.leader.transform.position.x;
-        aheadDis.y = wc.leader.transform.position.z + wc.aheadFollowPoint;
+        aheadDis.x = followedPos.x;
+        aheadDis.y = followedPos.z + aheadFollowPoint;
         // Calculate the desired velocity
         Vector2 desiredVelocity = Vector2.zero;
         desiredVelocity.x = aheadDis.x - transform.position.x;
@@ -93,7 +104,7 @@ public class PositionWorker : MonoBehaviour, iHalt
 
         // Check the distance to detect whether the character
         // is inside the slowing area
-        if (distance < wc.arrivalSlowingRad)
+        if (slowDown && distance < wc.arrivalSlowingRad)
         {
             // Inside the slowing area
             desiredVelocity *= distance / wc.arrivalSlowingRad;

@@ -293,13 +293,15 @@ GameObject:
   - component: {fileID: 95628363478939354}
   - component: {fileID: 54320175008334722}
   - component: {fileID: 65619182727466928}
+  - component: {fileID: 114492353138585298}
   - component: {fileID: 114103244772713320}
   - component: {fileID: 114790454885139432}
   - component: {fileID: 114201102903279578}
   - component: {fileID: 114149315908789534}
   - component: {fileID: 114521662834685148}
-  - component: {fileID: 114492669693019288}
   - component: {fileID: 114500639473722808}
+  - component: {fileID: 114691524927317754}
+  - component: {fileID: 114662519340983418}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Worker
@@ -1353,8 +1355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839e145471a90441819425f8fb229ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
 --- !u!114 &114149315908789534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1376,7 +1378,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1505689317082964}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fd60fec73ed2b841828b718582505fc, type: 3}
   m_Name: 
@@ -1384,7 +1386,7 @@ MonoBehaviour:
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
---- !u!114 &114492669693019288
+--- !u!114 &114492353138585298
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1392,13 +1394,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1505689317082964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d3693dc634160c40a1082e1a0a51994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
-  tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  poolableType: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
-  inActiveSegment: 0
+  followType: 2
 --- !u!114 &114500639473722808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1427,6 +1426,33 @@ MonoBehaviour:
   gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   ld: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
+--- !u!114 &114662519340983418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505689317082964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0167279c03a494695784ab616c0db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  poolableType: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
+  inActiveSegment: 0
+  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+--- !u!114 &114691524927317754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505689317082964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1fd1093c09c8d84f980494ee621652c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followedTransform: {fileID: 0}
 --- !u!114 &114790454885139432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1438,12 +1464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95d9c92ec41f474fad2ba1047fa37a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
-  wConfig: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
-  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   healthState: 0
   workerHealth: 0
-  isLeader: 0
 --- !u!119 &119179932371958120
 Projector:
   m_ObjectHideFlags: 1
