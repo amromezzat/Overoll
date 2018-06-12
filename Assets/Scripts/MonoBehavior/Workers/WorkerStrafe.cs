@@ -9,6 +9,7 @@ public class WorkerStrafe : MonoBehaviour, iHalt
     public WorkerConfig wc;
     public GameData gameData;
 
+    WorkerFollowState wfs;
     Animator animator;
     bool strafing = false;
     float strafeTimer = 0;
@@ -17,10 +18,15 @@ public class WorkerStrafe : MonoBehaviour, iHalt
     {
         RegisterListeners();
         animator = GetComponent<Animator>();
+        wfs = GetComponent<WorkerFollowState>();
     }
 
     private void FixedUpdate()
     {
+        if (!wfs.leader)
+        {
+            return;
+        }
         if (strafing)
         {
             float completedPortion = strafeTimer / wc.strafeDuration;

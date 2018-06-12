@@ -111,8 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactablesDB: {fileID: 11400000, guid: 8d5aaa60b44c1af4cbdcebaa14ecbbd9, type: 2}
-  tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   poolableType: {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
   inActiveSegment: 0
 --- !u!114 &114558495249294632

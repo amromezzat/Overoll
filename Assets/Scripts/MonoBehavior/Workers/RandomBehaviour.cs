@@ -8,22 +8,21 @@ public class RandomBehaviour : MonoBehaviour, iHalt
     public GameData gd;
     public WorkerConfig wc;
 
-    PositionWorker positionWorker;
     float strafeTimer = 0;
-    Rigidbody rb;
     bool strafing = false;
     float newXPos = 0;
     IEnumerator randomCoroutine;
+    PositionWorker positionWorker;
+    Rigidbody rb;
+    WorkerFollowState wfs;
+    bool scriptWorking = true;
 
     void Awake()
     {
         positionWorker = GetComponent<PositionWorker>();
         rb = GetComponent<Rigidbody>();
+        wfs = GetComponent<WorkerFollowState>();
         randomCoroutine = RandomWorker();
-    }
-
-    void OnEnable()
-    {
         StartCoroutine(randomCoroutine);
     }
 
@@ -42,6 +41,18 @@ public class RandomBehaviour : MonoBehaviour, iHalt
                 strafeTimer = 0;
                 strafing = false;
             }
+        }
+
+        if (wfs.leader || wfs.merging)
+        {
+            StopCoroutine(randomCoroutine);
+            scriptWorking = false;
+        }
+
+        else if (!scriptWorking)
+        {
+            StartCoroutine(randomCoroutine);
+            scriptWorking = true;
         }
     }
 
@@ -72,22 +83,25 @@ public class RandomBehaviour : MonoBehaviour, iHalt
 
     public void Begin()
     {
-        
+
     }
 
     public void Halt()
     {
         StopCoroutine(randomCoroutine);
+        scriptWorking = false;
     }
 
     public void Resume()
     {
         StartCoroutine(randomCoroutine);
+        scriptWorking = true;
     }
 
     public void End()
     {
         StopCoroutine(randomCoroutine);
+        scriptWorking = false;
     }
 
     public void RegisterListeners()

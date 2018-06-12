@@ -11,12 +11,12 @@ public class KeepInLane : MonoBehaviour {
     {
         if (other.CompareTag("Worker"))
         {
-            if (!other.GetComponent<WorkerLifeCycle>().isLeader)
-            {
-                other.GetComponent<Rigidbody>().AddForce(
-                    (otherCollider.position - transform.position).normalized * tc.keepInLaneForce,
-                    ForceMode.VelocityChange);
-            }
+            //if (!other.GetComponent<WorkerLifeCycle>().isLeader)
+            //{
+            //    other.GetComponent<Rigidbody>().AddForce(
+            //        (otherCollider.position - transform.position).normalized * tc.keepInLaneForce,
+            //        ForceMode.VelocityChange);
+            //}
         }
     }
 }

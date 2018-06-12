@@ -57,6 +57,11 @@ public class WorkerLifeCycle : MonoBehaviour, ICollidable
             otherWorker.ReactToCollision(workerHealth);
         }
 
+        else if (CompareTag("MagnetCollider"))
+        {
+            return;
+        }
+
         else if (other.gameObject.CompareTag("Obstacle"))
         {
             FindObjectOfType<AudioManager>().PlaySound("WorkerDeath");
@@ -96,3 +101,4 @@ public class WorkerLifeCycle : MonoBehaviour, ICollidable
         return workerHealth;
     }
 }
+

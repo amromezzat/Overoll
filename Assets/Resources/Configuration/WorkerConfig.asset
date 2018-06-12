@@ -42,12 +42,13 @@ MonoBehaviour:
   jumpHeight: 1.5
   groundLevel: 0.25
   strafeDuration: 0.1
-  workersSepDis: 0.8
+  takeLeadDuration: 1
+  workersSepDis: 5
   arrivalSlowingRad: 1
-  maxSepForce: 60
+  maxSepForce: 10
   maxFolForce: 10
   maxSpeed: 10
-  aheadFollowPoint: Infinity
+  aheadFollowPoint: -0.5
   workers: []
   hrWorkers: []
   managerWorkers: []

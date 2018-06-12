@@ -23,7 +23,7 @@ public class ObstacleLifeCycle : MonoBehaviour, ICollidable
         {
             obstacleState = HealthState.Wrecked;
             obsHealth = 1;
-            objReturner.ReturnToObjectPool();
+            objReturner.ReturnToPool();
         }
         else
         {
