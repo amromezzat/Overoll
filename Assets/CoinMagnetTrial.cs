@@ -11,7 +11,7 @@ public class CoinMagnetTrial : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("coin"))
+        if (other.gameObject.CompareTag("Coin"))
         {
             coinPos = other.transform.position;
             
