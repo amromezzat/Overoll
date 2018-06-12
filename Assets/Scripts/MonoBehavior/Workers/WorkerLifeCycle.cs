@@ -4,27 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class WorkerLifeCycle : MonoBehaviour
+public class WorkerLifeCycle : MonoBehaviour, ICollidable
 {
-    public GameData gData;
-    public WorkerConfig wConfig;
-    public TileConfig tc;
 
     [HideInInspector]
     public HealthState healthState = HealthState.Healthy;
     [HideInInspector]
     public int workerHealth;
-    [HideInInspector]
-    Rigidbody rb;
 
-    public bool isLeader = false;
-    ObjectReturner workerReturner;
+    WorkerReturner wr;
+    WorkerFollowState wfs;
     Animator animator;
-    PositionWorker positionWorker;
-    WorkerStrafe workerStrafe;
-    JumpSlideFSM jumpSlideFSM;
-    SeekLeaderPosition seekLeaderPosition;
-    RandomBehaviour randomBehaviour;
     bool fallingToDeath = false;
 
     //------------------------------------------------
@@ -32,52 +22,20 @@ public class WorkerLifeCycle : MonoBehaviour
     void Awake()
     {
         workerHealth = 1;
-        workerReturner = GetComponent<ObjectReturner>();
+        wr = GetComponent<WorkerReturner>();
         animator = GetComponent<Animator>();
-        positionWorker = GetComponent<PositionWorker>();
-        workerStrafe = GetComponent<WorkerStrafe>();
-        jumpSlideFSM = GetComponent<JumpSlideFSM>();
-        seekLeaderPosition = GetComponent<SeekLeaderPosition>();
-        randomBehaviour = GetComponent<RandomBehaviour>();
-        rb = GetComponent<Rigidbody>();
+        wfs = GetComponent<WorkerFollowState>();
     }
 
     private void OnDisable()
     {
         workerHealth = 1;
         healthState = HealthState.Healthy;
-        positionWorker.enabled = true;
-        jumpSlideFSM.enabled = true;
-        randomBehaviour.enabled = true;
-        rb.velocity = Vector3.zero;
         fallingToDeath = false;
-        transform.position = new Vector3(0, wConfig.groundLevel, 0);
-    }
-
-    IEnumerator DeathCoroutine()
-    {
-        healthState = HealthState.Wrecked;
-        positionWorker.enabled = false;
-        workerStrafe.enabled = false;
-        jumpSlideFSM.enabled = false;
-        seekLeaderPosition.enabled = false;
-        rb.velocity = Vector3.back * tc.tileSpeed;
-        wConfig.workers.Remove(gameObject);
-        if (isLeader)
-        {
-            wConfig.onLeaderDeath.Invoke();
-            isLeader = false;
-        }
-        yield return new WaitForSeconds(2.0f);
-        workerReturner.ReturnToObjectPool();
     }
 
     private void Update()
     {
-        if (gData.gameState == GameState.GameOver)
-        {
-            rb.velocity = Vector3.zero;
-        }
         if (fallingToDeath)
         {
             transform.position -= new Vector3(0, 0.05f);
@@ -86,31 +44,55 @@ public class WorkerLifeCycle : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Obstacle"))
+        if (other.gameObject.CompareTag("Worker"))
+        {
+            if (!wfs.CanMerge(other.GetComponent<WorkerFollowState>()))
+            {
+                return;
+            }
+            ICollidable otherWorker = other.GetComponent<ICollidable>();
+
+            workerHealth += otherWorker.Gethealth();
+
+            otherWorker.ReactToCollision(workerHealth);
+        }
+
+        else if (other.gameObject.CompareTag("Obstacle"))
         {
             FindObjectOfType<AudioManager>().PlaySound("WorkerDeath");
-            ICollidable collidableOther = other.GetComponent<ICollidable>();
+            ICollidable collidableObstacle = other.GetComponent<ICollidable>();
 
-            int obsHealth = collidableOther.Gethealth();
+            int obsHealth = collidableObstacle.Gethealth();
             int preCollisionWH = workerHealth;
             workerHealth = workerHealth - obsHealth;
-            collidableOther.ReactToCollision(preCollisionWH);
+            collidableObstacle.ReactToCollision(preCollisionWH);
 
             healthState = HealthState.Fractured;
 
             if (workerHealth <= 0)
             {
                 animator.SetTrigger("DeathAnim");
-                StartCoroutine(DeathCoroutine());
+                StartCoroutine(wr.PoolReturnCoroutine(2));
             }
 
         }
 
-        if (other.gameObject.CompareTag("FallCollider"))
+
+        else if (other.gameObject.CompareTag("FallCollider"))
         {
             animator.SetTrigger("FallToDeathAnim");
             fallingToDeath = true;
-            StartCoroutine(DeathCoroutine());
+            StartCoroutine(wr.PoolReturnCoroutine(2));
         }
+    }
+
+    public void ReactToCollision(int collidedHealth)
+    {
+        StartCoroutine(wr.PoolReturnCoroutine(0));
+    }
+
+    public int Gethealth()
+    {
+        return workerHealth;
     }
 }
