@@ -22,10 +22,12 @@ GameObject:
   - component: {fileID: 20366793211263908}
   - component: {fileID: 124441319621377406}
   - component: {fileID: 81560594019049842}
+  - component: {fileID: 114171250512332876}
+  - component: {fileID: 114759747835255494}
+  - component: {fileID: 114212590768292162}
   - component: {fileID: 114280667564469896}
   - component: {fileID: 114557250043813826}
-  - component: {fileID: 114759747835255494}
-  - component: {fileID: 114171250512332876}
+  - component: {fileID: 114478645345885194}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -39,13 +41,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646743491235958}
-  m_LocalRotation: {x: 0, y: 0.9990483, z: -0.043619405, w: 0}
-  m_LocalPosition: {x: 0, y: 3, z: 5}
+  m_LocalRotation: {x: -0.25781444, y: 0.085025825, z: -0.022782605, w: -0.9621764}
+  m_LocalPosition: {x: 0, y: 7, z: -0.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 5, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 349.9, z: 0}
 --- !u!20 &20366793211263908
 Camera:
   m_ObjectHideFlags: 1
@@ -62,8 +64,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.01
+  far clip plane: 50
   field of view: 80
   orthographic: 0
   orthographic size: 5
@@ -76,10 +78,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!81 &81560594019049842
@@ -95,12 +97,66 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646743491235958}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 768aa4549a6e8c940b8e79343e10e88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   curveStrength: 0.01
+--- !u!114 &114212590768292162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1646743491235958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9e31fdf962e3e4ca3b62ec3ecc2f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tonemapper: 0
+  Exposure: 1
+  LinearWhitePoint: 11.2
+  ApplyDithering: 1
+  QualityLevel: 0
+  BlendAmount: 0.3
+  LutTexture: {fileID: 2800000, guid: 00ee32d09d1966f4985c39b8d800cacb, type: 3}
+  LutBlendTexture: {fileID: 0}
+  MaskTexture: {fileID: 0}
+  UseDepthMask: 0
+  DepthMaskCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: -10.126129
+      value: -0.03894043
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: -3.993744
+      value: 0.96450424
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1.0188482
+      value: 0.96803534
+      inSlope: 0.4890561
+      outSlope: 0.4890561
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  UseVolumes: 1
+  ExitVolumeBlendTime: 0
+  TriggerVolumeProxy: {fileID: 0}
+  VolumeCollisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  EffectFlags:
+    components: []
+  sharedInstanceID: 7227a58a-629a-4e55-a2e2-f8d2b9ef17c7
 --- !u!114 &114280667564469896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +173,17 @@ MonoBehaviour:
   blurSize: 1
   blurIterations: 2
   fastBloomMaterial: {fileID: 2100000, guid: 221340b8b5ad10940ba1646f87e3770c, type: 2}
+--- !u!114 &114478645345885194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1646743491235958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301eca71255100647bb9bad1d5641921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114557250043813826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,10 +202,10 @@ MonoBehaviour:
   Contrast: 1
   Saturation: 0
   Gamma: 1
-  vignetteIntensity: 0.444
+  vignetteIntensity: 0.3
   R: 0
-  G: 40
-  B: 30
+  G: 0
+  B: 0
 --- !u!114 &114759747835255494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,7 +222,6 @@ MonoBehaviour:
   startView: {fileID: 0}
   backView: {fileID: 0}
   beginTrans: {fileID: 0}
-  midTrans: {fileID: 0}
   EndTrans: {fileID: 0}
   transTime: 2
 --- !u!124 &124441319621377406
