@@ -18,8 +18,8 @@ RenderSettings:
   m_FogColor: {r: 0.36862746, g: 0.73333335, b: 0.9882353, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 15
-  m_LinearFogEnd: 25
+  m_LinearFogStart: 20
+  m_LinearFogEnd: 40
   m_AmbientSkyColor: {r: 0.42745098, g: 0.87058824, b: 0.9882353, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -5149,6 +5149,115 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 272159998}
   m_Mesh: {fileID: 4300000, guid: 9991ca1443aa0564ca354a54fd074234, type: 3}
+--- !u!1001 &272189671
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.25781444
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.085025825
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.022782605
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.9621764
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646743491235958, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_Name
+      value: Main Camera (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114171250512332876, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114171250512332876, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: curveStrength
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 349.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 20366793211263908, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 20366793211263908, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: far clip plane
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 20366793211263908, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0.36862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 20366793211263908, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0.73333335
+      objectReference: {fileID: 0}
+    - target: {fileID: 20366793211263908, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0.9882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 114212590768292162, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557250043813826, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114280667564469896, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114212590768292162, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
+        type: 2}
+      propertyPath: ApplyDithering
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &277547428
 GameObject:
   m_ObjectHideFlags: 0
@@ -34351,81 +34460,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4744419674997884, guid: 990d85ea701ab9942b7c6185b5453241,
     type: 2}
   m_PrefabInternal: {fileID: 1757332021}
---- !u!1001 &1758202608
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 9.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.3812272
-      objectReference: {fileID: 0}
-    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.08052164
-      objectReference: {fileID: 0}
-    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0.033353142
-      objectReference: {fileID: 0}
-    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.92036396
-      objectReference: {fileID: 0}
-    - target: {fileID: 4181007570130484, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1646743491235958, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-      propertyPath: m_Name
-      value: Main Camera (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1646743491235958, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114557250043813826, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
-        type: 2}
-      propertyPath: vignetteIntensity
-      value: 0.401
-      objectReference: {fileID: 0}
-    - target: {fileID: 20366793211263908, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
-        type: 2}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 20366793211263908, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
-        type: 2}
-      propertyPath: m_BackGroundColor.r
-      value: 0.29411763
-      objectReference: {fileID: 0}
-    - target: {fileID: 20366793211263908, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
-        type: 2}
-      propertyPath: m_BackGroundColor.g
-      value: 0.8517647
-      objectReference: {fileID: 0}
-    - target: {fileID: 20366793211263908, guid: 22b85eb2c54161641aeaf441ab5f9f0b,
-        type: 2}
-      propertyPath: m_BackGroundColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 22b85eb2c54161641aeaf441ab5f9f0b, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1760249933
 GameObject:
   m_ObjectHideFlags: 0
