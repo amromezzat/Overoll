@@ -1,78 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class SeekLeaderPosition : MonoBehaviour, iHalt
-{
+//public class SeekLeaderPosition : IWorkerScript
+//{
 
-    public GameData gd;
-    public WorkerConfig wc;
-    public LanesDatabase ld;
+//    public LanesDatabase lanes;
+//    public float groundLevel;
+//    public float takeLeadDuration;
+//    public Transform transform;
 
-    float seekTimer = 0;
-    Vector3 newPos;
+//    float seekTimer = 0;
+//    Vector3 newPos;
 
-    public void Begin()
-    {
-    }
+//    float CalculateXDisFrom(float other)
+//    {
+//        return Mathf.Abs(other - transform.position.x);
+//    }
 
-    public void End()
-    {
-        enabled = false;
-    }
+//    public void OnStateEnter(Animator animator)
+//    {
+//        seekTimer = 0;
+//        float closestLaneDis = 100;
+//        for (int i = 0; i < lanes.OnGridLanes.Count; i++)
+//        {
+//            if (CalculateXDisFrom(closestLaneDis) > CalculateXDisFrom(lanes.OnGridLanes[i].laneCenter))
+//            {
+//                closestLaneDis = lanes.OnGridLanes[i].laneCenter;
+//            }
+//        }
+//        newPos = new Vector3(0, groundLevel, closestLaneDis);
+//    }
 
-    public void Halt()
-    {
+//    public bool OnStateExecution(Transform transform, float deltaTime)
+//    {
+//        seekTimer += deltaTime;
+//        float completedPortion = seekTimer / takeLeadDuration;
+//        transform.position = Vector3.Lerp(transform.position, newPos, completedPortion);
+//        if (completedPortion >= 1)
+//        {
+//            return false;
+//        }
+//        return true;
+//    }
 
-    }
-
-    public void RegisterListeners()
-    {
-        gd.OnStart.AddListener(Begin);
-        gd.onPause.AddListener(Halt);
-        gd.OnResume.AddListener(Resume);
-        gd.onEnd.AddListener(End);
-    }
-
-    public void Resume()
-    {
-    }
-
-    // Use this for initialization
-    private void OnEnable()
-    {
-        seekTimer = 0;
-        float closestLaneDis = 100;
-        for (int i = 0; i < ld.OnGridLanes.Count; i++)
-        {
-            if (CalculateXDisFrom(closestLaneDis) > CalculateXDisFrom(ld.OnGridLanes[i].laneCenter))
-            {
-                closestLaneDis = ld.OnGridLanes[i].laneCenter;
-            }
-        }
-        newPos = new Vector3(0, wc.groundLevel, closestLaneDis);
-    }
-
-    private void OnDisable()
-    {
-        enabled = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (gd.gameState == GameState.Gameplay)
-            seekTimer += Time.deltaTime;
-        float completedPortion = seekTimer / wc.takeLeadDuration;
-        transform.position = Vector3.Lerp(transform.position, newPos, completedPortion);
-        if (completedPortion >= 1)
-        {
-            enabled = false;
-        }
-    }
-
-    float CalculateXDisFrom(float other)
-    {
-        return Mathf.Abs(other - transform.position.x);
-    }
-}
+//    public void OnStateExit(Animator animator)
+//    {
+//        throw new System.NotImplementedException();
+//    }
+//}

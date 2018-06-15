@@ -38,10 +38,7 @@ public class Slide : IDoAction
 
     public void OnStateExit(Animator animator)
     {
-        if (animator.gameObject.activeSelf)
-        {
-            animator.SetBool("DuckAnim", false);
-        }
+        animator.SetBool("DuckAnim", false);
         Vector3 newColliderSize = collider.size;
         newColliderSize.y *= 4;
         collider.size = newColliderSize;

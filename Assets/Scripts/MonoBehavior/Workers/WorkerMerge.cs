@@ -6,17 +6,15 @@ public class WorkerMerge : MonoBehaviour
 {
     public Transform followedTransform;
 
-    WorkerLifeCycle workerLifeCycle;
-    PositionWorker positionWorker;
-    WorkerFollowState wfs;
+    //WorkerCollisionHandler workerLifeCycle;
+    //PositionWorker positionWorker;
 
 
     // Use this for initialization
     void Awake()
     {
-        workerLifeCycle = GetComponent<WorkerLifeCycle>();
-        positionWorker = GetComponent<PositionWorker>();
-        wfs = GetComponent<WorkerFollowState>();
+        //workerLifeCycle = GetComponent<WorkerCollisionHandler>();
+        //positionWorker = GetComponent<PositionWorker>();
     }
 
     // Update is called once per frame

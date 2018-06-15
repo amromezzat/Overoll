@@ -28,7 +28,7 @@ public class PickUpPowerUp : MonoBehaviour {
             {
                 wc.gotShield.Invoke();
             }
-           cReturn.ReturnToPool();
+           StartCoroutine(cReturn.ReturnToPool(2));
            
         }
     }
