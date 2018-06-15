@@ -22,7 +22,7 @@ public interface IJumpSlide : IWorkerScript
 
 public interface IChangeState: IWorkerScript
 {
-    //state sets an input trigger when state is done
+    //state sets an input trigger when it is done
     WorkerStateTrigger InputTrigger();
 }
 

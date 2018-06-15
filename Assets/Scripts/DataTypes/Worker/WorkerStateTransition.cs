@@ -34,7 +34,7 @@ public class WorkerStateTransition
             new TransitionBundle(WorkerState.LeaderSeeker, WorkerState.Leader),
             new TransitionBundle(WorkerState.MasterMerger, WorkerState.Worker),
             new TransitionBundle(WorkerState.SlaveMerger, WorkerState.Worker),
-            new TransitionBundle(WorkerState.LeaderMerger, WorkerState.Leader) 
+            new TransitionBundle(WorkerState.LeaderMerger, WorkerState.Leader)
         };
     }
 

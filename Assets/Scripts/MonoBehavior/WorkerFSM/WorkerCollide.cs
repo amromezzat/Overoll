@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class WorkerCollide : ICollide
 {
-    public Animator animator;
-    public Rigidbody rb;
-    public TileConfig tc;
+    Animator animator;
+    Rigidbody rb;
+    TileConfig tc;
 
     public WorkerCollide(Animator animator, Rigidbody rb, TileConfig tc)
     {

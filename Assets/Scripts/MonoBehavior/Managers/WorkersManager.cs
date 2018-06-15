@@ -15,10 +15,11 @@ public class WorkersManager : MonoBehaviour
 
     public bool boolForTutorial = false;        //used for tutorial
 
-    void Start()
+    void Awake()
     {
         gData.CoinCount = 0;
         wc.leader = leader;
+        wc.workers.Add(leader);
         wc.onLeaderDeath.AddListener(LeaderDied);
     }
 
@@ -73,6 +74,6 @@ public class WorkersManager : MonoBehaviour
     public void ElectNewLeader()
     {
         wc.leader = wc.workers[0];
-        wc.workers.Remove(wc.leader);
+        wc.leader.GetComponent<WorkerFSM>().ChangeState(WorkerStateTrigger.Succeed);
     }
 }

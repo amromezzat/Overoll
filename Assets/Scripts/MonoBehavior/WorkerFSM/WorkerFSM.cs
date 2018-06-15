@@ -18,8 +18,10 @@ public class WorkerFSM : MonoBehaviour, iHalt
     WorkerStrafe workerStrafe;
     JumpSlideFSM jumpSlideFsm;
     WorkerCollide workerCollide;
+    PositionWorker positionWorker;
+    SeekLeaderPosition seekLeaderPosition;
 
-    IWorkerScript[] workerScripts;
+    IWorkerScript[] scriptsToResetState;
     Dictionary<WorkerState, StateScriptsWrapper> workerStateScripts = new Dictionary<WorkerState, StateScriptsWrapper>();
     WorkerStateTransition workerStateTransition = new WorkerStateTransition();
 
@@ -47,9 +49,9 @@ public class WorkerFSM : MonoBehaviour, iHalt
 
     private void OnEnable()
     {
-        for (int i = 0; i < workerScripts.Length; i++)
+        for (int i = 0; i < scriptsToResetState.Length; i++)
         {
-            workerScripts[i].ScriptReset();
+            scriptsToResetState[i].ScriptReset();
         }
         if (gd.gameState == GameState.Gameplay)
         {
@@ -74,13 +76,22 @@ public class WorkerFSM : MonoBehaviour, iHalt
         workerStrafe = new WorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
         jumpSlideFsm = new JumpSlideFSM(wc, tc, mCollider, mAnimator, transform);
         workerCollide = new WorkerCollide(mAnimator, rb, tc);
+        positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
+        seekLeaderPosition = new SeekLeaderPosition(transform, wc, lanes);
 
-        workerScripts = new IWorkerScript[] { workerStrafe, jumpSlideFsm, workerCollide };
+        scriptsToResetState = new IWorkerScript[] {
+            workerStrafe, jumpSlideFsm
+        };
 
-        workerStateScripts[WorkerState.Leader] = new StateScriptsWrapper(new List<IWorkerScript>() { workerStrafe, jumpSlideFsm, workerCollide },
-            workerStrafe, jumpSlideFsm, workerCollide);
+        workerStateScripts[WorkerState.Leader] = new StateScriptsWrapper(new List<IWorkerScript>() {
+            workerStrafe, jumpSlideFsm }, workerStrafe, jumpSlideFsm, workerCollide);
 
-        workerStateScripts[WorkerState.Worker] = new StateScriptsWrapper(new List<IWorkerScript>());
+        workerStateScripts[WorkerState.Worker] = new StateScriptsWrapper(new List<IWorkerScript>() {
+        positionWorker, jumpSlideFsm}, jumpSlideFsm, workerCollide);
+
+        workerStateScripts[WorkerState.LeaderSeeker] = new StateScriptsWrapper(new List<IWorkerScript>() {
+        workerStrafe, jumpSlideFsm, seekLeaderPosition}, workerStrafe, jumpSlideFsm, seekLeaderPosition);
+
         workerStateScripts[WorkerState.Dead] = new StateScriptsWrapper(new List<IWorkerScript>());
         workerStateScripts[WorkerState.Halted] = new StateScriptsWrapper(new List<IWorkerScript>());
     }
@@ -116,6 +127,13 @@ public class WorkerFSM : MonoBehaviour, iHalt
         }
     }
 
+    public void ChangeState(WorkerStateTrigger trigger)
+    {
+        TransitionBundle transition = workerStateTransition.ChangeState(trigger, currentState);
+        currentState = transition.Destination;
+        Output(transition.Output);
+    }
+
     void Output(WorkerFSMOutput outputKey)
     {
         switch (outputKey)
@@ -135,6 +153,8 @@ public class WorkerFSM : MonoBehaviour, iHalt
             case WorkerFSMOutput.SlaveMerged:
                 break;
             case WorkerFSMOutput.LeaderElected:
+                seekLeaderPosition.SetClosestLane();
+                rb.velocity = Vector3.zero;
                 break;
         }
     }

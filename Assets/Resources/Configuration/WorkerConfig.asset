@@ -37,18 +37,28 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  gotMagnet:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  gotShield:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   jumpDuration: 0.6
   slideDuration: 1
   jumpHeight: 1.5
   groundLevel: 0.25
   strafeDuration: 0.1
   takeLeadDuration: 1
-  workersSepDis: 5
+  workersSepDis: 1
   arrivalSlowingRad: 1
-  maxSepForce: 10
+  maxSepForce: 15
   maxFolForce: 10
   maxSpeed: 10
-  aheadFollowPoint: -0.5
+  aheadFollowPoint: -0.80103004
   workers: []
   hrWorkers: []
   managerWorkers: []
