@@ -18,7 +18,7 @@ public class CoinMagnetTrial : MonoBehaviour {
 
           //  FindObjectOfType<AudioManager>().PlaySound("Coin");
 
-            cReturn.ReturnToPool();
+            StartCoroutine(cReturn.ReturnToPool(0));
             gstate.CoinCount += 1;
         }
     }

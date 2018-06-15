@@ -10,8 +10,9 @@ public class ObjectReturner : MonoBehaviour
     [HideInInspector]
     public bool inActiveSegment = false;
 
-    public void ReturnToPool()
+    public IEnumerator ReturnToPool(float returnTime)
     {
+        yield return new WaitForSeconds(returnTime);
         ObjectPooler.instance.ReturnToPool(poolableType, gameObject);
     }
 }

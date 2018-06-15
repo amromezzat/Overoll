@@ -74,7 +74,5 @@ public class WorkersManager : MonoBehaviour
     {
         wc.leader = wc.workers[0];
         wc.workers.Remove(wc.leader);
-        wc.leader.GetComponent<SeekLeaderPosition>().enabled = true;
-        wc.leader.GetComponent<WorkerFollowState>().followType = FollowType.Leader;
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(TileReturner))]
-public class ObstacleLifeCycle : MonoBehaviour, ICollidable
+public class ObstacleCollisionHandler : MonoBehaviour, ICollidable
 {
 
     public int obsHealth;
@@ -23,7 +23,7 @@ public class ObstacleLifeCycle : MonoBehaviour, ICollidable
         {
             obstacleState = HealthState.Wrecked;
             obsHealth = 1;
-            objReturner.ReturnToPool();
+            StartCoroutine(objReturner.ReturnToPool(0));
         }
         else
         {

@@ -752,7 +752,7 @@ public class AmplifyColorBase : MonoBehaviour
 	{
 		bool isMobile = ( QualityLevel == AmplifyColor.Quality.Mobile );
 		bool isLinear = ( colorSpace == ColorSpace.Linear );
-		bool isHDR = ownerCamera.hdr;
+		bool isHDR = ownerCamera.allowHDR;
 
 		int pass = isMobile ? 18 : 0;
 		if ( isHDR )

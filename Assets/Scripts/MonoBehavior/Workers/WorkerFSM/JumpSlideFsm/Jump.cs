@@ -32,9 +32,6 @@ public class Jump : IDoAction
 
     public void OnStateExit(Animator animator)
     {
-        if (animator.gameObject.activeSelf)
-        {
-            animator.SetBool("JumpAnim", false);
-        }
+        animator.SetBool("JumpAnim", false);
     }
 }
