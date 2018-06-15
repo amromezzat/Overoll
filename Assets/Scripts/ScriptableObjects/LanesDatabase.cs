@@ -24,6 +24,11 @@ public class LanesDatabase : ScriptableObject
         {
             return currentLane;
         }
+        set
+        {
+            currentLane = value;
+            currentLaneIndex = onGridLanes.IndexOf(currentLane);
+        }
     }
 
     public int CurrentLaneIndex

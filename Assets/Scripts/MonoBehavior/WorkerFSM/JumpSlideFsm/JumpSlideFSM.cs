@@ -15,7 +15,6 @@ public class JumpSlideFSM : IJumpSlide
     Jump jumpState;
     Run runState = new Run();
     InterruptJump interruptJumpState = new InterruptJump();
-    HaltState haltState = new HaltState();
     DelayState delayState = new DelayState();
     Dictionary<IDoAction, List<IDoAction>> actionsDic = new Dictionary<IDoAction, List<IDoAction>>();
     Stack<IDoAction> actionStack = new Stack<IDoAction>();
@@ -47,12 +46,11 @@ public class JumpSlideFSM : IJumpSlide
         };
 
         //allowed transition states
-        actionsDic[slideState] = new List<IDoAction>() { runState, jumpState, haltState };
-        actionsDic[jumpState] = new List<IDoAction>() { runState, interruptJumpState, haltState };
-        actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState, haltState, delayState };
-        actionsDic[interruptJumpState] = new List<IDoAction>() { runState, slideState, haltState, delayState };
-        actionsDic[haltState] = new List<IDoAction>() { runState, jumpState, slideState };
-        actionsDic[delayState] = new List<IDoAction>() { jumpState, slideState, haltState };
+        actionsDic[slideState] = new List<IDoAction>() { runState, jumpState };
+        actionsDic[jumpState] = new List<IDoAction>() { runState, interruptJumpState };
+        actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState, delayState };
+        actionsDic[interruptJumpState] = new List<IDoAction>() { runState, slideState, delayState };
+        actionsDic[delayState] = new List<IDoAction>() { jumpState, slideState };
     }
 
     public void ScriptReset()
@@ -71,13 +69,6 @@ public class JumpSlideFSM : IJumpSlide
             nextState.OnStateEnter(mAnimator);
             currentState = nextState;
         }
-    }
-
-    //resume a paused state
-    void ResumeState(IDoAction resumedState)
-    {
-        currentState.OnStateExit(mAnimator);
-        currentState = resumedState;
     }
 
     public void Jump()
