@@ -15,12 +15,15 @@ public class WorkersManager : MonoBehaviour
 
     public bool boolForTutorial = false;        //used for tutorial
 
+    bool merging = false;
+
     void Awake()
     {
         gData.CoinCount = 0;
         wc.leader = leader;
         wc.workers.Add(leader);
         wc.onLeaderDeath.AddListener(LeaderDied);
+        wc.onMergeOver.AddListener(MergingDone);
     }
 
     void Update()
@@ -49,13 +52,23 @@ public class WorkersManager : MonoBehaviour
         wc.workers.Add(worker);
         gData.CoinCount -= workerPrice;
 
-        if(wc.workers.Count > 5)
+        if(!merging && wc.workers.Count >= 5)
         {
-
+            merging = true;
+            wc.workers[0].GetComponent<WorkerFSM>().ChangeState(WorkerStateTrigger.Merge);
+            for(int i = 1; i < 5; i++)
+            {
+                wc.workers[i].GetComponent<WorkerFSM>().ChangeState(WorkerStateTrigger.SlaveMerge);
+            }
         }
 
         boolForTutorial = true;         //used for tutorial
 
+    }
+
+    void MergingDone()
+    {
+        merging = false;
     }
 
     void LeaderDied()

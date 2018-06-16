@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpSlideFSM : IJumpSlide
+public class JumpSlideFSM : IWJumpSlide
 {
     //external references
     WorkerConfig wc;

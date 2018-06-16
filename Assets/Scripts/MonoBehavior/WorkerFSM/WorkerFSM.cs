@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectReturner))]
-public class WorkerFSM : MonoBehaviour, iHalt
+public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
 {
     public WorkerConfig wc;
     public TileConfig tc;
@@ -20,13 +20,14 @@ public class WorkerFSM : MonoBehaviour, iHalt
     WorkerCollide workerCollide;
     PositionWorker positionWorker;
     SeekLeaderPosition seekLeaderPosition;
+    MergerCollide mergerCollide;
+    SeekMasterMerger seekMasterMerger;
 
     IWorkerScript[] scriptsToResetState;
     Dictionary<WorkerState, StateScriptsWrapper> workerStateScripts = new Dictionary<WorkerState, StateScriptsWrapper>();
     WorkerStateTransition workerStateTransition = new WorkerStateTransition();
 
-    [SerializeField]
-    WorkerState currentState;
+    public WorkerState currentState;
     [SerializeField]
     WorkerState haltedState;
     public int health = 1;
@@ -69,6 +70,10 @@ public class WorkerFSM : MonoBehaviour, iHalt
     {
         currentState = WorkerState.Dead;
         haltedState = WorkerState.Dead;
+        health = 1;
+        rb.velocity = Vector3.zero;
+        transform.position = new Vector3(0, wc.groundLevel, 0);
+        tag = "Worker";
     }
 
     void SetStatesScripts()
@@ -78,19 +83,30 @@ public class WorkerFSM : MonoBehaviour, iHalt
         workerCollide = new WorkerCollide(mAnimator, rb, tc);
         positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
         seekLeaderPosition = new SeekLeaderPosition(transform, wc, lanes);
+        mergerCollide = new MergerCollide(wc);
+        seekMasterMerger = new SeekMasterMerger(wc, rb, transform);
 
         scriptsToResetState = new IWorkerScript[] {
-            workerStrafe, jumpSlideFsm
+            workerStrafe, jumpSlideFsm, mergerCollide
         };
 
         workerStateScripts[WorkerState.Leader] = new StateScriptsWrapper(new List<IWorkerScript>() {
             workerStrafe, jumpSlideFsm }, workerStrafe, jumpSlideFsm, workerCollide);
 
+        workerStateScripts[WorkerState.LeaderSeeker] = new StateScriptsWrapper(new List<IWorkerScript>() {
+        workerStrafe, jumpSlideFsm, seekLeaderPosition}, workerStrafe, jumpSlideFsm, seekLeaderPosition);
+
+        workerStateScripts[WorkerState.LeaderMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
+        {workerStrafe, jumpSlideFsm}, workerStrafe, jumpSlideFsm, mergerCollide);
+
         workerStateScripts[WorkerState.Worker] = new StateScriptsWrapper(new List<IWorkerScript>() {
         positionWorker, jumpSlideFsm}, jumpSlideFsm, workerCollide);
 
-        workerStateScripts[WorkerState.LeaderSeeker] = new StateScriptsWrapper(new List<IWorkerScript>() {
-        workerStrafe, jumpSlideFsm, seekLeaderPosition}, workerStrafe, jumpSlideFsm, seekLeaderPosition);
+        workerStateScripts[WorkerState.MasterMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
+        {positionWorker, jumpSlideFsm}, jumpSlideFsm, mergerCollide);
+
+        workerStateScripts[WorkerState.SlaveMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
+        {seekMasterMerger, jumpSlideFsm}, jumpSlideFsm);
 
         workerStateScripts[WorkerState.Dead] = new StateScriptsWrapper(new List<IWorkerScript>());
         workerStateScripts[WorkerState.Halted] = new StateScriptsWrapper(new List<IWorkerScript>());
@@ -150,11 +166,19 @@ public class WorkerFSM : MonoBehaviour, iHalt
             case WorkerFSMOutput.WorkerRevived:
                 wc.workers.Add(gameObject);
                 break;
-            case WorkerFSMOutput.SlaveMerged:
-                break;
             case WorkerFSMOutput.LeaderElected:
                 seekLeaderPosition.SetClosestLane();
                 rb.velocity = Vector3.zero;
+                break;
+            case WorkerFSMOutput.SeekingMasterMerger:
+                seekMasterMerger.seekedMerger = wc.workers[0].transform;
+                tag = "SlaveMerger";
+                break;
+            case WorkerFSMOutput.LeaderMerged:
+                wc.onMergeOver.Invoke();
+                break;
+            case WorkerFSMOutput.MasterMerged:
+                wc.onMergeOver.Invoke();
                 break;
         }
     }
@@ -190,7 +214,10 @@ public class WorkerFSM : MonoBehaviour, iHalt
         if (gameObject.activeSelf)
         {
             if (currentState == WorkerState.Dead)
+            {
                 StartCoroutine(workerReturner.ReturnToPool(0));
+                return;
+            }
 
             mAnimator.speed = 0;
             haltedState = currentState;
@@ -219,5 +246,15 @@ public class WorkerFSM : MonoBehaviour, iHalt
         gd.onPause.AddListener(Halt);
         gd.OnResume.AddListener(Resume);
         gd.onEnd.AddListener(End);
+    }
+
+    public void ReactToCollision(int collidedHealth)
+    {
+        StartCoroutine(workerReturner.ReturnToPool(0));
+    }
+
+    public int Gethealth()
+    {
+        return health;
     }
 }

@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - FallCollider
   - MagnetCollider
+  - SlaveMerger
   layers:
   - Default
   - TransparentFX

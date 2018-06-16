@@ -81,8 +81,7 @@ public class LanesDatabase : ScriptableObject
 
     public void ResetLanes()
     {
-        currentLane = gridLanes[2];
-        currentLaneIndex = 2;
+        CurrentLane = gridLanes[2];
     }
 
     public void RecalculateLanesCenter()

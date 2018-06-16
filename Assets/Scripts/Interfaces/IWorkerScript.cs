@@ -7,26 +7,26 @@ public interface IWorkerScript
     void ScriptReset();
 }
 
-public interface IStrafe : IWorkerScript
+public interface IWStrafe : IWorkerScript
 {
     void StrafeLeft();
     void StrafeRight();
 }
 
-public interface IJumpSlide : IWorkerScript
+public interface IWJumpSlide : IWorkerScript
 {
     void Jump();
     void Slide();
 }
 
 
-public interface IChangeState: IWorkerScript
+public interface IWChangeState: IWorkerScript
 {
     //state sets an input trigger when it is done
     WorkerStateTrigger InputTrigger();
 }
 
-public interface ICollide : IWorkerScript
+public interface IWCollide : IWorkerScript
 {
     WorkerStateTrigger Collide(Collider collider, ref int health);
 }

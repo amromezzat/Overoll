@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorkerStrafe : IStrafe
+public class WorkerStrafe : IWStrafe
 {
     //external references
     LanesDatabase lanes;
