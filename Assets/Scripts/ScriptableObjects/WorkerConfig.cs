@@ -21,6 +21,8 @@ public class WorkerConfig : ScriptableObject
     [HideInInspector]
     public UnityEvent onLeaderDeath;
     [HideInInspector]
+    public UnityEvent onMergeOver;
+    [HideInInspector]
     public UnityEvent gotMagnet;
     [HideInInspector]
     public UnityEvent gotShield;
@@ -42,6 +44,7 @@ public class WorkerConfig : ScriptableObject
     public float maxSepForce = 30;
     public float maxFolForce = 10;
     public float maxSpeed = 10;
+    public int minMergeNum = 5;
     [HideInInspector]
     public float aheadFollowPoint = 5;//distance infront of leader for workers to follow
 

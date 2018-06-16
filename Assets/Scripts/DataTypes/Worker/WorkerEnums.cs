@@ -27,6 +27,8 @@ public enum WorkerFSMOutput
     LeaderDied,
     WorkerDied,
     WorkerRevived,
-    SlaveMerged,
+    SeekingMasterMerger,
+    LeaderMerged,
+    MasterMerged,
     LeaderElected
 }

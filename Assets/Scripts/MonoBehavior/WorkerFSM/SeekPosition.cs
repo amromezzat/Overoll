@@ -57,7 +57,9 @@ public abstract class SeekPosition : IWorkerScript
 
     public float CalculateDisFrom(GameObject entity)
     {
-        return (entity.transform.position - transform.position).magnitude;
+        Vector2 entityPos = new Vector2(entity.transform.position.x, entity.transform.position.z);
+        Vector2 pos = new Vector2(transform.position.x, transform.position.z);
+        return (entityPos - pos).magnitude;
     }
 
     public abstract void FixedUpdate(float fixedDeltaTime);

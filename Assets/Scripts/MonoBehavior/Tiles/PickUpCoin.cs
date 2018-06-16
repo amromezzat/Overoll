@@ -15,7 +15,7 @@ public class PickUpCoin : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Worker")
+        if (other.tag == "Worker" || other.tag == "SlaveMerger")
         {
             FindObjectOfType<AudioManager>().PlaySound("Coin");
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeekLeaderPosition : IWorkerScript, IChangeState
+public class SeekLeaderPosition : IWorkerScript, IWChangeState
 {
     LanesDatabase lanes;
     Transform transform;
@@ -52,7 +52,7 @@ public class SeekLeaderPosition : IWorkerScript, IChangeState
 
     public WorkerStateTrigger InputTrigger()
     {
-        if (seekTimer >= 2)
+        if (seekTimer >= wc.takeLeadDuration + 1)
         {
             seekTimer = 0;
             return WorkerStateTrigger.StateEnd;
