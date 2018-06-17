@@ -61,9 +61,9 @@ MonoBehaviour:
   workersSepDis: 1
   arrivalSlowingRad: 1
   maxSepForce: 15
-  maxFolForce: 10
-  maxSpeed: 10
-  aheadFollowPoint: -0.97712123
+  maxFolForce: 15
+  maxSpeed: 15
+  aheadFollowPoint: -1.1020601
   hrWorkers: []
   managerWorkers: []
   worker: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}

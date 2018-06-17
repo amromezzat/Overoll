@@ -36,7 +36,7 @@ public class WorkerCollide : IWCollide
             if (health <= 0)
             {
                 animator.SetTrigger("DeathAnim");
-                rb.velocity += Vector3.back * tc.tileSpeed;
+                rb.velocity = Vector3.back * tc.tileSpeed;
                 return WorkerStateTrigger.Die;
             }
 
