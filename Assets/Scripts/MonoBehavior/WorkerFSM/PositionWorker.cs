@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositionWorker : SeekPosition
+public class PositionWorker : PositionMasterMerger
 {
     public PositionWorker(WorkerConfig wc, Rigidbody rb, Transform transform, int id) : base(wc, rb, transform, id)
     {
@@ -18,9 +18,9 @@ public class PositionWorker : SeekPosition
         Vector2 seperationForce = Vector2.zero;
         int neighborCount = 0;
 
-        foreach (GameObject worker in wc.workers)
+        foreach (WorkerFSM worker in wc.workers)
         {
-            if (worker.GetInstanceID() != id && CalculateDisFrom(worker) < wc.workersSepDis)
+            if (worker.GetInstanceID() != id && CalculateDisFrom(worker.gameObject) < wc.workersSepDis)
             {
                 seperationForce.x += worker.transform.position.x - transform.position.x;
                 seperationForce.y += worker.transform.position.z - transform.position.z;
@@ -37,11 +37,9 @@ public class PositionWorker : SeekPosition
         return seperationForce;
     }
 
-    public override Vector2 SteeringForce()
+    protected override Vector2 SteeringForce()
     {
-        // Creates a force to arrive at the behind point
-        Vector2 steeringForce = Vector2.zero;
-        steeringForce = SeekTarget(wc.leader.transform.position, wc.aheadFollowPoint);
+        Vector2 steeringForce = base.SteeringForce();
         //Seperate workers
         steeringForce += StayAway();
         return steeringForce;

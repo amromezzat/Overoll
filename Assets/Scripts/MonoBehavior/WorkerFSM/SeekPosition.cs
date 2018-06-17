@@ -19,7 +19,7 @@ public abstract class SeekPosition : IWorkerScript
         this.transform = transform;
     }
 
-    public SeekPosition(WorkerConfig wc, Rigidbody rb, Transform transform, int id)
+    protected SeekPosition(WorkerConfig wc, Rigidbody rb, Transform transform, int id)
     {
         this.wc = wc;
         this.rb = rb;
@@ -28,7 +28,7 @@ public abstract class SeekPosition : IWorkerScript
     }
 
     //chase leader while maintaining a distance behind him
-    public Vector2 SeekTarget(Vector3 followedPos, float aheadFollowPoint, bool slowDown = true)
+    protected Vector2 SeekTarget(Vector3 followedPos, float aheadFollowPoint, bool slowDown = true)
     {
         Vector2 aheadDis = Vector2.zero;
         aheadDis.x = followedPos.x;
@@ -55,7 +55,7 @@ public abstract class SeekPosition : IWorkerScript
         return folForce.normalized * wc.maxFolForce;
     }
 
-    public float CalculateDisFrom(GameObject entity)
+    protected float CalculateDisFrom(GameObject entity)
     {
         Vector2 entityPos = new Vector2(entity.transform.position.x, entity.transform.position.z);
         Vector2 pos = new Vector2(transform.position.x, transform.position.z);
@@ -66,5 +66,5 @@ public abstract class SeekPosition : IWorkerScript
 
     public abstract void ScriptReset();
 
-    public abstract Vector2 SteeringForce();
+    protected abstract Vector2 SteeringForce();
 }

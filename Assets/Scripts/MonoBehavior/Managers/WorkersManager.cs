@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WorkersManager : MonoBehaviour
 {
-    public GameObject leader;
+    public WorkerFSM leader;
     public Button addWorkerBtn;
     public WorkerConfig wc;
     public TileConfig tc;
@@ -14,8 +14,6 @@ public class WorkersManager : MonoBehaviour
     public int wPFactor = 2;
 
     public bool boolForTutorial = false;        //used for tutorial
-
-    bool merging = false;
 
     void Awake()
     {
@@ -49,18 +47,8 @@ public class WorkersManager : MonoBehaviour
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
         float newZPos = Random.Range(tc.disableSafeDistance + 5, tc.disableSafeDistance + 8);
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
-        wc.workers.Add(worker);
+        wc.workers.Add(worker.GetComponent<WorkerFSM>());
         gData.CoinCount -= workerPrice;
-
-        if(!merging && wc.workers.Count >= 5)
-        {
-            merging = true;
-            wc.workers[0].GetComponent<WorkerFSM>().ChangeState(WorkerStateTrigger.Merge);
-            for(int i = 1; i < 5; i++)
-            {
-                wc.workers[i].GetComponent<WorkerFSM>().ChangeState(WorkerStateTrigger.SlaveMerge);
-            }
-        }
 
         boolForTutorial = true;         //used for tutorial
 
@@ -68,7 +56,7 @@ public class WorkersManager : MonoBehaviour
 
     void MergingDone()
     {
-        merging = false;
+        wc.workers.Ascend();
     }
 
     void LeaderDied()
@@ -86,7 +74,6 @@ public class WorkersManager : MonoBehaviour
 
     public void ElectNewLeader()
     {
-        wc.leader = wc.workers[0];
-        wc.leader.GetComponent<WorkerFSM>().ChangeState(WorkerStateTrigger.Succeed);
+        wc.leader = wc.workers.GetNewLeader();
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class WorkerConfig : ScriptableObject
 {
 
-    public GameObject leader;
+    public WorkerFSM leader;
 
     //Events available for other classes to register to
     [HideInInspector]
@@ -44,11 +44,10 @@ public class WorkerConfig : ScriptableObject
     public float maxSepForce = 30;
     public float maxFolForce = 10;
     public float maxSpeed = 10;
-    public int minMergeNum = 5;
     [HideInInspector]
     public float aheadFollowPoint = 5;//distance infront of leader for workers to follow
 
-    public List<GameObject> workers;
+    public WorkerList workers;
     [HideInInspector]
     public List<GameObject> hrWorkers;
     [HideInInspector]
@@ -59,8 +58,12 @@ public class WorkerConfig : ScriptableObject
     public PoolableType HR;
     public PoolableType Manager;
 
+    [Header("Worker Merge")]
+    public int workersPerLevel = 5;
+    public int levelsNum = 5;
+
     private void OnEnable()
     {
-        workers = new List<GameObject>();
+        workers = new WorkerList(workersPerLevel, levelsNum);
     }
 }
