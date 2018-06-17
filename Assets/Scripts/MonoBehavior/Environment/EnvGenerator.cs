@@ -46,11 +46,6 @@ public class EnvGenerator : MonoBehaviour, iHalt
         lastTile = obj.transform;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(0,1, 0, 0.5F);
-        Gizmos.DrawCube(transform.position, new Vector3(10, 10, 1));
-    }
 
     public void RegisterListeners()
     {
@@ -78,5 +73,15 @@ public class EnvGenerator : MonoBehaviour, iHalt
     public void End()
     {
         isHalt = true;
+    }
+
+    public bool drawGizmos = false;
+    private void OnDrawGizmos()
+    {
+        if (drawGizmos)
+        {
+            Gizmos.color = new Color(0, 1, 0, 0.5F);
+            Gizmos.DrawCube(transform.position, new Vector3(10, 10, 1));
+        }
     }
 }

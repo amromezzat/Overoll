@@ -611,10 +611,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1803301142844228, guid: 87426b14ce238ef45894b025e0c7a8eb, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87426b14ce238ef45894b025e0c7a8eb, type: 2}
   m_IsPrefabParent: 0
@@ -1853,6 +1849,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4878606254622636, guid: 9b4d8fffcc4f70b4890ef55793ac27df,
     type: 2}
   m_PrefabInternal: {fileID: 1226728404}
+--- !u!114 &1231132647 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114481118162764162, guid: 87426b14ce238ef45894b025e0c7a8eb,
+    type: 2}
+  m_PrefabInternal: {fileID: 470581917}
+  m_Script: {fileID: 11500000, guid: e5ab58eb5849dc34c9a79ef03a7be472, type: 3}
 --- !u!1 &1258227640
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,12 +3417,6 @@ Prefab:
     - {fileID: 114359689131013022, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9b4d8fffcc4f70b4890ef55793ac27df, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1600454068 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114790464402386390, guid: 6f2e215c257f3424e9b0f96e775b6e2b,
-    type: 2}
-  m_PrefabInternal: {fileID: 1369740738}
-  m_Script: {fileID: 11500000, guid: e5ab58eb5849dc34c9a79ef03a7be472, type: 3}
 --- !u!1001 &1602554097
 Prefab:
   m_ObjectHideFlags: 0
@@ -4189,7 +4185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8f2ad57a930144a9258421303780d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leader: {fileID: 1600454068}
+  leader: {fileID: 1231132647}
   addWorkerBtn: {fileID: 1196388978}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
@@ -4216,7 +4212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1906287970
 Transform:
   m_ObjectHideFlags: 0
@@ -4245,6 +4241,7 @@ MonoBehaviour:
   shift: {x: 0, y: 0, z: 40}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  drawGizmos: 0
 --- !u!114 &1906287972
 MonoBehaviour:
   m_ObjectHideFlags: 0

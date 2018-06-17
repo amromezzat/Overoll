@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 114819304942227930}
   m_Layer: 0
   m_Name: Worker_Blueoverall_Orangehelmet
-  m_TagString: Untagged
+  m_TagString: Worker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
-  healthText: {fileID: 0}
+  healthText: {fileID: 102270327382286598}
   currentState: 1
   haltedState: 0
   health: 1
