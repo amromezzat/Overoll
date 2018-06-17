@@ -20,7 +20,7 @@ public class SeekMasterMerger : SeekPosition
     {
     }
 
-    public override Vector2 SteeringForce()
+    protected override Vector2 SteeringForce()
     {
         return SeekTarget(seekedMerger.position, 0, false);
     }

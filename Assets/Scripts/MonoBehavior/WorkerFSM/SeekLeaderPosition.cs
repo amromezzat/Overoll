@@ -45,7 +45,7 @@ public class SeekLeaderPosition : IWorkerScript, IWChangeState
         transform.position = newPos;
     }
 
-    public float CalculateXDisFrom(float entityXPos)
+    private float CalculateXDisFrom(float entityXPos)
     {
         return Mathf.Abs(entityXPos - transform.position.x);
     }

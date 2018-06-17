@@ -16,12 +16,12 @@ public class MergerCollide : IWCollide
     {
         if (collider.CompareTag("SlaveMerger"))
         {
-            collider.tag = "Worker";
+            wc.workers.Remove(collider.GetComponent<WorkerFSM>());
             ICollidable slaveMerger = collider.GetComponent<ICollidable>();
             health += slaveMerger.Gethealth();
             slaveMerger.ReactToCollision(0);
             mergedCount++;
-            if(mergedCount >= wc.minMergeNum)
+            if(mergedCount >= wc.workersPerLevel - 1)
             {
                 mergedCount = 0;
                 return WorkerStateTrigger.StateEnd;

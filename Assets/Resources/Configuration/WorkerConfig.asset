@@ -37,6 +37,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onMergeOver:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   gotMagnet:
     m_PersistentCalls:
       m_Calls: []
@@ -58,10 +63,11 @@ MonoBehaviour:
   maxSepForce: 15
   maxFolForce: 10
   maxSpeed: 10
-  aheadFollowPoint: -0.80103004
-  workers: []
+  aheadFollowPoint: -0.97712123
   hrWorkers: []
   managerWorkers: []
   worker: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
   HR: {fileID: 0}
   Manager: {fileID: 0}
+  workersPerLevel: 5
+  levelsNum: 5
