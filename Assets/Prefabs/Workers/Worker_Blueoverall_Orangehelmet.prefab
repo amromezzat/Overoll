@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4852474572132826}
   - component: {fileID: 33843948115056082}
   - component: {fileID: 23108516471410830}
+  - component: {fileID: 114153008357205874}
   m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
@@ -147,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1344323337125814}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.02000001, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4460138900085054}
@@ -306,6 +307,18 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!114 &114153008357205874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344323337125814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba58436a984dca4ca763721c136f5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
 --- !u!114 &114481118162764162
 MonoBehaviour:
   m_ObjectHideFlags: 1
