@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114279595685951186}
   - component: {fileID: 114936955104218882}
   - component: {fileID: 114221965419489442}
+  - component: {fileID: 114043705576310860}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -149,6 +150,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114043705576310860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448736720025150}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b681587f6711d4aa42607ce9d08654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114221965419489442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gstate: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
 --- !u!135 &135123608719967398
 SphereCollider:
   m_ObjectHideFlags: 1

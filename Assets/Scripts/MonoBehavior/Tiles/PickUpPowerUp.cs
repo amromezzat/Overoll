@@ -4,31 +4,32 @@ using UnityEngine;
 
 public class PickUpPowerUp : MonoBehaviour {
 
- 
-    TileReturner cReturn;
+
+    ObjectReturner cReturn;
     GameObject gameobj;
     public WorkerConfig wc;
 
     void OnEnable()
     {
       
-        cReturn = GetComponent<TileReturner>();
+        cReturn = GetComponent<ObjectReturner>();
         gameobj = GetComponent<GameObject>();
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Worker")
+        if (other.tag == "Worker")
         {
-            if (gameobj.tag == "Magnet")
+            if (tag == "Magnet")
             {
+                print("I got magnet Haaaay!!!");
                 wc.gotMagnet.Invoke();  
             }
-            if(gameobj.tag=="Shield")
+            if(tag=="Shield")
             {
                 wc.gotShield.Invoke();
             }
-           StartCoroutine(cReturn.ReturnToPool(2));
+           StartCoroutine(cReturn.ReturnToPool(0));
            
         }
     }

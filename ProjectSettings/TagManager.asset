@@ -11,6 +11,8 @@ TagManager:
   - FallCollider
   - MagnetCollider
   - SlaveMerger
+  - PowerUpCollider
+  - Magnet
   layers:
   - Default
   - TransparentFX
