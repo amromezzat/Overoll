@@ -15,7 +15,7 @@ public class GroundWorkerShadow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Vector3 newPos = transform.position;
-        newPos.y = wc.groundLevel + 0.03f;
+        newPos.y = wc.groundLevel + 0.05f;
         transform.position = newPos;
 	}
 }

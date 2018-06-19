@@ -5,9 +5,8 @@
 		_MainTex("Base (RGB)", 2D) = "white" {}
 	}
 	SubShader{
-		Tags{ "Queue" = "Transparent" "RenderType" = "Opaque" }
+		Tags{ "RenderType" = "Opaque" }
 		LOD 200
-		Cull Front
 
 		CGPROGRAM
 		// Surface shader function is called surf, and vertex preprocessor function is called vert
