@@ -22,6 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
   - {fileID: 11400000, guid: 3e86c4a97f571eb438a8ba8bee42a600, type: 2}
   - {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
+  - {fileID: 11400000, guid: 33dc546893613ae45861b54164b469b5, type: 2}
   interactablesNames:
   - BlankTile
   - CautionSign
@@ -33,3 +34,4 @@ MonoBehaviour:
   - SpoolDynamic
   - SpoolStatic
   - Worker
+  - Magnet
