@@ -6495,7 +6495,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4852474572132826, guid: 87426b14ce238ef45894b025e0c7a8eb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.02000001
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87426b14ce238ef45894b025e0c7a8eb, type: 2}
@@ -12529,12 +12529,12 @@ Prefab:
         type: 2}
       propertyPath: startView
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1650137116}
     - target: {fileID: 114167492826167878, guid: 07dce5888f96cc14ea7abe45f56f2d1a,
         type: 2}
       propertyPath: backView
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1509695273}
     - target: {fileID: 114167492826167878, guid: 07dce5888f96cc14ea7abe45f56f2d1a,
         type: 2}
       propertyPath: beginTrans
@@ -12549,8 +12549,7 @@ Prefab:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114668566210452072, guid: 07dce5888f96cc14ea7abe45f56f2d1a, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07dce5888f96cc14ea7abe45f56f2d1a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &898044283
@@ -23286,7 +23285,7 @@ GameObject:
   - component: {fileID: 1650137118}
   - component: {fileID: 1650137117}
   m_Layer: 5
-  m_Name: StartView (1)
+  m_Name: StartView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

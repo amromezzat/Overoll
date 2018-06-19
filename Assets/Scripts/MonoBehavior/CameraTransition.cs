@@ -24,7 +24,7 @@ public class CameraTransition : MonoBehaviour, iHalt
     }
 
     public void Begin()
-    { 
+    {
         timer = 0;
         onHalt = false;
         next = EndTrans;
@@ -69,15 +69,15 @@ public class CameraTransition : MonoBehaviour, iHalt
         }
         timer += Time.deltaTime;
         float completedPortion = timer / transTime;
-        float sinPortion = Mathf.Sin(completedPortion * Mathf.PI/2);
+        float sinPortion = Mathf.Sin(completedPortion * Mathf.PI / (transTime * 2));
         transform.position = Vector3.Lerp(current.position, next.position, sinPortion);
         transform.rotation = Quaternion.Lerp(current.rotation, next.rotation, sinPortion);
-        if(completedPortion >= 1)
+        if (completedPortion >= transTime)
         {
             Destroy(startView);
             enabled = false;
         }
-        else if(completedPortion >= 0.5f)
+        else if (completedPortion >= transTime / 2)
         {
             backView.SetActive(false);
             startView.GetComponent<Rigidbody>().velocity = Vector3.back * tc.tileSpeed;
