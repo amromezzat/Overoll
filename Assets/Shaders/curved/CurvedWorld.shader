@@ -1,17 +1,18 @@
 ﻿Shader "Unlit/CurvedWorld" {
+
 	Properties{
 		//texture
 		_MainTex("Base (RGB)", 2D) = "white" {}
 	}
 	SubShader{
-		Tags{ "RenderType" = "Opaque" }
-		Lighting Off
+		Tags{ "Queue" = "Transparent" "RenderType" = "Opaque" }
 		LOD 200
+		Cull Front
 
 		CGPROGRAM
 		// Surface shader function is called surf, and vertex preprocessor function is called vert
 		// addshadow used to add shadow collector and caster passes following vertex modification
-		#pragma surface surf Lambert vertex:vert addshadow
+		#pragma surface surf Lambert vertex:vert
 
 		// Access the shaderlab properties
 		uniform sampler2D _MainTex;
