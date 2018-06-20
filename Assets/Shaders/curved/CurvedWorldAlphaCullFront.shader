@@ -7,12 +7,12 @@
 		SubShader{
 		Tags{ "Queue" = "Transparent" "RenderType" = "Opaque" }
 		LOD 200
-		Cull Front
-
+		Cull Back
+		AlphaToMask on
 		CGPROGRAM
 		// Surface shader function is called surf, and vertex preprocessor function is called vert
 		// addshadow used to add shadow collector and caster passes following vertex modification
-#pragma surface surf Lambert vertex:vert alpha 
+		#pragma surface surf Lambert vertex:vert keepalpha addshadow
 
 		// Access the shaderlab properties
 		uniform sampler2D _MainTex;
