@@ -1,32 +1,64 @@
 fileFormatVersion: 2
-guid: 249235053f086aa4387e650a30ef14f9
-timeCreated: 18446744011573954816
+guid: 3ea894903b3f8414c9da9e68841e4aee
+timeCreated: 1529529615
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: OrangeBarrelMesh
-    4300002: OrangeBarrelMesh.001
-    11100000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: material
-    second: {fileID: 2100000, guid: 99b198f44833e6f45a84a013ce57748c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: material.001
-    second: {fileID: 2100000, guid: 3cc18b5b4c1dfdd4fa7884565b8270f8, type: 2}
+    100000: Broken Platform.004
+    100002: Broken Platform.005
+    100004: Circle.002
+    100006: Cylinder.006
+    100008: Cylinder.007
+    100010: Cylinder.008
+    100012: Gear.002
+    100014: //RootNode
+    100016: Pipe_joint_single.002
+    100018: Pyramid007.001
+    400000: Broken Platform.004
+    400002: Broken Platform.005
+    400004: Circle.002
+    400006: Cylinder.006
+    400008: Cylinder.007
+    400010: Cylinder.008
+    400012: Gear.002
+    400014: //RootNode
+    400016: Pipe_joint_single.002
+    400018: Pyramid007.001
+    2100000: Material.007
+    2300000: Broken Platform.004
+    2300002: Broken Platform.005
+    2300004: Circle.002
+    2300006: Cylinder.006
+    2300008: Cylinder.007
+    2300010: Cylinder.008
+    2300012: Gear.002
+    2300014: Pipe_joint_single.002
+    2300016: Pyramid007.001
+    3300000: Broken Platform.004
+    3300002: Broken Platform.005
+    3300004: Circle.002
+    3300006: Cylinder.006
+    3300008: Cylinder.007
+    3300010: Cylinder.008
+    3300012: Gear.002
+    3300014: Pipe_joint_single.002
+    3300016: Pyramid007.001
+    4300000: Pyramid007.001
+    4300002: Gear.002
+    4300004: Broken Platform.005
+    4300006: Broken Platform.004
+    4300008: Cylinder.008
+    4300010: Cylinder.007
+    4300012: Pipe_joint_single.002
+    4300014: Circle.002
+    4300016: Cylinder.006
+  externalObjects: {}
   materials:
-    importMaterials: 1
-    materialName: 3
+    importMaterials: 0
+    materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -65,18 +97,18 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    indexFormat: 1
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
-    normalCalculationMode: 0
-  importAnimation: 1
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -95,7 +127,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

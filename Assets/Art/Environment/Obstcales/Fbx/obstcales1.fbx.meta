@@ -1,32 +1,64 @@
 fileFormatVersion: 2
-guid: 249235053f086aa4387e650a30ef14f9
-timeCreated: 18446744011573954816
+guid: bb535af3ca473b44c8c38f707e9804a9
+timeCreated: 1529529619
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: OrangeBarrelMesh
-    4300002: OrangeBarrelMesh.001
-    11100000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: material
-    second: {fileID: 2100000, guid: 99b198f44833e6f45a84a013ce57748c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: material.001
-    second: {fileID: 2100000, guid: 3cc18b5b4c1dfdd4fa7884565b8270f8, type: 2}
+    100000: Broken Platform.000
+    100002: Broken Platform.001
+    100004: Circle
+    100006: Cylinder
+    100008: Cylinder.001
+    100010: Cylinder.003
+    100012: Gear
+    100014: //RootNode
+    100016: Pipe_joint_single
+    100018: Pyramid007
+    400000: Broken Platform.000
+    400002: Broken Platform.001
+    400004: Circle
+    400006: Cylinder
+    400008: Cylinder.001
+    400010: Cylinder.003
+    400012: Gear
+    400014: //RootNode
+    400016: Pipe_joint_single
+    400018: Pyramid007
+    2100000: Material.007
+    2300000: Broken Platform.000
+    2300002: Broken Platform.001
+    2300004: Circle
+    2300006: Cylinder
+    2300008: Cylinder.001
+    2300010: Cylinder.003
+    2300012: Gear
+    2300014: Pipe_joint_single
+    2300016: Pyramid007
+    3300000: Broken Platform.000
+    3300002: Broken Platform.001
+    3300004: Circle
+    3300006: Cylinder
+    3300008: Cylinder.001
+    3300010: Cylinder.003
+    3300012: Gear
+    3300014: Pipe_joint_single
+    3300016: Pyramid007
+    4300000: Pyramid007
+    4300002: Gear
+    4300004: Broken Platform.001
+    4300006: Broken Platform.000
+    4300008: Cylinder.001
+    4300010: Cylinder.003
+    4300012: Pipe_joint_single
+    4300014: Circle
+    4300016: Cylinder
+  externalObjects: {}
   materials:
-    importMaterials: 1
-    materialName: 3
+    importMaterials: 0
+    materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -65,18 +97,18 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    indexFormat: 1
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
-    normalCalculationMode: 0
-  importAnimation: 1
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -95,7 +127,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
