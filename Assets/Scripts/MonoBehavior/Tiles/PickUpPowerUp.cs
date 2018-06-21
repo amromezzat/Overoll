@@ -22,7 +22,7 @@ public class PickUpPowerUp : MonoBehaviour {
         {
             if (tag == "Magnet")
             {
-                print("I got magnet Haaaay!!!");
+                //print("I got magnet Haaaay!!!");
                 wc.gotMagnet.Invoke();  
             }
             if(tag=="Shield")
