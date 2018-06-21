@@ -77,10 +77,12 @@ public class CameraTransition : MonoBehaviour, iHalt
             Destroy(startView);
             enabled = false;
         }
-        else if (completedPortion >= transTime / 2)
+        else if (completedPortion >= transTime / 4)
         {
-            backView.SetActive(false);
-            startView.GetComponent<Rigidbody>().velocity = Vector3.back * tc.tileSpeed;
+            //backView.SetActive(false);
+            Vector3 newPos = startView.transform.position;
+            newPos.z -= 0.1f;
+            startView.transform.position = newPos;
         }
     }
 }
