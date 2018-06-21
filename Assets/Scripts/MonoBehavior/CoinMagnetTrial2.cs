@@ -22,7 +22,7 @@ public class CoinMagnetTrial2 : MonoBehaviour
     void Update()
     {
         timerCoolDown -= Time.deltaTime;
-        Debug.Log(collided);
+        //Debug.Log(collided);
 
         if (collided)
         {
