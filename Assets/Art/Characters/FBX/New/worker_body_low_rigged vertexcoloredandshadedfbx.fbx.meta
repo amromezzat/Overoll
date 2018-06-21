@@ -1,0 +1,233 @@
+fileFormatVersion: 2
+guid: 6f8412553ebcf434bb8a472744388420
+timeCreated: 1529551721
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Helmet_blue
+    100004: Helmet_green
+    100006: Helmet_orange
+    100008: Helmet_white
+    100010: mixamorig:Head
+    100012: mixamorig:HeadTop_End
+    100014: mixamorig:HeadTop_End_end
+    100016: mixamorig:HeadTop_End_end_end
+    100018: mixamorig:Hips
+    100020: mixamorig:LeftArm
+    100022: mixamorig:LeftFoot
+    100024: mixamorig:LeftForeArm
+    100026: mixamorig:LeftHand
+    100028: mixamorig:LeftHandIndex1
+    100030: mixamorig:LeftHandIndex2
+    100032: mixamorig:LeftHandIndex3
+    100034: mixamorig:LeftHandIndex4
+    100036: mixamorig:LeftHandIndex4_end
+    100038: mixamorig:LeftHandIndex4_end_end
+    100040: mixamorig:LeftLeg
+    100042: mixamorig:LeftShoulder
+    100044: mixamorig:LeftToe_End
+    100046: mixamorig:LeftToe_End_end
+    100048: mixamorig:LeftToe_End_end_end
+    100050: mixamorig:LeftToeBase
+    100052: mixamorig:LeftUpLeg
+    100054: mixamorig:Neck
+    100056: mixamorig:RightArm
+    100058: mixamorig:RightFoot
+    100060: mixamorig:RightForeArm
+    100062: mixamorig:RightHand
+    100064: mixamorig:RightHandIndex1
+    100066: mixamorig:RightHandIndex2
+    100068: mixamorig:RightHandIndex3
+    100070: mixamorig:RightHandIndex4
+    100072: mixamorig:RightHandIndex4_end
+    100074: mixamorig:RightHandIndex4_end_end
+    100076: mixamorig:RightLeg
+    100078: mixamorig:RightShoulder
+    100080: mixamorig:RightToe_End
+    100082: mixamorig:RightToe_End_end
+    100084: mixamorig:RightToe_End_end_end
+    100086: mixamorig:RightToeBase
+    100088: mixamorig:RightUpLeg
+    100090: mixamorig:Spine
+    100092: mixamorig:Spine1
+    100094: mixamorig:Spine2
+    100096: Overall_blue
+    100098: Overall_blue.blackskin
+    100100: Overall_green
+    100102: Overall_green.blackskin
+    100104: Overall_grey
+    100106: Overall_grey.blackskin
+    100108: Overall_orange
+    100110: Overall_orange.blackskin
+    100112: Plane
+    100114: //RootNode
+    400000: Armature
+    400002: Helmet_blue
+    400004: Helmet_green
+    400006: Helmet_orange
+    400008: Helmet_white
+    400010: mixamorig:Head
+    400012: mixamorig:HeadTop_End
+    400014: mixamorig:HeadTop_End_end
+    400016: mixamorig:HeadTop_End_end_end
+    400018: mixamorig:Hips
+    400020: mixamorig:LeftArm
+    400022: mixamorig:LeftFoot
+    400024: mixamorig:LeftForeArm
+    400026: mixamorig:LeftHand
+    400028: mixamorig:LeftHandIndex1
+    400030: mixamorig:LeftHandIndex2
+    400032: mixamorig:LeftHandIndex3
+    400034: mixamorig:LeftHandIndex4
+    400036: mixamorig:LeftHandIndex4_end
+    400038: mixamorig:LeftHandIndex4_end_end
+    400040: mixamorig:LeftLeg
+    400042: mixamorig:LeftShoulder
+    400044: mixamorig:LeftToe_End
+    400046: mixamorig:LeftToe_End_end
+    400048: mixamorig:LeftToe_End_end_end
+    400050: mixamorig:LeftToeBase
+    400052: mixamorig:LeftUpLeg
+    400054: mixamorig:Neck
+    400056: mixamorig:RightArm
+    400058: mixamorig:RightFoot
+    400060: mixamorig:RightForeArm
+    400062: mixamorig:RightHand
+    400064: mixamorig:RightHandIndex1
+    400066: mixamorig:RightHandIndex2
+    400068: mixamorig:RightHandIndex3
+    400070: mixamorig:RightHandIndex4
+    400072: mixamorig:RightHandIndex4_end
+    400074: mixamorig:RightHandIndex4_end_end
+    400076: mixamorig:RightLeg
+    400078: mixamorig:RightShoulder
+    400080: mixamorig:RightToe_End
+    400082: mixamorig:RightToe_End_end
+    400084: mixamorig:RightToe_End_end_end
+    400086: mixamorig:RightToeBase
+    400088: mixamorig:RightUpLeg
+    400090: mixamorig:Spine
+    400092: mixamorig:Spine1
+    400094: mixamorig:Spine2
+    400096: Overall_blue
+    400098: Overall_blue.blackskin
+    400100: Overall_green
+    400102: Overall_green.blackskin
+    400104: Overall_grey
+    400106: Overall_grey.blackskin
+    400108: Overall_orange
+    400110: Overall_orange.blackskin
+    400112: Plane
+    400114: //RootNode
+    2100000: Material.010
+    2100002: No Name
+    2300000: Plane
+    3300000: Plane
+    4300000: Plane
+    4300002: Overall_orange.blackskin
+    4300004: Overall_grey.blackskin
+    4300006: Overall_green.blackskin
+    4300008: Overall_blue.blackskin
+    4300010: Overall_blue
+    4300012: Helmet_orange
+    4300014: Helmet_white
+    4300016: Overall_green
+    4300018: Overall_grey
+    4300020: Overall_orange
+    4300022: Helmet_green
+    4300024: Helmet_blue
+    9500000: //RootNode
+    13700000: Helmet_blue
+    13700002: Helmet_green
+    13700004: Helmet_orange
+    13700006: Helmet_white
+    13700008: Overall_blue
+    13700010: Overall_blue.blackskin
+    13700012: Overall_green
+    13700014: Overall_green.blackskin
+    13700016: Overall_grey
+    13700018: Overall_grey.blackskin
+    13700020: Overall_orange
+    13700022: Overall_orange.blackskin
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
