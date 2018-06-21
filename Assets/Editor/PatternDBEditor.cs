@@ -61,11 +61,23 @@ public class PatternDataBaseEditor : Editor
         // Add button and drag and drop object in it.
 
         patternToBeAdd = (Pattern)EditorGUILayout.ObjectField("Pattern:", patternToBeAdd, typeof(Pattern), false);
-
+        bool empty = false;
+        if (patternToBeAdd == null)
+        {
+            empty = true;
+            EditorGUILayout.HelpBox("Select Pattern!", MessageType.Warning);
+        }
+        else if (patternToBeAdd.Count == 0)
+        {
+            empty = true;
+            EditorGUILayout.HelpBox("Pattern is Empty!", MessageType.Error);
+        }
+        EditorGUI.BeginDisabledGroup(empty);
         if (GUILayout.Button("Add"))
         {
             AddPatternToDifficulty(selectedDifficulty, patternToBeAdd);
         }
+        EditorGUI.EndDisabledGroup();
 
         serializedObject.ApplyModifiedProperties();
         EditorUtility.SetDirty(patternDatabase);
