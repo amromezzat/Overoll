@@ -631,6 +631,35 @@ Prefab:
       propertyPath: m_ClearFlags
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114713073532724110, guid: 07dce5888f96cc14ea7abe45f56f2d1a,
+        type: 2}
+      propertyPath: LutTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 4cc8087e226f10e49979ccfc97940527, type: 3}
+    - target: {fileID: 114713073532724110, guid: 07dce5888f96cc14ea7abe45f56f2d1a,
+        type: 2}
+      propertyPath: MaskTexture
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114713073532724110, guid: 07dce5888f96cc14ea7abe45f56f2d1a,
+        type: 2}
+      propertyPath: BlendAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114713073532724110, guid: 07dce5888f96cc14ea7abe45f56f2d1a,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1391128679570984, guid: 07dce5888f96cc14ea7abe45f56f2d1a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114713073532724110, guid: 07dce5888f96cc14ea7abe45f56f2d1a,
+        type: 2}
+      propertyPath: QualityLevel
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07dce5888f96cc14ea7abe45f56f2d1a, type: 2}
   m_IsPrefabParent: 0
