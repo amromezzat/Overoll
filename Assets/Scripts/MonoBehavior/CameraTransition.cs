@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class CameraTransition : MonoBehaviour, iHalt
 {
@@ -15,12 +16,14 @@ public class CameraTransition : MonoBehaviour, iHalt
 
     Transform current;
     Transform next;
+    PlayableDirector playableDirector;
     float timer = 0;
     bool onHalt = true;
 
     private void Awake()
     {
         RegisterListeners();
+        playableDirector = startView.GetComponent<PlayableDirector>();
     }
 
     public void Begin()
@@ -28,6 +31,7 @@ public class CameraTransition : MonoBehaviour, iHalt
         timer = 0;
         onHalt = false;
         next = EndTrans;
+        playableDirector.enabled = false;
     }
 
     public void End()
