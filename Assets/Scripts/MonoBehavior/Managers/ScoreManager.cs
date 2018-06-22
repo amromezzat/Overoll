@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour, iHalt
     int coinScore;
     int coinvalue = 5;
     int secValue = 1;
-    int score;
+    public int score;
     public int oldCoinCount;
     public Text scoreText;
     public Text coinNum;
@@ -38,6 +38,10 @@ public class ScoreManager : MonoBehaviour, iHalt
         coinScore = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
         // calc score
         score = timeScore + coinScore;
+
+        //for leaderboard
+        //LBUIscript.Instance.UpdatePointsTxt();
+
         //Display score
         scoreText.text = score.ToString();
         coinNum.text = gData.CoinCount.ToString();

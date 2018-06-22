@@ -12,6 +12,9 @@ public class Jump : IDoAction
     public void OnStateEnter(Animator animator)
     {
         animator.SetBool("JumpAnim", true);
+
+        AudioManager.instance.PlaySound("WorkerJump");
+
         jumpTimer = 0;
     }
 

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectReturner))]
@@ -85,6 +84,7 @@ public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
         workerStrafe = new WorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
         jumpSlideFsm = new JumpSlideFSM(wc, tc, mCollider, mAnimator, transform);
         workerCollide = new WorkerCollide(mAnimator, rb, tc);
+
         positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
         seekLeaderPosition = new SeekLeaderPosition(transform, wc, lanes);
         mergerCollide = new MergerCollide(wc);
