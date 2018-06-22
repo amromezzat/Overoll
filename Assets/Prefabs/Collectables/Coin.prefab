@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74467d4379984504490ab24b3ed7e7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gstate: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
 --- !u!135 &135123608719967398
 SphereCollider:

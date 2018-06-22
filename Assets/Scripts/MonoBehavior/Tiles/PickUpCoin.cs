@@ -22,7 +22,7 @@ public class PickUpCoin : MonoBehaviour {
 
     public void OnEnable()
     {
-        if (gd.magnetAct)
+        if (gd.magnetInAct)
         {
             coinMagnet.enabled = true;
         }
@@ -41,14 +41,12 @@ public class PickUpCoin : MonoBehaviour {
 
     public void RegisterListeners()
     {
-        wc.gotMagnet.AddListener(ActWithMagnet);
-
+        gd.gotMagnet.AddListener(ActWithMagnet);
     }
 
     public void ActWithMagnet()
     {
             coinMagnet.enabled = true;
-            gd.magnetAct = true;
     }
 
     void OnDisable()

@@ -22,12 +22,7 @@ public class WorkerConfig : ScriptableObject
     public UnityEvent onLeaderDeath;
     [HideInInspector]
     public UnityEvent onMergeOver;
-    [HideInInspector]
-    public UnityEvent gotMagnet;
-    [HideInInspector]
-    public UnityEvent endMagnet;
-    [HideInInspector]
-    public UnityEvent gotShield;
+
 
 
     [Header("Jump Slide Attributes")]
