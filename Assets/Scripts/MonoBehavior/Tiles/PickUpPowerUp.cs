@@ -8,6 +8,7 @@ public class PickUpPowerUp : MonoBehaviour {
     ObjectReturner cReturn;
     GameObject gameobj;
     public WorkerConfig wc;
+    public GameData gameData;
 
     void OnEnable()
     {
@@ -15,15 +16,15 @@ public class PickUpPowerUp : MonoBehaviour {
         cReturn = GetComponent<ObjectReturner>();
         gameobj = GetComponent<GameObject>();
     }
-
+   
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Worker")
         {
             if (tag == "Magnet")
-            {
-                //print("I got magnet Haaaay!!!");
-                wc.gotMagnet.Invoke();  
+            { 
+                wc.gotMagnet.Invoke();
+
             }
             if(tag=="Shield")
             {

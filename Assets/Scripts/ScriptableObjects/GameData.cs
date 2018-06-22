@@ -29,6 +29,9 @@ public class GameData : ScriptableObject
     [HideInInspector]
     public int CoinCount;
 
+
+    public bool magnetAct = false;
+
     private void OnEnable()
     {
         gameState = GameState.MainMenu;
