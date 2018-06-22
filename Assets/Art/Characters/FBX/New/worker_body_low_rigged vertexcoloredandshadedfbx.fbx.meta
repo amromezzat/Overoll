@@ -151,7 +151,17 @@ ModelImporter:
     13700018: Overall_grey.blackskin
     13700020: Overall_orange
     13700022: Overall_orange.blackskin
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.010
+    second: {fileID: 2100000, guid: d4d5119cc4c7d2948966d50b293cc1dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: c224774a117920346839d5d371c1a89e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
