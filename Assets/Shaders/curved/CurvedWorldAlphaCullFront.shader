@@ -1,4 +1,4 @@
-﻿Shader "Unlit/CurvedWorldAphaCullFront" {
+﻿Shader "Unlit/CurvedWorldAphaCullbackfaces" {
 
 	Properties{
 		//texture
@@ -12,7 +12,7 @@
 		CGPROGRAM
 		// Surface shader function is called surf, and vertex preprocessor function is called vert
 		// addshadow used to add shadow collector and caster passes following vertex modification
-		#pragma surface surf Lambert vertex:vert keepalpha addshadow
+		#pragma surface surf Lambert vertex:vert keepalpha
 
 		// Access the shaderlab properties
 		uniform sampler2D _MainTex;

@@ -11,7 +11,7 @@
 		CGPROGRAM
 		// Surface shader function is called surf, and vertex preprocessor function is called vert
 		// addshadow used to add shadow collector and caster passes following vertex modification
-		#pragma surface surf Lambert vertex:vert alpha:blend  addshadow
+		#pragma surface surf Lambert vertex:vert alpha:blend
 
 		// Access the shaderlab properties
 		uniform sampler2D _MainTex;
