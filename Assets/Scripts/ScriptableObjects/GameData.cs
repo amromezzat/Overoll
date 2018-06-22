@@ -29,8 +29,13 @@ public class GameData : ScriptableObject
     [HideInInspector]
     public int CoinCount;
 
+    [HideInInspector]
+    public UnityEvent gotMagnet;
+    [HideInInspector]
+    public UnityEvent gotShield;
 
-    public bool magnetAct = false;
+    public bool magnetInAct = false;
+    public bool shieldInAct = false;
 
     private void OnEnable()
     {

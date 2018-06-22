@@ -7,7 +7,6 @@ public class PickUpPowerUp : MonoBehaviour {
 
     ObjectReturner cReturn;
     GameObject gameobj;
-    public WorkerConfig wc;
     public GameData gameData;
 
     void OnEnable()
@@ -22,13 +21,13 @@ public class PickUpPowerUp : MonoBehaviour {
         if (other.tag == "Worker")
         {
             if (tag == "Magnet")
-            { 
-                wc.gotMagnet.Invoke();
+            {
+                gameData.gotMagnet.Invoke();
 
             }
             if(tag=="Shield")
             {
-                wc.gotShield.Invoke();
+                gameData.gotShield.Invoke();
             }
            StartCoroutine(cReturn.ReturnToPool(0));
            

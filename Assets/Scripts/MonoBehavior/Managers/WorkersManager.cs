@@ -47,11 +47,20 @@ public class WorkersManager : MonoBehaviour
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
         float newZPos = Random.Range(tc.disableSafeDistance + 5, tc.disableSafeDistance + 8);
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
-        wc.workers.Add(worker.GetComponent<WorkerFSM>());
+        WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
+            
+        wc.workers.Add(workerFSM);
         gData.CoinCount -= workerPrice;
 
         boolForTutorial = true;         //used for tutorial
 
+        if (gData.shieldInAct)
+        {
+            workerFSM.health = 1000;
+
+
+        }
+        
     }
 
     void MergingDone()

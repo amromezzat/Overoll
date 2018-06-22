@@ -13,6 +13,7 @@ TagManager:
   - SlaveMerger
   - PowerUpCollider
   - Magnet
+  - Shield
   layers:
   - Default
   - TransparentFX
