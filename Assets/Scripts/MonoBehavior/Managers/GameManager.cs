@@ -33,9 +33,6 @@ public class GameManager : MonoBehaviour
     public Button settingsBtn;
     public Button storeBtn;
 
-    Animator settingAnim;
-    Animator storeAnim;
-
     public Canvas mainMenuCanvas;
     public Canvas inGameCanvas;
     public Canvas endGameCanvas;
@@ -56,8 +53,6 @@ public class GameManager : MonoBehaviour
         mainMenuCanvas.gameObject.SetActive(true);
 
         gamePausedTxt.gameObject.SetActive(false);
-        settingAnim = settingsBtn.GetComponent<Animator>();
-        storeAnim = storeBtn.GetComponent<Animator>();
 
         // will be used later with fx
         audioManager = GetComponent<AudioManager>();
@@ -69,10 +64,8 @@ public class GameManager : MonoBehaviour
 
     public void PlayBtnEntered()
     {
-        settingAnim.SetBool("SetBtnIsOut", false);
-        storeAnim.SetBool("StoreBtnIsOut", false);
-        StartCoroutine(WaitforStart());
-
+        mainMenuCanvas.gameObject.SetActive(false);
+        inGameCanvas.gameObject.SetActive(true);
         GameStart();
     }
 
@@ -131,11 +124,4 @@ public class GameManager : MonoBehaviour
        
     }
 
-
-    IEnumerator WaitforStart()
-    {
-        yield return new WaitForSeconds(0.5f);
-        mainMenuCanvas.gameObject.SetActive(false);
-        inGameCanvas.gameObject.SetActive(true);
-    }
 }

@@ -537,6 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8261c46934553b46aff309c1ba14c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   oldCoinCount: 0
   scoreText: {fileID: 1032736094}
   coinNum: {fileID: 1663203232}
@@ -3830,9 +3831,9 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Coin
-    clip: {fileID: 8300000, guid: 816b3b9b48cc97c4db3cb78c020be918, type: 3}
-    volume: 0.465
-    pitch: 0.813
+    clip: {fileID: 8300000, guid: 499f488b2cd2ad24cbacc232eeeba394, type: 3}
+    volume: 1
+    pitch: 0.9
     loop: 0
     source: {fileID: 0}
   - name: WorkerDeath

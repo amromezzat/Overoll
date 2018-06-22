@@ -8,6 +8,7 @@ public class WorkerCollide : IWCollide
     Animator animator;
     Rigidbody rb;
     TileConfig tc;
+    
 
     public WorkerCollide(Animator animator, Rigidbody rb, TileConfig tc)
     {
@@ -32,9 +33,9 @@ public class WorkerCollide : IWCollide
             int preCollisionWH = health;
             health = health - obsHealth;
             collidableObstacle.ReactToCollision(preCollisionWH);
-
             if (health <= 0)
             {
+                AudioManager.instance.PlaySound("WorkerDeath");
                 animator.SetTrigger("DeathAnim");
                 rb.velocity = Vector3.back * tc.tileSpeed;
                 return WorkerStateTrigger.Die;
