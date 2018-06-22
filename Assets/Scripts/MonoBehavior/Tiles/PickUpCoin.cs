@@ -5,21 +5,27 @@ using UnityEngine.UI;
 
 public class PickUpCoin : MonoBehaviour {
 
-    public GameData gstate;
+    public GameData gd;
     public WorkerConfig wc;
     TileReturner cReturn;
-
-
     private CoinMagnetTrial2 coinMagnet;
+
+
     void Awake()
     {
+
         cReturn = GetComponent<TileReturner>();
         coinMagnet = GetComponent<CoinMagnetTrial2>();
         RegisterListeners();
-    }
-    void OnEnable()
-    {
 
+    }
+
+    public void OnEnable()
+    {
+        if (gd.magnetAct)
+        {
+            coinMagnet.enabled = true;
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -29,7 +35,7 @@ public class PickUpCoin : MonoBehaviour {
             FindObjectOfType<AudioManager>().PlaySound("Coin");
 
             StartCoroutine(cReturn.ReturnToPool(0));
-            gstate.CoinCount += 1;
+            gd.CoinCount += 1;
         }
      }
 
@@ -41,12 +47,14 @@ public class PickUpCoin : MonoBehaviour {
 
     public void ActWithMagnet()
     {
-        coinMagnet.enabled = true;
+            coinMagnet.enabled = true;
+            gd.magnetAct = true;
     }
 
     void OnDisable()
     {
         coinMagnet.enabled = false;
+       
     }
 
 }

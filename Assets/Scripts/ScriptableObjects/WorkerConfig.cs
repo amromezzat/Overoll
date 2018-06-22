@@ -25,6 +25,8 @@ public class WorkerConfig : ScriptableObject
     [HideInInspector]
     public UnityEvent gotMagnet;
     [HideInInspector]
+    public UnityEvent endMagnet;
+    [HideInInspector]
     public UnityEvent gotShield;
 
 
