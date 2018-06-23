@@ -7,6 +7,13 @@ public class InteractablesDatabase : ScriptableObject
 {
 
     public List<PoolableType> poolableTypeList;
+    public PoolableType Tile
+    {
+        get
+        {
+            return poolableTypeList[0];
+        }
+    }
 
     [HideInInspector]
     public List<string> interactablesNames;

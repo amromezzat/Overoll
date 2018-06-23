@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class CameraTransition : MonoBehaviour, iHalt
+public class CameraTransition : MonoBehaviour, IHalt
 {
 
     public GameData gd;

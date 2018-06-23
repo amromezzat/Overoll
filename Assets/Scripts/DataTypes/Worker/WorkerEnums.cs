@@ -8,6 +8,7 @@
     MasterMerger,
     SlaveMerger,
     Dying,
+    Tutoring,
     Halted
 }
 
@@ -18,6 +19,7 @@ public enum WorkerStateTrigger
     Merge,
     SlaveMerge,
     Succeed,
+    StartTutoring,
     StateEnd
 }
 
@@ -30,5 +32,6 @@ public enum WorkerFSMOutput
     SeekingMasterMerger,
     LeaderMerged,
     MasterMerged,
-    LeaderElected
+    LeaderElected,
+    TutRightInput
 }

@@ -48,3 +48,15 @@ MonoBehaviour:
   - type: {fileID: 11400000, guid: 637f3122e8297614b8cdb31c61214b69, type: 2}
     count: 10
     prefab: {fileID: 1729898039753346, guid: 9be73b4e49ae47945a5bc8314dc1a21a, type: 2}
+  - type: {fileID: 11400000, guid: c80f4cdde9e74204c9a5dadb698c64b4, type: 2}
+    count: 1
+    prefab: {fileID: 1427385954625506, guid: a1191f1368f91084685244a6e916554e, type: 2}
+  - type: {fileID: 11400000, guid: aeb7fec5d347b98469189b1d03a0606d, type: 2}
+    count: 1
+    prefab: {fileID: 1427385954625506, guid: 2584d775507cf6d43a08f1259d7e0e6f, type: 2}
+  - type: {fileID: 11400000, guid: 9785c1e28ba920d418b477a9703d1cee, type: 2}
+    count: 1
+    prefab: {fileID: 1427385954625506, guid: e30153ebe659c8c448d06feeebef97df, type: 2}
+  - type: {fileID: 11400000, guid: d534f5f773c88124ca381e0979d27550, type: 2}
+    count: 1
+    prefab: {fileID: 1427385954625506, guid: f9e7f5f0de7e772459ac606a28f09f93, type: 2}

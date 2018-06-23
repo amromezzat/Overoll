@@ -10,10 +10,7 @@ public class WorkersManager : MonoBehaviour
     public WorkerConfig wc;
     public TileConfig tc;
     public GameData gData;
-    public int workerPrice;
     public int wPFactor = 2;
-
-    public bool boolForTutorial = false;        //used for tutorial
 
     void Awake()
     {
@@ -27,9 +24,9 @@ public class WorkersManager : MonoBehaviour
     void Update()
     {
         wc.aheadFollowPoint = -Mathf.Log10(wc.workers.Count + 1) - 0.5f;
-        workerPrice = (wc.workers.Count + 1) * wPFactor;
+        gData.workerPrice = (wc.workers.Count + 1) * wPFactor;
 
-        if (workerPrice > gData.CoinCount)
+        if (gData.workerPrice > gData.CoinCount)
         {
             addWorkerBtn.GetComponent<Button>().interactable = false;
         }
@@ -37,8 +34,6 @@ public class WorkersManager : MonoBehaviour
         {
             addWorkerBtn.GetComponent<Button>().interactable = true;
         }
-
-        boolForTutorial = false;        // used for tutorial
     }
 
     public void AddWorker()
@@ -50,9 +45,7 @@ public class WorkersManager : MonoBehaviour
         WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
             
         wc.workers.Add(workerFSM);
-        gData.CoinCount -= workerPrice;
-
-        boolForTutorial = true;         //used for tutorial
+        gData.CoinCount -= gData.workerPrice;
 
         if (gData.shieldInAct)
         {

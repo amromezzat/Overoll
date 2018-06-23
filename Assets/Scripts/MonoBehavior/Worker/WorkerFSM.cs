@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectReturner))]
-public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
+public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 {
     public WorkerConfig wc;
     public TileConfig tc;
@@ -24,6 +25,10 @@ public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
     SeekMasterMerger seekMasterMerger;
     PositionMasterMerger positionMasterMerger;
 
+    //for tutorial
+    TutWorkerStrafe tutWorkerStrafe;
+    TutJumpSlide tutJumpSlide;
+
     IWorkerScript[] scriptsToResetState;
     Dictionary<WorkerState, StateScriptsWrapper> workerStateScripts = new Dictionary<WorkerState, StateScriptsWrapper>();
     WorkerStateTransition workerStateTransition = new WorkerStateTransition();
@@ -33,6 +38,8 @@ public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
     WorkerState haltedState;
     public int health = 1;
     public int level = 0;
+
+    IEnumerator slowingCoroutine;
 
     private void Awake()
     {
@@ -48,6 +55,8 @@ public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
 
         RegisterListeners();
         SetStatesScripts();
+
+        slowingCoroutine = KillSpeed();
     }
 
     private void OnEnable()
@@ -82,8 +91,8 @@ public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
     void SetStatesScripts()
     {
         workerStrafe = new WorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
-        jumpSlideFsm = new JumpSlideFSM(wc, tc, mCollider, mAnimator, transform);
-        workerCollide = new WorkerCollide(mAnimator, rb, tc);
+        jumpSlideFsm = new JumpSlideFSM(wc, gd, mCollider, mAnimator, transform);
+        workerCollide = new WorkerCollide(mAnimator, rb, gd);
 
         positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
         seekLeaderPosition = new SeekLeaderPosition(transform, wc, lanes);
@@ -91,15 +100,20 @@ public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
         seekMasterMerger = new SeekMasterMerger(wc, rb, transform);
         positionMasterMerger = new PositionMasterMerger(wc, rb, transform, GetInstanceID());
 
+        //for tutorial
+        tutWorkerStrafe = new TutWorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration, gd);
+        tutJumpSlide = new TutJumpSlide(wc, gd, mCollider, mAnimator, transform);
+
         scriptsToResetState = new IWorkerScript[] {
-            workerStrafe, jumpSlideFsm, mergerCollide
+            workerStrafe, jumpSlideFsm, mergerCollide, tutWorkerStrafe, tutJumpSlide
         };
 
         workerStateScripts[WorkerState.Leader] = new StateScriptsWrapper(new List<IWorkerScript>() {
             workerStrafe, jumpSlideFsm }, workerStrafe, jumpSlideFsm, workerCollide);
 
         workerStateScripts[WorkerState.LeaderSeeker] = new StateScriptsWrapper(new List<IWorkerScript>() {
-        workerStrafe, jumpSlideFsm, seekLeaderPosition}, workerStrafe, jumpSlideFsm, seekLeaderPosition);
+        workerStrafe, jumpSlideFsm, seekLeaderPosition}, workerStrafe, jumpSlideFsm,
+        new List<IWChangeState>() { seekLeaderPosition });
 
         workerStateScripts[WorkerState.LeaderMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
         {workerStrafe, jumpSlideFsm}, workerStrafe, jumpSlideFsm, mergerCollide);
@@ -112,6 +126,10 @@ public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
 
         workerStateScripts[WorkerState.SlaveMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
         {seekMasterMerger, jumpSlideFsm}, jumpSlideFsm);
+
+        workerStateScripts[WorkerState.Tutoring] = new StateScriptsWrapper(new List<IWorkerScript>()
+        {tutWorkerStrafe, tutJumpSlide}, tutWorkerStrafe, tutJumpSlide, 
+        new List<IWChangeState>() { tutWorkerStrafe, tutJumpSlide });
 
         workerStateScripts[WorkerState.Dead] = new StateScriptsWrapper(new List<IWorkerScript>());
         workerStateScripts[WorkerState.Halted] = new StateScriptsWrapper(new List<IWorkerScript>());
@@ -183,6 +201,9 @@ public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
                 break;
             case WorkerFSMOutput.MasterMerged:
                 wc.onMergeOver.Invoke();
+                break;
+            case WorkerFSMOutput.TutRightInput:
+                gd.onSpeedUp.Invoke();
                 break;
         }
     }
@@ -256,6 +277,8 @@ public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
         gd.onPause.AddListener(Halt);
         gd.OnResume.AddListener(Resume);
         gd.onEnd.AddListener(End);
+        gd.onSlowDown.AddListener(SlowDown);
+        gd.onSpeedUp.AddListener(SpeedUp);
     }
 
     public void ReactToCollision(int collidedHealth)
@@ -266,5 +289,30 @@ public class WorkerFSM : MonoBehaviour, iHalt, ICollidable
     public int Gethealth()
     {
         return health;
+    }
+
+    public void SpeedUp()
+    {
+        if (!isActiveAndEnabled)
+            return;
+        mAnimator.speed = 1;
+        StopCoroutine(slowingCoroutine);
+    }
+
+    public void SlowDown()
+    {
+        if (!isActiveAndEnabled)
+            return;
+        mAnimator.speed = gd.Speed / gd.oldSpeed;
+        StartCoroutine(slowingCoroutine);
+    }
+
+    public IEnumerator KillSpeed()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(gd.slowingRate);
+            mAnimator.speed *= gd.Speed / gd.oldSpeed;
+        }
     }
 }

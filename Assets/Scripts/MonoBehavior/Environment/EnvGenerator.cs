@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnvGenerator : MonoBehaviour, iHalt
+public class EnvGenerator : MonoBehaviour, IHalt
 {
     public Vector3 shift;
 
