@@ -12,25 +12,24 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
     private Rigidbody rb;
 
     public GameData gameData;
-    public Vector3 ExtraVelocity = Vector3.zero;
+    public float ExtraVelocity = 0;
 
     Animator mAnim;
     Animator[] animList;
-    IEnumerator slowingCoroutine;
+
+    bool isKillingSpeed = false;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
         RegisterListeners();
-        slowingCoroutine = KillSpeed();
         mAnim = GetComponent<Animator>();
-        if(mAnim == null)
+        if (mAnim == null)
         {
             animList = GetComponentsInChildren<Animator>();
         }
     }
-
 
     private void OnEnable()
     {
@@ -44,7 +43,16 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
         }
         if (gameData.tutorialActive && gameData.TutorialState != TutorialState.Null)
         {
-            StartCoroutine(slowingCoroutine);
+            isKillingSpeed = true;
+        }
+    }
+
+    void Update()
+    {
+        if (isKillingSpeed)
+        {
+            rb.velocity = Vector3.back * gameData.Speed;
+            SetAnimatorsSpeed(gameData.Speed / gameData.oldSpeed);
         }
     }
 
@@ -53,15 +61,15 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
     //until it is close enough to workers
     IEnumerator TakeExtraSpeed()
     {
-        float waitingTime = gameData.Speed / transform.position.z;
+        float waitingTime = transform.position.z / gameData.Speed;
         yield return new WaitForSeconds(waitingTime);
-        rb.velocity += ExtraVelocity;
+        rb.velocity += Vector3.back * ExtraVelocity;
     }
 
     void MoveObj()
     {
         rb.velocity = Vector3.back * gameData.Speed;
-        if (isActiveAndEnabled && rb.velocity.magnitude > 0)
+        if (isActiveAndEnabled && ExtraVelocity > 0)
         {
             StartCoroutine(TakeExtraSpeed());
         }
@@ -98,16 +106,6 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
     {
         rb.velocity = Vector3.zero;
     }
-    
-    public IEnumerator KillSpeed()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(gameData.slowingRate);
-            rb.velocity = Vector3.back * gameData.Speed;
-            SetAnimatorsSpeed(gameData.Speed / gameData.oldSpeed);
-        }
-    }
 
     void SetAnimatorsSpeed(float speed)
     {
@@ -126,18 +124,12 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
 
     public void SpeedUp()
     {
-        if (!isActiveAndEnabled)
-            return;
         MoveObj();
-        StopCoroutine(slowingCoroutine);
+        isKillingSpeed = false;
     }
 
     public void SlowDown()
     {
-        if (!isActiveAndEnabled)
-            return;
-        rb.velocity = Vector3.back * gameData.Speed;
-        StartCoroutine(slowingCoroutine);
-        SetAnimatorsSpeed(gameData.Speed / gameData.oldSpeed);
+        isKillingSpeed = true;
     }
 }
