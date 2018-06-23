@@ -20,6 +20,7 @@ public enum WorkerStateTrigger
     SlaveMerge,
     Succeed,
     StartTutoring,
+    EndTutoring,
     StateEnd
 }
 
