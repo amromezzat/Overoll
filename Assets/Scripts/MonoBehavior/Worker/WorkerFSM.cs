@@ -203,6 +203,9 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
             case WorkerFSMOutput.TutRightInput:
                 gd.onSpeedUp.Invoke();
                 break;
+            case WorkerFSMOutput.TutEnded:
+                mAnimator.SetBool("StrafeRightAnim", false);
+                break;
         }
     }
 

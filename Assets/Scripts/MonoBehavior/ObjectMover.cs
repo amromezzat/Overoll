@@ -104,7 +104,7 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
 
     public void End()
     {
-        rb.velocity = Vector3.zero;
+        rb.velocity = Vector3.back * ExtraVelocity;
     }
 
     void SetAnimatorsSpeed(float speed)
