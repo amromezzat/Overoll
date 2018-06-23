@@ -34,5 +34,6 @@ public enum WorkerFSMOutput
     LeaderMerged,
     MasterMerged,
     LeaderElected,
-    TutRightInput
+    TutRightInput,
+    TutEnded
 }

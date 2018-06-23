@@ -57,11 +57,15 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
 
     void TutStart()
     {
-        if (gd.tutorialActive)
+        if (gd.tutorialActive && gd.difficulty == 0)
         {
             pauseBtn.SetActive(false);
             addWorkerBtn.SetActive(false);
             StartCoroutine(BecomeATutor());
+        }
+        else
+        {
+            StartCoroutine(EndTutorial());
         }
     }
 
@@ -104,6 +108,8 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
         gd.onSlowDown.RemoveListener(SlowDown);
         gd.onSpeedUp.RemoveListener(SpeedUp);
         gd.OnStart.RemoveListener(TutStart);
+        pauseBtn.SetActive(true);
+        addWorkerBtn.SetActive(true);
         wc.leader.ChangeState(WorkerStateTrigger.EndTutoring);
         enabled = false;
     }
