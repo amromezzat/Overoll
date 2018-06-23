@@ -243,8 +243,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/Engineer/ITI/GP/KeepOnHoping/user.keystore
-  AndroidKeyaliasName: keeponhopping-demo
+  AndroidKeystoreName: D:/workspace/Unity/KeepOnHoping/user.keystore
+  AndroidKeyaliasName: 
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0

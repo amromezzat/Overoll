@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1933579622741580}
+  m_IsPrefabParent: 1
+--- !u!1 &1933579622741580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4448036725497986}
+  - component: {fileID: 114246570318349270}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4448036725497986
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1933579622741580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -48.62142, y: -22.503881, z: 46.67106}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114246570318349270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1933579622741580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97bc00751d43534aa44ada037cd5656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: TempSoundTrack
+    clip: {fileID: 8300000, guid: dd1bb438ccb5a734f9f2135c10994098, type: 3}
+    volume: 0.357
+    pitch: 0.813
+    loop: 1
+    source: {fileID: 0}
+  - name: Warning
+    clip: {fileID: 8300000, guid: 58cc21fb143e12b41a4854820a89881b, type: 3}
+    volume: 1
+    pitch: 0.813
+    loop: 0
+    source: {fileID: 0}
+  - name: Coin
+    clip: {fileID: 8300000, guid: 499f488b2cd2ad24cbacc232eeeba394, type: 3}
+    volume: 1
+    pitch: 0.9
+    loop: 0
+    source: {fileID: 0}
+  - name: WorkerDeath
+    clip: {fileID: 8300000, guid: b7f4c76d414eac748addcfe74c2785b2, type: 3}
+    volume: 1
+    pitch: 2.5
+    loop: 0
+    source: {fileID: 0}
+  - name: WorkerJump
+    clip: {fileID: 8300000, guid: 3689aa5633808ed4ca1a563cd756e559, type: 3}
+    volume: 0.296
+    pitch: 2.5
+    loop: 0
+    source: {fileID: 0}
