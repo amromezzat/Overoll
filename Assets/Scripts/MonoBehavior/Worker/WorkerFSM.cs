@@ -39,7 +39,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     public int health = 1;
     public int level = 0;
 
-    IEnumerator slowingCoroutine;
+    bool isKillingSpeed = false;
 
     private void Awake()
     {
@@ -55,8 +55,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
         RegisterListeners();
         SetStatesScripts();
-
-        slowingCoroutine = KillSpeed();
     }
 
     private void OnEnable()
@@ -223,6 +221,10 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
             currentState = transition.Destination;
             Output(transition.Output);
         }
+        if (isKillingSpeed)
+        {
+            mAnimator.speed *= gd.Speed / gd.oldSpeed;
+        }
     }
 
     private void FixedUpdate()
@@ -296,7 +298,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         if (!isActiveAndEnabled)
             return;
         mAnimator.speed = 1;
-        StopCoroutine(slowingCoroutine);
+        isKillingSpeed = false;
     }
 
     public void SlowDown()
@@ -304,15 +306,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         if (!isActiveAndEnabled)
             return;
         mAnimator.speed = gd.Speed / gd.oldSpeed;
-        StartCoroutine(slowingCoroutine);
-    }
-
-    public IEnumerator KillSpeed()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(gd.slowingRate);
-            mAnimator.speed *= gd.Speed / gd.oldSpeed;
-        }
+        isKillingSpeed = true;
     }
 }

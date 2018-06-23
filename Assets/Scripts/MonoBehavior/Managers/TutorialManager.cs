@@ -57,9 +57,12 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
 
     void TutStart()
     {
-        pauseBtn.SetActive(false);
-        addWorkerBtn.SetActive(false);
-        StartCoroutine(BecomeATutor());
+        if (gd.tutorialActive)
+        {
+            pauseBtn.SetActive(false);
+            addWorkerBtn.SetActive(false);
+            StartCoroutine(BecomeATutor());
+        }
     }
 
     IEnumerator BecomeATutor()
@@ -85,14 +88,24 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
                 break;
             case TutorialState.RightStrafe:
                 rightArrow.SetActive(false);
-                gd.difficulty++;
+                StartCoroutine(EndTutorial());
                 break;
             case TutorialState.AddWorker:
-                gd.difficulty++;
+                StartCoroutine(EndTutorial());
                 addBtnAnimator.SetBool("Play", false);
                 break;
         }
         gd.TutorialState = TutorialState.Null;
+    }
+
+    IEnumerator EndTutorial()
+    {
+        yield return new WaitForSeconds(wc.strafeDuration);
+        gd.onSlowDown.RemoveListener(SlowDown);
+        gd.onSpeedUp.RemoveListener(SpeedUp);
+        gd.OnStart.RemoveListener(TutStart);
+        wc.leader.ChangeState(WorkerStateTrigger.EndTutoring);
+        enabled = false;
     }
 
     public IEnumerator KillSpeed()

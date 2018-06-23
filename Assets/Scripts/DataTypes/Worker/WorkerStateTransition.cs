@@ -12,6 +12,10 @@ public class WorkerStateTransition
             new TransitionBundle(WorkerState.Halted, WorkerState.Tutoring),
             new TransitionBundle(WorkerState.Leader, WorkerState.Tutoring)
         };
+        workerTransitionsDic[WorkerStateTrigger.EndTutoring] = new List<TransitionBundle>()
+        {
+            new TransitionBundle(WorkerState.Tutoring, WorkerState.Leader)
+        };
 
         workerTransitionsDic[WorkerStateTrigger.Die] = new List<TransitionBundle>() {
             new TransitionBundle(WorkerState.Leader, WorkerState.Dead, WorkerFSMOutput.LeaderDied),
