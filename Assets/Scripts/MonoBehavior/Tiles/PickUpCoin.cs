@@ -32,7 +32,7 @@ public class PickUpCoin : MonoBehaviour {
     {
         if (other.tag == "Worker" || other.tag == "SlaveMerger")
         {
-            FindObjectOfType<AudioManager>().PlaySound("Coin");
+            AudioManager.instance.PlaySound("Coin");
 
             StartCoroutine(cReturn.ReturnToPool(0));
             gd.CoinCount += 1;
