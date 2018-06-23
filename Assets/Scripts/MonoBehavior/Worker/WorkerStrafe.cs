@@ -20,7 +20,7 @@ public class WorkerStrafe : IWStrafe
         this.strafeDuration = strafeDuration;
     }
 
-    public void StrafeRight()
+    public virtual void StrafeRight()
     {
         if (!strafing)
         {
@@ -31,7 +31,7 @@ public class WorkerStrafe : IWStrafe
         }
     }
 
-    public void StrafeLeft()
+    public virtual void StrafeLeft()
     {
         if (!strafing)
         {
@@ -61,7 +61,7 @@ public class WorkerStrafe : IWStrafe
         }
     }
 
-    public void ScriptReset()
+    public virtual void ScriptReset()
     {
         strafing = false;
     }

@@ -65,7 +65,7 @@ public class PatternDataBaseEditor : Editor
         if (patternToBeAdd == null)
         {
             empty = true;
-            EditorGUILayout.HelpBox("Select Pattern!", MessageType.Warning);
+            EditorGUILayout.HelpBox("Select a Pattern!", MessageType.Warning);
         }
         else if (patternToBeAdd.Count == 0)
         {

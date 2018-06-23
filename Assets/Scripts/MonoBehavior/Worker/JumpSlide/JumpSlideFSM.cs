@@ -6,7 +6,7 @@ public class JumpSlideFSM : IWJumpSlide
 {
     //external references
     WorkerConfig wc;
-    TileConfig tc;
+    protected GameData gd;
     BoxCollider mCollider;
     Animator mAnimator;
     Transform transform;
@@ -23,10 +23,10 @@ public class JumpSlideFSM : IWJumpSlide
     public string currentStateStr;
 
 
-    public JumpSlideFSM(WorkerConfig wc, TileConfig tc, BoxCollider mCollider, Animator mAnimator, Transform transform)
+    public JumpSlideFSM(WorkerConfig wc, GameData gd, BoxCollider mCollider, Animator mAnimator, Transform transform)
     {
         this.wc = wc;
-        this.tc = tc;
+        this.gd = gd;
         this.mCollider = mCollider;
         this.mAnimator = mAnimator;
         this.transform = transform;
@@ -53,7 +53,7 @@ public class JumpSlideFSM : IWJumpSlide
         actionsDic[delayState] = new List<IDoAction>() { jumpState, slideState };
     }
 
-    public void ScriptReset()
+    public virtual void ScriptReset()
     {
         actionStack = new Stack<IDoAction>();
         actionStack.Push(runState);
@@ -71,9 +71,9 @@ public class JumpSlideFSM : IWJumpSlide
         }
     }
 
-    public void Jump()
+    public virtual void Jump()
     {
-        float delayTime = (wc.leader.transform.position.z - transform.position.z) / tc.tileSpeed;
+        float delayTime = (wc.leader.transform.position.z - transform.position.z) / gd.Speed;
         actionStack.Push(jumpState);
         if (delayTime > 0)
         {
@@ -81,12 +81,11 @@ public class JumpSlideFSM : IWJumpSlide
             actionStack.Push(delayState);
         }
         ChangeState(actionStack.Pop());
-        //FindObjectOfType<AudioManager>().PlaySound("WorkerJump");
     }
 
-    public void Slide()
+    public virtual void Slide()
     {
-        float delayTime = (wc.leader.transform.position.z - transform.position.z) / tc.tileSpeed;
+        float delayTime = (wc.leader.transform.position.z - transform.position.z) / gd.Speed;
         //if jumping interrupt jump and slide
         if (currentState == jumpState)
         {

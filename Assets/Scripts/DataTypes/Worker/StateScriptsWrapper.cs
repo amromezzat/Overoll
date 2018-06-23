@@ -7,8 +7,9 @@ public class StateScriptsWrapper
     public List<IWorkerScript> attachedScripts = new List<IWorkerScript>();
     public IWStrafe strafeScript = null;
     public IWJumpSlide jumpSlideScript = null;
-    public IWChangeState changeStateScript = null;
+    public List<IWChangeState> changeStateScripts = new List<IWChangeState>();
     public IWCollide collideScript = null;
+
 
     public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript,
     IWCollide collideScript) : this(attachedScripts, strafeScript, jumpSlideScript)
@@ -16,25 +17,25 @@ public class StateScriptsWrapper
         this.collideScript = collideScript;
     }
 
-    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript, 
-        IWChangeState changeStateScript) : this(attachedScripts, strafeScript, jumpSlideScript)
+    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript,
+        List<IWChangeState> changeStateScripts) : this(attachedScripts, strafeScript, jumpSlideScript)
     {
-        this.changeStateScript = changeStateScript;
+        this.changeStateScripts = changeStateScripts;
     }
 
-    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript) : 
+    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript) :
         this(attachedScripts)
     {
         this.strafeScript = strafeScript;
         this.jumpSlideScript = jumpSlideScript;
     }
 
-    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWChangeState changeStateScript) : this(attachedScripts)
+    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, List<IWChangeState> changeStateScripts) : this(attachedScripts)
     {
-        this.changeStateScript = changeStateScript;
+        this.changeStateScripts = changeStateScripts;
     }
 
-    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWJumpSlide jumpSlideScript, IWCollide collideScript) : 
+    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWJumpSlide jumpSlideScript, IWCollide collideScript) :
         this(attachedScripts)
     {
         this.jumpSlideScript = jumpSlideScript;
@@ -42,7 +43,7 @@ public class StateScriptsWrapper
     }
 
     public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWJumpSlide jumpSlideScript)
-        :this(attachedScripts)
+        : this(attachedScripts)
     {
         this.jumpSlideScript = jumpSlideScript;
     }
@@ -85,8 +86,14 @@ public class StateScriptsWrapper
 
     public WorkerStateTrigger InputTrigger()
     {
-        if (changeStateScript != null)
-            return changeStateScript.InputTrigger();
+        foreach (IWChangeState stateScript in changeStateScripts)
+        {
+            WorkerStateTrigger inputTrigger = stateScript.InputTrigger();
+            if (inputTrigger != WorkerStateTrigger.Null)
+            {
+                return inputTrigger;
+            }
+        }
         return WorkerStateTrigger.Null;
     }
 

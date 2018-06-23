@@ -24,6 +24,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
   - {fileID: 11400000, guid: 637f3122e8297614b8cdb31c61214b69, type: 2}
   - {fileID: 11400000, guid: 33dc546893613ae45861b54164b469b5, type: 2}
+  - {fileID: 11400000, guid: c80f4cdde9e74204c9a5dadb698c64b4, type: 2}
+  - {fileID: 11400000, guid: aeb7fec5d347b98469189b1d03a0606d, type: 2}
+  - {fileID: 11400000, guid: 9785c1e28ba920d418b477a9703d1cee, type: 2}
+  - {fileID: 11400000, guid: d534f5f773c88124ca381e0979d27550, type: 2}
   interactablesNames:
   - BlankTile
   - CautionSign
@@ -37,3 +41,7 @@ MonoBehaviour:
   - Worker
   - Shield
   - Magnet
+  - TutJump
+  - TutSlide
+  - TutStrafeLeft
+  - TutStrafeRight

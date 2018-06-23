@@ -14,6 +14,10 @@ TagManager:
   - PowerUpCollider
   - Magnet
   - Shield
+  - TutJump
+  - TutSlide
+  - TutStrafeLeft
+  - TutStrafeRight
   layers:
   - Default
   - TransparentFX

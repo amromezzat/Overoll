@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-
-
-interface iHalt
+﻿interface IHalt
 {
     void Begin();
 

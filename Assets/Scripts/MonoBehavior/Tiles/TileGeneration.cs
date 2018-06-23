@@ -11,7 +11,7 @@ public class TileGeneration : MonoBehaviour
     public LanesDatabase lanes;
     public GameData gd;
     public TileConfig tc;
-    public PoolableType tileType;
+    public InteractablesDatabase interactDB;
 
     Transform lastSegTrans;
     Pattern currentPattern;
@@ -40,11 +40,6 @@ public class TileGeneration : MonoBehaviour
 
     void GetNextSegment()
     {
-        if(currentPattern == null || currentSegmentIndex > currentPattern.Count)
-        {
-            print("ss");
-        }
-
         Segment currentSegment = currentPattern[currentSegmentIndex++];
 
         if (currentSegmentIndex == currentPattern.Count)
@@ -65,7 +60,7 @@ public class TileGeneration : MonoBehaviour
 
             if (!currentSegment[i].containTiles)
             {
-                tile = ObjectPooler.instance.GetFromPool(tileType);
+                tile = ObjectPooler.instance.GetFromPool(interactDB.Tile);
                 objpos.y = tile.transform.position.y;
                 tile.transform.position = objpos;
             }
@@ -74,8 +69,7 @@ public class TileGeneration : MonoBehaviour
             {
                 lastSegTrans = tile.transform;
                 tile.GetComponent<TileReturner>().inActiveSegment = true;
-            }
-            
+            }      
         }
     }
 }

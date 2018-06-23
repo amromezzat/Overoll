@@ -7,14 +7,14 @@ public class WorkerCollide : IWCollide
 {
     Animator animator;
     Rigidbody rb;
-    TileConfig tc;
+    GameData gd;
     
 
-    public WorkerCollide(Animator animator, Rigidbody rb, TileConfig tc)
+    public WorkerCollide(Animator animator, Rigidbody rb, GameData gd)
     {
         this.animator = animator;
         this.rb = rb;
-        this.tc = tc;
+        this.gd = gd;
     }
 
     public void ScriptReset()
@@ -37,7 +37,7 @@ public class WorkerCollide : IWCollide
             {
                 AudioManager.instance.PlaySound("WorkerDeath");
                 animator.SetTrigger("DeathAnim");
-                rb.velocity = Vector3.back * tc.tileSpeed;
+                rb.velocity = Vector3.back * gd.Speed;
                 return WorkerStateTrigger.Die;
             }
 
