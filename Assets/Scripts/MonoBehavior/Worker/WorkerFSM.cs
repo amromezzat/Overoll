@@ -24,6 +24,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     MergerCollide mergerCollide;
     SeekMasterMerger seekMasterMerger;
     PositionMasterMerger positionMasterMerger;
+    MergeLeaderSeeker mergeLeaderSeeker;
 
     //for tutorial
     TutWorkerStrafe tutWorkerStrafe;
@@ -98,12 +99,15 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         seekMasterMerger = new SeekMasterMerger(wc, rb, transform);
         positionMasterMerger = new PositionMasterMerger(wc, rb, transform, GetInstanceID());
 
+        mergeLeaderSeeker = new MergeLeaderSeeker(transform, wc, lanes);
+
         //for tutorial
         tutWorkerStrafe = new TutWorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration, gd);
         tutJumpSlide = new TutJumpSlide(wc, gd, mCollider, mAnimator, transform);
 
         scriptsToResetState = new IWorkerScript[] {
-            workerStrafe, jumpSlideFsm, mergerCollide, tutWorkerStrafe, tutJumpSlide
+            workerStrafe, jumpSlideFsm, mergerCollide,
+            tutWorkerStrafe, tutJumpSlide, mergeLeaderSeeker
         };
 
         workerStateScripts[WorkerState.Leader] = new StateScriptsWrapper(new List<IWorkerScript>() {
@@ -115,6 +119,10 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
         workerStateScripts[WorkerState.LeaderMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
         {workerStrafe, jumpSlideFsm}, workerStrafe, jumpSlideFsm, mergerCollide);
+
+        workerStateScripts[WorkerState.SeekerMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
+        { workerStrafe, jumpSlideFsm, mergeLeaderSeeker}, 
+        workerStrafe, jumpSlideFsm, mergerCollide, new List<IWChangeState>() { mergeLeaderSeeker }); 
 
         workerStateScripts[WorkerState.Worker] = new StateScriptsWrapper(new List<IWorkerScript>() {
         positionWorker, jumpSlideFsm}, jumpSlideFsm, workerCollide);
@@ -194,10 +202,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
             case WorkerFSMOutput.SeekingMasterMerger:
                 tag = "SlaveMerger";
                 break;
-            case WorkerFSMOutput.LeaderMerged:
-                wc.onMergeOver.Invoke();
-                break;
-            case WorkerFSMOutput.MasterMerged:
+            case WorkerFSMOutput.MergingDone:
                 wc.onMergeOver.Invoke();
                 break;
             case WorkerFSMOutput.TutRightInput:

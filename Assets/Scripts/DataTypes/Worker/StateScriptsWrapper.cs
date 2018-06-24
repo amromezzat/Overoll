@@ -10,7 +10,6 @@ public class StateScriptsWrapper
     public List<IWChangeState> changeStateScripts = new List<IWChangeState>();
     public IWCollide collideScript = null;
 
-
     public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript,
     IWCollide collideScript) : this(attachedScripts, strafeScript, jumpSlideScript)
     {
@@ -51,6 +50,11 @@ public class StateScriptsWrapper
     public StateScriptsWrapper(List<IWorkerScript> attachedScripts)
     {
         this.attachedScripts = attachedScripts;
+    }
+
+    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript, IWCollide collideScript, List<IWChangeState> changeStateScripts) : this(attachedScripts, strafeScript, jumpSlideScript, collideScript)
+    {
+        this.changeStateScripts = changeStateScripts;
     }
 
     public void StrafeLeft()
