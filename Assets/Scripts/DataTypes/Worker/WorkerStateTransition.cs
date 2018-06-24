@@ -36,15 +36,16 @@ public class WorkerStateTransition
         workerTransitionsDic[WorkerStateTrigger.Succeed] = new List<TransitionBundle>()
         {
             new TransitionBundle(WorkerState.Worker, WorkerState.LeaderSeeker, WorkerFSMOutput.LeaderElected),
-            new TransitionBundle(WorkerState.MasterMerger, WorkerState.LeaderMerger, WorkerFSMOutput.LeaderElected)
+            new TransitionBundle(WorkerState.MasterMerger, WorkerState.SeekerMerger, WorkerFSMOutput.LeaderElected)
         };
 
         workerTransitionsDic[WorkerStateTrigger.Null] = new List<TransitionBundle>();
 
         workerTransitionsDic[WorkerStateTrigger.StateEnd] = new List<TransitionBundle>() {
             new TransitionBundle(WorkerState.LeaderSeeker, WorkerState.Leader),
-            new TransitionBundle(WorkerState.LeaderMerger, WorkerState.Leader, WorkerFSMOutput.LeaderMerged),
-            new TransitionBundle(WorkerState.MasterMerger, WorkerState.Worker, WorkerFSMOutput.MasterMerged),
+            new TransitionBundle(WorkerState.SeekerMerger, WorkerState.Leader, WorkerFSMOutput.MergingDone),
+            new TransitionBundle(WorkerState.LeaderMerger, WorkerState.Leader, WorkerFSMOutput.MergingDone),
+            new TransitionBundle(WorkerState.MasterMerger, WorkerState.Worker, WorkerFSMOutput.MergingDone),
             new TransitionBundle(WorkerState.SlaveMerger, WorkerState.Worker),
             new TransitionBundle(WorkerState.Tutoring, WorkerState.Tutoring, WorkerFSMOutput.TutRightInput)
         };

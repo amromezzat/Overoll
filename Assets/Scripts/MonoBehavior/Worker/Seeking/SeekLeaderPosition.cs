@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeekLeaderPosition : IWorkerScript, IWChangeState
+public class SeekLeaderPosition : IWChangeState
 {
-    LanesDatabase lanes;
-    Transform transform;
-    WorkerConfig wc;
-    float seekTimer = 0;
+    protected LanesDatabase lanes;
+    protected Transform transform;
+    protected WorkerConfig wc;
+    protected float seekTimer = 0;
 
     public SeekLeaderPosition(Transform transform, WorkerConfig wc, LanesDatabase lanes)
     {
@@ -34,7 +34,6 @@ public class SeekLeaderPosition : IWorkerScript, IWChangeState
             }
         }
         lanes.CurrentLane = lanes.OnGridLanes[closestLane];
-
     }
 
     public void FixedUpdate(float fixedDeltaTime)
@@ -50,7 +49,7 @@ public class SeekLeaderPosition : IWorkerScript, IWChangeState
         return Mathf.Abs(entityXPos - transform.position.x);
     }
 
-    public WorkerStateTrigger InputTrigger()
+    public virtual WorkerStateTrigger InputTrigger()
     {
         if (seekTimer >= wc.takeLeadDuration + 1)
         {
