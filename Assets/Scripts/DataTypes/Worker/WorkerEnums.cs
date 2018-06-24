@@ -7,6 +7,7 @@
     LeaderMerger,
     MasterMerger,
     SlaveMerger,
+    SeekerMerger,
     Dying,
     Tutoring,
     Halted
@@ -31,8 +32,7 @@ public enum WorkerFSMOutput
     WorkerDied,
     WorkerRevived,
     SeekingMasterMerger,
-    LeaderMerged,
-    MasterMerged,
+    MergingDone,
     LeaderElected,
     TutRightInput,
     TutEnded
