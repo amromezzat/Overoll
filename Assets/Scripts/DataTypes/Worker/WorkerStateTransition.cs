@@ -35,7 +35,8 @@ public class WorkerStateTransition
 
         workerTransitionsDic[WorkerStateTrigger.Succeed] = new List<TransitionBundle>()
         {
-            new TransitionBundle(WorkerState.Worker, WorkerState.LeaderSeeker, WorkerFSMOutput.LeaderElected)
+            new TransitionBundle(WorkerState.Worker, WorkerState.LeaderSeeker, WorkerFSMOutput.LeaderElected),
+            new TransitionBundle(WorkerState.MasterMerger, WorkerState.LeaderMerger, WorkerFSMOutput.LeaderElected)
         };
 
         workerTransitionsDic[WorkerStateTrigger.Null] = new List<TransitionBundle>();
