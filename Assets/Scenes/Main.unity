@@ -970,6 +970,16 @@ Prefab:
       propertyPath: pauseBtn
       value: 
       objectReference: {fileID: 849295540}
+    - target: {fileID: 114977425545759482, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977425545759482, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7, type: 2}
   m_IsPrefabParent: 0
