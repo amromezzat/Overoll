@@ -523,6 +523,48 @@ Transform:
   m_PrefabParentObject: {fileID: 4512632873975498, guid: 6d66565ad0d384d43be7ba2019687553,
     type: 2}
   m_PrefabInternal: {fileID: 399510352}
+--- !u!1001 &700402043
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4170027001256738, guid: 65e9d1916ecdfd444ba4242744ff23fb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.6063395
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170027001256738, guid: 65e9d1916ecdfd444ba4242744ff23fb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.587544
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170027001256738, guid: 65e9d1916ecdfd444ba4242744ff23fb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.7707322
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170027001256738, guid: 65e9d1916ecdfd444ba4242744ff23fb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170027001256738, guid: 65e9d1916ecdfd444ba4242744ff23fb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170027001256738, guid: 65e9d1916ecdfd444ba4242744ff23fb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170027001256738, guid: 65e9d1916ecdfd444ba4242744ff23fb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170027001256738, guid: 65e9d1916ecdfd444ba4242744ff23fb, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 65e9d1916ecdfd444ba4242744ff23fb, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &732312426 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1658941036735590, guid: da96e29fe3a7ade49b8be1c2a094b162,
