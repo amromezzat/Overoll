@@ -28,6 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aeb7fec5d347b98469189b1d03a0606d, type: 2}
   - {fileID: 11400000, guid: 9785c1e28ba920d418b477a9703d1cee, type: 2}
   - {fileID: 11400000, guid: d534f5f773c88124ca381e0979d27550, type: 2}
+  - {fileID: 11400000, guid: c27068b799c6e434088e8e132da56b7a, type: 2}
   interactablesNames:
   - BlankTile
   - CautionSign
@@ -45,3 +46,4 @@ MonoBehaviour:
   - TutSlide
   - TutStrafeLeft
   - TutStrafeRight
+  - JumpPipe1

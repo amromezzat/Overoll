@@ -43,7 +43,7 @@ public class PatternEditor : Editor
         EditablePattern();
         EditorGUILayout.Separator();
         GUILayout.Label("", GUI.skin.horizontalSlider);
-        RemoveAll();
+    //    RemoveAll();
 
         serializedObject.ApplyModifiedProperties();
         EditorUtility.SetDirty(pattern);
