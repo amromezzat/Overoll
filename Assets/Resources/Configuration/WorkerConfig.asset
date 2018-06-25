@@ -61,8 +61,8 @@ MonoBehaviour:
   aheadFollowPoint: -0.80103004
   hrWorkers: []
   managerWorkers: []
-  worker: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
-  HR: {fileID: 0}
-  Manager: {fileID: 0}
+  workerType: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
+  hrType: {fileID: 0}
+  managerType: {fileID: 0}
   workersPerLevel: 5
   levelsNum: 5
