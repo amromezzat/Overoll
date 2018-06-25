@@ -5,6 +5,7 @@ using UnityEngine;
 public class WorkerList : List<WorkerFSM>
 {
     public bool Merging = false;
+    List<int> oldWorkersHealth;
 
     int workersPerLevel; //workers in each level
     int levels; //levels for merging
@@ -14,6 +15,8 @@ public class WorkerList : List<WorkerFSM>
 
     public WorkerList(int workersPerLevel, int levels)
     {
+        oldWorkersHealth = new List<int>();
+
         this.workersPerLevel = workersPerLevel;
         this.levels = levels;
 
@@ -25,6 +28,7 @@ public class WorkerList : List<WorkerFSM>
 
     public new void Add(WorkerFSM worker)
     {
+        oldWorkersHealth.Add(worker.health);
         base.Add(worker);
 
         if (worker.currentState == WorkerState.Leader)
@@ -54,13 +58,22 @@ public class WorkerList : List<WorkerFSM>
 
     public new void Remove(WorkerFSM worker)
     {
+        oldWorkersHealth.Remove(IndexOf(worker));
         base.Remove(worker);
+
         workers[worker.level].Remove(worker);
     }
 
+    //called after merging is finished
     public void Ascend()
     {
         Merging = false;
+
+        //if merged while shield is active
+        //correct old health to new merge health
+        if(ascender.health > 1000)
+            oldWorkersHealth[IndexOf(ascender)] = ascender.health / 1000;
+
         if (ascender.level < levels)
         {
             Remove(ascender);
@@ -80,5 +93,13 @@ public class WorkerList : List<WorkerFSM>
             }
         }
         return null;
+    }
+
+    public void ResetWorkersHealth()
+    {
+        for(int i = 0; i < Count; i++)
+        {
+            this[i].health = oldWorkersHealth[i];
+        }
     }
 }

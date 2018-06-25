@@ -9,7 +9,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     public TileConfig tc;
     public LanesDatabase lanes;
     public GameData gd;
-    public TextMesh healthText;
+    //public TextMesh healthText;
 
     GameObject magnetColliderObject;
     Animator mAnimator;
@@ -43,8 +43,12 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
     bool isKillingSpeed = false;
 
+    [HideInInspector]
+    public Material helmetMaterial;
+
     private void Awake()
     {
+        helmetMaterial = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material;
         mAnimator = GetComponent<Animator>();
         mCollider = GetComponent<BoxCollider>();
         workerReturner = GetComponent<ObjectReturner>();
@@ -126,8 +130,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         {workerStrafe, jumpSlideFsm}, workerStrafe, jumpSlideFsm, mergerCollide);
 
         workerStateScripts[WorkerState.SeekerMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
-        { workerStrafe, jumpSlideFsm, mergeLeaderSeeker}, 
-        workerStrafe, jumpSlideFsm, mergerCollide, new List<IWChangeState>() { mergeLeaderSeeker }); 
+        { workerStrafe, jumpSlideFsm, mergeLeaderSeeker},
+        workerStrafe, jumpSlideFsm, mergerCollide, new List<IWChangeState>() { mergeLeaderSeeker });
 
         workerStateScripts[WorkerState.Worker] = new StateScriptsWrapper(new List<IWorkerScript>() {
         positionWorker, jumpSlideFsm}, jumpSlideFsm, workerCollide);
@@ -139,7 +143,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         {seekMasterMerger, jumpSlideFsm}, jumpSlideFsm);
 
         workerStateScripts[WorkerState.Tutoring] = new StateScriptsWrapper(new List<IWorkerScript>()
-        {tutWorkerStrafe, tutJumpSlide}, tutWorkerStrafe, tutJumpSlide, 
+        {tutWorkerStrafe, tutJumpSlide}, tutWorkerStrafe, tutJumpSlide,
         new List<IWChangeState>() { tutWorkerStrafe, tutJumpSlide });
 
         workerStateScripts[WorkerState.Dead] = new StateScriptsWrapper(new List<IWorkerScript>());
@@ -226,7 +230,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
     private void Update()
     {
-        healthText.text = health.ToString();
+        helmetMaterial.SetFloat("_Cutoff", health / (wc.levelsNum * level + 0.01f));
+        //healthText.text = health.ToString();
         WorkerStateTrigger trigger = workerStateScripts[currentState].InputTrigger();
         if (trigger != WorkerStateTrigger.Null)
         {
