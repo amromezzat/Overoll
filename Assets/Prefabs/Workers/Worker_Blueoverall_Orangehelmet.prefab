@@ -393,6 +393,7 @@ MonoBehaviour:
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   healthText: {fileID: 102270327382286598}
+  magnetCollider: {fileID: 65017910036168826}
   currentState: 1
   haltedState: 0
   health: 1
@@ -471,7 +472,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c224774a117920346839d5d371c1a89e, type: 2}
+  - {fileID: 2100000, guid: 34098957aab3ec64eb16bcc6724a6e97, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

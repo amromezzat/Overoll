@@ -13,10 +13,14 @@ public class CoinMagnetTrial2 : MonoBehaviour
     bool collided = false;
     float timerCoolDown=0.5f;
     float yPos;
+    float timerToReturnToPool;
+    TileReturner tileReturner;
 
     void Awake()
     {
         yPos = transform.position.y;
+        timerToReturnToPool = totalTime;
+        tileReturner = GetComponent<TileReturner>();
     }
 
     void Update()
@@ -26,11 +30,17 @@ public class CoinMagnetTrial2 : MonoBehaviour
 
         if (collided)
         {
+            timerToReturnToPool -= Time.deltaTime;
+            if(timerToReturnToPool < 0)
+            {
+                StartCoroutine(tileReturner.ReturnToPool(0));
+            }
             currentTimer += Time.deltaTime;
             lerpFac = currentTimer / totalTime;
             transform.position = Vector3.Lerp(coinPos, playerTrans.position, lerpFac);
         }
     }
+
     void OnTriggerEnter(Collider other)
     {
       
@@ -51,12 +61,14 @@ public class CoinMagnetTrial2 : MonoBehaviour
 
 
     }
+
     void OnDisable()
     {
         collided = false;
         currentTimer = 0;
         timerCoolDown = 0.5f;
         transform.position = new Vector3(0, yPos, 0);
+        timerToReturnToPool = totalTime;
     }
 
    

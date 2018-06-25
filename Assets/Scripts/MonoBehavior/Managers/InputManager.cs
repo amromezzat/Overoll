@@ -1,25 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class InputManager : MonoBehaviour
 {
-    public float minSwipeDis = 125;
     public WorkerConfig wc;
 
-    Vector3 startPos;
-    Vector3 endPos;
-    Vector3 movPos;
+    private Vector3 fp;   //First touch position
+    private Vector3 lp;   //Last touch position
+    private float dragDistance;  //minimum distance for a swipe to be registered
 
+    bool windowsAction;
+    bool androidDragging;
 
-    float swipeDis;
-    float moveDis;
+    int doubleTapCount;
+    float doubleTapTimer;
 
-    bool insideSwip;
-    private void Start()
+    const float doubleTapTime = 1.5f;
+
+    void Start()
     {
-
+        dragDistance = Screen.height * 10 / 100; //dragDistance is 15% height of the screen
+        windowsAction = false;
+        androidDragging = false;
+        doubleTapCount = 0;
+        doubleTapTimer = doubleTapTime;
     }
 
     void Update()
@@ -36,107 +41,121 @@ public class InputManager : MonoBehaviour
 
     void WindowsControls()
     {
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        if (!Input.anyKeyDown)
+        {
+            windowsAction = false;
+        }
+        else if(windowsAction)
+        {
+            return;
+        }
+        else if (Input.GetKeyDown(KeyCode.B))
+        {
+            wc.onAddWorker.Invoke();
+            windowsAction = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             wc.onJump.Invoke();
+            windowsAction = true;
         }
-        else if (Input.GetKeyUp(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             wc.onSlide.Invoke();
+            windowsAction = true;
         }
-        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             wc.onRight.Invoke();
+            windowsAction = true;
         }
-        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             wc.onLeft.Invoke();
+            windowsAction = true;
         }
     }
 
     void AndroidControls()
     {
-        if (Input.touchCount > 0)
+        if (doubleTapCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-          
-            //when screen touch starts record the time and position
-            if (touch.phase == TouchPhase.Began && !insideSwip)
-            {
-                startPos = touch.position;
-
-            }
- 
-            if (touch.phase == TouchPhase.Moved && !insideSwip)
-            {
-                insideSwip = true;
-             
-                movPos = touch.position;
-
-                moveDis = (movPos - startPos).magnitude;
-
-                if (moveDis > minSwipeDis)
-                {
-                    Debug.Log("but why");
-                    Swipe();
-                }
-
-            }
-            //when screen touch ends record the time and position
-            //get the difference to determine if the touch
-            //is considered a swipe and in what direction
-            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-            {
-                insideSwip = false;
-              
-                //    endPos = touch.position;
-
-                //    swipeDis = (endPos - startPos).magnitude;
-
-                //    if (swipeDis > minSwipeDis)
-                //    {
-                //        Swipe();
-                //    }
-
-            }
-
-
+            doubleTapTimer -= Time.deltaTime;
         }
-
-      
+        if (Input.touchCount > 0) // user is touching the screen
+        {
+            Touch touch = Input.GetTouch(0); // get the touch
+            if (touch.phase == TouchPhase.Began) //check for the first touch
+            {
+                fp = touch.position;
+                lp = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
+            {
+                AndroidDetermineTouchType(touch);
+            }
+            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+            {
+                AndroidDetermineTouchType(touch);
+                if (!androidDragging)
+                {   //It's a tap as the drag distance is less than 10% of the screen height
+                    doubleTapCount++;
+                    if (doubleTapCount == 2)
+                    {
+                        if (doubleTapTimer > 0)
+                        {
+                            wc.onAddWorker.Invoke();
+                        }
+                        doubleTapCount = 0;
+                        doubleTapTimer = doubleTapTime;
+                    }
+                }
+                else
+                {
+                    doubleTapCount = 0;
+                    doubleTapTimer = doubleTapTime;
+                }
+                androidDragging = false;
+            }
+        }
     }
 
-    void Swipe()
+    void AndroidDetermineTouchType(Touch touch)
     {
-        // Vector2 delta = endPos - startPos;
-
-        Vector2 delta = movPos - startPos;
-        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        if (androidDragging)
         {
-            if (delta.x < 0)
-            {
-                wc.onLeft.Invoke();
-                insideSwip = true;
-            }
-            else
-            {
-                wc.onRight.Invoke();
-                insideSwip = true;
-            }
+            return;
         }
 
-        else
-        {
-            if (delta.y < 0)
-            {
-                wc.onSlide.Invoke();
-                insideSwip = true;
-            }
+        lp = touch.position;  //last touch position.
 
+        //Check if drag distance is greater than 10% of the screen height
+        if ((lp - fp).magnitude > dragDistance)
+        {
+            androidDragging = true;
+            //It's a drag
+            //check if the drag is vertical or horizontal
+            if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
+            {   //If the horizontal movement is greater than the vertical movement...
+                if ((lp.x > fp.x))  //If the movement was to the right)
+                {   //Right swipe
+                    wc.onRight.Invoke();
+                }
+                else
+                {   //Left swipe
+                    wc.onLeft.Invoke();
+                }
+            }
             else
-            {
-                wc.onJump.Invoke();
-                insideSwip = true;
+            {   //the vertical movement is greater than the horizontal movement
+                if (lp.y > fp.y)  //If the movement was up
+                {   //Up swipe
+                    wc.onJump.Invoke();
+                }
+                else
+                {   //Down swipe
+                    wc.onSlide.Invoke();
+                }
             }
         }
     }

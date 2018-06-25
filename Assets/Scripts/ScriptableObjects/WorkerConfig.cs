@@ -19,6 +19,8 @@ public class WorkerConfig : ScriptableObject
     [HideInInspector]
     public UnityEvent onSlide;
     [HideInInspector]
+    public UnityEvent onAddWorker;//on double tap
+    [HideInInspector]
     public UnityEvent onLeaderDeath;
     [HideInInspector]
     public UnityEvent onMergeOver;
