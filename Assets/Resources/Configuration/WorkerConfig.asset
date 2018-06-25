@@ -47,7 +47,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  jumpDuration: 0.7
+  jumpDuration: 0.8
   slideDuration: 1
   jumpHeight: 2
   groundLevel: 0.25
