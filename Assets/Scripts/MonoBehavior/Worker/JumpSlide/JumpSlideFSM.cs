@@ -20,8 +20,6 @@ public class JumpSlideFSM : IWJumpSlide
     Stack<IDoAction> actionStack = new Stack<IDoAction>();
 
     IDoAction currentState;
-    public string currentStateStr;
-
 
     public JumpSlideFSM(WorkerConfig wc, GameData gd, BoxCollider mCollider, Animator mAnimator, Transform transform)
     {
@@ -107,7 +105,6 @@ public class JumpSlideFSM : IWJumpSlide
 
     public void FixedUpdate(float fixedDeltaTime)
     {
-        currentStateStr = currentState.ToString();
         bool executing = currentState.OnStateExecution(transform, fixedDeltaTime);
         if (!executing)
         {

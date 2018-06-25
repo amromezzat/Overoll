@@ -51,8 +51,12 @@ public class GameData : ScriptableObject
 
     public int workerPrice = 0;
 
+    [HideInInspector]
     public bool magnetInAct = false;
+    [HideInInspector]
     public bool shieldInAct = false;
+    public float magnetTime = 5;
+    public float shieldTime = 5;
 
     public float Speed
     {

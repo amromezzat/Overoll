@@ -47,7 +47,7 @@ public class WorkersManager : MonoBehaviour
 
     public void AddWorker()
     {
-        GameObject worker = ObjectPooler.instance.GetFromPool(wc.worker);
+        GameObject worker = ObjectPooler.instance.GetFromPool(wc.workerType);
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
         float newZPos = Random.Range(tc.disableSafeDistance + 5, tc.disableSafeDistance + 8);
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
@@ -59,8 +59,6 @@ public class WorkersManager : MonoBehaviour
         if (gData.shieldInAct)
         {
             workerFSM.health = 1000;
-
-
         }
         
     }

@@ -25,8 +25,6 @@ public class WorkerConfig : ScriptableObject
     [HideInInspector]
     public UnityEvent onMergeOver;
 
-
-
     [Header("Jump Slide Attributes")]
     public float jumpDuration = 1;
     public float slideDuration = 1;
@@ -53,9 +51,9 @@ public class WorkerConfig : ScriptableObject
     public List<GameObject> managerWorkers;
 
     [Header("Workers Types")]
-    public PoolableType worker;
-    public PoolableType HR;
-    public PoolableType Manager;
+    public PoolableType workerType;
+    public PoolableType hrType;
+    public PoolableType managerType;
 
     [Header("Worker Merge")]
     public int workersPerLevel = 5;

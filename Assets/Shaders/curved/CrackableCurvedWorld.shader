@@ -11,7 +11,7 @@
 	SubShader{
 		Tags{ "RenderType" = "Opaque" }
 		LOD 200
-
+		cull off
 		CGPROGRAM
 		// Surface shader function is called surf, and vertex preprocessor function is called vert
 		// addshadow used to add shadow collector and caster passes following vertex modification
