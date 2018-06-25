@@ -19,6 +19,7 @@ public class WorkersManager : MonoBehaviour
         wc.workers.Add(leader);
         wc.onLeaderDeath.AddListener(LeaderDied);
         wc.onMergeOver.AddListener(MergingDone);
+        wc.onAddWorker.AddListener(doubleTap);
     }
 
     void Update()
@@ -33,6 +34,14 @@ public class WorkersManager : MonoBehaviour
         else
         {
             addWorkerBtn.GetComponent<Button>().interactable = true;
+        }
+    }
+
+    public void doubleTap()
+    {
+        if(gData.gameState == GameState.Gameplay && gData.workerPrice < gData.CoinCount)
+        {
+            AddWorker();
         }
     }
 
