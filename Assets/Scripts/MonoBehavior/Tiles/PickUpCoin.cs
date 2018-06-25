@@ -8,14 +8,14 @@ public class PickUpCoin : MonoBehaviour {
     public GameData gd;
     public WorkerConfig wc;
     TileReturner cReturn;
-    private CoinMagnetTrial2 coinMagnet;
+    private CoinMagnet coinMagnet;
 
 
     void Awake()
     {
 
         cReturn = GetComponent<TileReturner>();
-        coinMagnet = GetComponent<CoinMagnetTrial2>();
+        coinMagnet = GetComponent<CoinMagnet>();
         RegisterListeners();
 
     }

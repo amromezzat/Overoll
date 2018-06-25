@@ -8,12 +8,12 @@ public class PowerUpManager : MonoBehaviour {
     public WorkerConfig wc;
     float magnetTime=0.0f;
     float shieldTime = 0.0f;
-    private CoinMagnetTrial2 coinMagnet;
+    private CoinMagnet coinMagnet;
     List<int> oldHealth = new List<int>();
 
     private void Awake()
     {
-        coinMagnet = GetComponent<CoinMagnetTrial2>();
+        coinMagnet = GetComponent<CoinMagnet>();
         RegisterListeners();
 
     }
