@@ -29,6 +29,10 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
         {
             animList = GetComponentsInChildren<Animator>();
         }
+        if(ExtraVelocity > 0)
+        {
+            mAnim.speed = 0;
+        }
     }
 
     private void OnEnable()
@@ -44,6 +48,10 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
         if (gameData.tutorialActive && gameData.TutorialState != TutorialState.Null)
         {
             isKillingSpeed = true;
+        }
+        if (ExtraVelocity > 0)
+        {
+            mAnim.speed = 0;
         }
     }
 
@@ -64,6 +72,7 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
         float waitingTime = transform.position.z / gameData.Speed;
         yield return new WaitForSeconds(waitingTime);
         rb.velocity += Vector3.back * ExtraVelocity;
+        mAnim.speed = 1;
     }
 
     void MoveObj()
