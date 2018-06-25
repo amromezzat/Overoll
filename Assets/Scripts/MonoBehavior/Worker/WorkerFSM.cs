@@ -10,8 +10,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     public LanesDatabase lanes;
     public GameData gd;
     public TextMesh healthText;
-    public BoxCollider magnetCollider;
 
+    GameObject magnetColliderObject;
     Animator mAnimator;
     BoxCollider mCollider;
     ObjectReturner workerReturner;
@@ -57,11 +57,13 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
         RegisterListeners();
         SetStatesScripts();
+
+        magnetColliderObject = transform.GetChild(transform.childCount - 1).gameObject;
     }
 
     private void OnEnable()
     {
-        magnetCollider.enabled = true;
+        magnetColliderObject.SetActive(true);
         for (int i = 0; i < scriptsToResetState.Length; i++)
         {
             scriptsToResetState[i].ScriptReset();
@@ -80,7 +82,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
     private void OnDisable()
     {
-        magnetCollider.enabled = false;
+        magnetColliderObject.SetActive(false);
         currentState = WorkerState.Dead;
         haltedState = WorkerState.Dead;
         health = 1;
