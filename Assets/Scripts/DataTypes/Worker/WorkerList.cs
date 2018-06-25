@@ -100,6 +100,7 @@ public class WorkerList : List<WorkerFSM>
         for(int i = 0; i < Count; i++)
         {
             this[i].health = oldWorkersHealth[i];
+            this[i].helmetMaterial.SetFloat("_ExtAmount", 0);
         }
     }
 }

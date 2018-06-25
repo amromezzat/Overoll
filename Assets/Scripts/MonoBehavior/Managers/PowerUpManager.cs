@@ -21,6 +21,10 @@ public class PowerUpManager : MonoBehaviour
             if (magnetTimer < 0)
             {
                 gd.magnetInAct = false;
+                for (int i = 0; i < wc.workers.Count; i++)
+                {
+                    wc.workers[i].helmetMaterial.SetFloat("_ColAmount", 0);
+                }
             }
         }
 
@@ -29,7 +33,6 @@ public class PowerUpManager : MonoBehaviour
             shieldTimer -= Time.deltaTime;
             if (shieldTimer < 0)
             {
-                gd.shieldInAct = false;
                 EndShield();
             }
         }
@@ -43,11 +46,16 @@ public class PowerUpManager : MonoBehaviour
 
     void ActWithShield()
     {
-        shieldTimer = gd.shieldTime;
+        if (gd.magnetInAct)
+        {
+            gd.magnetInAct = false;
+        }
         gd.shieldInAct = true;
+        shieldTimer = gd.ShieldTime;
         for (int i = 0; i < wc.workers.Count; i++)
         {
             wc.workers[i].health = 1000;
+            wc.workers[i].helmetMaterial.SetFloat("_ExtAmount", 0.0001f);
         }
     }
 
@@ -59,7 +67,15 @@ public class PowerUpManager : MonoBehaviour
 
     void StartMagnetTimer()
     {
-        magnetTimer = gd.magnetTime;
+        if (gd.shieldInAct)
+        {
+            EndShield();
+        }
+        for (int i = 0; i < wc.workers.Count; i++)
+        {
+            wc.workers[i].helmetMaterial.SetFloat("_ColAmount", -0.001f);
+        }
         gd.magnetInAct = true;
+        magnetTimer = gd.MagnetTime;
     }
 }

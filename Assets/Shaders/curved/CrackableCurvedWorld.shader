@@ -6,6 +6,8 @@
 		_SecondTex("Cracks (A)", 2D) = "white" {}
 		_Cutoff("Alpha Cutoff", Range(0,1)) = 0.5
 		_CrackColor("Cracks Color", Color) = (0.5, 0.5, 0.5, 1)
+		_ExtAmount("Extrusion Amount", Range(-0.0001,0.0001)) = 0
+		_ColAmount("Custom Color Amount", Range(-0.001,0.001)) = 0
 	}
 
 	SubShader{
@@ -15,7 +17,7 @@
 		CGPROGRAM
 		// Surface shader function is called surf, and vertex preprocessor function is called vert
 		// addshadow used to add shadow collector and caster passes following vertex modification
-		#pragma surface surf Lambert vertex:vert
+		#pragma surface surf Lambert vertex:vert nolightmap
 
 		// Access the shaderlab properties
 		sampler2D _MainTex;
@@ -23,6 +25,8 @@
 		float _CurveStrength;
 		half _Cutoff;
 		float3 _CrackColor;
+		float _ExtAmount;
+		float _ColAmount;
 
 		// Basic input structure to the shader function
 		// requires only a single set of UV texture mapping coordinates
@@ -30,6 +34,7 @@
 			float2 uv_MainTex;
 			float2 uv_SecondTex;
 			fixed4 color;
+			float3 pos;
 		};
 
 		// This is where the curvature is applied
@@ -37,7 +42,8 @@
 		{
 			UNITY_INITIALIZE_OUTPUT(Input, o);
 			o.color = v.color;
-
+			o.pos = v.normal;
+          	v.vertex.xyz += v.normal * _ExtAmount;
 			// Transform the vertex coordinates from model space into world space
 			float4 vv = mul(unity_ObjectToWorld, v.vertex);
 
@@ -59,7 +65,7 @@
 			half4 secondTex = tex2D(_SecondTex, IN.uv_SecondTex);
 			float crackVisibility = saturate((secondTex.a - _Cutoff) * 10);
 
-			o.Emission = lerp(mainTex.rgb, secondTex.rgb * _CrackColor, crackVisibility) * IN.color;
+			o.Emission = lerp(mainTex.rgb, secondTex.rgb * _CrackColor, crackVisibility) * IN.color + IN.pos * _ColAmount;
 			o.Alpha = mainTex.a;
 		}
 

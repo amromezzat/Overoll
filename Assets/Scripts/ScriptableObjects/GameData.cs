@@ -55,8 +55,8 @@ public class GameData : ScriptableObject
     public bool magnetInAct = false;
     [HideInInspector]
     public bool shieldInAct = false;
-    public float magnetTime = 5;
-    public float shieldTime = 5;
+    private float magnetTime = 5;
+    private float shieldTime = 5;
 
     public float Speed
     {
@@ -85,6 +85,32 @@ public class GameData : ScriptableObject
             {
                 onSlowDown.Invoke();
             }
+        }
+    }
+
+    public float MagnetTime
+    {
+        get
+        {
+            return magnetTime;
+        }
+
+        private set
+        {
+            magnetTime = value;
+        }
+    }
+
+    public float ShieldTime
+    {
+        get
+        {
+            return shieldTime;
+        }
+
+        private set
+        {
+            shieldTime = value;
         }
     }
 
