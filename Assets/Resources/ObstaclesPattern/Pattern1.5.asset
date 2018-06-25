@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfa27f646f3c08944887e92b070bc06c, type: 3}
-  m_Name: Pattern03
+  m_Name: Pattern1.5
   m_EditorClassIdentifier: 
   difficulty: 0
   length: 0
@@ -354,8 +354,8 @@ MonoBehaviour:
   - ListOfTiles:
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
-    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
   - ListOfTiles:
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
@@ -442,8 +442,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
     - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
   - ListOfTiles:
+    - {fileID: 11400000, guid: 3e86c4a97f571eb438a8ba8bee42a600, type: 2}
     - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
-    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
