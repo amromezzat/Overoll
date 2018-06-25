@@ -15,4 +15,11 @@ MonoBehaviour:
   - ListOfPatterns:
     - {fileID: 11400000, guid: d5ce4d6bf700b5644a38829ba4a661e7, type: 2}
   - ListOfPatterns:
+    - {fileID: 11400000, guid: 1e0253a16f9e902408681295ccf44b42, type: 2}
+    - {fileID: 11400000, guid: 034501bf4e596b14eadd2b70d174a0a6, type: 2}
+    - {fileID: 11400000, guid: f7e2d3b70f7c225418b7c47725f34d3a, type: 2}
     - {fileID: 11400000, guid: f79b2a85018dec345b2bc477e2461d2f, type: 2}
+    - {fileID: 11400000, guid: 3a4a24aa2941117439a6d2691308f2d2, type: 2}
+  - ListOfPatterns:
+    - {fileID: 11400000, guid: 1026aa84d82dd764393988e8fdcbe38e, type: 2}
+    - {fileID: 11400000, guid: c35bfc79874f9ef46a482042fbe6b7af, type: 2}
