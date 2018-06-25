@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinMagnetTrial2 : MonoBehaviour
+public class CoinMagnet : MonoBehaviour
 {
     
     Vector3 coinPos;
