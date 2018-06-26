@@ -5,19 +5,22 @@ using UnityEngine;
 public class WorkerList : List<WorkerFSM>
 {
     public bool Merging = false;
-    List<int> oldWorkersHealth;
+    List<int> normWorkersHealth;
 
-    int workersPerLevel; //workers in each level
+    int minWorkersToMerge; //workers in each level
     int levels; //levels for merging
+
+    bool shieldOn = false;
+    bool magnetOn = false;
 
     WorkerFSM ascender;
     List<List<WorkerFSM>> workers = new List<List<WorkerFSM>>();
 
     public WorkerList(int workersPerLevel, int levels)
     {
-        oldWorkersHealth = new List<int>();
+        normWorkersHealth = new List<int>();
 
-        this.workersPerLevel = workersPerLevel;
+        this.minWorkersToMerge = workersPerLevel;
         this.levels = levels;
 
         for (int i = 0; i < levels; i++)
@@ -28,27 +31,44 @@ public class WorkerList : List<WorkerFSM>
 
     public new void Add(WorkerFSM worker)
     {
-        oldWorkersHealth.Add(worker.health);
+        //add worker normal health
+        normWorkersHealth.Add(worker.health);
         base.Add(worker);
 
+        //if there is a power up apply it to worker
+        if (shieldOn)
+        {
+            worker.health = 1000;
+            worker.helmetMaterial.SetFloat("_ExtAmount", 0.0001f);
+        }
+        else if (magnetOn)
+        {
+            worker.helmetMaterial.SetFloat("_ColAmount", -0.001f);
+        }
+
+        //if the leader is added after succeding
+        //add him at the top of the level
         if (worker.currentState == WorkerState.Leader)
             workers[worker.level].Insert(0, worker);
         else
             workers[worker.level].Add(worker);
 
+        //if worker is at last level don't merge
         if (Merging || worker.level == levels - 1)
         {
             return;
         }
 
-        if (workers[worker.level].Count >= workersPerLevel)
+        //if the workers in current level match minimum workers to merge
+        //start merging
+        if (workers[worker.level].Count >= minWorkersToMerge)
         {
             Merging = true;
 
             workers[worker.level][0].ChangeState(WorkerStateTrigger.Merge);
             ascender = workers[worker.level][0];
 
-            for (int i = 1; i < workersPerLevel; i++)
+            for (int i = 1; i < minWorkersToMerge; i++)
             {
                 workers[worker.level][i].SetSeekedMaster(ascender.transform);
                 workers[worker.level][i].ChangeState(WorkerStateTrigger.SlaveMerge);
@@ -58,7 +78,7 @@ public class WorkerList : List<WorkerFSM>
 
     public new void Remove(WorkerFSM worker)
     {
-        oldWorkersHealth.Remove(IndexOf(worker));
+        normWorkersHealth.Remove(IndexOf(worker));
         base.Remove(worker);
 
         workers[worker.level].Remove(worker);
@@ -72,7 +92,7 @@ public class WorkerList : List<WorkerFSM>
         //if merged while shield is active
         //correct old health to new merge health
         if(ascender.health > 1000)
-            oldWorkersHealth[IndexOf(ascender)] = ascender.health / 1000;
+            normWorkersHealth[IndexOf(ascender)] = ascender.health / 1000;
 
         if (ascender.level < levels)
         {
@@ -97,6 +117,7 @@ public class WorkerList : List<WorkerFSM>
 
     public void StartShieldPowerup()
     {
+        shieldOn = true;
         for (int i = 0; i < Count; i++)
         {
             this[i].health = 1000;
@@ -106,6 +127,7 @@ public class WorkerList : List<WorkerFSM>
 
     public void StartMagnetPowerup()
     {
+        magnetOn = true;
         for (int i = 0; i < Count; i++)
         {
             this[i].helmetMaterial.SetFloat("_ColAmount", -0.001f);
@@ -114,15 +136,17 @@ public class WorkerList : List<WorkerFSM>
 
     public void EndShieldPowerup()
     {
+        shieldOn = true;
         for(int i = 0; i < Count; i++)
         {
-            this[i].health = oldWorkersHealth[i];
+            this[i].health = normWorkersHealth[i];
             this[i].helmetMaterial.SetFloat("_ExtAmount", 0);
         }
     }
 
     public void EndMagnetPowerup()
     {
+        magnetOn = true;
         for(int i = 0; i < Count; i++)
         {
             this[i].helmetMaterial.SetFloat("_ColAmount", 0);
