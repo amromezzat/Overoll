@@ -34,6 +34,10 @@ public class WorkersManager : MonoBehaviour
         else
         {
             addWorkerBtn.GetComponent<Button>().interactable = true;
+            if (gData.tutorialActive)
+            {
+                gData.tutorialState = TutorialState.AddWorker;
+            }
         }
     }
 
@@ -47,6 +51,11 @@ public class WorkersManager : MonoBehaviour
 
     public void AddWorker()
     {
+        if (gData.tutorialActive)
+        {
+            gData.onSpeedUp.Invoke();
+        }
+
         GameObject worker = ObjectPooler.instance.GetFromPool(wc.workerType);
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
         float newZPos = Random.Range(tc.disableSafeDistance + 5, tc.disableSafeDistance + 8);
