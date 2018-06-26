@@ -18,10 +18,24 @@ public class TileGeneration : MonoBehaviour
     int currentSegmentIndex;
     int currentPatternIndex = -1;
 
-    private void Awake()
+    const float difficultyRunTime = 120;
+    const int availableDifficulties = 4;
+
+    IEnumerator IncreaseDifficulty()
+    {
+        yield return new WaitForSeconds(difficultyRunTime);
+        if (gd.difficulty > 0)
+        {
+            gd.difficulty = (gd.difficulty + 1) % availableDifficulties + 1;
+            gd.difficulty = gd.difficulty == 0 ? 1 : gd.difficulty;
+        }
+    }
+
+    private void Start()
     {
         InitPattern();
         lastSegTrans = transform;
+        StartCoroutine(IncreaseDifficulty());
     }
 
     void InitPattern()

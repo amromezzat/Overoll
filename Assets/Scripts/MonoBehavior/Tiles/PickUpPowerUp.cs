@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpPowerUp : MonoBehaviour {
-
-
+public class PickUpPowerUp : MonoBehaviour
+{
     ObjectReturner cReturn;
-    GameObject gameobj;
     public GameData gameData;
 
     void OnEnable()
     {
-      
         cReturn = GetComponent<ObjectReturner>();
-        gameobj = GetComponent<GameObject>();
     }
-   
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Worker")
@@ -25,12 +21,11 @@ public class PickUpPowerUp : MonoBehaviour {
                 gameData.gotMagnet.Invoke();
 
             }
-            if(tag=="Shield")
+            if (tag == "Shield")
             {
                 gameData.gotShield.Invoke();
             }
-           StartCoroutine(cReturn.ReturnToPool(0));
-           
+            StartCoroutine(cReturn.ReturnToPool(0));
         }
     }
 }

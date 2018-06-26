@@ -33,6 +33,8 @@ public class ScoreManager : MonoBehaviour, IHalt
     // Update is called once per frame
     void Update()
     {
+        if (gData.tutorialActive)
+            return;
 
         gData.coinCount = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
         // calc score

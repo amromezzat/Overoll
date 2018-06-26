@@ -20,6 +20,8 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
     public GameObject MergeText;
     public GameObject CollideText;
     public GameObject EndText;
+    public GameObject ScoreText;
+    public GameObject GoldText;
 
     Animator addBtnAnimator;
     IEnumerator slowingCoroutine;
@@ -56,15 +58,44 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
             case TutorialState.AddWorker:
                 doubleTap.SetActive(true);
                 addBtnAnimator.SetBool("Play", true);
+                GoldText.SetActive(true);
                 break;
             case TutorialState.MergeWorker:
                 StartCoroutine(StartMergeTutorial());
                 break;
             case TutorialState.Collide:
+                StartCoroutine(CollideTut());
                 break;
             case TutorialState.End:
+                EndText.SetActive(true);
+                StartCoroutine(EndTutorial());
+                PlayerPrefs.SetInt("PlayedTutorial", 1);
                 break;
         }
+    }
+
+    IEnumerator StartMergeTutorial()
+    {
+        buyWorkersText.SetActive(true);
+        wc.leader.ChangeState(WorkerStateTrigger.EndTutoring);
+        yield return new WaitForSeconds(3);
+        for (int i = 0; i < 3; i++)
+        {
+            wc.onAddWorker.Invoke();
+        }
+        gd.onSpeedUp.Invoke();
+    }
+
+    IEnumerator CollideTut()
+    {
+        MergeText.SetActive(true);
+        yield return new WaitForSeconds(1);
+        gd.onSpeedUp.Invoke();
+        yield return new WaitForSeconds(1);
+        MergeText.SetActive(false);
+        CollideText.SetActive(true);
+        yield return new WaitForSeconds(2);
+        CollideText.SetActive(false);
     }
 
     void TutStart()
@@ -74,6 +105,8 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
             pauseBtn.SetActive(false);
             addWorkerBtn.SetActive(false);
             StartCoroutine(BecomeATutor());
+            ScoreText.SetActive(false);
+            GoldText.SetActive(false);
         }
         else
         {
@@ -112,39 +145,27 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
                 addBtnAnimator.SetBool("Play", false);
                 break;
             case TutorialState.MergeWorker:
+                buyWorkersText.SetActive(false);
                 break;
         }
         gd.TutorialState = TutorialState.Null;
     }
 
-    IEnumerator StartMergeTutorial()
-    {
-        buyWorkersText.SetActive(true);
-        yield return new WaitForSeconds(3);
-        gd.coinCount += gd.workerPrice * 4;
-        for (int i = 0; i < 4; i++)
-        {
-            wc.onAddWorker.Invoke();
-        }
-    }
-
-    //IEnumerator StartCollisionTutorial()
-    //{
-
-    //}
-
     IEnumerator EndTutorial()
     {
-        yield return new WaitForSeconds(3);
-        StopCoroutine(slowingCoroutine);
+        yield return new WaitForSeconds(1);
+        gd.onSpeedUp.Invoke();
+        ScoreText.SetActive(true);
+        gd.tutorialActive = false;
+        yield return new WaitForSeconds(1);
+        EndText.SetActive(false);
         gd.Speed = gd.defaultSpeed;
         gd.onSlowDown.RemoveListener(SlowDown);
         gd.onSpeedUp.RemoveListener(SpeedUp);
         gd.OnStart.RemoveListener(TutStart);
         gd.tutorialActive = false;
         pauseBtn.SetActive(true);
-        addWorkerBtn.SetActive(true);
-        enabled = false;
+        gameObject.SetActive(false);
     }
 
     public IEnumerator KillSpeed()

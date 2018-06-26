@@ -109,5 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  poolableType: {fileID: 11400000, guid: d534f5f773c88124ca381e0979d27550, type: 2}
+  poolableType: {fileID: 11400000, guid: 56098683eabe6744d911d115a7b5c46a, type: 2}
   inActiveSegment: 0
