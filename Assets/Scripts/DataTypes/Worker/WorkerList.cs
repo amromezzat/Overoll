@@ -136,7 +136,7 @@ public class WorkerList : List<WorkerFSM>
 
     public void EndShieldPowerup()
     {
-        shieldOn = true;
+        shieldOn = false;
         for(int i = 0; i < Count; i++)
         {
             this[i].health = normWorkersHealth[i];
@@ -146,7 +146,7 @@ public class WorkerList : List<WorkerFSM>
 
     public void EndMagnetPowerup()
     {
-        magnetOn = true;
+        magnetOn = false;
         for(int i = 0; i < Count; i++)
         {
             this[i].helmetMaterial.SetFloat("_ColAmount", 0);
