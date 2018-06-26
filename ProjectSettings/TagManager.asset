@@ -18,6 +18,9 @@ TagManager:
   - TutSlide
   - TutStrafeLeft
   - TutStrafeRight
+  - TutAddWorker
+  - TutMerge
+  - TutCollide
   layers:
   - Default
   - TransparentFX
