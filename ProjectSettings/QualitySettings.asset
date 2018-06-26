@@ -188,7 +188,7 @@ QualitySettings:
     - Android
   - serializedVersion: 2
     name: Overoll
-    pixelLightCount: 2
+    pixelLightCount: 1
     shadows: 0
     shadowResolution: 2
     shadowProjection: 1
