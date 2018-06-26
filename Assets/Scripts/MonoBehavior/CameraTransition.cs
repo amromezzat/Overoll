@@ -10,6 +10,7 @@ public class CameraTransition : MonoBehaviour, IHalt
     public TileConfig tc;
     public GameObject startView;
     public GameObject backView;
+    public GameObject ground;
     public Transform beginTrans;
     public Transform EndTrans;
     public float transTime = 2f;
@@ -19,11 +20,13 @@ public class CameraTransition : MonoBehaviour, IHalt
     PlayableDirector playableDirector;
     float timer = 0;
     bool onHalt = true;
+    Rigidbody startViewRB;
 
     private void Awake()
     {
         RegisterListeners();
         playableDirector = startView.GetComponent<PlayableDirector>();
+        startViewRB = startView.GetComponent<Rigidbody>();
     }
 
     public void Begin()
@@ -32,6 +35,8 @@ public class CameraTransition : MonoBehaviour, IHalt
         onHalt = false;
         next = EndTrans;
         playableDirector.enabled = false;
+        startViewRB.velocity = Vector3.back * gd.Speed;
+        ground.SetActive(false);
     }
 
     public void End()
@@ -41,10 +46,11 @@ public class CameraTransition : MonoBehaviour, IHalt
 
     public void Halt()
     {
-
+        onHalt = true;
+        startViewRB.velocity = Vector3.zero;
     }
 
-    public void RegisterListeners()
+        public void RegisterListeners()
     {
         gd.OnStart.AddListener(Begin);
         gd.onPause.AddListener(Halt);
@@ -54,7 +60,8 @@ public class CameraTransition : MonoBehaviour, IHalt
 
     public void Resume()
     {
-
+        onHalt = false;
+        startViewRB.velocity = Vector3.back * gd.Speed;
     }
 
     // Use this for initialization
@@ -81,12 +88,13 @@ public class CameraTransition : MonoBehaviour, IHalt
             Destroy(startView);
             enabled = false;
         }
-        else if (completedPortion >= transTime / 4)
-        {
-            //backView.SetActive(false);
-            Vector3 newPos = startView.transform.position;
-            newPos.z -= 0.1f;
-            startView.transform.position = newPos;
-        }
+    }
+
+    private void OnDisable()
+    {
+        gd.OnStart.RemoveListener(Begin);
+        gd.onPause.RemoveListener(Halt);
+        gd.OnResume.RemoveListener(Resume);
+        gd.onEnd.RemoveListener(End);
     }
 }

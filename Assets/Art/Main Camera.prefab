@@ -64,7 +64,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 25
+  far clip plane: 40
   field of view: 80
   orthographic: 0
   orthographic size: 5
@@ -150,8 +150,8 @@ MonoBehaviour:
   LinearWhitePoint: 11.2
   ApplyDithering: 1
   QualityLevel: 0
-  BlendAmount: 0.3
-  LutTexture: {fileID: 2800000, guid: 00ee32d09d1966f4985c39b8d800cacb, type: 3}
+  BlendAmount: 0
+  LutTexture: {fileID: 2800000, guid: 4cc8087e226f10e49979ccfc97940527, type: 3}
   LutBlendTexture: {fileID: 0}
   MaskTexture: {fileID: 0}
   UseDepthMask: 0
@@ -194,40 +194,39 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1391128679570984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4975a6e437fc3b149a8cd508ce5bdd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.81
-  intensity: 0.9
-  blurSize: 2.75
+  threshold: 0.25
+  intensity: 0.75
+  blurSize: 1
   blurIterations: 1
   blurType: 0
-  fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
+  fastBloomShader: {fileID: 0}
 --- !u!114 &114826050582931428
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1391128679570984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd6d4281e5d7cd44d8c6e38bc2c1b8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  intensity: 0.17
+  intensity: 0.036
   chromaticAberration: 0.2
   axialAberration: 0.5
   blur: 0
   blurSpread: 0.75
   luminanceDependency: 0.25
   blurDistance: 2.5
-  vignetteShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}
-  separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
-  chromAberrationShader: {fileID: 4800000, guid: 2b4f29398d9484ccfa9fd220449f5eee,
-    type: 3}
+  vignetteShader: {fileID: 0}
+  separableBlurShader: {fileID: 0}
+  chromAberrationShader: {fileID: 0}
 --- !u!124 &124961046605197214
 Behaviour:
   m_ObjectHideFlags: 1
