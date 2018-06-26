@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 54154742370068620}
   - component: {fileID: 65231268916568926}
   - component: {fileID: 114481118162764162}
-  - component: {fileID: 114819304942227930}
+  - component: {fileID: 114785056624918836}
   m_Layer: 0
   m_Name: Worker_Blueoverall_Orangehelmet
   m_TagString: Worker
@@ -311,7 +311,7 @@ MonoBehaviour:
   health: 1
   level: 0
   helmetMaterial: {fileID: 0}
---- !u!114 &114819304942227930
+--- !u!114 &114785056624918836
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -319,12 +319,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1803301142844228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
+  m_Script: {fileID: 11500000, guid: d2c7e9278986f8942897ccaa80f6676b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   poolableType: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
   inActiveSegment: 0
+  wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
 --- !u!137 &137350476237176284
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -54,13 +54,7 @@ public class WorkersManager : MonoBehaviour
         WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
             
         wc.workers.Add(workerFSM);
-        gData.CoinCount -= gData.workerPrice;
-
-        if (gData.shieldInAct)
-        {
-            workerFSM.health = 1000;
-        }
-        
+        gData.CoinCount -= gData.workerPrice;     
     }
 
     void MergingDone()

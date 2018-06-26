@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ObjectReturner))]
+[RequireComponent(typeof(WorkerReturner))]
 public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 {
     public WorkerConfig wc;
@@ -14,7 +14,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     GameObject magnetColliderObject;
     Animator mAnimator;
     BoxCollider mCollider;
-    ObjectReturner workerReturner;
+    WorkerReturner workerReturner;
     Rigidbody rb;
 
     WorkerStrafe workerStrafe;
@@ -51,7 +51,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         helmetMaterial = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material;
         mAnimator = GetComponent<Animator>();
         mCollider = GetComponent<BoxCollider>();
-        workerReturner = GetComponent<ObjectReturner>();
+        workerReturner = GetComponent<WorkerReturner>();
         rb = GetComponent<Rigidbody>();
 
         wc.onLeft.AddListener(StrafeLeft);
