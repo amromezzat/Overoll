@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CoinMagnet : MonoBehaviour
 {
+    public WorkerConfig wc;
+
     TileReturner tileReturner;
 
     Vector3 coinPos;
@@ -13,14 +15,12 @@ public class CoinMagnet : MonoBehaviour
     float currentTimer = 0;
     bool collided = false;
     float timerCoolDown;
-    float yPos;
 
     const float cdBeforeCollision = 0.3f;
 
     void Awake()
     {
         tileReturner = GetComponent<TileReturner>();
-        yPos = transform.position.y;
         timerCoolDown = cdBeforeCollision;
     }
 
@@ -30,7 +30,7 @@ public class CoinMagnet : MonoBehaviour
         currentTimer = 0;
         timerCoolDown = cdBeforeCollision;
         Vector3 fixedYPos = transform.position;
-        fixedYPos.y = yPos;
+        fixedYPos.y = wc.groundLevel;
         transform.position = fixedYPos;
     }
 

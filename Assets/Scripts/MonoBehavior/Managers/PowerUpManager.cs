@@ -42,11 +42,6 @@ public class PowerUpManager : MonoBehaviour
 
     void StartShield()
     {
-        if (gd.magnetInAct)
-        {
-            EndMagnet();
-        }
-
         gd.shieldInAct = true;
         shieldTimer = gd.ShieldTime;
         wc.workers.StartShieldPowerup();
@@ -54,11 +49,6 @@ public class PowerUpManager : MonoBehaviour
 
     void StartMagnet()
     {
-        if (gd.shieldInAct)
-        {
-            EndShield();
-        }
-
         gd.magnetInAct = true;
         magnetTimer = gd.MagnetTime;
         wc.workers.StartMagnetPowerup();

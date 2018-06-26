@@ -41,7 +41,7 @@ public class WorkerList : List<WorkerFSM>
             worker.health = 1000;
             worker.helmetMaterial.SetFloat("_ExtAmount", 0.0001f);
         }
-        else if (magnetOn)
+        if (magnetOn)
         {
             worker.helmetMaterial.SetFloat("_ColAmount", -0.001f);
         }
@@ -70,12 +70,14 @@ public class WorkerList : List<WorkerFSM>
             workers[worker.level][0].ChangeState(WorkerStateTrigger.Merge);
             ascender = workers[worker.level][0];
 
+            //set normal new master merger health
             for (int i = 1; i < minWorkersToMerge; i++)
             {
                 workers[worker.level][i].SetSeekedMaster(ascender.transform);
                 workers[worker.level][i].ChangeState(WorkerStateTrigger.SlaveMerge);
                 newMasterHealth += workers[worker.level][i].health;
             }
+            //if health powerup is active divide by 1000 to get correct health
             newMasterHealth = newMasterHealth >= 1000 ? newMasterHealth / 1000 : newMasterHealth;
             normWorkersHealth[IndexOf(worker)] = newMasterHealth;
         }

@@ -77,8 +77,11 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
 
     public void SpeedUp()
     {
-        StopCoroutine(slowingCoroutine);
-        gd.Speed = gd.defaultSpeed;
+        if (gd.tutorialState != TutorialState.AddWorker)
+        {
+            StopCoroutine(slowingCoroutine);
+            gd.Speed = gd.defaultSpeed;
+        }
         switch (gd.TutorialState)
         {
             case TutorialState.Jump:
@@ -104,10 +107,13 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
 
     IEnumerator EndTutorial()
     {
-        yield return new WaitForSeconds(wc.strafeDuration);
+        yield return new WaitForSeconds(3);
+        StopCoroutine(slowingCoroutine);
+        gd.Speed = gd.defaultSpeed;
         gd.onSlowDown.RemoveListener(SlowDown);
         gd.onSpeedUp.RemoveListener(SpeedUp);
         gd.OnStart.RemoveListener(TutStart);
+        gd.tutorialActive = false;
         pauseBtn.SetActive(true);
         addWorkerBtn.SetActive(true);
         wc.leader.ChangeState(WorkerStateTrigger.EndTutoring);
