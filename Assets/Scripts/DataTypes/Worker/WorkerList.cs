@@ -95,12 +95,37 @@ public class WorkerList : List<WorkerFSM>
         return null;
     }
 
-    public void ResetWorkersHealth()
+    public void StartShieldPowerup()
+    {
+        for (int i = 0; i < Count; i++)
+        {
+            this[i].health = 1000;
+            this[i].helmetMaterial.SetFloat("_ExtAmount", 0.0001f);
+        }
+    }
+
+    public void StartMagnetPowerup()
+    {
+        for (int i = 0; i < Count; i++)
+        {
+            this[i].helmetMaterial.SetFloat("_ColAmount", -0.001f);
+        }
+    }
+
+    public void EndShieldPowerup()
     {
         for(int i = 0; i < Count; i++)
         {
             this[i].health = oldWorkersHealth[i];
             this[i].helmetMaterial.SetFloat("_ExtAmount", 0);
+        }
+    }
+
+    public void EndMagnetPowerup()
+    {
+        for(int i = 0; i < Count; i++)
+        {
+            this[i].helmetMaterial.SetFloat("_ColAmount", 0);
         }
     }
 }

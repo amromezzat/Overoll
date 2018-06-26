@@ -15,19 +15,6 @@ public class PowerUpManager : MonoBehaviour
     }
     private void Update()
     {
-        if (gd.magnetInAct)
-        {
-            magnetTimer -= Time.deltaTime;
-            if (magnetTimer < 0)
-            {
-                gd.magnetInAct = false;
-                for (int i = 0; i < wc.workers.Count; i++)
-                {
-                    wc.workers[i].helmetMaterial.SetFloat("_ColAmount", 0);
-                }
-            }
-        }
-
         if (gd.shieldInAct)
         {
             shieldTimer -= Time.deltaTime;
@@ -36,46 +23,57 @@ public class PowerUpManager : MonoBehaviour
                 EndShield();
             }
         }
+
+        else if (gd.magnetInAct)
+        {
+            magnetTimer -= Time.deltaTime;
+            if (magnetTimer < 0)
+            {
+                EndMagnet();
+            }
+        }
     }
 
     public void RegisterListeners()
     {
-        gd.gotMagnet.AddListener(StartMagnetTimer);
-        gd.gotShield.AddListener(ActWithShield);
+        gd.gotMagnet.AddListener(StartMagnet);
+        gd.gotShield.AddListener(StartShield);
     }
 
-    void ActWithShield()
+    void StartShield()
     {
         if (gd.magnetInAct)
         {
-            gd.magnetInAct = false;
+            EndMagnet();
         }
+
         gd.shieldInAct = true;
         shieldTimer = gd.ShieldTime;
-        for (int i = 0; i < wc.workers.Count; i++)
-        {
-            wc.workers[i].health = 1000;
-            wc.workers[i].helmetMaterial.SetFloat("_ExtAmount", 0.0001f);
-        }
+        wc.workers.StartShieldPowerup();
     }
 
-    void EndShield()
-    {
-        gd.shieldInAct = false;
-        wc.workers.ResetWorkersHealth();
-    }
-
-    void StartMagnetTimer()
+    void StartMagnet()
     {
         if (gd.shieldInAct)
         {
             EndShield();
         }
-        for (int i = 0; i < wc.workers.Count; i++)
-        {
-            wc.workers[i].helmetMaterial.SetFloat("_ColAmount", -0.001f);
-        }
+
         gd.magnetInAct = true;
         magnetTimer = gd.MagnetTime;
+        wc.workers.StartMagnetPowerup();
+    }
+
+    void EndShield()
+    {
+        gd.shieldInAct = false;
+        wc.workers.EndShieldPowerup();
+    }
+
+    void EndMagnet()
+    {
+        gd.magnetInAct = false;
+        wc.workers.EndMagnetPowerup();
+        gd.gotMagnetNoMore.Invoke();
     }
 }
