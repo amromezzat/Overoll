@@ -16,6 +16,7 @@ public class TileGeneration : MonoBehaviour
     Transform lastSegTrans;
     Pattern currentPattern;
     int currentSegmentIndex;
+    int currentPatternIndex = -1;
 
     private void Awake()
     {
@@ -26,14 +27,21 @@ public class TileGeneration : MonoBehaviour
     void InitPattern()
     {
         currentSegmentIndex = 0;
-
+        if (!gd.tutorialActive && gd.difficulty == 0)
+            gd.difficulty++;
         //get a random pattern
-        currentPattern = patternDB[gd.difficulty][Random.Range(0, patternDB[gd.difficulty].Count)];
+        currentPatternIndex++;
+        if (currentPatternIndex == patternDB[gd.difficulty].Count)
+        {
+            currentPatternIndex = 0;
+            gd.difficulty++;
+        }
+        currentPattern = patternDB[gd.difficulty][currentPatternIndex];
     }
 
     private void Update()
     {
-        if(ObjectPooler.instance.segmentActiveCount < tc.activeTilesNum)
+        if (ObjectPooler.instance.segmentActiveCount < tc.activeTilesNum)
         {
             GetNextSegment();
         }
@@ -45,6 +53,10 @@ public class TileGeneration : MonoBehaviour
 
         if (currentSegmentIndex == currentPattern.Count)
         {
+            if (gd.difficulty == 0)
+            {
+                gd.difficulty++;
+            }
             InitPattern();
         }
         ObjectPooler.instance.segmentActiveCount++;
@@ -70,7 +82,7 @@ public class TileGeneration : MonoBehaviour
             {
                 lastSegTrans = tile.transform;
                 tile.GetComponent<TileReturner>().inActiveSegment = true;
-            }      
+            }
         }
     }
 }
