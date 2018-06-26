@@ -24,6 +24,18 @@ public class TutorialCollision : MonoBehaviour {
                 case "TutStrafeRight":
                     gd.TutorialState = TutorialState.RightStrafe;
                     break;
+                case "TutAddWorker":
+                    if (other.GetComponent<WorkerFSM>().currentState == WorkerState.Tutoring)
+                    {
+                        gd.TutorialState = TutorialState.AddWorker;
+                    }
+                    break;
+                case "TutMerge":
+                    gd.TutorialState = TutorialState.MergeWorker;
+                    break;
+                case "TutCollide":
+                    gd.TutorialState = TutorialState.End;
+                    break;
             }
         }
     }

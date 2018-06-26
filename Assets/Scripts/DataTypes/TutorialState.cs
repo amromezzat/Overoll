@@ -5,5 +5,7 @@
     LeftStrafe,
     RightStrafe,
     AddWorker,
-    MergeWorker
+    MergeWorker,
+    Collide,
+    End
 }
