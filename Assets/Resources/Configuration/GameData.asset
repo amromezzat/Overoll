@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1045a08652328574f9d27d3f6e99e1f4, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  tutorialActive: 0
+  tutorialActive: 1
   difficulty: 0
   defaultSpeed: 5
-  oldSpeed: 5
+  oldSpeed: 4.915202e-10
   coinCount: 0
   slowingRatio: 0.2
   slowingRate: 0.6
@@ -68,6 +68,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  workerPrice: 4
+  workerPrice: 6
   magnetInAct: 0
   shieldInAct: 0

@@ -34,8 +34,6 @@ public class WorkersManager : MonoBehaviour
         else
         {
             addWorkerBtn.GetComponent<Button>().interactable = true;
-            if(gData.TutorialState != TutorialState.AddWorker)
-                gData.TutorialState = TutorialState.AddWorker;
         }
     }
 
@@ -44,20 +42,15 @@ public class WorkersManager : MonoBehaviour
         if(gData.gameState == GameState.Gameplay && gData.workerPrice < gData.CoinCount)
         {
             AddWorker();
-            if(gData.tutorialActive && gData.TutorialState == TutorialState.AddWorker)
-            {
-                gData.onSpeedUp.Invoke();
-            }
         }
     }
 
     public void AddWorker()
     {
-        if (gData.tutorialActive)
+        if (gData.tutorialActive && gData.TutorialState == TutorialState.AddWorker)
         {
             gData.onSpeedUp.Invoke();
         }
-
         GameObject worker = ObjectPooler.instance.GetFromPool(wc.workerType);
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
         float newZPos = Random.Range(tc.disableSafeDistance + 5, tc.disableSafeDistance + 8);

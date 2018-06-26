@@ -16,8 +16,10 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
     public GameObject upArrow;
     public GameObject downArrow;
     public GameObject doubleTap;
-    public Text boughtWorkerText;
-    public Text tutEnd;
+    public GameObject buyWorkersText;
+    public GameObject MergeText;
+    public GameObject CollideText;
+    public GameObject EndText;
 
     Animator addBtnAnimator;
     IEnumerator slowingCoroutine;
@@ -56,7 +58,11 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
                 addBtnAnimator.SetBool("Play", true);
                 break;
             case TutorialState.MergeWorker:
-
+                StartCoroutine(StartMergeTutorial());
+                break;
+            case TutorialState.Collide:
+                break;
+            case TutorialState.End:
                 break;
         }
     }
@@ -83,11 +89,9 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
 
     public void SpeedUp()
     {
-        if (gd.TutorialState != TutorialState.AddWorker)
-        {
-            StopCoroutine(slowingCoroutine);
-            gd.Speed = gd.defaultSpeed;
-        }
+        StopCoroutine(slowingCoroutine);
+        gd.Speed = gd.defaultSpeed;
+
         switch (gd.TutorialState)
         {
             case TutorialState.Jump:
@@ -106,7 +110,8 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
             case TutorialState.AddWorker:
                 doubleTap.SetActive(false);
                 addBtnAnimator.SetBool("Play", false);
-                StartCoroutine(StartMergeTutorial());
+                break;
+            case TutorialState.MergeWorker:
                 break;
         }
         gd.TutorialState = TutorialState.Null;
@@ -114,11 +119,19 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
 
     IEnumerator StartMergeTutorial()
     {
-        wc.leader.ChangeState(WorkerStateTrigger.EndTutoring);
-        boughtWorkerText.enabled = true;
+        buyWorkersText.SetActive(true);
         yield return new WaitForSeconds(3);
-        gd.TutorialState = TutorialState.MergeWorker;
+        gd.coinCount += gd.workerPrice * 4;
+        for (int i = 0; i < 4; i++)
+        {
+            wc.onAddWorker.Invoke();
+        }
     }
+
+    //IEnumerator StartCollisionTutorial()
+    //{
+
+    //}
 
     IEnumerator EndTutorial()
     {

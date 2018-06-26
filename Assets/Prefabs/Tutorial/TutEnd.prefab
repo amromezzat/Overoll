@@ -25,8 +25,8 @@ GameObject:
   - component: {fileID: 114740309066526724}
   - component: {fileID: 114449532492985308}
   m_Layer: 0
-  m_Name: TutMerge
-  m_TagString: TutMerge
+  m_Name: TutEnd
+  m_TagString: TutEnd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,5 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  poolableType: {fileID: 11400000, guid: f5ef9563a799911479f6df20244cbf7b, type: 2}
+  poolableType: {fileID: 11400000, guid: d534f5f773c88124ca381e0979d27550, type: 2}
   inActiveSegment: 0

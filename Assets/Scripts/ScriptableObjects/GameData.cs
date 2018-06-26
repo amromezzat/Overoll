@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class GameData : ScriptableObject
 {
     public bool tutorialActive = true;
+    [SerializeField]
     private TutorialState tutorialState;
 
     public int difficulty;
@@ -85,6 +86,7 @@ public class GameData : ScriptableObject
         set
         {
             tutorialState = value;
+
             if (tutorialActive && value != TutorialState.Null)
             {
                 onSlowDown.Invoke();
