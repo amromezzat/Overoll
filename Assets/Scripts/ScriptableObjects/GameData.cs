@@ -125,7 +125,7 @@ public class GameData : ScriptableObject
         gameState = GameState.MainMenu;
         tutorialState = TutorialState.Null;
         speed = defaultSpeed;
-        difficulty = 0;
+      
     }
 
 }
