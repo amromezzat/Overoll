@@ -125,7 +125,10 @@ public class GameData : ScriptableObject
         gameState = GameState.MainMenu;
         tutorialState = TutorialState.Null;
         speed = defaultSpeed;
-      
+#if !UNITY_EDITOR
+        tutorialActive = PlayerPrefs.GetFloat("PlayedTutorial") > 0 ? false : true;
+#endif
+        difficulty = PlayerPrefs.GetInt("PlayedTutorial");
     }
 
 }

@@ -11,17 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1045a08652328574f9d27d3f6e99e1f4, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  tutorialActive: 1
-  difficulty: 0
+  tutorialActive: 0
+  tutorialState: 0
+  difficulty: 4
   defaultSpeed: 5
-  oldSpeed: 4.915202e-10
+  oldSpeed: 5
   coinCount: 0
   slowingRatio: 0.2
   slowingRate: 0.6
   hrNum: 0
   bossNum: 0
   leaderType: {fileID: 0}
-  gameState: 0
+  gameState: 3
   OnStart:
     m_PersistentCalls:
       m_Calls: []
@@ -42,7 +43,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  CoinCount: 0
+  CoinCount: 510
   gotMagnet:
     m_PersistentCalls:
       m_Calls: []
@@ -68,6 +69,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  workerPrice: 6
-  magnetInAct: 0
+  workerPrice: 2
+  magnetInAct: 1
   shieldInAct: 0

@@ -39,9 +39,10 @@ public class WorkersManager : MonoBehaviour
 
     public void doubleTap()
     {
-        if(gData.gameState == GameState.Gameplay && gData.workerPrice < gData.CoinCount)
+        if(gData.gameState == GameState.Gameplay)
         {
-            AddWorker();
+            if(gData.workerPrice < gData.CoinCount || gData.tutorialActive)
+                AddWorker();
         }
     }
 
