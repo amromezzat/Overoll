@@ -65,6 +65,8 @@ public class WorkerList : List<WorkerFSM>
         {
             Merging = true;
 
+            int newMasterHealth = 0;
+
             workers[worker.level][0].ChangeState(WorkerStateTrigger.Merge);
             ascender = workers[worker.level][0];
 
@@ -72,7 +74,10 @@ public class WorkerList : List<WorkerFSM>
             {
                 workers[worker.level][i].SetSeekedMaster(ascender.transform);
                 workers[worker.level][i].ChangeState(WorkerStateTrigger.SlaveMerge);
+                newMasterHealth += workers[worker.level][i].health;
             }
+            newMasterHealth = newMasterHealth >= 1000 ? newMasterHealth / 1000 : newMasterHealth;
+            normWorkersHealth[IndexOf(worker)] = newMasterHealth;
         }
     }
 
@@ -81,6 +86,9 @@ public class WorkerList : List<WorkerFSM>
         normWorkersHealth.Remove(IndexOf(worker));
         base.Remove(worker);
 
+        worker.helmetMaterial.SetFloat("_ExtAmount", 0);
+        worker.helmetMaterial.SetFloat("_ColAmount", 0);
+
         workers[worker.level].Remove(worker);
     }
 
@@ -88,11 +96,6 @@ public class WorkerList : List<WorkerFSM>
     public void Ascend()
     {
         Merging = false;
-
-        //if merged while shield is active
-        //correct old health to new merge health
-        if(ascender.health > 1000)
-            normWorkersHealth[IndexOf(ascender)] = ascender.health / 1000;
 
         if (ascender.level < levels)
         {

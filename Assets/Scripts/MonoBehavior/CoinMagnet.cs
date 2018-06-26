@@ -15,7 +15,7 @@ public class CoinMagnet : MonoBehaviour
     float timerCoolDown;
     float yPos;
 
-    const float cdBeforeCollision = 0.1f;
+    const float cdBeforeCollision = 0.3f;
 
     void Awake()
     {
@@ -28,7 +28,7 @@ public class CoinMagnet : MonoBehaviour
     {
         collided = false;
         currentTimer = 0;
-        timerCoolDown = 0.1f;
+        timerCoolDown = cdBeforeCollision;
         Vector3 fixedYPos = transform.position;
         fixedYPos.y = yPos;
         transform.position = fixedYPos;
