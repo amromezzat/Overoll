@@ -12,7 +12,7 @@ public class SeekMasterMerger : SeekPosition
 
     public override void FixedUpdate(float fixedDeltaTime)
     {
-        steeringForce = Vector2.ClampMagnitude(SteeringForce(), wc.maxSpeed);
+        steeringForce = SteeringForce();
         rb.AddForce(new Vector3(steeringForce.x, 0, steeringForce.y));
     }
 
