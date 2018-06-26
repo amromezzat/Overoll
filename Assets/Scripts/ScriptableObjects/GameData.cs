@@ -7,13 +7,15 @@ using UnityEngine.Events;
 public class GameData : ScriptableObject
 {
     public bool tutorialActive = true;
-    public TutorialState tutorialState;
+    private TutorialState tutorialState;
 
     public int difficulty;
     public float defaultSpeed;
     private float speed;
     [HideInInspector]
     public float oldSpeed;
+
+    public int coinCount;
 
     public float slowingRatio = 0.1f;
     public float slowingRate = 0.5f;
@@ -83,7 +85,7 @@ public class GameData : ScriptableObject
         set
         {
             tutorialState = value;
-            if (value != TutorialState.Null)
+            if (tutorialActive && value != TutorialState.Null)
             {
                 onSlowDown.Invoke();
             }

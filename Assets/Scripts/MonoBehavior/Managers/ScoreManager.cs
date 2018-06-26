@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour, IHalt
 {
     int timeScore;
-    int coinScore;
     int coinvalue = 5;
     int secValue = 1;
     public int score;
@@ -27,7 +26,7 @@ public class ScoreManager : MonoBehaviour, IHalt
     void OnEnable()
     {
         timeScore = 0;
-        coinScore = 0;
+        gData.coinCount = 0;
         oldCoinCount = 0;
     }
 
@@ -35,9 +34,9 @@ public class ScoreManager : MonoBehaviour, IHalt
     void Update()
     {
 
-        coinScore = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
+        gData.coinCount = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
         // calc score
-        score = timeScore + coinScore;
+        score = timeScore + gData.coinCount;
 
         //for leaderboard
         //LBUIscript.Instance.UpdatePointsTxt();
@@ -69,7 +68,7 @@ public class ScoreManager : MonoBehaviour, IHalt
     public void Begin()
     {
         timeScore = 0;
-        coinScore = 0;
+        gData.coinCount = 0;
         oldCoinCount = 0;
         StartCoroutine(scoreCoroutine);
     }

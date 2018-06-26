@@ -26,8 +26,7 @@ public class TileGeneration : MonoBehaviour
     void InitPattern()
     {
         currentSegmentIndex = 0;
-        if (!gd.tutorialActive && gd.difficulty == 0)
-            gd.difficulty++;
+
         //get a random pattern
         currentPattern = patternDB[gd.difficulty][Random.Range(0, patternDB[gd.difficulty].Count)];
     }
@@ -46,10 +45,6 @@ public class TileGeneration : MonoBehaviour
 
         if (currentSegmentIndex == currentPattern.Count)
         {
-            if (gd.difficulty == 0)
-            {
-                gd.difficulty++;
-            }
             InitPattern();
         }
         ObjectPooler.instance.segmentActiveCount++;

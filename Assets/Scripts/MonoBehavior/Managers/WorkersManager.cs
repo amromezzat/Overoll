@@ -34,10 +34,8 @@ public class WorkersManager : MonoBehaviour
         else
         {
             addWorkerBtn.GetComponent<Button>().interactable = true;
-            if (gData.tutorialActive)
-            {
-                gData.tutorialState = TutorialState.AddWorker;
-            }
+            if(gData.TutorialState != TutorialState.AddWorker)
+                gData.TutorialState = TutorialState.AddWorker;
         }
     }
 
@@ -46,6 +44,10 @@ public class WorkersManager : MonoBehaviour
         if(gData.gameState == GameState.Gameplay && gData.workerPrice < gData.CoinCount)
         {
             AddWorker();
+            if(gData.tutorialActive && gData.TutorialState == TutorialState.AddWorker)
+            {
+                gData.onSpeedUp.Invoke();
+            }
         }
     }
 

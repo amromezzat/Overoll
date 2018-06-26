@@ -15,6 +15,9 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
     public GameObject rightArrow;
     public GameObject upArrow;
     public GameObject downArrow;
+    public GameObject doubleTap;
+    public Text boughtWorkerText;
+    public Text tutEnd;
 
     Animator addBtnAnimator;
     IEnumerator slowingCoroutine;
@@ -49,8 +52,11 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
                 rightArrow.SetActive(true);
                 break;
             case TutorialState.AddWorker:
-                addWorkerBtn.SetActive(true);
+                doubleTap.SetActive(true);
                 addBtnAnimator.SetBool("Play", true);
+                break;
+            case TutorialState.MergeWorker:
+
                 break;
         }
     }
@@ -77,7 +83,7 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
 
     public void SpeedUp()
     {
-        if (gd.tutorialState != TutorialState.AddWorker)
+        if (gd.TutorialState != TutorialState.AddWorker)
         {
             StopCoroutine(slowingCoroutine);
             gd.Speed = gd.defaultSpeed;
@@ -94,15 +100,24 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
                 leftArrow.SetActive(false);
                 break;
             case TutorialState.RightStrafe:
+                addWorkerBtn.SetActive(true);
                 rightArrow.SetActive(false);
-                StartCoroutine(EndTutorial());
                 break;
             case TutorialState.AddWorker:
-                StartCoroutine(EndTutorial());
+                doubleTap.SetActive(false);
                 addBtnAnimator.SetBool("Play", false);
+                StartCoroutine(StartMergeTutorial());
                 break;
         }
         gd.TutorialState = TutorialState.Null;
+    }
+
+    IEnumerator StartMergeTutorial()
+    {
+        wc.leader.ChangeState(WorkerStateTrigger.EndTutoring);
+        boughtWorkerText.enabled = true;
+        yield return new WaitForSeconds(3);
+        gd.TutorialState = TutorialState.MergeWorker;
     }
 
     IEnumerator EndTutorial()
@@ -116,7 +131,6 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
         gd.tutorialActive = false;
         pauseBtn.SetActive(true);
         addWorkerBtn.SetActive(true);
-        wc.leader.ChangeState(WorkerStateTrigger.EndTutoring);
         enabled = false;
     }
 
