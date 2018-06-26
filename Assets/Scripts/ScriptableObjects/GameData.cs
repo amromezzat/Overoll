@@ -43,6 +43,8 @@ public class GameData : ScriptableObject
     public UnityEvent gotMagnet;
     [HideInInspector]
     public UnityEvent gotShield;
+    [HideInInspector]
+    public UnityEvent gotMagnetNoMore;
 
     [HideInInspector]
     public UnityEvent onSpeedUp;

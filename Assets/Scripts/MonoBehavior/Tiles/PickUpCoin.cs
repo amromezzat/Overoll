@@ -34,25 +34,30 @@ public class PickUpCoin : MonoBehaviour {
         {
             AudioManager.instance.PlaySound("Coin");
 
-            StartCoroutine(cReturn.ReturnToPool(0));
             gd.CoinCount += 1;
+            StartCoroutine(cReturn.ReturnToPool(0));
         }
      }
 
     public void RegisterListeners()
     {
         gd.gotMagnet.AddListener(ActWithMagnet);
+        gd.gotMagnetNoMore.AddListener(ActWithoutMagnet);
     }
 
     public void ActWithMagnet()
     {
-            coinMagnet.enabled = true;
+        coinMagnet.enabled = true;
+    }
+
+    public void ActWithoutMagnet()
+    {
+        coinMagnet.enabled = false;
     }
 
     void OnDisable()
     {
-        coinMagnet.enabled = false;
-       
+        coinMagnet.enabled = false;     
     }
 
 }
