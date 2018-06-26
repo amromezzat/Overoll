@@ -4,5 +4,6 @@
     Slide,
     LeftStrafe,
     RightStrafe,
-    AddWorker
+    AddWorker,
+    MergeWorker
 }
