@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   tutorialActive: 0
-  difficulty: 0
+  difficulty: 1
   defaultSpeed: 5
   oldSpeed: 5
   coinCount: 0
