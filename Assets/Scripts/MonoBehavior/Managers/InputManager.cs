@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        dragDistance = Screen.height * 10 / 100; //dragDistance is 15% height of the screen
+        dragDistance = Screen.height * 5 / 100; //dragDistance is 5% height of the screen
         windowsAction = false;
         androidDragging = false;
         doubleTapCount = 0;
