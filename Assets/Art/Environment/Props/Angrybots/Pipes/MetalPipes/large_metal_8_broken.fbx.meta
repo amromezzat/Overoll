@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: b32e2c38e0c57468b8751be1bba49397
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
@@ -9,12 +9,13 @@ ModelImporter:
     3300000: //RootNode
     4300000: polySurface532
     11100000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: allPipes_lambert2
-    second: {fileID: 2100000, guid: 22daad91d62e82d4dac4a7601bf8149e, type: 2}
+    second: {fileID: 2100000, guid: 331a2429df6a840428eaf0ea578521b4, type: 2}
   materials:
     importMaterials: 1
     materialName: 3
@@ -33,6 +34,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -64,6 +66,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
