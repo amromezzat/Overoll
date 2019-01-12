@@ -1,5 +1,5 @@
 ﻿using System;
-using UnityEditor.Experimental.Animations;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Recorder;
 
