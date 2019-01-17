@@ -1,4 +1,21 @@
-﻿using System.Collections;
+﻿/*Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +33,7 @@ public class JumpSlideFSM : IWJumpSlide
     Run runState = new Run();
     InterruptJump interruptJumpState = new InterruptJump();
     DelayState delayState = new DelayState();
+    // Dictionary for allowed transitions from a certain state
     Dictionary<IDoAction, List<IDoAction>> actionsDic = new Dictionary<IDoAction, List<IDoAction>>();
     Stack<IDoAction> actionStack = new Stack<IDoAction>();
 
@@ -84,7 +102,7 @@ public class JumpSlideFSM : IWJumpSlide
     public virtual void Slide()
     {
         float delayTime = (wc.leader.transform.position.z - transform.position.z) / gd.Speed;
-        //if jumping interrupt jump and slide
+        //if jumping interrupt jump to return worker to ground and then slide
         if (currentState == jumpState)
         {
             actionStack.Push(slideState);
