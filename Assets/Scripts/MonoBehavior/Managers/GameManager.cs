@@ -34,18 +34,23 @@ public enum GameState
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     public GameData gameData;
+    //>>>>>>These SO Variables will be used to set during Runtime by game mananager.
+    public SpeedManager speedManager;
+    public IntVariable difficulty;
+
     public LanesDatabase lanes;
 
-    public Button pauseBtn;
-
-    public Button restartBtn;
 
     public Text gamePausedTxt;
 
     public Sprite pauseSprite;
     public Sprite resumeSprite;
 
+    public Button pauseBtn;
+    public Button restartBtn;
     public Button playBtn;
     public Button settingsBtn;
     public Button storeBtn;
@@ -56,7 +61,12 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        if (Instance = null)
+        {
+            Instance = this;
+        }
         gameData.gameState = GameState.MainMenu;
+        difficulty.SetValue( PlayerPrefs.GetInt("PlayedTutorial"));
     }
 
     private void Start()

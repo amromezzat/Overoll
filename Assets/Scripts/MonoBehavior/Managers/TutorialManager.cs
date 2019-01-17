@@ -40,7 +40,8 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
     public void SlowDown()
     {
         StartCoroutine(slowingCoroutine);
-        gd.Speed *= gd.slowingRate;
+        //gd.Speed *= gd.slowingRate;
+        SpeedManager.Instance.SetSpeedValue(SpeedManager.Instance.GetSpeedValue() * gd.slowingRate);
         switch (gd.TutorialState)
         {
             case TutorialState.Jump:
@@ -100,7 +101,8 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
 
     void TutStart()
     {
-        if (gd.tutorialActive && gd.difficulty == 0)
+        //if (gd.tutorialActive && gd.difficulty == 0)
+        if (gd.tutorialActive && GameManager.Instance.difficulty.value == 0)
         {
             pauseBtn.SetActive(false);
             addWorkerBtn.SetActive(false);
@@ -123,7 +125,8 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
     public void SpeedUp()
     {
         StopCoroutine(slowingCoroutine);
-        gd.Speed = gd.defaultSpeed;
+        //gd.Speed = gd.defaultSpeed;
+        SpeedManager.Instance.SetSpeedValue( SpeedManager.Instance.defaultSpeed);
 
         switch (gd.TutorialState)
         {
@@ -159,7 +162,8 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
         gd.tutorialActive = false;
         yield return new WaitForSeconds(1);
         EndText.SetActive(false);
-        gd.Speed = gd.defaultSpeed;
+        //gd.Speed = gd.defaultSpeed;
+        SpeedManager.Instance.SetSpeedValue( SpeedManager.Instance.defaultSpeed);
         gd.onSlowDown.RemoveListener(SlowDown);
         gd.onSpeedUp.RemoveListener(SpeedUp);
         gd.OnStart.RemoveListener(TutStart);
@@ -175,7 +179,10 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
             //faster by 0.1 than the other listeners
             //to set velocity before they get it
             yield return new WaitForSeconds(gd.slowingRate - earlierListenTime);
-            gd.Speed = gd.Speed * gd.slowingRatio;
+
+            //gd.Speed = gd.Speed * gd.slowingRatio;
+            SpeedManager.Instance.SetSpeedValue(SpeedManager.Instance.GetSpeedValue() * gd.slowingRatio);
+
             yield return new WaitForSeconds(earlierListenTime);
         }
     }
