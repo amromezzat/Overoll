@@ -24,10 +24,16 @@ public class TileGeneration : MonoBehaviour
     IEnumerator IncreaseDifficulty()
     {
         yield return new WaitForSeconds(difficultyRunTime);
-        if (gd.difficulty > 0)
+        //if (gd.difficulty > 0)
+        //{
+        //    gd.difficulty = (gd.difficulty + 1) % availableDifficulties + 1;
+        //    gd.difficulty = gd.difficulty == 0 ? 1 : gd.difficulty;
+        //}
+        if (GameManager.Instance.difficulty.value > 0)
         {
-            gd.difficulty = (gd.difficulty + 1) % availableDifficulties + 1;
-            gd.difficulty = gd.difficulty == 0 ? 1 : gd.difficulty;
+            GameManager.Instance.difficulty.SetValue( (GameManager.Instance.difficulty.value + 1) % availableDifficulties + 1);
+            //check the line below again 
+            GameManager.Instance.difficulty.value = GameManager.Instance.difficulty.value == 0 ? 1 : GameManager.Instance.difficulty.value;
         }
     }
 
@@ -41,16 +47,24 @@ public class TileGeneration : MonoBehaviour
     void InitPattern()
     {
         currentSegmentIndex = 0;
-        if (!gd.tutorialActive && gd.difficulty == 0)
-            gd.difficulty++;
+        //if (!gd.tutorialActive && gd.difficulty == 0)
+        //    gd.difficulty++;
+        if (!gd.tutorialActive && GameManager.Instance.difficulty.value == 0)
+            GameManager.Instance.difficulty.SetValue(GameManager.Instance.difficulty.value+1);
         //get a random pattern
         currentPatternIndex++;
-        if (currentPatternIndex == patternDB[gd.difficulty].Count)
+        //if (currentPatternIndex == patternDB[gd.difficulty].Count)
+        //{
+        //    currentPatternIndex = 0;
+        //    gd.difficulty++;
+        //}
+        if (currentPatternIndex == patternDB[GameManager.Instance.difficulty.value].Count)
         {
             currentPatternIndex = 0;
-            gd.difficulty++;
+            GameManager.Instance.difficulty.SetValue(GameManager.Instance.difficulty.value+1);
         }
-        currentPattern = patternDB[gd.difficulty][currentPatternIndex];
+        //currentPattern = patternDB[gd.difficulty][currentPatternIndex];
+        currentPattern = patternDB[GameManager.Instance.difficulty.value][currentPatternIndex];
     }
 
     private void Update()
@@ -67,9 +81,13 @@ public class TileGeneration : MonoBehaviour
 
         if (currentSegmentIndex == currentPattern.Count)
         {
-            if (gd.difficulty == 0)
+            //if (gd.difficulty == 0)
+            //{
+            //    gd.difficulty++;
+            //}
+            if (GameManager.Instance.difficulty.value == 0)
             {
-                gd.difficulty++;
+                GameManager.Instance.difficulty.SetValue(GameManager.Instance.difficulty.value+1);
             }
             InitPattern();
         }
