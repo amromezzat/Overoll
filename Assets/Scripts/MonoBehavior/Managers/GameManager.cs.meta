@@ -1,11 +1,24 @@
 fileFormatVersion: 2
 guid: 794461d0d47696546ad412882314f9bd
-timeCreated: 1526846201
-licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gameData: {instanceID: 0}
+  - speedManager: {instanceID: 0}
+  - difficulty: {fileID: 11400000, guid: 6132f316afbf02441a1e6ad0ff4a5ed5, type: 2}
+  - lanes: {instanceID: 0}
+  - gamePausedTxt: {instanceID: 0}
+  - pauseSprite: {instanceID: 0}
+  - resumeSprite: {instanceID: 0}
+  - pauseBtn: {instanceID: 0}
+  - restartBtn: {instanceID: 0}
+  - playBtn: {instanceID: 0}
+  - settingsBtn: {instanceID: 0}
+  - storeBtn: {instanceID: 0}
+  - mainMenuCanvas: {instanceID: 0}
+  - inGameCanvas: {instanceID: 0}
+  - endGameCanvas: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

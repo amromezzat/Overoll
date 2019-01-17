@@ -37,7 +37,8 @@ public class WorkerCollide : IWCollide
             {
                 AudioManager.instance.PlaySound("WorkerDeath");
                 animator.SetTrigger("DeathAnim");
-                rb.velocity = Vector3.back * gd.Speed;
+                //rb.velocity = Vector3.back * gd.Speed;
+                rb.velocity = Vector3.back * SpeedManager.Instance.GetSpeedValue();
                 return WorkerStateTrigger.Die;
             }
 

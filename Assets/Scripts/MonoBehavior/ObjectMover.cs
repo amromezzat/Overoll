@@ -51,8 +51,10 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
     {
         if (isKillingSpeed)
         {
-            rb.velocity = Vector3.back * gameData.Speed;
-            SetAnimatorsSpeed(gameData.Speed / gameData.oldSpeed);
+            //rb.velocity = Vector3.back * gameData.Speed;
+            rb.velocity = Vector3.back * SpeedManager.Instance.GetSpeedValue();
+            //SetAnimatorsSpeed(gameData.Speed / gameData.oldSpeed);
+            SetAnimatorsSpeed(SpeedManager.Instance.GetSpeedValue() / gameData.oldSpeed);
         }
     }
 
@@ -61,7 +63,8 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
     //until it is close enough to workers
     IEnumerator TakeExtraSpeed()
     {
-        float waitingTime = transform.position.z / gameData.Speed;
+        //float waitingTime = transform.position.z / gameData.Speed;
+        float waitingTime = transform.position.z / SpeedManager.Instance.GetSpeedValue();
         yield return new WaitForSeconds(waitingTime);
         rb.velocity += Vector3.back * ExtraVelocity;
         mAnim.speed = 1;
@@ -69,7 +72,8 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
 
     void MoveObj()
     {
-        rb.velocity = Vector3.back * gameData.Speed;
+        //rb.velocity = Vector3.back * gameData.Speed;
+        rb.velocity = Vector3.back * SpeedManager.Instance.GetSpeedValue();
         if (isActiveAndEnabled && ExtraVelocity > 0)
         {
             StartCoroutine(TakeExtraSpeed());

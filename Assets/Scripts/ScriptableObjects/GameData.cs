@@ -10,13 +10,13 @@ public class GameData : ScriptableObject
     [SerializeField]
     private TutorialState tutorialState;
 
-    public int difficulty;
+    //public int difficulty;
     public float defaultSpeed;
-    private float speed;
+    //private float speed;
     [HideInInspector]
     public float oldSpeed;
 
-    public int coinCount;
+    public int coinCount;       //supposed to be deleted as there is SO now for score.
 
     public float slowingRatio = 0.1f;
     public float slowingRate = 0.5f;
@@ -63,18 +63,19 @@ public class GameData : ScriptableObject
     private float magnetTime = 5;
     private float shieldTime = 5;
 
-    public float Speed
-    {
-        get
-        {
-            return speed;
-        }
-        set
-        {
-            oldSpeed = speed;
-            speed = value;
-        }
-    }
+    // Handeled in a script called SpeedManager
+    //public float Speed
+    //{
+    //    get
+    //    {
+    //        return speed;
+    //    }
+    //    set
+    //    {
+    //        oldSpeed = speed;
+    //        speed = value;
+    //    }
+    //}
 
     public TutorialState TutorialState
     {
@@ -124,12 +125,11 @@ public class GameData : ScriptableObject
     {
         gameState = GameState.MainMenu;
         tutorialState = TutorialState.Null;
-        speed = defaultSpeed;
+        //speed = defaultSpeed;
 #if !UNITY_EDITOR
         tutorialActive = PlayerPrefs.GetFloat("PlayedTutorial") > 0 ? false : true;
 #endif
-        difficulty = PlayerPrefs.GetInt("PlayedTutorial");
+        //>>>>>>>>>>>>> Handeled now in GameManager Script
+        //difficulty = PlayerPrefs.GetInt("PlayedTutorial");
     }
-
 }
-

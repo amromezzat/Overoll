@@ -35,7 +35,8 @@ public class CameraTransition : MonoBehaviour, IHalt
         onHalt = false;
         next = EndTrans;
         playableDirector.enabled = false;
-        startViewRB.velocity = Vector3.back * gd.Speed;
+        //startViewRB.velocity = Vector3.back * gd.Speed;
+        startViewRB.velocity = Vector3.back * SpeedManager.Instance.GetSpeedValue();
         ground.SetActive(false);
     }
 
@@ -61,7 +62,8 @@ public class CameraTransition : MonoBehaviour, IHalt
     public void Resume()
     {
         onHalt = false;
-        startViewRB.velocity = Vector3.back * gd.Speed;
+       // startViewRB.velocity = Vector3.back * gd.Speed;
+        startViewRB.velocity = Vector3.back * SpeedManager.Instance.GetSpeedValue();
     }
 
     // Use this for initialization
