@@ -22,6 +22,8 @@ using UnityEngine.UI;
 
 public class WorkersManager : MonoBehaviour
 {
+    public static WorkersManager Instance;
+
     public WorkerFSM leader;
     public Button addWorkerBtn;
     public WorkerConfig wc;
@@ -31,6 +33,11 @@ public class WorkersManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         gData.CoinCount = 0;
         wc.leader = leader;
         wc.workers.Add(leader);

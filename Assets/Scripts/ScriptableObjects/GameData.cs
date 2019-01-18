@@ -15,8 +15,6 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.*/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -30,8 +28,8 @@ public class GameData : ScriptableObject
     //public int difficulty;
     public float defaultSpeed;
     //private float speed;
-    [HideInInspector]
-    public float oldSpeed;
+   // [HideInInspector]
+    //public float oldSpeed;
 
     public int coinCount;       //supposed to be deleted as there is SO now for score.
 

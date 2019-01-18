@@ -22,6 +22,8 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour, IHalt
 {
+    public static ScoreManager Instance;
+
     int timeScore;
     int coinvalue = 5;
     int secValue = 1;
@@ -36,6 +38,11 @@ public class ScoreManager : MonoBehaviour, IHalt
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         RegisterListeners();
         scoreCoroutine = ScorePerSec();
     }
