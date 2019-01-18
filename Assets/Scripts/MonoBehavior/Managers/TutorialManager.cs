@@ -36,7 +36,10 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
         {
             Instance = this;
         }
+    }
 
+    private void OnEnable()
+    {
         addBtnAnimator = addWorkerBtn.GetComponent<Animator>();
         gd.onSlowDown.AddListener(SlowDown);
         gd.onSpeedUp.AddListener(SpeedUp);
@@ -48,7 +51,7 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
     {
         StartCoroutine(slowingCoroutine);
         //gd.Speed *= gd.slowingRate;
-        SpeedManager.Instance.SetSpeedValue(SpeedManager.Instance.GetSpeedValue() * gd.slowingRate);
+        SpeedManager.Instance.speed.Value *= gd.slowingRate;
         switch (gd.TutorialState)
         {
             case TutorialState.Jump:
@@ -109,7 +112,7 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
     void TutStart()
     {
         //if (gd.tutorialActive && gd.difficulty == 0)
-        if (gd.tutorialActive && GameManager.Instance.difficulty.value == 0)
+        if (gd.tutorialActive && GameManager.Instance.difficulty.Value == 0)
         {
             pauseBtn.SetActive(false);
             addWorkerBtn.SetActive(false);
@@ -133,7 +136,7 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
     {
         StopCoroutine(slowingCoroutine);
         //gd.Speed = gd.defaultSpeed;
-        SpeedManager.Instance.SetSpeedValue( SpeedManager.Instance.defaultSpeed);
+        SpeedManager.Instance.speed.Value = SpeedManager.Instance.speed.defaultValue;
 
         switch (gd.TutorialState)
         {
@@ -170,7 +173,7 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
         yield return new WaitForSeconds(1);
         EndText.SetActive(false);
         //gd.Speed = gd.defaultSpeed;
-        SpeedManager.Instance.SetSpeedValue( SpeedManager.Instance.defaultSpeed);
+        SpeedManager.Instance.SetSpeedValue(SpeedManager.Instance.speed.defaultValue);
         gd.onSlowDown.RemoveListener(SlowDown);
         gd.onSpeedUp.RemoveListener(SpeedUp);
         gd.OnStart.RemoveListener(TutStart);
@@ -188,7 +191,7 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
             yield return new WaitForSeconds(gd.slowingRate - earlierListenTime);
 
             //gd.Speed = gd.Speed * gd.slowingRatio;
-            SpeedManager.Instance.SetSpeedValue(SpeedManager.Instance.GetSpeedValue() * gd.slowingRatio);
+            SpeedManager.Instance.SetSpeedValue(SpeedManager.Instance.speed.Value * gd.slowingRatio);
 
             yield return new WaitForSeconds(earlierListenTime);
         }

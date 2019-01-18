@@ -26,7 +26,6 @@ using UnityEngine.Playables;
 /// </summary>
 public class CameraTransition : MonoBehaviour, IHalt
 {
-
     public GameData gd;
     public TileConfig tc;
     public GameObject startView;
@@ -45,9 +44,13 @@ public class CameraTransition : MonoBehaviour, IHalt
 
     private void Awake()
     {
+    }
+
+    private void OnEnable()
+    {
         RegisterListeners();
         playableDirector = startView.GetComponent<PlayableDirector>();
-        startViewRB = startView.GetComponent<Rigidbody>();
+        startViewRB = startView.GetComponent<Rigidbody>();   
     }
 
     public void Begin()
@@ -57,7 +60,7 @@ public class CameraTransition : MonoBehaviour, IHalt
         next = EndTrans;
         playableDirector.enabled = false;
         //startViewRB.velocity = Vector3.back * gd.Speed;
-        startViewRB.velocity = Vector3.back * SpeedManager.Instance.GetSpeedValue();
+        startViewRB.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
         ground.SetActive(false);
     }
 
@@ -84,7 +87,7 @@ public class CameraTransition : MonoBehaviour, IHalt
     {
         onHalt = false;
        // startViewRB.velocity = Vector3.back * gd.Speed;
-        startViewRB.velocity = Vector3.back * SpeedManager.Instance.GetSpeedValue();
+        startViewRB.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
     }
 
     // Use this for initialization

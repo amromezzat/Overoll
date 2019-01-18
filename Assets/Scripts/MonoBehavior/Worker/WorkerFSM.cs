@@ -260,7 +260,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         if (isKillingSpeed)
         {
             //mAnimator.speed *= gd.Speed / gd.oldSpeed;
-            mAnimator.speed *= SpeedManager.Instance.GetSpeedValue() / SpeedManager.Instance.oldSpeed;
+            mAnimator.speed *= SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.oldValue;
         }
     }
 
@@ -343,7 +343,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         if (!isActiveAndEnabled)
             return;
         //mAnimator.speed = gd.Speed / gd.oldSpeed;
-        mAnimator.speed = SpeedManager.Instance.GetSpeedValue() / SpeedManager.Instance.oldSpeed;
+        mAnimator.speed = SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.oldValue;
         isKillingSpeed = true;
     }
 }
