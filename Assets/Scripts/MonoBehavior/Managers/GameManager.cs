@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     public GameData gameData;
     //>>>>>>These SO Variables will be used to set during Runtime by game mananager.
-    public SpeedManager speedManager;
+    SpeedManager speedManager;
     public IntVariable difficulty;
 
     public LanesDatabase lanes;
@@ -59,12 +59,15 @@ public class GameManager : MonoBehaviour
     public Canvas inGameCanvas;
     public Canvas endGameCanvas;
 
-    private void OnEnable()
+    private void Awake()
     {
-        if (Instance = null)
+        if (Instance == null)
         {
             Instance = this;
         }
+
+        speedManager = GetComponent<SpeedManager>();
+
         gameData.gameState = GameState.MainMenu;
         difficulty.SetValue( PlayerPrefs.GetInt("PlayedTutorial"));
     }

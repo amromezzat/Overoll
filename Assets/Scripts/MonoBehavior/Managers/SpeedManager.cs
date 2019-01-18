@@ -5,21 +5,21 @@
 /// </summary>
 public class SpeedManager : MonoBehaviour
 {
+    public static SpeedManager Instance;
+
     public FloatVariable speed;
     public float defaultSpeed;
     public float oldSpeed;
-
-    public static SpeedManager Instance;
-
-    private void OnEnable()
+    
+    private void Awake()
     {
-        if (Instance = null)
+        if (Instance == null)
         {
             Instance = this;
         }
 
         speed.SetValue(defaultSpeed);
-        //his mosh de hat3mel bug enny aft7 el game mn gded yrag3ly el speed l el default?
+        //hia mosh de hat3mel bug enny aft7 el game mn gded yrag3ly el speed l el default?
     }
 
     public float GetSpeedValue()

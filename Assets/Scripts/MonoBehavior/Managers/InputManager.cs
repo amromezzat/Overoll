@@ -21,6 +21,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager Instance;
+
     public WorkerConfig wc;
 
     private Vector3 fp;   //First touch position
@@ -34,6 +36,14 @@ public class InputManager : MonoBehaviour
     float doubleTapTimer;
 
     const float doubleTapTime = 1.5f;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {

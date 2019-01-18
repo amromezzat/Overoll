@@ -21,6 +21,8 @@ using UnityEngine;
 
 public class PowerUpManager : MonoBehaviour
 {
+    public static PowerUpManager Instance;
+
     public GameData gd;
     public WorkerConfig wc;
     float magnetTimer;
@@ -28,6 +30,11 @@ public class PowerUpManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         RegisterListeners();
     }
     private void Update()

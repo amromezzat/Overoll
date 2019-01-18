@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour, IChangeSpeed
 {
+    public static TutorialManager Instance;
+
     public GameData gd;
     public WorkerConfig wc;
 
@@ -30,6 +32,11 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         addBtnAnimator = addWorkerBtn.GetComponent<Animator>();
         gd.onSlowDown.AddListener(SlowDown);
         gd.onSpeedUp.AddListener(SpeedUp);

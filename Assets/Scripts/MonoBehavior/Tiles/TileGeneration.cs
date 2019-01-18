@@ -49,7 +49,7 @@ public class TileGeneration : MonoBehaviour
         currentSegmentIndex = 0;
         //if (!gd.tutorialActive && gd.difficulty == 0)
         //    gd.difficulty++;
-        if (!gd.tutorialActive && GameManager.Instance.difficulty.value == 0)
+        if (!gd.tutorialActive && GameManager.Instance.difficulty.value ==0)
             GameManager.Instance.difficulty.SetValue(GameManager.Instance.difficulty.value+1);
         //get a random pattern
         currentPatternIndex++;
