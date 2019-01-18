@@ -69,9 +69,9 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
         if (isKillingSpeed)
         {
             //rb.velocity = Vector3.back * gameData.Speed;
-            rb.velocity = Vector3.back * SpeedManager.Instance.GetSpeedValue();
+            rb.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
             //SetAnimatorsSpeed(gameData.Speed / gameData.oldSpeed);
-            SetAnimatorsSpeed(SpeedManager.Instance.GetSpeedValue() / SpeedManager.Instance.oldSpeed);
+            SetAnimatorsSpeed(SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.oldValue);
         }
     }
 
@@ -83,7 +83,7 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
     IEnumerator TakeExtraSpeed()
     {
         //float waitingTime = transform.position.z / gameData.Speed;
-        float waitingTime = transform.position.z / SpeedManager.Instance.GetSpeedValue();
+        float waitingTime = transform.position.z / SpeedManager.Instance.speed.Value;
         yield return new WaitForSeconds(waitingTime);
         rb.velocity += Vector3.back * ExtraVelocity;
         mAnim.speed = 1;
@@ -92,7 +92,7 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
     void MoveObj()
     {
         //rb.velocity = Vector3.back * gameData.Speed;
-        rb.velocity = Vector3.back * SpeedManager.Instance.GetSpeedValue();
+        rb.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
         if (isActiveAndEnabled && ExtraVelocity > 0)
         {
             StartCoroutine(TakeExtraSpeed());
