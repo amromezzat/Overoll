@@ -26,7 +26,6 @@ public class WorkersManager : MonoBehaviour
     public Button addWorkerBtn;
     public WorkerConfig wc;
     public TileConfig tc;
-    public GameData gData;
     public int wPFactor = 2;
 
     public PowerUpVariable shield;

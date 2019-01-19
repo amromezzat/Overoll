@@ -33,7 +33,6 @@ public class ScoreManager : MonoBehaviour, IHalt
     // public int oldCoinCount;
     public Text scoreText;
     public Text coinNum;
-    public GameData gData;
     public WorkerConfig wConfig;
     public IEnumerator scoreCoroutine;
 
@@ -42,7 +41,6 @@ public class ScoreManager : MonoBehaviour, IHalt
 
     private void Awake()
     {
-        Debug.Log("sm");
         if (Instance == null)
         {
             Instance = this;

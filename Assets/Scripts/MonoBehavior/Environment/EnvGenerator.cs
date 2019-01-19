@@ -22,7 +22,6 @@ using UnityEngine;
 public class EnvGenerator : MonoBehaviour, IHalt
 {
     public TileConfig tc;
-    public GameData gameData;
 
     EnvPooler pool;
     Transform lastTile;
@@ -44,7 +43,7 @@ public class EnvGenerator : MonoBehaviour, IHalt
 
     private void Update()
     {
-        if (!isHalt && pool.activeTileCount < 8)
+        if (pool.activeTileCount < 4)
         {
             GenerateTile();
         }
@@ -55,7 +54,7 @@ public class EnvGenerator : MonoBehaviour, IHalt
     {
         var obj = pool.GetObjectFromPool();
         Vector3 objPos = obj.transform.position;
-        objPos.z = lastTile.transform.GetTransformEnd();
+        objPos.z = lastTile.transform.position.z + lastTile.transform.GetTransformEnd() / 2;
         obj.transform.position = objPos;
         lastTile = obj.transform;
     }
