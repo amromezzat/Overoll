@@ -28,7 +28,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     public GameData gd;
     //public TextMesh healthText;
 
-    GameObject magnetColliderObject;
+    public GameObject magnetColliderObject;
     Animator mAnimator;
     BoxCollider mCollider;
     WorkerReturner workerReturner;
@@ -84,17 +84,17 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
     private void OnEnable()
     {
-        magnetColliderObject.SetActive(true);
+        magnetColliderObject.SetActive(false);
         for (int i = 0; i < scriptsToResetState.Length; i++)
         {
             scriptsToResetState[i].ScriptReset();
         }
-        if (gd.gameState == GameState.Gameplay)
+        if (GameManager.Instance.gameState == GameState.Gameplay)
         {
             currentState = WorkerState.Worker;
             mAnimator.SetBool("RunAnim", true);
         }
-        else if (gd.gameState == GameState.MainMenu)
+        else if (GameManager.Instance.gameState == GameState.MainMenu)
         {
             haltedState = WorkerState.Leader;
             currentState = WorkerState.Halted;
@@ -232,7 +232,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
                 wc.onMergeOver.Invoke();
                 break;
             case WorkerFSMOutput.TutRightInput:
-                gd.onSpeedUp.Invoke();
+                TutorialManager.Instance.onSpeedUp.Invoke();
                 break;
             case WorkerFSMOutput.TutEnded:
                 mAnimator.SetBool("StrafeRightAnim", false);
@@ -312,12 +312,12 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
     public void RegisterListeners()
     {
-        gd.OnStart.AddListener(Begin);
-        gd.onPause.AddListener(Halt);
-        gd.OnResume.AddListener(Resume);
-        gd.onEnd.AddListener(End);
-        gd.onSlowDown.AddListener(SlowDown);
-        gd.onSpeedUp.AddListener(SpeedUp);
+        GameManager.Instance.OnStart.AddListener(Begin);
+        GameManager.Instance.onPause.AddListener(Halt);
+        GameManager.Instance.OnResume.AddListener(Resume);
+        GameManager.Instance.onEnd.AddListener(End);
+        TutorialManager.Instance.onSlowDown.AddListener(SlowDown);
+        TutorialManager.Instance.onSpeedUp.AddListener(SpeedUp);
     }
 
     public void ReactToCollision(int collidedHealth)

@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f213a7de243e7649a989e8d674334e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  gd: {fileID: 0}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   startView: {fileID: 0}
   backView: {fileID: 0}

@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public enum GameState
 {
@@ -36,14 +37,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public GameData gameData;
-    //SpeedManager speedManager;
-    //ScoreManager scoreManager;
+    public GameState gameState;
+
     public IntField difficulty;
 
     public LanesDatabase lanes;
-
-
+    
     public Text gamePausedTxt;
 
     public Sprite pauseSprite;
@@ -55,28 +54,35 @@ public class GameManager : MonoBehaviour
     public Button settingsBtn;
     public Button storeBtn;
 
+    [HideInInspector]
+    public UnityEvent OnStart = new UnityEvent();
+    [HideInInspector]
+    public UnityEvent OnResume;
+    [HideInInspector]
+    public UnityEvent onPause;
+    [HideInInspector]
+    public UnityEvent onEnd;
+
     public Canvas mainMenuCanvas;
     public Canvas inGameCanvas;
     public Canvas endGameCanvas;
-
+   
     private void Awake()
     {
+        Debug.Log("gm");
         if (Instance == null)
         {
             Instance = this;
         }
-
-        //speedManager = GetComponent<SpeedManager>();
-        //scoreManager = GetComponent<ScoreManager>();
-
-        gameData.gameState = GameState.MainMenu;
+  
+        gameState = GameState.MainMenu;
         difficulty.Value= PlayerPrefs.GetInt("PlayedTutorial");
 
-        ScoreManager.Instance.coinsCount.Value = PlayerPrefs.GetInt("CoinsCountGet");
     }
 
     private void Start()
     {
+      
         lanes.ResetLanes();
 
         inGameCanvas.gameObject.SetActive(false);
@@ -85,8 +91,7 @@ public class GameManager : MonoBehaviour
 
         gamePausedTxt.gameObject.SetActive(false);
 
-        gameData.onEnd.AddListener(EndGame);
-
+        onEnd.AddListener(EndGame);
     }
 
     public void PlayBtnEntered()
@@ -104,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseBtnEntered()
     {
-        switch (gameData.gameState)
+        switch (gameState)
         {
             case GameState.Gameplay:
                 gamePausedTxt.gameObject.SetActive(true);
@@ -122,20 +127,20 @@ public class GameManager : MonoBehaviour
 
     public void GameHalt()
     {
-        gameData.gameState = GameState.Pause;
-        gameData.onPause.Invoke();
+        gameState = GameState.Pause;
+        onPause.Invoke();
     }
 
     public void GameResume()
     {
-        gameData.gameState = GameState.Gameplay;
-        gameData.OnResume.Invoke();
+        gameState = GameState.Gameplay;
+        OnResume.Invoke();
     }
 
     void GameStart()
     {
-        gameData.gameState = GameState.Gameplay;
-        gameData.OnStart.Invoke();
+        gameState = GameState.Gameplay;
+        OnStart.Invoke();
     }
 
     /// <summary>
@@ -147,7 +152,7 @@ public class GameManager : MonoBehaviour
         mainMenuCanvas.gameObject.SetActive(false);
         endGameCanvas.gameObject.SetActive(true);
 
-        gameData.gameState = GameState.GameOver;
+        gameState = GameState.GameOver;
        
     }
 

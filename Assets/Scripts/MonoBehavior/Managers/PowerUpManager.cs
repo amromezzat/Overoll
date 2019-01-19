@@ -19,14 +19,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// this is resposible for powerup ui
+/// </summary>
 public class PowerUpManager : MonoBehaviour
 {
     public static PowerUpManager Instance;
 
-    public GameData gd;
-    public WorkerConfig wc;
-    float magnetTimer;
-    float shieldTimer;
+    public PowerUpVariable shield;
+    public PowerUpVariable magnet;
+
+    //public GameData gd;
+    // public WorkerConfig wc;
+    //float magnetTimer;
+    //float shieldTimer;
+
+
 
     private void Awake()
     {
@@ -34,60 +42,67 @@ public class PowerUpManager : MonoBehaviour
         {
             Instance = this;
         }
-
-        RegisterListeners();
-    }
-    private void Update()
-    {
-        if (gd.shieldInAct)
-        {
-            shieldTimer -= Time.deltaTime;
-            if (shieldTimer < 0)
-            {
-                EndShield();
-            }
-        }
-
-        else if (gd.magnetInAct)
-        {
-            magnetTimer -= Time.deltaTime;
-            if (magnetTimer < 0)
-            {
-                EndMagnet();
-            }
-        }
+        //RegisterListeners();
     }
 
-    public void RegisterListeners()
-    {
-        gd.gotMagnet.AddListener(StartMagnet);
-        gd.gotShield.AddListener(StartShield);
-    }
+    
+    //private void Update()
+    //{
+    //    //if (gd.shieldInAct)
+    //    if (shield.InAct)
+    //    {
+    //        //shieldTimer -= Time.deltaTime;
+    //        shield.Time -= Time.deltaTime;
+    //        //if (shieldTimer < 0)
+    //        if (shield.Time < 0)
+    //        {
+    //            EndShield();
+    //        }
+    //    }
 
-    void StartShield()
-    {
-        gd.shieldInAct = true;
-        shieldTimer = gd.ShieldTime;
-        wc.workers.StartShieldPowerup();
-    }
+    //    //else if (gd.magnetInAct)
+    //    else if (magnet.InAct)
+    //    {
+    //        //magnetTimer -= Time.deltaTime;
+    //        magnet.Time -= Time.deltaTime;
+    //        //if (magnetTimer < 0)
+    //        if (magnet.Time < 0)
+    //        {
+    //            EndMagnet();
+    //        }
+    //    }
+    //}
 
-    void StartMagnet()
-    {
-        gd.magnetInAct = true;
-        magnetTimer = gd.MagnetTime;
-        wc.workers.StartMagnetPowerup();
-    }
+    //public void RegisterListeners()
+    //{
+    //    //   gd.gotMagnet.AddListener(StartMagnet);
+    //    //gd.gotShield.AddListener(StartShield);
+    //}
 
-    void EndShield()
-    {
-        gd.shieldInAct = false;
-        wc.workers.EndShieldPowerup();
-    }
+    //void StartShield()
+    //{
+    //    gd.shieldInAct = true;
+    //    shieldTimer = gd.ShieldTime;
+    //    wc.workers.StartShieldPowerup();
+    //}
 
-    void EndMagnet()
-    {
-        gd.magnetInAct = false;
-        wc.workers.EndMagnetPowerup();
-        gd.gotMagnetNoMore.Invoke();
-    }
+    //void StartMagnet()
+    //{
+    //    gd.magnetInAct = true;
+    //    magnetTimer = gd.MagnetTime;
+    //    wc.workers.StartMagnetPowerup();
+    //}
+
+    //void EndShield()
+    //{
+    //    gd.shieldInAct = false;
+    //    wc.workers.EndShieldPowerup();
+    //}
+
+    //void EndMagnet()
+    //{
+    //    gd.magnetInAct = false;
+    //    wc.workers.EndMagnetPowerup();
+    //    gd.gotMagnetNoMore.Invoke();
+    //}
 }

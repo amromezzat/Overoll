@@ -21,9 +21,8 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "GameData", menuName = "Config/GameData")]
 public class GameData : ScriptableObject
 {
-    public bool tutorialActive = true;
-    [SerializeField]
-    private TutorialState tutorialState;
+    //public bool tutorialActive = true;
+
 
     //public int difficulty;
     // public float defaultSpeed;
@@ -33,50 +32,44 @@ public class GameData : ScriptableObject
 
     //public int coinCount;
 
-    public float slowingRatio = 0.1f;
-    public float slowingRate = 0.5f;
+    //public float slowingRatio = 0.1f;
+    //public float slowingRate = 0.5f;
 
-    [HideInInspector]
-    public int hrNum;
-    [HideInInspector]
-    public int bossNum;
-    [HideInInspector]
-    public PoolableType leaderType;
+    //>>>>>>>>>>> THese parameters will be added in workers managers
+    //[HideInInspector]
+    //public int hrNum;
+    //[HideInInspector]
+    //public int bossNum;
+    //[HideInInspector]
+    //public PoolableType leaderType;
 
-    public GameState gameState;
+    //public GameState gameState;
 
-    [HideInInspector]
-    public UnityEvent OnStart;
-    [HideInInspector]
-    public UnityEvent OnResume;
-    [HideInInspector]
-    public UnityEvent onPause;
-    [HideInInspector]
-    public UnityEvent onEnd;
 
-    [HideInInspector]
-    public int CoinCount;
 
-    [HideInInspector]
-    public UnityEvent gotMagnet;
-    [HideInInspector]
-    public UnityEvent gotShield;
-    [HideInInspector]
-    public UnityEvent gotMagnetNoMore;
+    //[HideInInspector]
+    //public int CoinCount;
 
-    [HideInInspector]
-    public UnityEvent onSpeedUp;
-    [HideInInspector]
-    public UnityEvent onSlowDown;
+    //[HideInInspector]
+    //public UnityEvent gotMagnet;
+    //[HideInInspector]
+    //public UnityEvent gotShield;
+    //[HideInInspector]
+    //public UnityEvent gotMagnetNoMore;
 
-    public int workerPrice = 0;
+    //[HideInInspector]
+    //public UnityEvent onSpeedUp;
+    //[HideInInspector]
+    //public UnityEvent onSlowDown;
 
-    [HideInInspector]
-    public bool magnetInAct = false;
-    [HideInInspector]
-    public bool shieldInAct = false;
-    private float magnetTime = 5;
-    private float shieldTime = 5;
+
+
+    //[HideInInspector]
+    //public bool magnetInAct = false;
+    //[HideInInspector]
+    //public bool shieldInAct = false;
+    //private float magnetTime = 5;
+    //private float shieldTime = 5;
 
     // Handeled in a script called SpeedManager
     //public float Speed
@@ -92,54 +85,54 @@ public class GameData : ScriptableObject
     //    }
     //}
 
-    public TutorialState TutorialState
-    {
-        get
-        {
-            return tutorialState;
-        }
+    //public TutorialState TutorialState
+    //{
+    //    get
+    //    {
+    //        return tutorialState;
+    //    }
 
-        set
-        {
-            tutorialState = value;
+    //    set
+    //    {
+    //        tutorialState = value;
 
-            if (tutorialActive && value != TutorialState.Null)
-            {
-                onSlowDown.Invoke();
-            }
-        }
-    }
+    //        if (tutorialActive && value != TutorialState.Null)
+    //        {
+    //            onSlowDown.Invoke();
+    //        }
+    //    }
+    //}
 
-    public float MagnetTime
-    {
-        get
-        {
-            return magnetTime;
-        }
+    //public float MagnetTime
+    //{
+    //    get
+    //    {
+    //        return magnetTime;
+    //    }
 
-        private set
-        {
-            magnetTime = value;
-        }
-    }
+    //    private set
+    //    {
+    //        magnetTime = value;
+    //    }
+    //}
 
-    public float ShieldTime
-    {
-        get
-        {
-            return shieldTime;
-        }
+    //public float ShieldTime
+    //{
+    //    get
+    //    {
+    //        return shieldTime;
+    //    }
 
-        private set
-        {
-            shieldTime = value;
-        }
-    }
+    //    private set
+    //    {
+    //        shieldTime = value;
+    //    }
+    //}
 
     private void OnEnable()
     {
-        gameState = GameState.MainMenu;
-        tutorialState = TutorialState.Null;
+        // gameState = GameState.MainMenu;
+        //tutorialState = TutorialState.Null;
         //speed = defaultSpeed;
 #if !UNITY_EDITOR
         tutorialActive = PlayerPrefs.GetFloat("PlayedTutorial") > 0 ? false : true;

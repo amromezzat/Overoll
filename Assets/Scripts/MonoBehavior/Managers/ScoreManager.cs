@@ -30,23 +30,24 @@ public class ScoreManager : MonoBehaviour, IHalt
     int timeScore;
     //int coinvalue = 5;
     int secValue = 1;
-   // public int oldCoinCount;
+    // public int oldCoinCount;
     public Text scoreText;
     public Text coinNum;
     public GameData gData;
     public WorkerConfig wConfig;
     public IEnumerator scoreCoroutine;
 
+    [HideInInspector]
     public int workerPrice = 0;
 
     private void Awake()
     {
+        Debug.Log("sm");
         if (Instance == null)
         {
             Instance = this;
         }
-
-        RegisterListeners();
+        coinsCount.Value = PlayerPrefs.GetInt("CoinsCountGet");
         scoreCoroutine = ScorePerSec();
     }
 
@@ -61,7 +62,8 @@ public class ScoreManager : MonoBehaviour, IHalt
     // Update is called once per frame
     void Update()
     {
-        if (gData.tutorialActive)
+        RegisterListeners();
+        if (TutorialManager.Instance.tutorialActive)
             return;
 
         //gData.coinCount = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
@@ -70,16 +72,16 @@ public class ScoreManager : MonoBehaviour, IHalt
         // calc score
         //score.Value = timeScore + gData.coinCount;
         score.Value = timeScore + coinsCount.Value;
-        
+
 
         //for leaderboard
         //LBUIscript.Instance.UpdatePointsTxt();
 
         //Display score
         scoreText.text = score.Value.ToString();
-        coinNum.text = gData.CoinCount.ToString();
+        coinNum.text = coinsCount.ToString();
         //oldCoinCount = gData.CoinCount;
- 
+
 
         AudioManager.instance.PlaySound("za3bolla");
     }
@@ -95,11 +97,10 @@ public class ScoreManager : MonoBehaviour, IHalt
 
     public void RegisterListeners()
     {
-        gData.OnStart.AddListener(Begin);
-        gData.onPause.AddListener(Halt);
-        gData.OnResume.AddListener(Resume);
-        gData.onEnd.AddListener(End);
-        
+        GameManager.Instance.OnStart.AddListener(Begin);
+        GameManager.Instance.onPause.AddListener(Halt);
+        GameManager.Instance.OnResume.AddListener(Resume);
+        GameManager.Instance.onEnd.AddListener(End);
     }
 
     public void Begin()
@@ -123,5 +124,10 @@ public class ScoreManager : MonoBehaviour, IHalt
     public void End()
     {
         Halt();
+    }
+
+    public void DeductWorkerPrice()
+    {
+        coinsCount.Value -= workerPrice;
     }
 }

@@ -29,11 +29,6 @@ public class EnvGenerator : MonoBehaviour, IHalt
 
     bool isHalt;
 
-    private void Awake()
-    {
-        RegisterListeners();
-    }
-
     private void OnEnable()
     {
         isHalt = true;
@@ -41,6 +36,7 @@ public class EnvGenerator : MonoBehaviour, IHalt
 
     void Start()
     {
+        RegisterListeners();
         pool = gameObject.GetComponent<EnvPooler>();
         lastTile = transform;
 
@@ -77,10 +73,10 @@ public class EnvGenerator : MonoBehaviour, IHalt
 
     public void RegisterListeners()
     {
-        gameData.OnStart.AddListener(Begin);
-        gameData.onPause.AddListener(Halt);
-        gameData.OnResume.AddListener(Resume);
-        gameData.onEnd.AddListener(End);
+         GameManager.Instance.OnStart.AddListener(Begin);
+         GameManager.Instance.onPause.AddListener(Halt);
+         GameManager.Instance.OnResume.AddListener(Resume);
+         GameManager.Instance.onEnd.AddListener(End);
     }
 
     public void Begin()
