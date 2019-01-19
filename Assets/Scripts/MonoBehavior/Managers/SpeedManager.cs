@@ -7,9 +7,7 @@ public class SpeedManager : MonoBehaviour
 {
     public static SpeedManager Instance;
 
-    public FloatVariable speed;
-    public float defaultSpeed;
-    public float oldSpeed;
+    public FloatField speed;
     
     private void Awake()
     {
@@ -18,19 +16,17 @@ public class SpeedManager : MonoBehaviour
             Instance = this;
         }
 
-        speed.SetValue(defaultSpeed);
-        //hia mosh de hat3mel bug enny aft7 el game mn gded yrag3ly el speed l el default?
     }
 
-    public float GetSpeedValue()
-    {
-        return speed.value;
-    }
+    //public float GetSpeedValue()
+    //{
+    //    return speed.Value;
+    //}
 
     public void SetSpeedValue(float val)
     {
-        oldSpeed = speed.value;
-        speed.SetValue(val);
+        speed.oldValue = speed.Value;
+        speed.Value= val;
     }
 
 

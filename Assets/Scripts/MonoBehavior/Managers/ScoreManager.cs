@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour, IHalt
     int coinvalue = 5;
     int secValue = 1;
     //public int score;
-    public IntVariable score;
+    public IntField score;
     public int oldCoinCount;
     public Text scoreText;
     public Text coinNum;
@@ -63,15 +63,17 @@ public class ScoreManager : MonoBehaviour, IHalt
 
         gData.coinCount = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
         // calc score
-        score.SetValue(timeScore + gData.coinCount);
+        score.Value = timeScore + gData.coinCount;
 
         //for leaderboard
         //LBUIscript.Instance.UpdatePointsTxt();
 
         //Display score
-        scoreText.text = score.value.ToString();
+        scoreText.text = score.Value.ToString();
         coinNum.text = gData.CoinCount.ToString();
         oldCoinCount = gData.CoinCount;
+
+        AudioManager.instance.PlaySound("za3bolla");
     }
 
     IEnumerator ScorePerSec()
