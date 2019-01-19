@@ -72,6 +72,8 @@ public class ScoreManager : MonoBehaviour, IHalt
         scoreText.text = score.Value.ToString();
         coinNum.text = gData.CoinCount.ToString();
         oldCoinCount = gData.CoinCount;
+
+        AudioManager.instance.PlaySound("za3bolla");
     }
 
     IEnumerator ScorePerSec()
