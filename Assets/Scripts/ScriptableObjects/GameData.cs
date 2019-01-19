@@ -26,12 +26,12 @@ public class GameData : ScriptableObject
     private TutorialState tutorialState;
 
     //public int difficulty;
-    public float defaultSpeed;
+    // public float defaultSpeed;
     //private float speed;
-   // [HideInInspector]
+    // [HideInInspector]
     //public float oldSpeed;
 
-    public int coinCount;       //supposed to be deleted as there is SO now for score.
+    //public int coinCount;
 
     public float slowingRatio = 0.1f;
     public float slowingRate = 0.5f;

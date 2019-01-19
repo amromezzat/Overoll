@@ -72,7 +72,7 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
             //rb.velocity = Vector3.back * gameData.Speed;
             rb.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
             //SetAnimatorsSpeed(gameData.Speed / gameData.oldSpeed);
-            SetAnimatorsSpeed(SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.oldValue);
+            SetAnimatorsSpeed(SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.OldValue);
         }
     }
 

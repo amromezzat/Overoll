@@ -23,11 +23,11 @@ public class SpeedManager : MonoBehaviour
     //    return speed.Value;
     //}
 
-    public void SetSpeedValue(float val)
-    {
-        speed.oldValue = speed.Value;
-        speed.Value= val;
-    }
+    //public void SetSpeedValue(float val)
+    //{
+    //    speed.oldValue = speed.Value;
+    //    speed.Value= val;
+    //}
 
 
 }
