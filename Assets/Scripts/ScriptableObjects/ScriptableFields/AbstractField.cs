@@ -9,6 +9,7 @@ public abstract class AbstractField<T> : ScriptableObject, ISerializationCallbac
 {
     [SerializeField]
     protected T InitialValue;
+    public T OldValue { get; protected set; }
     public UnityEvent<T> onValueChanged = new UnityEventExt<T>();
     [SerializeField]
     protected T runtimeValue;
@@ -22,6 +23,7 @@ public abstract class AbstractField<T> : ScriptableObject, ISerializationCallbac
         {
             if (HasValueChanged(value))
             {
+                OldValue = runtimeValue;
                 runtimeValue = value;
                 ValueHasChanged(value);
             }
@@ -55,5 +57,15 @@ public abstract class AbstractField<T> : ScriptableObject, ISerializationCallbac
     public virtual void OnAfterDeserialize()
     {
         runtimeValue = InitialValue;
+    }
+
+    public virtual T SetValueToInitial()
+    {
+        return runtimeValue = InitialValue;
+    }
+
+    public virtual T ReturnValueToOld()
+    {
+        return runtimeValue = OldValue;
     }
 }

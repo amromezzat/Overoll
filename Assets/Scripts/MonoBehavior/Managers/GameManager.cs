@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameData gameData;
-    //>>>>>>These SO Variables will be used to set during Runtime by game mananager.
-    SpeedManager speedManager;
+    //SpeedManager speedManager;
+    //ScoreManager scoreManager;
     public IntField difficulty;
 
     public LanesDatabase lanes;
@@ -66,10 +66,13 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
-        speedManager = GetComponent<SpeedManager>();
+        //speedManager = GetComponent<SpeedManager>();
+        //scoreManager = GetComponent<ScoreManager>();
 
         gameData.gameState = GameState.MainMenu;
         difficulty.Value= PlayerPrefs.GetInt("PlayedTutorial");
+
+        ScoreManager.Instance.coinsCount.Value = PlayerPrefs.GetInt("CoinsCountGet");
     }
 
     private void Start()

@@ -173,7 +173,8 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
         yield return new WaitForSeconds(1);
         EndText.SetActive(false);
         //gd.Speed = gd.defaultSpeed;
-        SpeedManager.Instance.SetSpeedValue(SpeedManager.Instance.speed.defaultValue);
+        SpeedManager.Instance.speed.SetValueToInitial();
+        //SpeedManager.Instance.SetSpeedValue(SpeedManager.Instance.speed.defaultValue);
         gd.onSlowDown.RemoveListener(SlowDown);
         gd.onSpeedUp.RemoveListener(SpeedUp);
         gd.OnStart.RemoveListener(TutStart);
@@ -191,7 +192,7 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
             yield return new WaitForSeconds(gd.slowingRate - earlierListenTime);
 
             //gd.Speed = gd.Speed * gd.slowingRatio;
-            SpeedManager.Instance.SetSpeedValue(SpeedManager.Instance.speed.Value * gd.slowingRatio);
+            SpeedManager.Instance.speed.Value = SpeedManager.Instance.speed.Value * gd.slowingRatio;
 
             yield return new WaitForSeconds(earlierListenTime);
         }

@@ -24,17 +24,20 @@ public class ScoreManager : MonoBehaviour, IHalt
 {
     public static ScoreManager Instance;
 
-    int timeScore;
-    int coinvalue = 5;
-    int secValue = 1;
-    //public int score;
+    public IntField coinsCount;
     public IntField score;
-    public int oldCoinCount;
+
+    int timeScore;
+    //int coinvalue = 5;
+    int secValue = 1;
+   // public int oldCoinCount;
     public Text scoreText;
     public Text coinNum;
     public GameData gData;
     public WorkerConfig wConfig;
     public IEnumerator scoreCoroutine;
+
+    public int workerPrice = 0;
 
     private void Awake()
     {
@@ -51,8 +54,8 @@ public class ScoreManager : MonoBehaviour, IHalt
     void OnEnable()
     {
         timeScore = 0;
-        gData.coinCount = 0;
-        oldCoinCount = 0;
+        //gData.coinCount = 0;
+        //oldCoinCount = 0;
     }
 
     // Update is called once per frame
@@ -61,9 +64,13 @@ public class ScoreManager : MonoBehaviour, IHalt
         if (gData.tutorialActive)
             return;
 
-        gData.coinCount = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
+        //gData.coinCount = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
+        coinsCount.Value = coinsCount.Value * (coinsCount.Value - coinsCount.OldValue) * wConfig.workers.Count;
+
         // calc score
-        score.Value = timeScore + gData.coinCount;
+        //score.Value = timeScore + gData.coinCount;
+        score.Value = timeScore + coinsCount.Value;
+        
 
         //for leaderboard
         //LBUIscript.Instance.UpdatePointsTxt();
@@ -71,7 +78,8 @@ public class ScoreManager : MonoBehaviour, IHalt
         //Display score
         scoreText.text = score.Value.ToString();
         coinNum.text = gData.CoinCount.ToString();
-        oldCoinCount = gData.CoinCount;
+        //oldCoinCount = gData.CoinCount;
+ 
 
         AudioManager.instance.PlaySound("za3bolla");
     }
@@ -97,8 +105,8 @@ public class ScoreManager : MonoBehaviour, IHalt
     public void Begin()
     {
         timeScore = 0;
-        gData.coinCount = 0;
-        oldCoinCount = 0;
+        //gData.coinCount = 0;
+        //oldCoinCount = 0;
         StartCoroutine(scoreCoroutine);
     }
 
