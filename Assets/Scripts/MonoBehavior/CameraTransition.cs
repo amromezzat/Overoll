@@ -42,15 +42,11 @@ public class CameraTransition : MonoBehaviour, IHalt
     bool onHalt = true;
     Rigidbody startViewRB;
 
-    private void Awake()
-    {
-    }
-
     private void OnEnable()
     {
         RegisterListeners();
         playableDirector = startView.GetComponent<PlayableDirector>();
-        startViewRB = startView.GetComponent<Rigidbody>();   
+        startViewRB = startView.GetComponent<Rigidbody>();
     }
 
     public void Begin()
@@ -75,7 +71,7 @@ public class CameraTransition : MonoBehaviour, IHalt
         startViewRB.velocity = Vector3.zero;
     }
 
-        public void RegisterListeners()
+    public void RegisterListeners()
     {
         gd.OnStart.AddListener(Begin);
         gd.onPause.AddListener(Halt);
@@ -86,18 +82,16 @@ public class CameraTransition : MonoBehaviour, IHalt
     public void Resume()
     {
         onHalt = false;
-       // startViewRB.velocity = Vector3.back * gd.Speed;
+        // startViewRB.velocity = Vector3.back * gd.Speed;
         startViewRB.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
     }
 
-    // Use this for initialization
     void Start()
     {
         current = beginTrans;
         next = beginTrans;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (onHalt)

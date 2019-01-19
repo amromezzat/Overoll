@@ -50,6 +50,7 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
 
     private void OnEnable()
     {
+
         if (gameData.gameState == GameState.Gameplay)
         {
             MoveObj();
