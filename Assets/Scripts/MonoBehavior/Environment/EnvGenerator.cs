@@ -57,23 +57,12 @@ public class EnvGenerator : MonoBehaviour, IHalt
     // Generate an environment segment directly after last segment
     void GenerateTile()
     {
-        //TODO: generate in edit mode
         var obj = pool.GetObjectFromPool();
-        obj.transform.position = lastTile.transform.position;// + GetObjectLength();
+        Vector3 objPos = obj.transform.position;
+        objPos.z = lastTile.transform.GetTransformEnd();
+        obj.transform.position = objPos;
         lastTile = obj.transform;
     }
-
-    //Vector3 GetObjectLength()
-    //{
-    //    float farZ = 0;
-
-    //    foreach (Transform childTrans in transform)
-    //    {
-    //        if (farZ < childTrans.position.z)
-    //            farZ = childTrans.position.z;
-    //    }
-    //    return new Vector3(0, 0, farZ);
-    //}
 
     public void RegisterListeners()
     {
