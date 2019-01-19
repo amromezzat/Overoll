@@ -20,7 +20,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PickUpCoin : MonoBehaviour {
+public class PickUpCoin : MonoBehaviour
+{
 
     public GameData gd;
     public WorkerConfig wc;
@@ -39,7 +40,7 @@ public class PickUpCoin : MonoBehaviour {
 
     public void OnEnable()
     {
-        if (gd.magnetInAct)
+        if (PowerUpManager.Instance.magnet.InAct)
         {
             coinMagnet.enabled = true;
         }
@@ -51,15 +52,15 @@ public class PickUpCoin : MonoBehaviour {
         {
             AudioManager.instance.PlaySound("Coin");
 
-            gd.CoinCount += 1;
+            ScoreManager.Instance.coinsCount.Value += 1;
             StartCoroutine(cReturn.ReturnToPool(0));
         }
-     }
+    }
 
     public void RegisterListeners()
     {
-        gd.gotMagnet.AddListener(ActWithMagnet);
-        gd.gotMagnetNoMore.AddListener(ActWithoutMagnet);
+        PowerUpManager.Instance.magnet.BeginAction.AddListener(ActWithMagnet);
+        PowerUpManager.Instance.magnet.EndAction.AddListener(ActWithoutMagnet);
     }
 
     public void ActWithMagnet()
@@ -74,7 +75,7 @@ public class PickUpCoin : MonoBehaviour {
 
     void OnDisable()
     {
-        coinMagnet.enabled = false;     
+        coinMagnet.enabled = false;
     }
 
 }

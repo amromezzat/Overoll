@@ -152,6 +152,7 @@ public class WorkerList : List<WorkerFSM>
         magnetOn = true;
         for (int i = 0; i < Count; i++)
         {
+            this[i].magnetColliderObject.SetActive(true);
             this[i].helmetMaterial.SetFloat("_ColAmount", -0.001f);
         }
     }
@@ -171,6 +172,7 @@ public class WorkerList : List<WorkerFSM>
         magnetOn = false;
         for(int i = 0; i < Count; i++)
         {
+            this[i].magnetColliderObject.SetActive(false);
             this[i].helmetMaterial.SetFloat("_ColAmount", 0);
         }
     }
