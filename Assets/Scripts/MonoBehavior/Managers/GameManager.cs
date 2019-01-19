@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour
    
     private void Awake()
     {
-        Debug.Log("gm");
         if (Instance == null)
         {
             Instance = this;
@@ -82,7 +81,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-      
         lanes.ResetLanes();
 
         inGameCanvas.gameObject.SetActive(false);

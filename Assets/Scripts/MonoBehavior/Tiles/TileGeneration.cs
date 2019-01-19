@@ -9,7 +9,6 @@ public class TileGeneration : MonoBehaviour
 {
     public PatternsDatabase patternDB;//[]->difficulty, [][]->pattern
     public LanesDatabase lanes;
-    public GameData gd;
     public TileConfig tc;
     public InteractablesDatabase interactDB;
 
