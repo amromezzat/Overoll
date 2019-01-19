@@ -41,7 +41,7 @@ public class TutWorkerStrafe : WorkerStrafe, IWChangeState
 
     public override void StrafeRight()
     {
-        if (gd.TutorialState == TutorialState.RightStrafe)
+        if (TutorialManager.Instance.TutorialState == TutorialState.RightStrafe)
         {
             tutRightAct = true;
             base.StrafeRight();
@@ -50,7 +50,7 @@ public class TutWorkerStrafe : WorkerStrafe, IWChangeState
 
     public override void StrafeLeft()
     {
-        if (gd.TutorialState == TutorialState.LeftStrafe)
+        if (TutorialManager.Instance.TutorialState == TutorialState.LeftStrafe)
         {
             tutRightAct = true;
             base.StrafeLeft();

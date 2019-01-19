@@ -15,8 +15,6 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.*/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +29,16 @@ public class WorkersManager : MonoBehaviour
     public GameData gData;
     public int wPFactor = 2;
 
+    public PowerUpVariable shield;
+    public PowerUpVariable magnet;
+
+    //[HideInInspector]
+    //public int hrNum;
+    //[HideInInspector]
+    //public int bossNum;
+    //[HideInInspector]
+    //public PoolableType leaderType;
+
     void Awake()
     {
         if (Instance == null)
@@ -38,7 +46,12 @@ public class WorkersManager : MonoBehaviour
             Instance = this;
         }
 
-        gData.CoinCount = 0;
+        shield.BeginAction.AddListener(wc.workers.StartShieldPowerup);
+        shield.EndAction.AddListener(wc.workers.EndShieldPowerup);
+        magnet.BeginAction.AddListener(wc.workers.StartMagnetPowerup);
+        magnet.EndAction.AddListener(wc.workers.EndMagnetPowerup);
+
+        ScoreManager.Instance.coinsCount.Value = 0;
         wc.leader = leader;
         wc.workers.Add(leader);
         wc.onLeaderDeath.AddListener(LeaderDied);
@@ -49,9 +62,12 @@ public class WorkersManager : MonoBehaviour
     void Update()
     {
         wc.aheadFollowPoint = -Mathf.Log10(wc.workers.Count + 1) - 0.5f;
-        gData.workerPrice = (wc.workers.Count + 1) * wPFactor;
+        //gData.workerPrice = (wc.workers.Count + 1) * wPFactor;
+        ScoreManager.Instance.workerPrice = (wc.workers.Count + 1) * wPFactor;
 
-        if (gData.workerPrice > gData.CoinCount)
+
+        //if (gData.workerPrice > gData.CoinCount)
+        if (ScoreManager.Instance.workerPrice > ScoreManager.Instance.coinsCount.Value)
         {
             addWorkerBtn.GetComponent<Button>().interactable = false;
         }
@@ -63,18 +79,19 @@ public class WorkersManager : MonoBehaviour
 
     public void doubleTap()
     {
-        if(gData.gameState == GameState.Gameplay)
+        if(GameManager.Instance.gameState == GameState.Gameplay)
         {
-            if(gData.workerPrice < gData.CoinCount || gData.tutorialActive)
+            //if(gData.workerPrice < gData.CoinCount || gData.tutorialActive)
+            if(ScoreManager.Instance.workerPrice < ScoreManager.Instance.coinsCount.Value || TutorialManager.Instance.tutorialActive)
                 AddWorker();
         }
     }
 
     public void AddWorker()
     {
-        if (gData.tutorialActive && gData.TutorialState == TutorialState.AddWorker)
+        if (TutorialManager.Instance.tutorialActive && TutorialManager.Instance.TutorialState == TutorialState.AddWorker)
         {
-            gData.onSpeedUp.Invoke();
+            TutorialManager.Instance.onSpeedUp.Invoke();
         }
         GameObject worker = ObjectPooler.instance.GetFromPool(wc.workerType);
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
@@ -83,7 +100,9 @@ public class WorkersManager : MonoBehaviour
         WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
             
         wc.workers.Add(workerFSM);
-        gData.CoinCount -= gData.workerPrice;     
+        //gData.CoinCount -= gData.workerPrice;     
+        //ScoreManager.Instance.coinsCount.Value -= ScoreManager.Instance.workerPrice; 
+        ScoreManager.Instance.DeductWorkerPrice();
     }
 
     void MergingDone()
@@ -99,8 +118,8 @@ public class WorkersManager : MonoBehaviour
         }
         else
         {
-            gData.gameState = GameState.GameOver;
-            gData.onEnd.Invoke();
+            GameManager.Instance.gameState = GameState.GameOver;
+            GameManager.Instance.onEnd.Invoke();
         }
     }
 

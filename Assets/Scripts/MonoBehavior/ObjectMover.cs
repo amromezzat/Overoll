@@ -51,7 +51,7 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
     private void OnEnable()
     {
 
-        if (gameData.gameState == GameState.Gameplay)
+        if (GameManager.Instance.gameState == GameState.Gameplay)
         {
             MoveObj();
         }
@@ -59,7 +59,7 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
         {
             rb.velocity = Vector3.zero;
         }
-        if (gameData.tutorialActive && gameData.TutorialState != TutorialState.Null)
+        if (TutorialManager.Instance.tutorialActive && TutorialManager.Instance.TutorialState != TutorialState.Null)
         {
             isKillingSpeed = true;
         }
@@ -114,12 +114,12 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
 
     public void RegisterListeners()
     {
-        gameData.OnStart.AddListener(Begin);
-        gameData.onPause.AddListener(Halt);
-        gameData.OnResume.AddListener(Resume);
-        gameData.onEnd.AddListener(End);
-        gameData.onSlowDown.AddListener(SlowDown);
-        gameData.onSpeedUp.AddListener(SpeedUp);
+        GameManager.Instance.OnStart.AddListener(Begin);
+        GameManager.Instance.onPause.AddListener(Halt);
+        GameManager.Instance.OnResume.AddListener(Resume);
+        GameManager.Instance.onEnd.AddListener(End);
+        TutorialManager.Instance.onSlowDown.AddListener(SlowDown);
+        TutorialManager.Instance.onSpeedUp.AddListener(SpeedUp);
     }
 
     public void Begin()

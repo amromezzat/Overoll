@@ -394,9 +394,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad606f10029810b4f8c63fd4e6e553c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gd: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  tutorialState: 0
+  tutorialActive: 0
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   pauseBtn: {fileID: 0}
+  onSpeedUp:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onSlowDown:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  slowingRatio: 0.1
+  slowingRate: 0.5
   addWorkerBtn: {fileID: 0}
   leftArrow: {fileID: 1268681352727428}
   rightArrow: {fileID: 1107124661294528}

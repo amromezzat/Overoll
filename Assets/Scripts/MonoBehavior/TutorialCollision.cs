@@ -37,28 +37,28 @@ public class TutorialCollision : MonoBehaviour
             switch (tag)
             {
                 case "TutJump":
-                    gd.TutorialState = TutorialState.Jump;
+                    TutorialManager.Instance.TutorialState = TutorialState.Jump;
                     break;
                 case "TutSlide":
-                    gd.TutorialState = TutorialState.Slide;
+                    TutorialManager.Instance.TutorialState = TutorialState.Slide;
                     break;
                 case "TutStrafeLeft":
-                    gd.TutorialState = TutorialState.LeftStrafe;
+                    TutorialManager.Instance.TutorialState = TutorialState.LeftStrafe;
                     break;
                 case "TutStrafeRight":
-                    gd.TutorialState = TutorialState.RightStrafe;
+                    TutorialManager.Instance.TutorialState = TutorialState.RightStrafe;
                     break;
                 case "TutAddWorker":
-                    gd.TutorialState = TutorialState.AddWorker;
+                    TutorialManager.Instance.TutorialState = TutorialState.AddWorker;
                     break;
                 case "TutMerge":
-                    gd.TutorialState = TutorialState.MergeWorker;
+                    TutorialManager.Instance.TutorialState = TutorialState.MergeWorker;
                     break;
                 case "TutCollide":
-                    gd.TutorialState = TutorialState.Collide;
+                    TutorialManager.Instance.TutorialState = TutorialState.Collide;
                     break;
                 case "TutEnd":
-                    gd.TutorialState = TutorialState.End;
+                    TutorialManager.Instance.TutorialState = TutorialState.End;
                     break;
             }
             gameObject.SetActive(false);
