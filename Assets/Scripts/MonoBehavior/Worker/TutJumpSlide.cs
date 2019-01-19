@@ -15,8 +15,6 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.*/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -38,7 +36,7 @@ public class TutJumpSlide : JumpSlideFSM, IWChangeState
 
     public override void Jump()
     {
-        if (gd.TutorialState == TutorialState.Jump)
+        if (TutorialManager.Instance.TutorialState == TutorialState.Jump)
         {
             tutRightAct = true;
             base.Jump();
@@ -47,7 +45,7 @@ public class TutJumpSlide : JumpSlideFSM, IWChangeState
 
     public override void Slide()
     {
-        if (gd.TutorialState == TutorialState.Slide)
+        if (TutorialManager.Instance.TutorialState == TutorialState.Slide)
         {
             tutRightAct = true;
             base.Slide();

@@ -19,10 +19,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class is on powerups objects.
+/// </summary>
 public class PickUpPowerUp : MonoBehaviour
 {
     ObjectReturner cReturn;
-    public GameData gameData;
+    //public GameData gameData;
 
     void OnEnable()
     {
@@ -35,12 +38,14 @@ public class PickUpPowerUp : MonoBehaviour
         {
             if (tag == "Magnet")
             {
-                gameData.gotMagnet.Invoke();
+                //gameData.gotMagnet.Invoke();
+                PowerUpManager.Instance.magnet.StartPowerUP();
 
             }
             if (tag == "Shield")
             {
-                gameData.gotShield.Invoke();
+                //gameData.gotShield.Invoke();
+                PowerUpManager.Instance.shield.StartPowerUP();
             }
             StartCoroutine(cReturn.ReturnToPool(0));
         }

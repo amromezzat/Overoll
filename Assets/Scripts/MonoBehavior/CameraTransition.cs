@@ -44,9 +44,33 @@ public class CameraTransition : MonoBehaviour, IHalt
 
     private void OnEnable()
     {
-        RegisterListeners();
         playableDirector = startView.GetComponent<PlayableDirector>();
         startViewRB = startView.GetComponent<Rigidbody>();
+    }
+
+    void Start()
+    {
+        RegisterListeners();
+        current = beginTrans;
+        next = beginTrans;
+    }
+    
+    void Update()
+    {
+        if (onHalt)
+        {
+            return;
+        }
+        timer += Time.deltaTime;
+        float completedPortion = timer / transTime;
+        float sinPortion = Mathf.Sin(completedPortion * Mathf.PI / (transTime * 2));
+        transform.position = Vector3.Lerp(current.position, next.position, sinPortion);
+        transform.rotation = Quaternion.Lerp(current.rotation, next.rotation, sinPortion);
+        if (completedPortion >= transTime)
+        {
+            Destroy(startView);
+            enabled = false;
+        }
     }
 
     public void Begin()
@@ -73,10 +97,10 @@ public class CameraTransition : MonoBehaviour, IHalt
 
     public void RegisterListeners()
     {
-        gd.OnStart.AddListener(Begin);
-        gd.onPause.AddListener(Halt);
-        gd.OnResume.AddListener(Resume);
-        gd.onEnd.AddListener(End);
+        GameManager.Instance.OnStart.AddListener(Begin);
+        GameManager.Instance.onPause.AddListener(Halt);
+        GameManager.Instance.OnResume.AddListener(Resume);
+        GameManager.Instance.onEnd.AddListener(End);
     }
 
     public void Resume()
@@ -86,35 +110,12 @@ public class CameraTransition : MonoBehaviour, IHalt
         startViewRB.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
     }
 
-    void Start()
-    {
-        current = beginTrans;
-        next = beginTrans;
-    }
-
-    void Update()
-    {
-        if (onHalt)
-        {
-            return;
-        }
-        timer += Time.deltaTime;
-        float completedPortion = timer / transTime;
-        float sinPortion = Mathf.Sin(completedPortion * Mathf.PI / (transTime * 2));
-        transform.position = Vector3.Lerp(current.position, next.position, sinPortion);
-        transform.rotation = Quaternion.Lerp(current.rotation, next.rotation, sinPortion);
-        if (completedPortion >= transTime)
-        {
-            Destroy(startView);
-            enabled = false;
-        }
-    }
 
     private void OnDisable()
     {
-        gd.OnStart.RemoveListener(Begin);
-        gd.onPause.RemoveListener(Halt);
-        gd.OnResume.RemoveListener(Resume);
-        gd.onEnd.RemoveListener(End);
+        GameManager.Instance.OnStart.RemoveListener(Begin);
+        GameManager.Instance.onPause.RemoveListener(Halt);
+        GameManager.Instance.OnResume.RemoveListener(Resume);
+        GameManager.Instance.onEnd.RemoveListener(End);
     }
 }

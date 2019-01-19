@@ -24,26 +24,30 @@ public class ScoreManager : MonoBehaviour, IHalt
 {
     public static ScoreManager Instance;
 
-    int timeScore;
-    int coinvalue = 5;
-    int secValue = 1;
-    //public int score;
+    public IntField coinsCount;
     public IntField score;
-    public int oldCoinCount;
+
+    int timeScore;
+    //int coinvalue = 5;
+    int secValue = 1;
+    // public int oldCoinCount;
     public Text scoreText;
     public Text coinNum;
     public GameData gData;
     public WorkerConfig wConfig;
     public IEnumerator scoreCoroutine;
 
+    [HideInInspector]
+    public int workerPrice = 0;
+
     private void Awake()
     {
+        Debug.Log("sm");
         if (Instance == null)
         {
             Instance = this;
         }
-
-        RegisterListeners();
+        coinsCount.Value = PlayerPrefs.GetInt("CoinsCountGet");
         scoreCoroutine = ScorePerSec();
     }
 
@@ -51,27 +55,33 @@ public class ScoreManager : MonoBehaviour, IHalt
     void OnEnable()
     {
         timeScore = 0;
-        gData.coinCount = 0;
-        oldCoinCount = 0;
+        //gData.coinCount = 0;
+        //oldCoinCount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gData.tutorialActive)
+        RegisterListeners();
+        if (TutorialManager.Instance.tutorialActive)
             return;
 
-        gData.coinCount = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
+        //gData.coinCount = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
+        coinsCount.Value = coinsCount.Value * (coinsCount.Value - coinsCount.OldValue) * wConfig.workers.Count;
+
         // calc score
-        score.Value = timeScore + gData.coinCount;
+        //score.Value = timeScore + gData.coinCount;
+        score.Value = timeScore + coinsCount.Value;
+
 
         //for leaderboard
         //LBUIscript.Instance.UpdatePointsTxt();
 
         //Display score
         scoreText.text = score.Value.ToString();
-        coinNum.text = gData.CoinCount.ToString();
-        oldCoinCount = gData.CoinCount;
+        coinNum.text = coinsCount.ToString();
+        //oldCoinCount = gData.CoinCount;
+
 
         AudioManager.instance.PlaySound("za3bolla");
     }
@@ -87,18 +97,17 @@ public class ScoreManager : MonoBehaviour, IHalt
 
     public void RegisterListeners()
     {
-        gData.OnStart.AddListener(Begin);
-        gData.onPause.AddListener(Halt);
-        gData.OnResume.AddListener(Resume);
-        gData.onEnd.AddListener(End);
-        
+        GameManager.Instance.OnStart.AddListener(Begin);
+        GameManager.Instance.onPause.AddListener(Halt);
+        GameManager.Instance.OnResume.AddListener(Resume);
+        GameManager.Instance.onEnd.AddListener(End);
     }
 
     public void Begin()
     {
         timeScore = 0;
-        gData.coinCount = 0;
-        oldCoinCount = 0;
+        //gData.coinCount = 0;
+        //oldCoinCount = 0;
         StartCoroutine(scoreCoroutine);
     }
 
@@ -115,5 +124,10 @@ public class ScoreManager : MonoBehaviour, IHalt
     public void End()
     {
         Halt();
+    }
+
+    public void DeductWorkerPrice()
+    {
+        coinsCount.Value -= workerPrice;
     }
 }

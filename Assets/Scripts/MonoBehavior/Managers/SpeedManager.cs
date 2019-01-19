@@ -15,19 +15,5 @@ public class SpeedManager : MonoBehaviour
         {
             Instance = this;
         }
-
     }
-
-    //public float GetSpeedValue()
-    //{
-    //    return speed.Value;
-    //}
-
-    public void SetSpeedValue(float val)
-    {
-        speed.oldValue = speed.Value;
-        speed.Value= val;
-    }
-
-
 }
