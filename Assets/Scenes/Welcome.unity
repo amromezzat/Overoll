@@ -236,6 +236,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingScreenCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 218341012943075128, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 218341012943075128, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 218341012682211102, guid: 8c342ec398ea49041bba1377296ced8b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -346,6 +356,51 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 218341014713418145, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -159
+      objectReference: {fileID: 0}
+    - target: {fileID: 218341014713418145, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 218341014713418145, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 326.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 218341014713418145, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 86.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 218341014205990707, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 218341012943075135, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 113.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 218341012943075135, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 123.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 218341012943075135, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0000033379
+      objectReference: {fileID: 0}
+    - target: {fileID: 218341012943075135, guid: 8c342ec398ea49041bba1377296ced8b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 43.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c342ec398ea49041bba1377296ced8b, type: 3}
 --- !u!1001 &6872095154216899940
@@ -359,6 +414,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 6872095155079101264, guid: 696ac0560832aae4f83d0565eb1dfc11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6872095155079101266, guid: 696ac0560832aae4f83d0565eb1dfc11,
         type: 3}
