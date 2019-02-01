@@ -2,28 +2,47 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
+
 public class LevelLoader : MonoBehaviour
 {
     public GameObject loadingScreen;
     public Slider slider;
     public Text progressText;
 
+    public VideoPlayer videoLogo;
+    public RawImage rawImage;
+
     private int sceneInd;
 
     private void Start()
     {
         sceneInd = 1;
+       // StartCoroutine(playVideo());
         StartCoroutine(LoadAsynchronously(sceneInd));
     }
 
-    //public void LoadLevel(int sceneIndex)
+    //IEnumerator playVideo()
     //{
-    //    StartCoroutine(LoadAsynchronously(sceneIndex));
+        
     //}
 
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        videoLogo.Prepare();
+
+        WaitForSeconds waitForSeconds = new WaitForSeconds(0.5f);
+
+        while (!videoLogo.isPrepared)
+        {
+            yield return waitForSeconds;
+            break;
+        }
+
+        rawImage.texture = videoLogo.texture;
+        videoLogo.Play();
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex); 
 
         loadingScreen.SetActive(true);
 
