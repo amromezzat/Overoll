@@ -77,7 +77,7 @@ public class ScoreManager : MonoBehaviour, IHalt
 
         //Display score
         scoreText.text = score.Value.ToString();
-        coinNum.text = coinsCount.ToString();
+        coinNum.text = coinsCount.Value.ToString();
         //oldCoinCount = gData.CoinCount;
 
 
