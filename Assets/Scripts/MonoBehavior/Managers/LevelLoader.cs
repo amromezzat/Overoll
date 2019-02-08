@@ -18,14 +18,8 @@ public class LevelLoader : MonoBehaviour
     private void Start()
     {
         sceneInd = 1;
-       // StartCoroutine(playVideo());
         StartCoroutine(LoadAsynchronously(sceneInd));
     }
-
-    //IEnumerator playVideo()
-    //{
-        
-    //}
 
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
