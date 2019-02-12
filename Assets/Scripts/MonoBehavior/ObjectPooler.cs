@@ -45,6 +45,10 @@ public class ObjectPooler : MonoBehaviour
                 GameObject newGameObj = InstantiateGameObj(po.prefab);
                 instancesQueue.Enqueue(newGameObj);
             }
+            if(po == null || po.type == null)
+            {
+                print(1);
+            }
             poolDict[po.type] = instancesQueue;
         }
     }

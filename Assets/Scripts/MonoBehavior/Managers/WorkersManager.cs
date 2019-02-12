@@ -78,10 +78,10 @@ public class WorkersManager : MonoBehaviour
 
     public void doubleTap()
     {
-        if(GameManager.Instance.gameState == GameState.Gameplay)
+        if (GameManager.Instance.gameState == GameState.Gameplay)
         {
             //if(gData.workerPrice < gData.CoinCount || gData.tutorialActive)
-            if(ScoreManager.Instance.workerPrice < ScoreManager.Instance.coinsCount.Value || TutorialManager.Instance.tutorialActive)
+            if (ScoreManager.Instance.workerPrice < ScoreManager.Instance.coinsCount.Value || TutorialManager.Instance.tutorialActive)
                 AddWorker();
         }
     }
@@ -94,10 +94,10 @@ public class WorkersManager : MonoBehaviour
         }
         GameObject worker = ObjectPooler.instance.GetFromPool(wc.workerType);
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
-        float newZPos = Random.Range(tc.disableSafeDistance + 5, tc.disableSafeDistance + 8);
+        float newZPos = Random.Range(leader.transform.position.z + 5, leader.transform.position.z + 8);
         worker.transform.position = new Vector3(newXPos, worker.transform.position.y, newZPos);
         WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
-            
+
         wc.workers.Add(workerFSM);
         //gData.CoinCount -= gData.workerPrice;     
         //ScoreManager.Instance.coinsCount.Value -= ScoreManager.Instance.workerPrice; 

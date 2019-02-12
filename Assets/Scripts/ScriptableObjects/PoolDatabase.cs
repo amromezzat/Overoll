@@ -33,6 +33,13 @@ public class PoolDatabase : ScriptableObject
                 return 0;
             return poolableList.Count;
         }
+        set
+        {
+            while (value < poolableList.Count)
+                poolableList.RemoveAt(poolableList.Count - 1);
+            while (value > poolableList.Count)
+                poolableList.Add(poolableList[poolableList.Count - 1]);
+        }
     }
 
     public PoolableObj this[int index]
