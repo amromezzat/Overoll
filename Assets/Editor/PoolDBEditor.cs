@@ -48,7 +48,7 @@ public class PoolDBEditor : Editor
     {
         GUILayout.BeginHorizontal();
         GUILayout.Label("Current Prefabs: ", EditorStyles.boldLabel);
-        GUILayout.Label(poolableDB.Count.ToString());
+        poolableDB.Count = EditorGUILayout.IntField(poolableDB.Count);
         GUILayout.EndHorizontal();
 
         EditorGUILayout.Separator();
@@ -116,7 +116,7 @@ public class PoolDBEditor : Editor
         GUILayout.Label("", GUILayout.ExpandWidth(true));
         GUILayout.EndHorizontal();
 
-        selectedTile = EditorGUILayout.Popup("Poolable Type", selectedTile, 
+        selectedTile = EditorGUILayout.Popup("Poolable Type", selectedTile,
             interactablesDB.interactablesNames.ToArray());
         tileType = interactablesDB[selectedTile];
 
@@ -192,7 +192,7 @@ public class PoolDBEditor : Editor
         Texture2D inputTexture = (Texture2D)AssetDatabase.LoadAssetAtPath(texture, typeof(Texture2D));
         if (!inputTexture)
             return;
-        
+
         GUILayout.Label(inputTexture, GUILayout.MaxHeight(70), GUILayout.MaxWidth(70),
             GUILayout.MinHeight(minHeight), GUILayout.MinWidth(minWidth));
     }

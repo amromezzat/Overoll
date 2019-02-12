@@ -19,8 +19,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnvGenerator : MonoBehaviour, IHalt
-{
+public class EnvGenerator : MonoBehaviour, IHalt {
     public TileConfig tc;
 
     EnvPooler pool;
@@ -28,70 +27,61 @@ public class EnvGenerator : MonoBehaviour, IHalt
 
     bool isHalt;
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         isHalt = true;
     }
 
-    void Start()
-    {
+    void Start() {
         RegisterListeners();
         pool = gameObject.GetComponent<EnvPooler>();
-        lastTile = transform;
+        lastTile = tc.envReturnArea;
 
     }
 
-    private void Update()
-    {
-        if (pool.activeTileCount < 4)
-        {
+    private void Update() {
+        if (pool.activeTileCount < 4) {
             GenerateTile();
         }
     }
 
     // Generate an environment segment directly after last segment
-    void GenerateTile()
-    {
-        var obj = pool.GetObjectFromPool();
-        Vector3 objPos = obj.transform.position;
-        objPos.z = lastTile.transform.position.z + lastTile.transform.GetTransformEnd() / 2;
-        obj.transform.position = objPos;
+    void GenerateTile() {
+        GameObject obj = pool.GetObjectFromPool();
+        Vector3 objpos = obj.transform.position;
+        if (lastTile.transform.childCount > 0)
+            objpos.z = lastTile.transform.GetChild(lastTile.transform.childCount - 1).position.z;
+        else
+            objpos.z = lastTile.transform.position.z;
+        obj.transform.position = objpos;
         lastTile = obj.transform;
     }
 
-    public void RegisterListeners()
-    {
-         GameManager.Instance.OnStart.AddListener(Begin);
-         GameManager.Instance.onPause.AddListener(Halt);
-         GameManager.Instance.OnResume.AddListener(Resume);
-         GameManager.Instance.onEnd.AddListener(End);
+    public void RegisterListeners() {
+        GameManager.Instance.OnStart.AddListener(Begin);
+        GameManager.Instance.onPause.AddListener(Halt);
+        GameManager.Instance.OnResume.AddListener(Resume);
+        GameManager.Instance.onEnd.AddListener(End);
     }
 
-    public void Begin()
-    {
+    public void Begin() {
         isHalt = false;
     }
 
-    public void Halt()
-    {
+    public void Halt() {
         isHalt = true;
     }
 
-    public void Resume()
-    {
+    public void Resume() {
         isHalt = false;
     }
 
-    public void End()
-    {
+    public void End() {
         isHalt = true;
     }
 
     public bool drawGizmos = false;
-    private void OnDrawGizmos()
-    {
-        if (drawGizmos)
-        {
+    private void OnDrawGizmos() {
+        if (drawGizmos) {
             Gizmos.color = new Color(0, 1, 0, 0.5F);
             Gizmos.DrawCube(transform.position, new Vector3(10, 10, 1));
         }

@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileSize: 1
   laneWidth: 1
-  disableSafeDistance: -10
+  returnArea: {fileID: 7274600714728516199, guid: a665fa932bce583488ae0fe47ed490ec,
+    type: 3}
+  envReturnArea: {fileID: 7274600714728516199, guid: dc6c354b1bfa6f747ab7353db62dc91a,
+    type: 3}
   activeTilesNum: 80
   keepInLaneForce: 3

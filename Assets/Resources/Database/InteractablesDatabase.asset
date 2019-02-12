@@ -34,6 +34,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f5ef9563a799911479f6df20244cbf7b, type: 2}
   - {fileID: 11400000, guid: b5c6a242a553cab4e94a17f18761808e, type: 2}
   - {fileID: 11400000, guid: 56098683eabe6744d911d115a7b5c46a, type: 2}
+  - {fileID: 11400000, guid: 56098683eabe6744d911d115a7b5c46a, type: 2}
   interactablesNames:
   - BlankTile
   - CautionSign
@@ -46,7 +47,7 @@ MonoBehaviour:
   - SpoolStatic
   - Worker
   - Shield
-  - Magnet
+  - MagnetPollable
   - JumpPipe1
   - TutJump
   - TutSlide
@@ -55,4 +56,5 @@ MonoBehaviour:
   - TutAddWorker
   - TutMerge
   - TutCollide
+  - TutEnd
   - TutEnd

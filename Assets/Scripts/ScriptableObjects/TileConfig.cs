@@ -25,7 +25,8 @@ public class TileConfig : ScriptableObject
 {
     public float tileSize = 1;
     public float laneWidth = 1;
-    public float disableSafeDistance = 10;
+    public Transform returnArea;
+    public Transform envReturnArea;
     public float activeTilesNum = 60;
     public float keepInLaneForce = 1;
 }
