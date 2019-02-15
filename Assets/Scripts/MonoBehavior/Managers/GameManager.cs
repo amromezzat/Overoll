@@ -75,8 +75,10 @@ public class GameManager : MonoBehaviour
         }
   
         gameState = GameState.MainMenu;
+#if !UNITY_EDITOR
         difficulty.Value= PlayerPrefs.GetInt("PlayedTutorial");
 
+#endif
     }
 
     private void Start()
