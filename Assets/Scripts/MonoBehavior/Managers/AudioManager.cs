@@ -17,11 +17,18 @@ under the License.*/
 
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 using System;
 
 public class AudioManager : MonoBehaviour
 {
+    public Sound Music;
     public Sound[] sounds;
+
+    public GameObject _MusicToggle;
+    public GameObject _SoundToggle;
+    Toggle musicToggle;
+    Toggle soundToggle;
 
     public static AudioManager instance;
 
@@ -37,6 +44,18 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        musicToggle = _MusicToggle.GetComponent<Toggle>();
+        soundToggle = _SoundToggle.GetComponent<Toggle>();
+
+        //-------------------------------------------------
+        Music.source = gameObject.AddComponent<AudioSource>();
+        Music.source.clip = Music.clip;
+        Music.source.volume = Music.volume;
+        Music.source.pitch = Music.pitch;
+        Music.source.loop = Music.loop;
+
+        //---------------------------------------
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -50,7 +69,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlaySound("TempSoundTrack");
+       // PlaySound("TempSoundTrack");
+        Music.source.Play();
     }
 
     public void PlaySound (string name)
@@ -59,11 +79,37 @@ public class AudioManager : MonoBehaviour
 
         if (s == null)
         {
-            //Debug.LogWarning("Sound: " + name + " not found!");
+            Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
+        if (soundToggle.isOn == true)
+        {
+            s.source.Play();
+        }
+        if (soundToggle.isOn == false)
+        {
+            s.source.Pause();
+        }
 
-        s.source.Play();
+    }
+
+
+ 
+
+
+    public void stopMusic()
+    {
+        if (musicToggle.isOn == false)
+        {
+          
+            Music.source.Pause();
+
+        }
+        if (musicToggle.isOn == true)
+        {
+            Music.source.Play();
+        }
+       
     }
 
 }
