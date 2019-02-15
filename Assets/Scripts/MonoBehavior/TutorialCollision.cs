@@ -22,7 +22,7 @@ using UnityEngine;
 public class TutorialCollision : MonoBehaviour
 {
 
-    public GameData gd;
+    //public GameData gd;
 
     /// <summary>
     /// Check the tutorial item to allow action according to it

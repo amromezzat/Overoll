@@ -58,6 +58,7 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
             if (tutorialActive && value != TutorialState.Null)
             {
                 onSlowDown.Invoke();
+                SlowDown();
             }
         }
     }
@@ -68,6 +69,8 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
         {
             Instance = this;
         }
+        if (tutorialActive)
+            onSpeedUp.AddListener(SpeedUp);
     }
 
     private void OnEnable()
@@ -120,8 +123,6 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
                 break;
         }
     }
-
-
 
     IEnumerator StartMergeTutorial()
     {
@@ -212,7 +213,6 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
         EndText.SetActive(false);
         //gd.Speed = gd.defaultSpeed;
         SpeedManager.Instance.speed.SetValueToInitial();
-        //SpeedManager.Instance.SetSpeedValue(SpeedManager.Instance.speed.defaultValue);
         onSlowDown.RemoveListener(SlowDown);
         onSpeedUp.RemoveListener(SpeedUp);
         GameManager.Instance.OnStart.RemoveListener(TutStart);
