@@ -54,17 +54,24 @@ public class EnvGenerator : MonoBehaviour, IHalt
     {
         var obj = pool.GetObjectFromPool();
         Vector3 objPos = obj.transform.position;
-        objPos.z = lastTile.transform.position.z + lastTile.transform.GetTransformEnd() / 2;
+        float lastTileZPos;
+
+        if (lastTile.transform.childCount > 0)
+            lastTileZPos = lastTile.transform.GetChild(lastTile.transform.childCount - 1).position.z;
+        else
+            lastTileZPos = lastTile.transform.position.z;
+
+        objPos.z = lastTile.transform.position.z + lastTileZPos;
         obj.transform.position = objPos;
         lastTile = obj.transform;
     }
 
     public void RegisterListeners()
     {
-         GameManager.Instance.OnStart.AddListener(Begin);
-         GameManager.Instance.onPause.AddListener(Halt);
-         GameManager.Instance.OnResume.AddListener(Resume);
-         GameManager.Instance.onEnd.AddListener(End);
+        GameManager.Instance.OnStart.AddListener(Begin);
+        GameManager.Instance.onPause.AddListener(Halt);
+        GameManager.Instance.OnResume.AddListener(Resume);
+        GameManager.Instance.onEnd.AddListener(End);
     }
 
     public void Begin()

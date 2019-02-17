@@ -26,6 +26,13 @@ public class Jump : IDoAction
 
     float jumpTimer;
 
+    Animator animator;
+
+    public Jump(Animator animator)
+    {
+        this.animator = animator;
+    }
+
     public void OnStateEnter(Animator animator)
     {
         animator.SetBool("JumpAnim", true);
@@ -37,7 +44,6 @@ public class Jump : IDoAction
 
     public bool OnStateExecution(Transform transform, float deltaTime)
     {
-
         Vector3 newPos = transform.position;
         jumpTimer += deltaTime;
         float completedPortion = jumpTimer / jumpDuration;
