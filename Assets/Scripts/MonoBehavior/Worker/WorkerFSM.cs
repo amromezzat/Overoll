@@ -29,6 +29,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     //public TextMesh healthText;
 
     public GameObject magnetColliderObject;
+    public GameObject shadow;
     Animator mAnimator;
     BoxCollider mCollider;
     WorkerReturner workerReturner;
@@ -116,7 +117,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     void SetStatesScripts()
     {
         workerStrafe = new WorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
-        jumpSlideFsm = new JumpSlideFSM(wc, gd, mCollider, mAnimator, transform);
+        jumpSlideFsm = new JumpSlideFSM(wc, gd, mCollider, mAnimator, transform, shadow);
         workerCollide = new WorkerCollide(mAnimator, rb, gd);
 
         positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
@@ -129,7 +130,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
         //for tutorial
         tutWorkerStrafe = new TutWorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration, gd);
-        tutJumpSlide = new TutJumpSlide(wc, gd, mCollider, mAnimator, transform);
+        tutJumpSlide = new TutJumpSlide(wc, gd, mCollider, mAnimator, transform, shadow);
 
         scriptsToResetState = new IWorkerScript[] {
             workerStrafe, jumpSlideFsm, mergerCollide,

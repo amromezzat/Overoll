@@ -28,6 +28,8 @@ public class JumpSlideFSM : IWJumpSlide
     Animator mAnimator;
     Transform transform;
 
+    GameObject shadow;
+
     Slide slideState;
     Jump jumpState;
     Run runState = new Run();
@@ -39,23 +41,24 @@ public class JumpSlideFSM : IWJumpSlide
 
     IDoAction currentState;
 
-    public JumpSlideFSM(WorkerConfig wc, GameData gd, BoxCollider mCollider, Animator mAnimator, Transform transform)
+    public JumpSlideFSM(WorkerConfig wc, GameData gd, BoxCollider mCollider, Animator mAnimator, Transform transform, GameObject mShadow)
     {
         this.wc = wc;
         this.gd = gd;
         this.mCollider = mCollider;
         this.mAnimator = mAnimator;
         this.transform = transform;
+        this.shadow = mShadow;
         InitializeFSM();
     }
 
     void InitializeFSM()
     {
-        slideState = new Slide(mCollider)
+        slideState = new Slide(mCollider, mAnimator, shadow)
         {
             slideDuration = wc.slideDuration
         };
-        jumpState = new Jump
+        jumpState = new Jump(mAnimator)
         {
             jumpDuration = wc.jumpDuration,
             jumpHeight = wc.jumpHeight

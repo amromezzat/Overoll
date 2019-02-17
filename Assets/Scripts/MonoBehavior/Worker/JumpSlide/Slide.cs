@@ -26,9 +26,15 @@ public class Slide : IDoAction
     BoxCollider collider;
     float slideTimer = 0;
 
-    public Slide(BoxCollider _collider)
+    Animator animator;
+
+    GameObject shadow;
+
+    public Slide(BoxCollider _collider, Animator animator, GameObject shadow)
     {
         collider = _collider;
+        this.animator = animator;
+        this.shadow = shadow;
     }
 
     public void OnStateEnter(Animator animator)
@@ -41,12 +47,13 @@ public class Slide : IDoAction
         Vector3 colliderNewPos = collider.transform.position;
         colliderNewPos.y *= 0.25f;
         collider.transform.position = colliderNewPos;
+        shadow.SetActive(false);
     }
 
     public bool OnStateExecution(Transform transform, float deltaTime)
     {
         slideTimer += deltaTime;
-        if (slideTimer >= slideDuration)
+        if (slideTimer >= slideDuration || !animator.GetBool("DuckAnim"))
         {
             return false;
         }
@@ -62,5 +69,6 @@ public class Slide : IDoAction
         Vector3 colliderNewPos = collider.transform.position;
         colliderNewPos.y *= 4;
         collider.transform.position = colliderNewPos;
+        shadow.SetActive(true);
     }
 }
