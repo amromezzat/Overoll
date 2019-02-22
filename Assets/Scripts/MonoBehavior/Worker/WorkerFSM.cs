@@ -25,7 +25,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     public WorkerConfig wc;
     public TileConfig tc;
     public LanesDatabase lanes;
-    public GameData gd;
+    //public GameData gd;
     //public TextMesh healthText;
 
     public GameObject magnetColliderObject;
@@ -117,8 +117,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     void SetStatesScripts()
     {
         workerStrafe = new WorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
-        jumpSlideFsm = new JumpSlideFSM(wc, gd, mCollider, mAnimator, transform, shadow);
-        workerCollide = new WorkerCollide(mAnimator, rb, gd);
+        jumpSlideFsm = new JumpSlideFSM(wc,  mCollider, mAnimator, transform, shadow);
+        workerCollide = new WorkerCollide(mAnimator, rb);
 
         positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
         seekLeaderPosition = new SeekLeaderPosition(transform, wc, lanes);
@@ -129,8 +129,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         mergeLeaderSeeker = new MergeLeaderSeeker(transform, wc, lanes);
 
         //for tutorial
-        tutWorkerStrafe = new TutWorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration, gd);
-        tutJumpSlide = new TutJumpSlide(wc, gd, mCollider, mAnimator, transform, shadow);
+        tutWorkerStrafe = new TutWorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
+        tutJumpSlide = new TutJumpSlide(wc, mCollider, mAnimator, transform, shadow);
 
         scriptsToResetState = new IWorkerScript[] {
             workerStrafe, jumpSlideFsm, mergerCollide,
