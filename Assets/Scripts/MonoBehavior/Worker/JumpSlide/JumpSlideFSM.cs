@@ -23,7 +23,7 @@ public class JumpSlideFSM : IWJumpSlide
 {
     //external references
     WorkerConfig wc;
-    protected GameData gd;
+    //protected GameData gd;
     BoxCollider mCollider;
     Animator mAnimator;
     Transform transform;
@@ -41,10 +41,10 @@ public class JumpSlideFSM : IWJumpSlide
 
     IDoAction currentState;
 
-    public JumpSlideFSM(WorkerConfig wc, GameData gd, BoxCollider mCollider, Animator mAnimator, Transform transform, GameObject mShadow)
+    public JumpSlideFSM(WorkerConfig wc, BoxCollider mCollider, Animator mAnimator, Transform transform, GameObject mShadow)
     {
         this.wc = wc;
-        this.gd = gd;
+        //this.gd = gd;
         this.mCollider = mCollider;
         this.mAnimator = mAnimator;
         this.transform = transform;

@@ -24,13 +24,13 @@ using UnityEngine;
 /// </summary>
 public class TutWorkerStrafe : WorkerStrafe, IWChangeState
 {
-    GameData gd;
+    //GameData gd;
     bool tutRightAct = false;
 
     public TutWorkerStrafe(LanesDatabase lanes, Animator animator, Transform transform,
-        float strafeDuration, GameData gd) : base(lanes, animator, transform, strafeDuration)
+        float strafeDuration) : base(lanes, animator, transform, strafeDuration)
     {
-        this.gd = gd;
+        //this.gd = gd;
     }
 
     public override void ScriptReset()

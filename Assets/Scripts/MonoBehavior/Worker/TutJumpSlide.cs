@@ -24,7 +24,7 @@ public class TutJumpSlide : JumpSlideFSM, IWChangeState
 {
     bool tutRightAct = false;
 
-    public TutJumpSlide(WorkerConfig wc, GameData gd, BoxCollider mCollider, Animator mAnimator, Transform transform, GameObject shadow) : base(wc, gd, mCollider, mAnimator, transform, shadow)
+    public TutJumpSlide(WorkerConfig wc, BoxCollider mCollider, Animator mAnimator, Transform transform, GameObject shadow) : base(wc, mCollider, mAnimator, transform, shadow)
     {
     }
 

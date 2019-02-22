@@ -24,14 +24,14 @@ public class WorkerCollide : IWCollide
 {
     Animator animator;
     Rigidbody rb;
-    GameData gd;
+    //GameData gd;
     
 
-    public WorkerCollide(Animator animator, Rigidbody rb, GameData gd)
+    public WorkerCollide(Animator animator, Rigidbody rb)
     {
         this.animator = animator;
         this.rb = rb;
-        this.gd = gd;
+        //this.gd = gd;
     }
 
     public void ScriptReset()
