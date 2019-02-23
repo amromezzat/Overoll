@@ -26,7 +26,7 @@ using UnityEngine.Playables;
 /// </summary>
 public class CameraTransition : MonoBehaviour, IHalt
 {
-    public GameData gd;
+    //public GameData gd;
     public TileConfig tc;
     public GameObject startView;
     public GameObject backView;
@@ -34,6 +34,8 @@ public class CameraTransition : MonoBehaviour, IHalt
     public Transform beginTrans;
     public Transform EndTrans;
     public float transTime = 2f;
+
+    public Animator cameraAnimator;
 
     Transform current;
     Transform next;
@@ -46,6 +48,7 @@ public class CameraTransition : MonoBehaviour, IHalt
     {
         playableDirector = startView.GetComponent<PlayableDirector>();
         startViewRB = startView.GetComponent<Rigidbody>();
+        cameraAnimator = GetComponent<Animator>();
     }
 
     void Start()
@@ -64,8 +67,8 @@ public class CameraTransition : MonoBehaviour, IHalt
         timer += Time.deltaTime;
         float completedPortion = timer / transTime;
         float sinPortion = Mathf.Sin(completedPortion * Mathf.PI / (transTime * 2));
-        transform.position = Vector3.Lerp(current.position, next.position, sinPortion);
-        transform.rotation = Quaternion.Lerp(current.rotation, next.rotation, sinPortion);
+        //transform.position = Vector3.Lerp(current.position, next.position, sinPortion);
+        //transform.rotation = Quaternion.Lerp(current.rotation, next.rotation, sinPortion);
         if (completedPortion >= transTime)
         {
             Destroy(startView);
@@ -75,6 +78,7 @@ public class CameraTransition : MonoBehaviour, IHalt
 
     public void Begin()
     {
+        cameraAnimator.SetBool("Start", true);
         timer = 0;
         onHalt = false;
         next = EndTrans;
@@ -106,7 +110,7 @@ public class CameraTransition : MonoBehaviour, IHalt
     public void Resume()
     {
         onHalt = false;
-        // startViewRB.velocity = Vector3.back * gd.Speed;
+        //startViewRB.velocity = Vector3.back * gd.Speed;
         startViewRB.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
     }
 

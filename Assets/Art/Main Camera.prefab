@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 114713073532724110}
   - component: {fileID: 114826050582931428}
   - component: {fileID: 114202618863262030}
+  - component: {fileID: 1038179398}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -108,7 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f213a7de243e7649a989e8d674334e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gd: {fileID: 0}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   startView: {fileID: 0}
   backView: {fileID: 0}
@@ -116,6 +116,7 @@ MonoBehaviour:
   beginTrans: {fileID: 0}
   EndTrans: {fileID: 0}
   transTime: 1.5
+  cameraAnimator: {fileID: 0}
 --- !u!114 &114794291320286622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,3 +249,22 @@ MonoBehaviour:
   shaderFXAAPreset3: {fileID: 4800000, guid: c182fa94a5a0a4c02870641efcd38cd5, type: 3}
   shaderFXAAII: {fileID: 4800000, guid: cd5b323dcc592457790ff18b528f5e67, type: 3}
   shaderFXAAIII: {fileID: 4800000, guid: c547503fff0e8482ea5793727057041c, type: 3}
+--- !u!95 &1038179398
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391128679570984}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65a85aadfc684544888e44a92f276a0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

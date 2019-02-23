@@ -28,7 +28,7 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
     public TileConfig tc;
     private Rigidbody rb;
 
-    public GameData gameData;
+    //public GameData gameData;
     public float ExtraVelocity = 0;
 
     Animator mAnim;
