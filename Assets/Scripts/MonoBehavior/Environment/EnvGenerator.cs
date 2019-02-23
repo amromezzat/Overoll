@@ -61,7 +61,7 @@ public class EnvGenerator : MonoBehaviour, IHalt
         else
             lastTileZPos = lastTile.transform.position.z;
 
-        objPos.z = lastTile.transform.position.z + lastTileZPos;
+        objPos.z = lastTileZPos;
         obj.transform.position = objPos;
         lastTile = obj.transform;
     }
