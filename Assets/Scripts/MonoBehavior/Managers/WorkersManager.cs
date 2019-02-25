@@ -56,6 +56,8 @@ public class WorkersManager : MonoBehaviour
         wc.onLeaderDeath.AddListener(LeaderDied);
         wc.onMergeOver.AddListener(MergingDone);
         wc.onAddWorker.AddListener(doubleTap);
+
+        leader.gameObject.SetActive(true);
     }
 
     void Update()

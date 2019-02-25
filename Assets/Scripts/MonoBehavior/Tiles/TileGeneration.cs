@@ -76,7 +76,8 @@ public class TileGeneration : MonoBehaviour
 
     void GetNextSegment()
     {
-        Segment currentSegment = currentPattern[currentSegmentIndex++];
+        currentSegmentIndex = (currentSegmentIndex + 1) % currentPattern.Count;
+        Segment currentSegment = currentPattern[currentSegmentIndex];
 
         if (currentSegmentIndex == currentPattern.Count)
         {
