@@ -414,7 +414,6 @@ MonoBehaviour:
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
-  gd: {fileID: 0}
   magnetColliderObject: {fileID: 1594058664495878}
   shadow: {fileID: 1344323337125814}
   currentState: 1

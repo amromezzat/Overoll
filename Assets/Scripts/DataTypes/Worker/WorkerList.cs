@@ -56,11 +56,11 @@ public class WorkerList : List<WorkerFSM>
         if (shieldOn)
         {
             worker.health = 1000;
-            worker.helmetMaterial.SetFloat("_ExtAmount", 0.0001f);
+            worker.SetHelmetMaterial("_ExtAmount", 0.0001f);
         }
         if (magnetOn)
         {
-            worker.helmetMaterial.SetFloat("_ColAmount", -0.001f);
+            worker.SetHelmetMaterial("_ColAmount", -0.001f);
         }
 
         //if the leader is added after succeding
@@ -105,8 +105,8 @@ public class WorkerList : List<WorkerFSM>
         normWorkersHealth.Remove(IndexOf(worker));
         base.Remove(worker);
 
-        worker.helmetMaterial.SetFloat("_ExtAmount", 0);
-        worker.helmetMaterial.SetFloat("_ColAmount", 0);
+        worker.SetHelmetMaterial("_ExtAmount", 0);
+        worker.SetHelmetMaterial("_ColAmount", 0);
 
         workers[worker.level].Remove(worker);
     }
@@ -143,7 +143,7 @@ public class WorkerList : List<WorkerFSM>
         for (int i = 0; i < Count; i++)
         {
             this[i].health = 1000;
-            this[i].helmetMaterial.SetFloat("_ExtAmount", 0.0001f);
+            this[i].SetHelmetMaterial("_ExtAmount", 0.0001f);
         }
     }
 
@@ -153,7 +153,7 @@ public class WorkerList : List<WorkerFSM>
         for (int i = 0; i < Count; i++)
         {
             this[i].magnetColliderObject.SetActive(true);
-            this[i].helmetMaterial.SetFloat("_ColAmount", -0.001f);
+            this[i].SetHelmetMaterial("_ColAmount", -0.001f);
         }
     }
 
@@ -163,7 +163,7 @@ public class WorkerList : List<WorkerFSM>
         for(int i = 0; i < Count; i++)
         {
             this[i].health = normWorkersHealth[i];
-            this[i].helmetMaterial.SetFloat("_ExtAmount", 0);
+            this[i].SetHelmetMaterial("_ExtAmount", 0);
         }
     }
 
@@ -173,7 +173,7 @@ public class WorkerList : List<WorkerFSM>
         for(int i = 0; i < Count; i++)
         {
             this[i].magnetColliderObject.SetActive(false);
-            this[i].helmetMaterial.SetFloat("_ColAmount", 0);
+            this[i].SetHelmetMaterial("_ColAmount", 0);
         }
     }
 }

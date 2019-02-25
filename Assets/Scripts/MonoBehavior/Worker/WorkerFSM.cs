@@ -62,11 +62,17 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     bool isKillingSpeed = false;
 
     [HideInInspector]
-    public Material helmetMaterial;
+    public List<Material> helmetsMaterial = new List<Material>();
+
+    [SerializeField]
+    List<SkinnedMeshRenderer> Helmets;
 
     private void Awake()
     {
-        helmetMaterial = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material;
+        foreach (SkinnedMeshRenderer helmet in Helmets)
+        {
+            helmetsMaterial.Add(helmet.material);
+        }
         mAnimator = GetComponent<Animator>();
         mCollider = GetComponent<BoxCollider>();
         workerReturner = GetComponent<WorkerReturner>();
@@ -248,7 +254,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
     private void Update()
     {
-        helmetMaterial.SetFloat("_Cutoff", health / (wc.levelsNum * level + 0.01f));
+        SetHelmetMaterial("_Cutoff", health / (wc.levelsNum * level + 0.01f));
         //healthText.text = health.ToString();
         // Check if there is an output trigger from current state
         WorkerStateTrigger trigger = workerStateScripts[currentState].InputTrigger();
@@ -273,6 +279,13 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         }
     }
 
+    public void SetHelmetMaterial(string floatName, float value)
+    {
+        foreach (Material helmetMaterial in helmetsMaterial)
+        {
+            helmetMaterial.SetFloat(floatName, value);
+        }
+    }
     public void Begin()
     {
         if (gameObject.activeSelf)
