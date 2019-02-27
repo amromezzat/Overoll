@@ -340,6 +340,11 @@ PrefabInstance:
       propertyPath: EndTrans
       value: 
       objectReference: {fileID: 651305430}
+    - target: {fileID: 114167492826167878, guid: 07dce5888f96cc14ea7abe45f56f2d1a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07dce5888f96cc14ea7abe45f56f2d1a, type: 3}
 --- !u!1001 &952188153
@@ -1340,6 +1345,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1516782374, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2745713387294861683, guid: 2758f69c35207c04b947f7f18e37dfb8,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

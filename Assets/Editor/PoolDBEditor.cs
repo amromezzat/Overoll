@@ -22,8 +22,8 @@ public class PoolDBEditor : Editor
     {
         poolableDB = (PoolDatabase)target;
 
-        string interactablesDBPath = "Assets/Resources/Database/InteractablesDatabase.asset";
-        interactablesDB = (InteractablesDatabase)AssetDatabase.LoadAllAssetsAtPath(interactablesDBPath)[0];
+        string interactablesDBPath = "Assets/Data/Database/InteractablesDatabase.asset";
+        interactablesDB = AssetDatabase.LoadAssetAtPath<InteractablesDatabase>(interactablesDBPath);
 
         tileType = interactablesDB[0];
     }
@@ -60,7 +60,7 @@ public class PoolDBEditor : Editor
         for (int i = 0; i < poolableDB.Count; i++)
         {
             EditorGUILayout.BeginVertical("HelpBox");
-            LoadPrefabText(poolableDB[i].Name);
+            LoadPrefabImage(poolableDB[i].Name);
 
             EditorGUILayout.BeginHorizontal("HelpBox");
             GUILayout.Label(i.ToString(), EditorStyles.centeredGreyMiniLabel);
@@ -112,11 +112,11 @@ public class PoolDBEditor : Editor
         //center texture
         GUILayout.BeginHorizontal();
         GUILayout.Label("", GUILayout.ExpandWidth(true));
-        LoadPrefabText(tileType.name, 120, 120);
+        LoadPrefabImage(tileType.name, 120, 120);
         GUILayout.Label("", GUILayout.ExpandWidth(true));
         GUILayout.EndHorizontal();
 
-        selectedTile = EditorGUILayout.Popup("Poolable Type", selectedTile, 
+        selectedTile = EditorGUILayout.Popup("Poolable Type", selectedTile,
             interactablesDB.interactablesNames.ToArray());
         tileType = interactablesDB[selectedTile];
 
@@ -186,13 +186,12 @@ public class PoolDBEditor : Editor
         }
     }
 
-    void LoadPrefabText(string name, int minHeight = 70, int minWidth = 70)
+    void LoadPrefabImage(string name, int minHeight = 70, int minWidth = 70)
     {
-        string texture = "Assets/Resources/Textures/PoolableAssets/" + name + ".png";
-        Texture2D inputTexture = (Texture2D)AssetDatabase.LoadAssetAtPath(texture, typeof(Texture2D));
+        Texture2D inputTexture = (Texture2D)EditorGUIUtility.Load("PoolableAssets/" + name + ".png");
         if (!inputTexture)
             return;
-        
+
         GUILayout.Label(inputTexture, GUILayout.MaxHeight(70), GUILayout.MaxWidth(70),
             GUILayout.MinHeight(minHeight), GUILayout.MinWidth(minWidth));
     }

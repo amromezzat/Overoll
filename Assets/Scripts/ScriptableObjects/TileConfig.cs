@@ -26,6 +26,9 @@ public class TileConfig : ScriptableObject
     public float tileSize = 1;
     public float laneWidth = 1;
     public float disableSafeDistance = 10;
+
+    // Start doing object role when it comes close to the player like moving or activating a motion
+    public float extraRoleDistance = 5;
     public float activeTilesNum = 60;
     public float keepInLaneForce = 1;
 }

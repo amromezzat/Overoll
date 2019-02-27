@@ -23,34 +23,24 @@ using UnityEngine;
 /// This class resposiple for moving the tile
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
-public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
+public abstract class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
 {
     public TileConfig tc;
-    private Rigidbody rb;
 
-    //public GameData gameData;
-    public float ExtraVelocity = 0;
-
-    Animator mAnim;
-    Animator[] animList;
+    [HideInInspector]
+    public Rigidbody rb;
 
     bool isKillingSpeed = false;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
         RegisterListeners();
-        mAnim = GetComponent<Animator>();
-        if (mAnim == null)
-        {
-            animList = GetComponentsInChildren<Animator>();
-        }
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-
         if (GameManager.Instance.gameState == GameState.Gameplay)
         {
             MoveObj();
@@ -65,43 +55,31 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
         }
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (isKillingSpeed)
         {
-            //rb.velocity = Vector3.back * gameData.Speed;
-            rb.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
-            //SetAnimatorsSpeed(gameData.Speed / gameData.oldSpeed);
-            SetAnimatorsSpeed(SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.OldValue);
+            if (Mathf.Abs(rb.velocity.z) > 0.01f)
+            {
+                rb.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
+                SetAnimatorsSpeed(SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.OldValue);
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+                SetAnimatorsSpeed(0);
+                isKillingSpeed = false;
+            }
         }
     }
 
-    /// <summary>
-    /// Take extra speed when reaching workers;
-    /// object stays static relative to other objects
-    /// until it is close enough to workers
-    /// </summary>
-    IEnumerator TakeExtraSpeed()
+    protected virtual void MoveObj()
     {
-        //float waitingTime = transform.position.z / gameData.Speed;
-        float waitingTime = transform.position.z / SpeedManager.Instance.speed.Value;
-        yield return new WaitForSeconds(waitingTime);
-        rb.velocity += Vector3.back * ExtraVelocity;
-        mAnim.speed = 1;
-    }
-
-    void MoveObj()
-    {
-        //rb.velocity = Vector3.back * gameData.Speed;
         rb.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
-        if (isActiveAndEnabled && ExtraVelocity > 0)
-        {
-            StartCoroutine(TakeExtraSpeed());
-        }
         SetAnimatorsSpeed(1);
     }
 
-    public void Halt()
+    public virtual void Halt()
     {
         rb.velocity = Vector3.zero;
         SetAnimatorsSpeed(0);
@@ -112,12 +90,12 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
         MoveObj();
     }
 
-    public void RegisterListeners()
+    public virtual void RegisterListeners()
     {
         GameManager.Instance.OnStart.AddListener(Begin);
         GameManager.Instance.onPause.AddListener(Halt);
         GameManager.Instance.OnResume.AddListener(Resume);
-        GameManager.Instance.onEnd.AddListener(End);
+        //GameManager.Instance.onEnd.AddListener(End);
         TutorialManager.Instance.onSlowDown.AddListener(SlowDown);
         TutorialManager.Instance.onSpeedUp.AddListener(SpeedUp);
     }
@@ -127,25 +105,7 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
         MoveObj();
     }
 
-    public void End()
-    {
-        rb.velocity = Vector3.back * ExtraVelocity;
-    }
-
-    void SetAnimatorsSpeed(float speed)
-    {
-        if (mAnim != null)
-        {
-            mAnim.speed = speed;
-        }
-        else if (animList != null)
-        {
-            foreach (Animator anim in animList)
-            {
-                anim.speed = speed;
-            }
-        }
-    }
+    protected abstract void SetAnimatorsSpeed(float speed);
 
     public void SpeedUp()
     {
@@ -156,5 +116,10 @@ public class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
     public void SlowDown()
     {
         isKillingSpeed = true;
+    }
+
+    public void End()
+    {
+        throw new System.NotImplementedException();
     }
 }
