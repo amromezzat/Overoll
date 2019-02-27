@@ -81,7 +81,7 @@ public class ScoreManager : MonoBehaviour, IHalt
         //oldCoinCount = gData.CoinCount;
 
 
-        AudioManager.instance.PlaySound("za3bolla");
+        //AudioManager.instance.PlaySound("za3bolla");
     }
 
     IEnumerator ScorePerSec()

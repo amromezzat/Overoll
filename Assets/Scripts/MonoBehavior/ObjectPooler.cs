@@ -57,7 +57,6 @@ public class ObjectPooler : MonoBehaviour
             if (instQueue.Count > 0)
             {
                 GameObject pooledObj = instQueue.Dequeue();
-                pooledObj.SetActive(true);
                 return pooledObj;
             }
             return InstantiateGameObj(pd[instType].prefab, true); ;

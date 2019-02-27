@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 33106188306851702}
   - component: {fileID: 23569442992581748}
   - component: {fileID: 54739304232989262}
-  - component: {fileID: 114558495249294632}
   - component: {fileID: 114423029949743330}
+  - component: {fileID: 5509907799886772402}
   m_Layer: 0
   m_Name: BlankTile
   m_TagString: Untagged
@@ -96,21 +96,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114558495249294632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226006887666504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f3c5a50ce4c82458d3f253c6adade9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
-  ExtraVelocity: 0
 --- !u!114 &114423029949743330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,3 +111,19 @@ MonoBehaviour:
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   poolableType: {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
   inActiveSegment: 0
+--- !u!114 &5509907799886772402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226006887666504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3631f491a5640a4478f2803e87e0f7cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  rb: {fileID: 0}
+  tileExtraAction: {fileID: 11400000, guid: d821dc09e0d4a3b4e81cd980c435e90e, type: 2}
+  Anim: {fileID: 0}

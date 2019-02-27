@@ -22,8 +22,6 @@ using UnityEngine.UI;
 
 public class PickUpCoin : MonoBehaviour
 {
-
-    public GameData gd;
     public WorkerConfig wc;
     TileReturner cReturn;
     private CoinMagnet coinMagnet;
