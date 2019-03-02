@@ -18,7 +18,7 @@ public class ExtraSpeedTile : TileExtraAction
         float waitingTime = (caller.transform.position.z - relActivPos) / SpeedManager.Instance.speed.Value;
         yield return new WaitForSeconds(waitingTime);
         caller.Anim.SetTrigger("Rotate Spool");
-        caller.rb.velocity += Vector3.back * ExtraVelocity;
+        caller.extraSpeed = ExtraVelocity;
         caller.Anim.speed = 1;
     }
 }

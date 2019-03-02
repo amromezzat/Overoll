@@ -23,103 +23,13 @@ using UnityEngine;
 /// This class resposiple for moving the tile
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
-public abstract class ObjectMover : MonoBehaviour, IHalt, IChangeSpeed
+public abstract class ObjectMover : MonoBehaviour
 {
-    public TileConfig tc;
-
-    [HideInInspector]
-    public Rigidbody rb;
-
-    bool isKillingSpeed = false;
-
-    protected virtual void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero;
-        RegisterListeners();
-    }
-
-    protected virtual void OnEnable()
-    {
-        if (GameManager.Instance.gameState == GameState.Gameplay)
-        {
-            MoveObj();
-        }
-        else
-        {
-            rb.velocity = Vector3.zero;
-        }
-        if (TutorialManager.Instance.tutorialActive && TutorialManager.Instance.TutorialState != TutorialState.Null)
-        {
-            isKillingSpeed = true;
-        }
-    }
-
     protected virtual void Update()
     {
-        if (isKillingSpeed)
-        {
-            if (Mathf.Abs(rb.velocity.z) > 0.01f)
-            {
-                rb.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
-                SetAnimatorsSpeed(SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.OldValue);
-            }
-            else
-            {
-                rb.velocity = Vector3.zero;
-                SetAnimatorsSpeed(0);
-                isKillingSpeed = false;
-            }
-        }
-    }
-
-    protected virtual void MoveObj()
-    {
-        rb.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
-        SetAnimatorsSpeed(1);
-    }
-
-    public virtual void Halt()
-    {
-        rb.velocity = Vector3.zero;
-        SetAnimatorsSpeed(0);
-    }
-
-    public void Resume()
-    {
-        MoveObj();
-    }
-
-    public virtual void RegisterListeners()
-    {
-        GameManager.Instance.OnStart.AddListener(Begin);
-        GameManager.Instance.onPause.AddListener(Halt);
-        GameManager.Instance.OnResume.AddListener(Resume);
-        //GameManager.Instance.onEnd.AddListener(End);
-        TutorialManager.Instance.onSlowDown.AddListener(SlowDown);
-        TutorialManager.Instance.onSpeedUp.AddListener(SpeedUp);
-    }
-
-    public void Begin()
-    {
-        MoveObj();
+        transform.position += Vector3.back * SpeedManager.Instance.speed;
+        SetAnimatorsSpeed(SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.OldValue);
     }
 
     protected abstract void SetAnimatorsSpeed(float speed);
-
-    public void SpeedUp()
-    {
-        MoveObj();
-        isKillingSpeed = false;
-    }
-
-    public void SlowDown()
-    {
-        isKillingSpeed = true;
-    }
-
-    public void End()
-    {
-        throw new System.NotImplementedException();
-    }
 }

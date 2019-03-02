@@ -47,5 +47,7 @@ MonoBehaviour:
   addWorkerBtn: {fileID: 0}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  gData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
   wPFactor: 2
+  shield: {fileID: 11400000, guid: d81aa74c28e99354ea2903cd375fd38f, type: 2}
+  magnet: {fileID: 11400000, guid: 3e6e903bee6c1e94d93b1f9a133e43f1, type: 2}
+  teacup: {fileID: 11400000, guid: b0477af9ba2168943954facedcee9898, type: 2}

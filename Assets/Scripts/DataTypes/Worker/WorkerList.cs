@@ -29,6 +29,9 @@ public class WorkerList : List<WorkerFSM>
 
     bool shieldOn = false;
     bool magnetOn = false;
+    bool teacupOn = false;
+
+    
 
     WorkerFSM ascender;
     List<List<WorkerFSM>> workers = new List<List<WorkerFSM>>();
@@ -146,7 +149,18 @@ public class WorkerList : List<WorkerFSM>
             this[i].SetHelmetMaterial("_ExtAmount", 0.0001f);
         }
     }
-
+    public void StartTeacupPowerUp()
+    {
+       
+        teacupOn = true;
+        SpeedManager.Instance.speed.Value = 10;
+        Debug.Log(SpeedManager.Instance.speed.Value);
+    }
+    public void EndTeacupPowerUp()
+    {
+        teacupOn = false;
+        SpeedManager.Instance.speed.Value = 5;
+    }
     public void StartMagnetPowerup()
     {
         magnetOn = true;
