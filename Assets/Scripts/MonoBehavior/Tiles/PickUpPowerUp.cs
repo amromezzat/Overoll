@@ -45,8 +45,14 @@ public class PickUpPowerUp : MonoBehaviour
             if (tag == "Shield")
             {
                 //gameData.gotShield.Invoke();
+
                 PowerUpManager.Instance.shield.StartPowerUP();
             }
+            if (tag == "TeaCup")
+            {
+                PowerUpManager.Instance.teacup.StartPowerUP();
+            }
+
             StartCoroutine(cReturn.ReturnToPool(0));
         }
     }

@@ -30,7 +30,7 @@ public class WorkersManager : MonoBehaviour
 
     public PowerUpVariable shield;
     public PowerUpVariable magnet;
-
+    public PowerUpVariable teacup;
     //[HideInInspector]
     //public int hrNum;
     //[HideInInspector]
@@ -49,6 +49,9 @@ public class WorkersManager : MonoBehaviour
         shield.EndAction.AddListener(wc.workers.EndShieldPowerup);
         magnet.BeginAction.AddListener(wc.workers.StartMagnetPowerup);
         magnet.EndAction.AddListener(wc.workers.EndMagnetPowerup);
+
+        teacup.BeginAction.AddListener(wc.workers.StartTeacupPowerUp);
+        teacup.EndAction.AddListener(wc.workers.EndTeacupPowerUp);
 
         ScoreManager.Instance.coinsCount.Value = 0;
         wc.leader = leader;

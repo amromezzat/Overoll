@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28afdafb85ade2a48a0356803a1c4cd3, type: 3}
-  m_Name: Speed
+  m_Script: {fileID: 11500000, guid: 8c93058685ab53044bc4cb46f1ec0f38, type: 3}
+  m_Name: TeaCup
   m_EditorClassIdentifier: 
-  InitialValue: 5
-  runtimeValue: 5
+  containTiles: 0

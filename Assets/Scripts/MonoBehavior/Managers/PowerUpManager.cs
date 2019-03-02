@@ -28,6 +28,7 @@ public class PowerUpManager : MonoBehaviour
 
     public PowerUpVariable shield;
     public PowerUpVariable magnet;
+    public PowerUpVariable teacup;
 
     //public GameData gd;
     // public WorkerConfig wc;

@@ -45,12 +45,12 @@ public class PowerUpVariable : ScriptableObject, ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
-        InAct = false;
-        Time = 0;
+
     }
 
     public void OnAfterDeserialize()
     {
-
+        InAct = false;
+        Time = 0;
     }
 }

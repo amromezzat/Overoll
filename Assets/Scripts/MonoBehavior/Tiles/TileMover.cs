@@ -9,15 +9,8 @@ public class TileMover : ObjectMover
 
     public Animator Anim;
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
+    [HideInInspector]
+    public float extraSpeed;
 
     protected virtual void OnDisable()
     {
@@ -25,15 +18,20 @@ public class TileMover : ObjectMover
             Anim.SetTrigger("Reset");
     }
 
-    protected override void Update()
+    private void OnEnable()
     {
-        base.Update();
+        TakeExtraAction();
     }
 
-    protected override void MoveObj()
+    protected override void Update()
     {
-        base.MoveObj();
+        float speed = SpeedManager.Instance.speed + extraSpeed;
+        transform.position += Vector3.back * speed;
+        SetAnimatorsSpeed(speed / SpeedManager.Instance.speed.OldValue);
+    }
 
+    protected virtual void TakeExtraAction()
+    {
         if (isActiveAndEnabled && tileExtraAction != null)
         {
             tileExtraAction.Begin(this);
