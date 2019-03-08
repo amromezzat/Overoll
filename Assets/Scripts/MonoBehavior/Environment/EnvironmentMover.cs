@@ -7,14 +7,16 @@ public class EnvironmentMover : ObjectMover
 {
     Animator[] animList;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         animList = GetComponentsInChildren<Animator>();
     }
 
-    protected override void Update()
+    protected override void Start()
     {
-        base.Update();
+        base.Start();
     }
 
     protected override void SetAnimatorsSpeed(float speed)

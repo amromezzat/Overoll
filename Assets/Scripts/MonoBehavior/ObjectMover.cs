@@ -25,10 +25,28 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class ObjectMover : MonoBehaviour
 {
-    protected virtual void Update()
+    protected Rigidbody rb;
+
+    protected virtual void Awake()
     {
-        transform.position += Vector3.back * SpeedManager.Instance.speed;
-        SetAnimatorsSpeed(SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.OldValue);
+        rb = GetComponent<Rigidbody>();
+
+        SpeedManager.Instance.speed.onValueChanged.AddListener((speed) =>
+        {
+            SetAnimatorsSpeed(speed / SpeedManager.Instance.speed.OldValue);
+            SetVelocity(speed);
+        });
+    }
+
+    protected virtual void Start()
+    {
+        SetAnimatorsSpeed(SpeedManager.Instance.speed / SpeedManager.Instance.speed.OldValue);
+        SetVelocity(SpeedManager.Instance.speed);
+    }
+
+    protected virtual void SetVelocity(float speed)
+    {
+        rb.velocity = Vector3.back * speed ;
     }
 
     protected abstract void SetAnimatorsSpeed(float speed);

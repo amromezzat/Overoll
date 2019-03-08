@@ -42,7 +42,7 @@ public class WorkerStrafe : IWStrafe
         if (!strafing)
         {
             strafeTimer = 0;
-            animator.SetBool("StrafeRightAnim", true);
+            animator.SetTrigger("StrafeRight");
             lanes.GoRight();
             strafing = true;
         }
@@ -53,7 +53,7 @@ public class WorkerStrafe : IWStrafe
         if (!strafing)
         {
             strafeTimer = 0;
-            animator.SetBool("StrafeLeftAnim", true);
+            animator.SetTrigger("StrafeLeft");
             lanes.GoLeft();
             strafing = true;
         }
@@ -72,8 +72,6 @@ public class WorkerStrafe : IWStrafe
             if (squarePortion >= 1)
             {
                 strafing = false;
-                animator.SetBool("StrafeRightAnim", false);
-                animator.SetBool("StrafeLeftAnim", false);
             }
         }
     }

@@ -17,12 +17,6 @@ MonoBehaviour:
   sectionLength: 0
   segmentList:
   - ListOfTiles:
-    - {fileID: 11400000, guid: 03b46bc1d05ff204b8a296a21c18b806, type: 2}
-    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
-    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
-    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
-    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
-  - ListOfTiles:
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
@@ -31,7 +25,13 @@ MonoBehaviour:
   - ListOfTiles:
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
-    - {fileID: 11400000, guid: 7381256c288ad8e4c94e92532ffa3d7a, type: 2}
+    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
+    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
+    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
+  - ListOfTiles:
+    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
+    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
+    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
   - ListOfTiles:
@@ -68,7 +68,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
-    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
+    - {fileID: 11400000, guid: adaeafb77eee4344bae1c559e4be59b3, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
   - ListOfTiles:
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}

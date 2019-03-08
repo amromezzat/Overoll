@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsHealth: 1
+  runtimeObsHealth: 0
+  collidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f, type: 2}
 --- !u!114 &114177793612305620
 MonoBehaviour:
   m_ObjectHideFlags: 0

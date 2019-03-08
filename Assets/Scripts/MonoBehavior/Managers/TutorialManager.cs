@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class TutorialManager : MonoBehaviour, IChangeSpeed
+public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance;
 
@@ -17,11 +17,6 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
     public WorkerConfig wc;
 
     public GameObject pauseBtn;
-
-    [HideInInspector]
-    public UnityEvent onSpeedUp = new UnityEvent();
-    [HideInInspector]
-    public UnityEvent onSlowDown = new UnityEvent();
 
     public float slowingRatio = 0.1f;
     public float slowingRate = 0.5f;
@@ -57,8 +52,7 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
 
             if (tutorialActive && value != TutorialState.Null)
             {
-                onSlowDown.Invoke();
-                SlowDown();
+                SpeedManager.Instance.speed.Value = 0;
             }
         }
     }
@@ -69,8 +63,6 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
         {
             Instance = this;
         }
-        if (tutorialActive)
-            onSpeedUp.AddListener(SpeedUp);
     }
 
     private void OnEnable()
@@ -133,14 +125,14 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
         {
             wc.onAddWorker.Invoke();
         }
-        onSpeedUp.Invoke();
+        SpeedManager.Instance.ResetSpeed();
     }
 
     IEnumerator CollideTut()
     {
         MergeText.SetActive(true);
         yield return new WaitForSeconds(1);
-        onSpeedUp.Invoke();
+        SpeedManager.Instance.ResetSpeed();
         yield return new WaitForSeconds(1);
         MergeText.SetActive(false);
         CollideText.SetActive(true);
@@ -158,10 +150,6 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
             StartCoroutine(BecomeATutor());
             ScoreText.SetActive(false);
             GoldText.SetActive(false);
-        }
-        else
-        {
-            StartCoroutine(EndTutorial());
         }
     }
 
@@ -206,15 +194,13 @@ public class TutorialManager : MonoBehaviour, IChangeSpeed
     IEnumerator EndTutorial()
     {
         yield return new WaitForSeconds(1);
-        onSpeedUp.Invoke();
+        SpeedManager.Instance.ResetSpeed();
         ScoreText.SetActive(true);
         tutorialActive = false;
         yield return new WaitForSeconds(1);
         EndText.SetActive(false);
         //gd.Speed = gd.defaultSpeed;
         SpeedManager.Instance.speed.SetValueToInitial();
-        onSlowDown.RemoveListener(SlowDown);
-        onSpeedUp.RemoveListener(SpeedUp);
         GameManager.Instance.OnStart.RemoveListener(TutStart);
         tutorialActive = false;
         pauseBtn.SetActive(true);

@@ -24,3 +24,8 @@ interface ICollidable
     void ReactToCollision(int collidedHealth);
     int Gethealth();
 }
+
+interface IObstacle : ICollidable
+{
+    void PlayEffect(Animator animator, Rigidbody rb);
+}

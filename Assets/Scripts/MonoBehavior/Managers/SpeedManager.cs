@@ -7,6 +7,9 @@ public class SpeedManager : MonoBehaviour
 {
     public static SpeedManager Instance;
 
+    [SerializeField]
+    float gameSpeed = 5;
+
     public FloatField speed;
     
     private void Awake()
@@ -15,5 +18,10 @@ public class SpeedManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    public void ResetSpeed()
+    {
+        speed.Value = gameSpeed;
     }
 }

@@ -128,18 +128,21 @@ public class GameManager : MonoBehaviour
     public void GameHalt()
     {
         gameState = GameState.Pause;
+        SpeedManager.Instance.speed.Value = 0;
         onPause.Invoke();
     }
 
     public void GameResume()
     {
         gameState = GameState.Gameplay;
+        SpeedManager.Instance.ResetSpeed();
         OnResume.Invoke();
     }
 
     void GameStart()
     {
         gameState = GameState.Gameplay;
+        SpeedManager.Instance.ResetSpeed();
         OnStart.Invoke();
     }
 
@@ -148,6 +151,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void EndGame()
     {
+        SpeedManager.Instance.speed.Value = 0;
+
         inGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(false);
         endGameCanvas.gameObject.SetActive(true);

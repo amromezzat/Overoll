@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour, IHalt
     public IntField score;
 
     int timeScore;
-    //int coinvalue = 5;
+    int coinvalue = 5;
     int secValue = 1;
     // public int oldCoinCount;
     public Text scoreText;
@@ -64,11 +64,6 @@ public class ScoreManager : MonoBehaviour, IHalt
         if (TutorialManager.Instance.tutorialActive)
             return;
 
-        //gData.coinCount = coinvalue * (gData.CoinCount - oldCoinCount) * wConfig.workers.Count;
-        coinsCount.Value = coinsCount.Value * (coinsCount.Value - coinsCount.OldValue) * wConfig.workers.Count;
-
-        // calc score
-        //score.Value = timeScore + gData.coinCount;
         score.Value = timeScore + coinsCount.Value;
 
 
@@ -78,10 +73,6 @@ public class ScoreManager : MonoBehaviour, IHalt
         //Display score
         scoreText.text = score.Value.ToString();
         coinNum.text = coinsCount.Value.ToString();
-        //oldCoinCount = gData.CoinCount;
-
-
-        //AudioManager.instance.PlaySound("za3bolla");
     }
 
     IEnumerator ScorePerSec()

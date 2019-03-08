@@ -79,6 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsHealth: 1
+  runtimeObsHealth: 0
+  collidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f, type: 2}
 --- !u!114 &7665409069929449596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,10 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631f491a5640a4478f2803e87e0f7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  rb: {fileID: 0}
   tileExtraAction: {fileID: 11400000, guid: e6abbac817dfd5d469552f637f6ddfcf, type: 2}
   Anim: {fileID: 6260580775409045043}
+  extraSpeed: 0
 --- !u!1001 &108658915504240333
 PrefabInstance:
   m_ObjectHideFlags: 0

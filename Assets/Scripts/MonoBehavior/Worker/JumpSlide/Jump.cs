@@ -35,8 +35,8 @@ public class Jump : IDoAction
 
     public void OnStateEnter(Animator animator)
     {
-        animator.SetBool("JumpAnim", true);
-
+        this.animator = animator;
+        animator.SetBool("Jumping", true);
         AudioManager.instance.PlaySound("WorkerJump");
 
         jumpTimer = 0;
@@ -47,6 +47,7 @@ public class Jump : IDoAction
         Vector3 newPos = transform.position;
         jumpTimer += deltaTime;
         float completedPortion = jumpTimer / jumpDuration;
+        animator.SetFloat("JumpingRatio", completedPortion);
         newPos.y = Mathf.Lerp(0.25f, jumpHeight, Mathf.Sin(Mathf.PI * completedPortion));
         transform.position = newPos;
         if (transform.position.y <= 0.25)
@@ -58,6 +59,6 @@ public class Jump : IDoAction
 
     public void OnStateExit(Animator animator)
     {
-        animator.SetBool("JumpAnim", false);
+        animator.SetBool("Jumping", false);
     }
 }
