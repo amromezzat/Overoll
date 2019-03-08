@@ -598,6 +598,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obsHealth: 1
   runtimeObsHealth: 0
+  objReturner: {fileID: 114817504586846418, guid: a46227be9f5ea1446b3ab69bf950b838,
+    type: 3}
   collidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f, type: 2}
 --- !u!114 &114817504586846418
 MonoBehaviour:

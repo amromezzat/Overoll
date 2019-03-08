@@ -346,6 +346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obsHealth: 1
   runtimeObsHealth: 0
+  objReturner: {fileID: 114510189972390472, guid: 058bd49ae784dab4a81546c7b8055b33,
+    type: 3}
   collidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f, type: 2}
 --- !u!114 &114510189972390472
 MonoBehaviour:
@@ -556,13 +558,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953567317097220}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0031544, y: -0.054, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4854500879529036}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33689776762583358
 MeshFilter:
   m_ObjectHideFlags: 0
