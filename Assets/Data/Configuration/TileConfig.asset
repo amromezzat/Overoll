@@ -15,5 +15,6 @@ MonoBehaviour:
   tileSize: 1
   laneWidth: 1
   disableSafeDistance: -10
-  activeTilesNum: 80
+  extraRoleDistance: 5
+  activeTilesNum: 2000
   keepInLaneForce: 3

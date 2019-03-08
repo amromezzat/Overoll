@@ -101,6 +101,8 @@ public class WorkerList : List<WorkerFSM>
             newMasterHealth = newMasterHealth >= 1000 ? newMasterHealth / 1000 : newMasterHealth;
             normWorkersHealth[IndexOf(worker)] = newMasterHealth;
         }
+
+        worker.gameObject.SetActive(true);
     }
 
     public new void Remove(WorkerFSM worker)
@@ -150,16 +152,14 @@ public class WorkerList : List<WorkerFSM>
         }
     }
     public void StartTeacupPowerUp()
-    {
-       
+    {     
         teacupOn = true;
         SpeedManager.Instance.speed.Value = 10;
-        Debug.Log(SpeedManager.Instance.speed.Value);
     }
     public void EndTeacupPowerUp()
     {
         teacupOn = false;
-        SpeedManager.Instance.speed.Value = 5;
+        SpeedManager.Instance.ResetSpeed();
     }
     public void StartMagnetPowerup()
     {

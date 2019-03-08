@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(WorkerReturner))]
-public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
+public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 {
     public WorkerConfig wc;
     public TileConfig tc;
@@ -59,13 +59,14 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     public int health = 1;
     public int level = 0;
 
-    bool isKillingSpeed = false;
-
     [HideInInspector]
     public List<Material> helmetsMaterial = new List<Material>();
 
     [SerializeField]
     List<SkinnedMeshRenderer> Helmets;
+
+    [SerializeField]
+    Transform powerUpPosition;
 
     private void Awake()
     {
@@ -99,10 +100,10 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         if (GameManager.Instance.gameState == GameState.Gameplay)
         {
             currentState = WorkerState.Worker;
-            mAnimator.SetBool("RunAnim", true);
         }
         else if (GameManager.Instance.gameState == GameState.MainMenu)
         {
+            mAnimator.SetBool("Idle", true);
             haltedState = WorkerState.Leader;
             currentState = WorkerState.Halted;
         }
@@ -239,7 +240,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
                 wc.onMergeOver.Invoke();
                 break;
             case WorkerFSMOutput.TutRightInput:
-                TutorialManager.Instance.onSpeedUp.Invoke();
+                SpeedManager.Instance.ResetSpeed();
                 break;
             case WorkerFSMOutput.TutEnded:
                 mAnimator.SetBool("StrafeRightAnim", false);
@@ -264,11 +265,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
             currentState = transition.Destination;
             Output(transition.Output);
         }
-        if (isKillingSpeed)
-        {
-            //mAnimator.speed *= gd.Speed / gd.oldSpeed;
-            mAnimator.speed *= SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.OldValue;
-        }
     }
 
     private void FixedUpdate()
@@ -289,7 +285,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     public void Begin()
     {
         if (gameObject.activeSelf)
-            mAnimator.SetBool("RunAnim", true);
+            mAnimator.SetBool("Idle", false);
         currentState = haltedState;
     }
 
@@ -330,8 +326,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         GameManager.Instance.onPause.AddListener(Halt);
         GameManager.Instance.OnResume.AddListener(Resume);
         GameManager.Instance.onEnd.AddListener(End);
-        TutorialManager.Instance.onSlowDown.AddListener(SlowDown);
-        TutorialManager.Instance.onSpeedUp.AddListener(SpeedUp);
     }
 
     public void ReactToCollision(int collidedHealth)
@@ -342,22 +336,5 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     public int Gethealth()
     {
         return health;
-    }
-
-    public void SpeedUp()
-    {
-        if (!isActiveAndEnabled)
-            return;
-        mAnimator.speed = 1;
-        isKillingSpeed = false;
-    }
-
-    public void SlowDown()
-    {
-        if (!isActiveAndEnabled)
-            return;
-        //mAnimator.speed = gd.Speed / gd.oldSpeed;
-        mAnimator.speed = SpeedManager.Instance.speed.Value / SpeedManager.Instance.speed.OldValue;
-        isKillingSpeed = true;
     }
 }

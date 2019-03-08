@@ -40,7 +40,7 @@ public class Slide : IDoAction
     public void OnStateEnter(Animator animator)
     {
         slideTimer = 0;
-        animator.SetBool("DuckAnim", true);
+        animator.SetTrigger("Duck");
         Vector3 newColliderSize = collider.size;
         newColliderSize.y *= 0.25f;
         collider.size = newColliderSize;
@@ -53,7 +53,7 @@ public class Slide : IDoAction
     public bool OnStateExecution(Transform transform, float deltaTime)
     {
         slideTimer += deltaTime;
-        if (slideTimer >= slideDuration || !animator.GetBool("DuckAnim"))
+        if (slideTimer >= slideDuration)
         {
             return false;
         }
@@ -62,7 +62,6 @@ public class Slide : IDoAction
 
     public void OnStateExit(Animator animator)
     {
-        animator.SetBool("DuckAnim", false);
         Vector3 newColliderSize = collider.size;
         newColliderSize.y *= 4;
         collider.size = newColliderSize;

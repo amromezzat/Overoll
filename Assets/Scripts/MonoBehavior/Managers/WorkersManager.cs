@@ -58,7 +58,7 @@ public class WorkersManager : MonoBehaviour
         wc.workers.Add(leader);
         wc.onLeaderDeath.AddListener(LeaderDied);
         wc.onMergeOver.AddListener(MergingDone);
-        wc.onAddWorker.AddListener(doubleTap);
+        wc.onAddWorker.AddListener(OnDoubleTap);
 
         leader.gameObject.SetActive(true);
     }
@@ -81,7 +81,7 @@ public class WorkersManager : MonoBehaviour
         }
     }
 
-    public void doubleTap()
+    public void OnDoubleTap()
     {
         if(GameManager.Instance.gameState == GameState.Gameplay)
         {
@@ -95,7 +95,7 @@ public class WorkersManager : MonoBehaviour
     {
         if (TutorialManager.Instance.tutorialActive && TutorialManager.Instance.TutorialState == TutorialState.AddWorker)
         {
-            TutorialManager.Instance.onSpeedUp.Invoke();
+            SpeedManager.Instance.ResetSpeed();
         }
         GameObject worker = ObjectPooler.instance.GetFromPool(wc.workerType);
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
