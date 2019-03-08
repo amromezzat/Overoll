@@ -23,7 +23,6 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "WorkerConfig", menuName = "Config/WorkerConfig")]
 public class WorkerConfig : ScriptableObject
 {
-
     public WorkerFSM leader;
 
     //Events available for other classes to register to

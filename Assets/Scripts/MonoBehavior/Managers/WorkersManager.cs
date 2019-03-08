@@ -53,7 +53,6 @@ public class WorkersManager : MonoBehaviour
         teacup.BeginAction.AddListener(wc.workers.StartTeacupPowerUp);
         teacup.EndAction.AddListener(wc.workers.EndTeacupPowerUp);
 
-        ScoreManager.Instance.coinsCount.Value = 0;
         wc.leader = leader;
         wc.workers.Add(leader);
         wc.onLeaderDeath.AddListener(LeaderDied);
@@ -66,11 +65,8 @@ public class WorkersManager : MonoBehaviour
     void Update()
     {
         wc.aheadFollowPoint = -Mathf.Log10(wc.workers.Count + 1) - 0.5f;
-        //gData.workerPrice = (wc.workers.Count + 1) * wPFactor;
         ScoreManager.Instance.workerPrice = (wc.workers.Count + 1) * wPFactor;
 
-
-        //if (gData.workerPrice > gData.CoinCount)
         if (ScoreManager.Instance.workerPrice > ScoreManager.Instance.coinsCount.Value)
         {
             addWorkerBtn.GetComponent<Button>().interactable = false;
@@ -85,7 +81,6 @@ public class WorkersManager : MonoBehaviour
     {
         if(GameManager.Instance.gameState == GameState.Gameplay)
         {
-            //if(gData.workerPrice < gData.CoinCount || gData.tutorialActive)
             if(ScoreManager.Instance.workerPrice < ScoreManager.Instance.coinsCount.Value || TutorialManager.Instance.tutorialActive)
                 AddWorker();
         }
@@ -104,8 +99,6 @@ public class WorkersManager : MonoBehaviour
         WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
             
         wc.workers.Add(workerFSM);
-        //gData.CoinCount -= gData.workerPrice;     
-        //ScoreManager.Instance.coinsCount.Value -= ScoreManager.Instance.workerPrice; 
         ScoreManager.Instance.DeductWorkerPrice();
     }
 

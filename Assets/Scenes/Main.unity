@@ -1067,6 +1067,11 @@ PrefabInstance:
       propertyPath: GoldText
       value: 
       objectReference: {fileID: 1728137747}
+    - target: {fileID: 114419713232927628, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7,
+        type: 3}
+      propertyPath: tutorialActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224589698531748534, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
