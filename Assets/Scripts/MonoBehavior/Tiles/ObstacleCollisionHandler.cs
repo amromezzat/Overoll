@@ -23,10 +23,10 @@ using UnityEngine;
 [RequireComponent(typeof(TileReturner))]
 public class ObstacleCollisionHandler : MonoBehaviour, IObstacle
 {
-    public int obsHealth;
+    [SerializeField]
+    int obsHealth;
     [HideInInspector]
     public int runtimeObsHealth;
-    int currentHealth;
     TileReturner objReturner;
     HealthState obstacleState = HealthState.Healthy;
     public WorkerCollidingEffect collidingEffect;
@@ -39,11 +39,11 @@ public class ObstacleCollisionHandler : MonoBehaviour, IObstacle
 
     public virtual void ReactToCollision(int collidedHealth)
     {
-        currentHealth -= collidedHealth;
-        if (obsHealth <= 0)
+        runtimeObsHealth -= collidedHealth;
+        if (runtimeObsHealth <= 0)
         {
             obstacleState = HealthState.Wrecked;
-            currentHealth = obsHealth;
+            runtimeObsHealth = obsHealth;
             StartCoroutine(objReturner.ReturnToPool(0));
         }
         else

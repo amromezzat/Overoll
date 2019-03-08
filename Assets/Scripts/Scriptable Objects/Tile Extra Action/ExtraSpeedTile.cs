@@ -33,10 +33,12 @@ public class ExtraSpeedTile : TileExtraAction
     /// </summary>
     protected override IEnumerator Action(TileMover caller)
     {
+        yield return new WaitUntil(() => SpeedManager.Instance.speed.Value > 0.001f);
         float waitingTime = (caller.transform.position.z - relActivPos) / SpeedManager.Instance.speed.Value;
         yield return new WaitForSeconds(waitingTime);
         caller.Anim.SetTrigger("Rotate Spool");
         caller.extraSpeed = ExtraVelocity;
+        caller.Velocity += caller.Velocity + ExtraVelocity;
         caller.Anim.speed = 1;
     }
 }

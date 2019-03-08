@@ -30,7 +30,6 @@ public class ScoreManager : MonoBehaviour, IHalt
     int timeScore;
     int coinvalue = 5;
     int secValue = 1;
-    // public int oldCoinCount;
     public Text scoreText;
     public Text coinNum;
     public WorkerConfig wConfig;
@@ -53,22 +52,19 @@ public class ScoreManager : MonoBehaviour, IHalt
     void OnEnable()
     {
         timeScore = 0;
-        //gData.coinCount = 0;
-        //oldCoinCount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         RegisterListeners();
+
+        coinvalue = 5 * (1 + wConfig.workers.Count);
+
         if (TutorialManager.Instance.tutorialActive)
             return;
 
-        score.Value = timeScore + coinsCount.Value;
-
-
-        //for leaderboard
-        //LBUIscript.Instance.UpdatePointsTxt();
+        score.Value = timeScore + coinsCount.Value * coinvalue;
 
         //Display score
         scoreText.text = score.Value.ToString();
@@ -95,8 +91,6 @@ public class ScoreManager : MonoBehaviour, IHalt
     public void Begin()
     {
         timeScore = 0;
-        //gData.coinCount = 0;
-        //oldCoinCount = 0;
         StartCoroutine(scoreCoroutine);
     }
 

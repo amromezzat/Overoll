@@ -30,6 +30,18 @@ public class TileMover : ObjectMover
     [HideInInspector]
     public float extraSpeed;
 
+    public float Velocity
+    {
+        get
+        {
+            return -rb.velocity.z;
+        }
+        set
+        {
+            rb.velocity = Vector3.back * value;
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -53,7 +65,7 @@ public class TileMover : ObjectMover
 
     protected override void SetVelocity(float speed)
     {
-        rb.velocity = Vector3.back * (speed + extraSpeed);
+        Velocity = speed + extraSpeed;
     }
 
     protected virtual void TakeExtraAction()
