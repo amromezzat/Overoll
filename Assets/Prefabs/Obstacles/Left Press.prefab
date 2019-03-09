@@ -95,7 +95,7 @@ PrefabInstance:
     - target: {fileID: 8040984134830478498, guid: 5ce1781c764852d4d8ca4780897ae7df,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.28
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8040984134830478498, guid: 5ce1781c764852d4d8ca4780897ae7df,
         type: 3}
@@ -177,8 +177,7 @@ PrefabInstance:
       propertyPath: obsHealth
       value: 1000000
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8082215913607662918, guid: 5ce1781c764852d4d8ca4780897ae7df, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce1781c764852d4d8ca4780897ae7df, type: 3}
 --- !u!4 &4089906303108788600 stripped
 Transform:
