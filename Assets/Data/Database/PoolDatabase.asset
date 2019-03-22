@@ -78,11 +78,12 @@ MonoBehaviour:
     prefab: {fileID: 1427385954625506, guid: 881eec351e2ef6b42a2875643e72690f, type: 3}
   - type: {fileID: 11400000, guid: 03b46bc1d05ff204b8a296a21c18b806, type: 2}
     count: 10
-    prefab: {fileID: 1170152242375559446, guid: 7cc3ca7935b36f04e9b3e8db482d4625,
+    prefab: {fileID: 2884035450094131716, guid: 843e716909ee75745a8300bafc4e6318,
       type: 3}
   - type: {fileID: 11400000, guid: 68bcde335e2a9974b9c8e06ed4a10fe2, type: 2}
     count: 10
-    prefab: {fileID: 855244089536863137, guid: 75068a7e90a834a4f8094b041e4bcd33, type: 3}
+    prefab: {fileID: 2906384843932835577, guid: beeb78eee2be6aa47b9b35d9d6aa9034,
+      type: 3}
   - type: {fileID: 11400000, guid: 7381256c288ad8e4c94e92532ffa3d7a, type: 2}
     count: 10
     prefab: {fileID: 4736625855026565352, guid: 76af7f8e977bd2840b56f77639619041,
