@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2495832560362805929}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.255, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.14000018, z: 1}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 1}
   m_Children: []
   m_Father: {fileID: 4089380446585125032}
   m_RootOrder: 0
@@ -68,7 +68,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e8b23ad1ea10d864cabd9175ec81d30f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35ba3297587fada4e854cf9dc43dbdc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,6 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obsHealth: 1000
   runtimeObsHealth: 0
+  objReturner: {fileID: 4127225298214525320, guid: 8fa35169425ecba489e517385c28e1e6,
+    type: 3}
   collidingEffect: {fileID: 11400000, guid: aca4bb2f4a4afc2448717d6008510e3a, type: 2}
 --- !u!1001 &3116184025107524400
 PrefabInstance:

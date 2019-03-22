@@ -20,20 +20,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(TileReturner))]
 public class ObstacleCollisionHandler : MonoBehaviour, IObstacle
 {
     [SerializeField]
     int obsHealth;
     [HideInInspector]
     public int runtimeObsHealth;
-    TileReturner objReturner;
+    public TileReturner objReturner;
     HealthState obstacleState = HealthState.Healthy;
     public WorkerCollidingEffect collidingEffect;
 
     private void Awake()
     {
-        objReturner = GetComponent<TileReturner>();
         runtimeObsHealth = obsHealth;
     }
 

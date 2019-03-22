@@ -7,8 +7,7 @@ public class SpeedManager : MonoBehaviour
 {
     public static SpeedManager Instance;
 
-    [SerializeField]
-    float gameSpeed = 5;
+    public float gameSpeed = 5;
 
     public FloatField speed;
     

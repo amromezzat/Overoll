@@ -32,40 +32,38 @@ public enum Press
 public class PressTile : TileExtraAction
 {
     float lastCallTime;
-    TileMover firstCaller;
-    Press press;
+    Press lastPress;
 
     private void OnEnable()
     {
+        lastPress = ExtensionMethods.RandomEnumValue<Press>();
         lastCallTime = Time.realtimeSinceStartup;
     }
 
     protected override IEnumerator Action(TileMover caller)
     {
-        // Link callers in a certain time window
-        float passedTime = Time.realtimeSinceStartup - lastCallTime;
-        if(passedTime > 1)
-        {
-            firstCaller = caller;
-            lastCallTime = Time.realtimeSinceStartup;
-        }
+        yield return new WaitUntil(() => SpeedManager.Instance.speed.Value > 0.001f);
+
+        float waitingTime = (caller.transform.position.z - relActivPos) / SpeedManager.Instance.speed.Value;
 
         // Wait for the object to be close to the player
-        float waitingTime = (caller.transform.position.z - relActivPos) / SpeedManager.Instance.speed.Value;
         yield return new WaitForSeconds(waitingTime);
 
+        Press press = Press.None;
         // Set press value based on the order of the call
-        if (firstCaller == caller)
-            press = ExtensionMethods.RandomEnumValue<Press>();
+        if (Time.realtimeSinceStartup - lastCallTime > 3)
+            press = lastPress = ExtensionMethods.RandomEnumValue<Press>();
         else
-            SetSecondPress();
+            SetNextPress(ref press);
+
+        lastCallTime = Time.realtimeSinceStartup;
 
         caller.Anim.SetTrigger(press.ToString() + "Press");
     }
 
-    void SetSecondPress()
+    void SetNextPress(ref Press press)
     {
-        switch (press)
+        switch (lastPress)
         {
             case Press.None:
                 press = Press.Duel;

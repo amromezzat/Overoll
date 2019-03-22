@@ -33,14 +33,14 @@ public abstract class ObjectMover : MonoBehaviour
 
         SpeedManager.Instance.speed.onValueChanged.AddListener((speed) =>
         {
-            SetAnimatorsSpeed(speed / SpeedManager.Instance.speed.OldValue);
+            SetAnimatorsSpeed(speed / SpeedManager.Instance.gameSpeed);
             SetVelocity(speed);
         });
     }
 
     protected virtual void Start()
     {
-        SetAnimatorsSpeed(SpeedManager.Instance.speed / SpeedManager.Instance.speed.OldValue);
+        SetAnimatorsSpeed(SpeedManager.Instance.speed / SpeedManager.Instance.gameSpeed);
         SetVelocity(SpeedManager.Instance.speed);
     }
 
