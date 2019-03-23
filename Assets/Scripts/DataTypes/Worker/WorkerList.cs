@@ -79,6 +79,8 @@ public class WorkerList : List<WorkerFSM>
             return;
         }
 
+        worker.gameObject.SetActive(true);
+
         //if the workers in current level match minimum workers to merge
         //start merging
         if (workers[worker.level].Count >= minWorkersToMerge)
@@ -101,8 +103,6 @@ public class WorkerList : List<WorkerFSM>
             newMasterHealth = newMasterHealth >= 1000 ? newMasterHealth / 1000 : newMasterHealth;
             normWorkersHealth[IndexOf(worker)] = newMasterHealth;
         }
-
-        worker.gameObject.SetActive(true);
     }
 
     public new void Remove(WorkerFSM worker)
@@ -149,6 +149,7 @@ public class WorkerList : List<WorkerFSM>
         {
             this[i].health = 1000;
             this[i].SetHelmetMaterial("_ExtAmount", 0.0001f);
+            this[i].SetWorkerCollision(VestState.WithVest);
         }
     }
     public void StartTeacupPowerUp()
@@ -178,6 +179,7 @@ public class WorkerList : List<WorkerFSM>
         {
             this[i].health = normWorkersHealth[i];
             this[i].SetHelmetMaterial("_ExtAmount", 0);
+            this[i].SetWorkerCollision(VestState.WithoutVest);
         }
     }
 
