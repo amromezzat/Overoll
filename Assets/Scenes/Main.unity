@@ -1868,14 +1868,14 @@ PrefabInstance:
       objectReference: {fileID: 1008438232}
     - target: {fileID: 879630004151231599, guid: b3bea2aae378a6e4c967d42794c01c98,
         type: 3}
-      propertyPath: addWorkerBtn
-      value: 
-      objectReference: {fileID: 1196388978}
-    - target: {fileID: 879630004151231599, guid: b3bea2aae378a6e4c967d42794c01c98,
-        type: 3}
       propertyPath: leader
       value: 
       objectReference: {fileID: 1410633824}
+    - target: {fileID: 879630004151231599, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: addWorkerBtn
+      value: 
+      objectReference: {fileID: 1196388978}
     - target: {fileID: 982870945412584765, guid: b3bea2aae378a6e4c967d42794c01c98,
         type: 3}
       propertyPath: m_LocalPosition.x

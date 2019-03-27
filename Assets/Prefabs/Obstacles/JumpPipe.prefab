@@ -505,9 +505,9 @@ GameObject:
   - component: {fileID: 4573502580385294}
   - component: {fileID: 65407806044301522}
   - component: {fileID: 54127316812900892}
-  - component: {fileID: 114150548853705418}
   - component: {fileID: 114595093592182592}
   - component: {fileID: 3061062846117060043}
+  - component: {fileID: 2383934794255082016}
   m_Layer: 0
   m_Name: JumpPipe
   m_TagString: Obstacle
@@ -567,23 +567,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114150548853705418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355145906765812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a088e146c591d2c4f9b0c899a0cdb2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obsHealth: 1
-  runtimeObsHealth: 0
-  objReturner: {fileID: 114595093592182592, guid: dac857f8c2abac94a8b762f7a10ceb9e,
-    type: 3}
-  collidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f, type: 2}
 --- !u!114 &114595093592182592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +597,25 @@ MonoBehaviour:
   tileExtraAction: {fileID: 11400000, guid: d821dc09e0d4a3b4e81cd980c435e90e, type: 2}
   Anim: {fileID: 0}
   extraSpeed: 0
+--- !u!114 &2383934794255082016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355145906765812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8146067441b2d954b8502f553287f151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obsHealth: 20
+  runtimeObsHealth: 0
+  withVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
+    type: 2}
+  noVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
+    type: 2}
+  objReturner: {fileID: 114595093592182592}
 --- !u!1 &1384753533148628
 GameObject:
   m_ObjectHideFlags: 0

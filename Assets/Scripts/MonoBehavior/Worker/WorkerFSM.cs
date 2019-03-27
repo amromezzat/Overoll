@@ -19,6 +19,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum VestState
+{
+    WithoutVest,
+    WithVest
+}
+
 [RequireComponent(typeof(WorkerReturner))]
 public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 {
@@ -38,6 +44,10 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     WorkerStrafe workerStrafe;
     JumpSlideFSM jumpSlideFsm;
     WorkerCollide workerCollide;
+
+    WorkerWithoutVestCollide workerWithoutVestCollide;
+    WorkerWithVestCollide workerWithVestCollide;
+
     PositionWorker positionWorker;
     SeekLeaderPosition seekLeaderPosition;
     MergerCollide mergerCollide;
@@ -121,11 +131,27 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         tag = "Worker";
     }
 
+    public void SetWorkerCollision(VestState vestState)
+    {
+        switch (vestState)
+        {
+            case VestState.WithoutVest:
+                workerCollide = workerWithoutVestCollide;
+                break;
+            case VestState.WithVest:
+                workerCollide = workerWithVestCollide;
+                break;
+        }
+    }
+
     void SetStatesScripts()
     {
         workerStrafe = new WorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
         jumpSlideFsm = new JumpSlideFSM(wc,  mCollider, mAnimator, transform, shadow);
-        workerCollide = new WorkerCollide(mAnimator, rb);
+
+        workerWithoutVestCollide = new WorkerWithoutVestCollide(mAnimator, rb);
+        workerWithVestCollide = new WorkerWithVestCollide(mAnimator, rb);
+        SetWorkerCollision(VestState.WithoutVest);
 
         positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
         seekLeaderPosition = new SeekLeaderPosition(transform, wc, lanes);

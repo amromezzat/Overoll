@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 23232451180924944}
   - component: {fileID: 65949401211691758}
   - component: {fileID: 54986122697025080}
-  - component: {fileID: 114144136668395190}
-  - component: {fileID: 114618954772157720}
   - component: {fileID: 95977641855964850}
+  - component: {fileID: 114618954772157720}
   - component: {fileID: 7380337884202378260}
+  - component: {fileID: 3571533457422082847}
   m_Layer: 0
   m_Name: SpoolDynamic
   m_TagString: Obstacle
@@ -112,37 +112,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114144136668395190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052967250663098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a088e146c591d2c4f9b0c899a0cdb2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obsHealth: 1
-  runtimeObsHealth: 0
-  objReturner: {fileID: 114618954772157720}
-  collidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f, type: 2}
---- !u!114 &114618954772157720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052967250663098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
-  poolableType: {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
-  inActiveSegment: 0
 --- !u!95 &95977641855964850
 Animator:
   serializedVersion: 3
@@ -162,6 +131,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114618954772157720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052967250663098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe3c643770bcbe4cb3c5d4c7676553e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
+  poolableType: {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+  inActiveSegment: 0
 --- !u!114 &7380337884202378260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +161,22 @@ MonoBehaviour:
   tileExtraAction: {fileID: 11400000, guid: 5e53d7f553e1b9640abbe922fc2f64c7, type: 2}
   Anim: {fileID: 95977641855964850}
   extraSpeed: 0
+--- !u!114 &3571533457422082847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052967250663098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8146067441b2d954b8502f553287f151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obsHealth: 5
+  runtimeObsHealth: 0
+  withVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
+    type: 2}
+  noVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
+    type: 2}
+  objReturner: {fileID: 114618954772157720}
