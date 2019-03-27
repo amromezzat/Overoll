@@ -19,13 +19,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface ICollidable
+public class DisableableObstacleCollision : ObstacleCollisionHandler
 {
-    void ReactToCollision(int collidedHealth);
-    int Gethealth();
-}
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
-interface IObstacle : ICollidable
-{
-    void PlayEffect(Animator animator, Rigidbody rb, VestState vestState);
+    public override void ReactToCollision(int collidedHealth)
+    {
+        runtimeObsHealth -= collidedHealth;
+        if (runtimeObsHealth <= 0)
+        {
+            obstacleState = HealthState.Wrecked;
+            runtimeObsHealth = obsHealth;
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            obstacleState = HealthState.Fractured;
+        }
+    }
 }

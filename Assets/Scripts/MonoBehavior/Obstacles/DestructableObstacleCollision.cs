@@ -20,22 +20,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleCollisionHandler : MonoBehaviour, IObstacle
+public class DestructableObstacleCollision : ObstacleCollisionHandler
 {
     [SerializeField]
-    int obsHealth;
-    [HideInInspector]
-    public int runtimeObsHealth;
-    public TileReturner objReturner;
-    HealthState obstacleState = HealthState.Healthy;
-    public WorkerCollidingEffect collidingEffect;
+    protected TileReturner objReturner;
 
-    private void Awake()
+    protected override void Awake()
     {
-        runtimeObsHealth = obsHealth;
+        base.Awake();
     }
 
-    public virtual void ReactToCollision(int collidedHealth)
+    public override void ReactToCollision(int collidedHealth)
     {
         runtimeObsHealth -= collidedHealth;
         if (runtimeObsHealth <= 0)
@@ -48,16 +43,5 @@ public class ObstacleCollisionHandler : MonoBehaviour, IObstacle
         {
             obstacleState = HealthState.Fractured;
         }
-    }
-
-    public int Gethealth()
-    {
-        return obsHealth;
-    }
-
-    public void PlayEffect(Animator animator, Rigidbody rb)
-    {
-        if (collidingEffect != null)
-            collidingEffect.PlayEffect(animator, rb);
     }
 }

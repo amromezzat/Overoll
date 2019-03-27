@@ -20,10 +20,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorkerCollide : IWCollide
+public abstract class WorkerCollide : IWCollide
 {
-    Animator animator;
-    Rigidbody rb;
+    protected Animator animator;
+    protected Rigidbody rb;
 
     public WorkerCollide(Animator animator, Rigidbody rb)
     {
@@ -36,25 +36,7 @@ public class WorkerCollide : IWCollide
 
     }
 
-    public WorkerStateTrigger Collide(Collider collider, ref int health)
-    {
-        IObstacle collidableObstacle = collider.GetComponent<IObstacle>();
-        // When a worker hits an obstacle it decreases his health by its health
-        // and vice versa, if the worker loses all his health he dies
-        if (collider.gameObject.CompareTag("Obstacle"))
-        {
-            int obsHealth = collidableObstacle.Gethealth();
-            int preCollisionWH = health;
-            health = health - obsHealth;
-            collidableObstacle.ReactToCollision(preCollisionWH);
-            if (health <= 0)
-            {
-                collidableObstacle.PlayEffect(animator, rb);
-                return WorkerStateTrigger.Die;
-            }
-        }
-        return WorkerStateTrigger.Null;
-    }
+    public abstract WorkerStateTrigger Collide(Collider collider, ref int health);
 
     public void FixedUpdate(float fixedDeltaTime)
     {

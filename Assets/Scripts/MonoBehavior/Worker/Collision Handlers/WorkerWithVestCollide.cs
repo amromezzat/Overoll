@@ -19,13 +19,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface ICollidable
+public class WorkerWithVestCollide : WorkerCollide
 {
-    void ReactToCollision(int collidedHealth);
-    int Gethealth();
-}
+    public WorkerWithVestCollide(Animator animator, Rigidbody rb) : base(animator, rb)
+    {
+    }
 
-interface IObstacle : ICollidable
-{
-    void PlayEffect(Animator animator, Rigidbody rb, VestState vestState);
+    public override WorkerStateTrigger Collide(Collider collider, ref int health)
+    {
+        IObstacle collidableObstacle = collider.GetComponent<IObstacle>();
+        // When a worker hits an obstacle it decreases his health by its health
+        // and vice versa, if the worker loses all his health he dies
+        if (collidableObstacle != null)
+        {
+            collidableObstacle.ReactToCollision(health);
+            collidableObstacle.PlayEffect(animator, rb, VestState.WithVest);
+        }
+        return WorkerStateTrigger.Null;
+    }
 }

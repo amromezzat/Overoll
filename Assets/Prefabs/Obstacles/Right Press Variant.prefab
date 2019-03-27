@@ -67,16 +67,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7461413062611942409, guid: 843e716909ee75745a8300bafc4e6318,
-        type: 3}
-      propertyPath: objReturner
-      value: 
-      objectReference: {fileID: 4686110422251388667}
-    - target: {fileID: 7461413062611942409, guid: 843e716909ee75745a8300bafc4e6318,
-        type: 3}
-      propertyPath: obsHealth
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 3143475566495786736, guid: 843e716909ee75745a8300bafc4e6318,
         type: 3}
       propertyPath: obsHealth
@@ -97,8 +87,19 @@ PrefabInstance:
       propertyPath: obsHealth
       value: 1000000
       objectReference: {fileID: 0}
+    - target: {fileID: 7461413062611942409, guid: 843e716909ee75745a8300bafc4e6318,
+        type: 3}
+      propertyPath: objReturner
+      value: 
+      objectReference: {fileID: 4686110422251388667}
+    - target: {fileID: 7461413062611942409, guid: 843e716909ee75745a8300bafc4e6318,
+        type: 3}
+      propertyPath: obsHealth
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7461413062611942409, guid: 843e716909ee75745a8300bafc4e6318, type: 3}
+    - {fileID: 2845387555013748892, guid: 843e716909ee75745a8300bafc4e6318, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843e716909ee75745a8300bafc4e6318, type: 3}
 --- !u!114 &4686110422251388667 stripped
 MonoBehaviour:
