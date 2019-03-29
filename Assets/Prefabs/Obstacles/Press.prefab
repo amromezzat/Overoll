@@ -27,9 +27,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obsHealth: 5
   runtimeObsHealth: 0
-  withVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
+  withVestCollidingEffect: {fileID: 11400000, guid: 1bc72a38d4e2af347a07275ac024c732,
     type: 2}
-  noVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
+  noVestCollidingEffect: {fileID: 11400000, guid: 1bc72a38d4e2af347a07275ac024c732,
     type: 2}
 --- !u!1 &8040984134830049410
 GameObject:
@@ -157,9 +157,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obsHealth: 5
   runtimeObsHealth: 0
-  withVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
+  withVestCollidingEffect: {fileID: 11400000, guid: b813637342a5f08448ea13fd55a10929,
     type: 2}
-  noVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
+  noVestCollidingEffect: {fileID: 11400000, guid: b813637342a5f08448ea13fd55a10929,
     type: 2}
 --- !u!1001 &6987913763494211740
 PrefabInstance:

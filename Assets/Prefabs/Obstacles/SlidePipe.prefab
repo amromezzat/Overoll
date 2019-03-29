@@ -1350,9 +1350,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obsHealth: 20
   runtimeObsHealth: 0
-  withVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
+  withVestCollidingEffect: {fileID: 11400000, guid: 1bc72a38d4e2af347a07275ac024c732,
     type: 2}
-  noVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
+  noVestCollidingEffect: {fileID: 11400000, guid: 1bc72a38d4e2af347a07275ac024c732,
     type: 2}
   objReturner: {fileID: 114489123268721338}
 --- !u!1 &1176932888808278

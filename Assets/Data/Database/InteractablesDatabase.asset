@@ -38,6 +38,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 68bcde335e2a9974b9c8e06ed4a10fe2, type: 2}
   - {fileID: 11400000, guid: 7381256c288ad8e4c94e92532ffa3d7a, type: 2}
   - {fileID: 11400000, guid: adaeafb77eee4344bae1c559e4be59b3, type: 2}
+  - {fileID: 11400000, guid: d25daee0bbcffcf47a2ffd6570540b45, type: 2}
   interactablesNames:
   - BlankTile
   - CautionSign
@@ -64,3 +65,4 @@ MonoBehaviour:
   - RightPress
   - TeaCup
   - OilSpot
+  - Star
