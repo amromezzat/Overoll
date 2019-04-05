@@ -72,6 +72,7 @@ public class TileGeneration : MonoBehaviour
         }
 
         currentPattern = patternDB[GameManager.Instance.difficulty.Value][currentPatternIndex];
+        Debug.Log(currentPattern.name);
     }
 
     private void Update()
