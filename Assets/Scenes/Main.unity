@@ -445,7 +445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1693826455118918, guid: 8ad6fc9caad38b4418e1da4685534d29, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224616932338503632, guid: 8ad6fc9caad38b4418e1da4685534d29,
         type: 3}
@@ -588,6 +588,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
         type: 2}
+    - target: {fileID: 331603811205454916, guid: 8ad6fc9caad38b4418e1da4685534d29,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ad6fc9caad38b4418e1da4685534d29, type: 3}
 --- !u!223 &1008438232 stripped
@@ -749,6 +754,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1033362107}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1159643087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5592108689546063981, guid: da96e29fe3a7ade49b8be1c2a094b162,
+    type: 3}
+  m_PrefabInstance: {fileID: 1334711765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1196388978 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114805408070781126, guid: da96e29fe3a7ade49b8be1c2a094b162,
@@ -774,9 +791,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6474854756073113560, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474854756073113560, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436098398418063236, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592108689546063981, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Value
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 1242844755465786, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 3}
       propertyPath: m_Name
       value: InGmae UI Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242844755465786, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114805408070781126, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
@@ -942,6 +983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1329872319395432, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224665805237481656, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1084,6 +1129,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7, type: 3}
+--- !u!114 &1631588106 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7983557580306625623, guid: da96e29fe3a7ade49b8be1c2a094b162,
+    type: 3}
+  m_PrefabInstance: {fileID: 1334711765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1663203232 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114163233792838072, guid: da96e29fe3a7ade49b8be1c2a094b162,
@@ -1951,5 +2008,15 @@ PrefabInstance:
       propertyPath: _SoundToggle
       value: 
       objectReference: {fileID: 1033362108}
+    - target: {fileID: 881495524307630251, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: Shield_Slider
+      value: 
+      objectReference: {fileID: 1159643087}
+    - target: {fileID: 881495524307630251, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: Shield_Image
+      value: 
+      objectReference: {fileID: 1631588106}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3bea2aae378a6e4c967d42794c01c98, type: 3}

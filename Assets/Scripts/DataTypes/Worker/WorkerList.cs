@@ -59,7 +59,7 @@ public class WorkerList : List<WorkerFSM>
         if (shieldOn)
         {
             worker.health = 1000;
-            worker.SetHelmetMaterial("_ExtAmount", 0.0001f);
+           // worker.SetHelmetMaterial("_ExtAmount", 0.0001f);
         }
         if (magnetOn)
         {
@@ -110,8 +110,8 @@ public class WorkerList : List<WorkerFSM>
         normWorkersHealth.Remove(IndexOf(worker));
         base.Remove(worker);
 
-        worker.SetHelmetMaterial("_ExtAmount", 0);
-        worker.SetHelmetMaterial("_ColAmount", 0);
+       // worker.SetHelmetMaterial("_ExtAmount", 0);
+        //worker.SetHelmetMaterial("_ColAmount", 0);
 
         workers[worker.level].Remove(worker);
     }
@@ -148,7 +148,7 @@ public class WorkerList : List<WorkerFSM>
         for (int i = 0; i < Count; i++)
         {
             this[i].health = 1000;
-            this[i].SetHelmetMaterial("_ExtAmount", 0.0001f);
+          //  this[i].SetHelmetMaterial("_ExtAmount", 0.0001f);
             this[i].SetWorkerCollision(VestState.WithVest);
         }
     }
@@ -178,7 +178,7 @@ public class WorkerList : List<WorkerFSM>
         for(int i = 0; i < Count; i++)
         {
             this[i].health = normWorkersHealth[i];
-            this[i].SetHelmetMaterial("_ExtAmount", 0);
+           // this[i].SetHelmetMaterial("_ExtAmount", 0);
             this[i].SetWorkerCollision(VestState.WithoutVest);
         }
     }
