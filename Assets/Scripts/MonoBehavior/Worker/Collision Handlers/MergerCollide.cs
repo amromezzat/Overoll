@@ -18,15 +18,33 @@ under the License.*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// This Script is resposible for the merge between workers and change 
+/// the skinned mesh renderer when the merge count to 5
+/// </summary>
 public class MergerCollide : IWCollide
 {
     WorkerConfig wc;
+
     int mergedCount = 0;
 
-    public MergerCollide(WorkerConfig wc)
+    WorkerFSM wfsm;
+
+    SkinnedMeshRenderer hel;
+    SkinnedMeshRenderer ov;
+    
+    List<Mesh> helMesh = new List<Mesh>();
+    List<Mesh> ovMesh = new List<Mesh>();
+
+    public MergerCollide(WorkerConfig wc, List<Mesh> helmetmesh, List<Mesh> overallmesh, WorkerFSM w, SkinnedMeshRenderer h, SkinnedMeshRenderer o)
     {
         this.wc = wc;
+        hel = h;
+        ov = o;
+
+        helMesh = helmetmesh;
+        ovMesh = overallmesh;
+        wfsm = w;
     }
 
     public WorkerStateTrigger Collide(Collider collider, ref int health)
@@ -41,9 +59,12 @@ public class MergerCollide : IWCollide
             health += slaveMerger.Gethealth();
             slaveMerger.ReactToCollision(0);
             mergedCount++;
-            if(mergedCount >= wc.workersPerLevel - 1)
+            if (mergedCount == wc.workersPerLevel - 1)
             {
+                hel.sharedMesh = helMesh[wfsm.level+1];
+                ov.sharedMesh = ovMesh[wfsm.level+1];
                 mergedCount = 0;
+
                 return WorkerStateTrigger.StateEnd;
             }
         }
