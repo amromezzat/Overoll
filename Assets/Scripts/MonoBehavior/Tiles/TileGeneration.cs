@@ -59,8 +59,8 @@ public class TileGeneration : MonoBehaviour
     {
         currentSegmentIndex = 0;
 
-        if (!TutorialManager.Instance.tutorialActive && GameManager.Instance.difficulty.Value ==0)
-            GameManager.Instance.difficulty.Value ++;
+        if (!TutorialManager.Instance.tutorialActive && GameManager.Instance.difficulty.Value == 0)
+            GameManager.Instance.difficulty.Value++;
 
         //get a random pattern
         currentPatternIndex++;
@@ -97,11 +97,17 @@ public class TileGeneration : MonoBehaviour
         }
         ObjectPooler.instance.segmentActiveCount++;
 
+        GameObject tile = ObjectPooler.instance.GetFromPool(interactDB.RightLineFrame);
+        Vector3 objpos = tile.transform.position;
+        objpos.x = lanes.frameLines[0].laneCenter;
+        objpos.z = lastSegTrans.position.z + 1f;
+        tile.transform.position = objpos;
+
         //generate on available lanes
         for (int i = 0; i < lanes.OnGridLanes.Count; i++)
         {
-            GameObject tile = ObjectPooler.instance.GetFromPool(currentSegment[i]);
-            Vector3 objpos = tile.transform.position;
+            tile = ObjectPooler.instance.GetFromPool(currentSegment[i]);
+            objpos = tile.transform.position;
             objpos.x = lanes[i].laneCenter;
             objpos.z = lastSegTrans.position.z + 1f;
             tile.transform.position = objpos;
@@ -117,6 +123,12 @@ public class TileGeneration : MonoBehaviour
 
             if (i == 4)
             {
+                //tile = ObjectPooler.instance.GetFromPool(interactDB.LeftLineFrame);
+                //objpos = tile.transform.position;
+                //objpos.x = lanes.frameLines[1].laneCenter;
+                //objpos.z = lastSegTrans.position.z + 1f;
+                //tile.transform.position = objpos;
+
                 lastSegTrans = tile.transform;
                 tile.GetComponent<TileReturner>().inActiveSegment = true;
             }
