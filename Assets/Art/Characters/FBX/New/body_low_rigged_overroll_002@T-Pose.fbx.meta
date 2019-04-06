@@ -117,7 +117,22 @@ ModelImporter:
     13700016: Plane
     13700018: vesit_low
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Default
+    second: {fileID: 2100000, guid: 0373f5c73399dc440a7886790ec0bd66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.010
+    second: {fileID: 2100000, guid: c224774a117920346839d5d371c1a89e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: c224774a117920346839d5d371c1a89e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

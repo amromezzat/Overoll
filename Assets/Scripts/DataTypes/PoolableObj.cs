@@ -24,7 +24,8 @@ using UnityEngine;
 /// Object used with the pooler, generated from scriptable object
 /// </summary>
 [Serializable]
-public class PoolableObj {
+public class PoolableObj
+{
     public PoolableType type;
     public int count;
     public GameObject prefab;
@@ -33,6 +34,8 @@ public class PoolableObj {
     {
         get
         {
+            if (type == null)
+                return null;
             return type.name;
         }
     }

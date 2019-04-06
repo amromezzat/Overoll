@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68d9d8690492a75499e5c85f2f69c453, type: 3}
-  m_Name: LeftLane
+  m_Script: {fileID: 11500000, guid: 8c93058685ab53044bc4cb46f1ec0f38, type: 3}
+  m_Name: LeftLineFrame
   m_EditorClassIdentifier: 
-  laneNum: 1
-  laneCenter: -1
+  containTiles: 0
+  containFrame: 0
