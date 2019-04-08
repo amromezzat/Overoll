@@ -31,7 +31,7 @@ public class WorkerList : List<WorkerFSM>
     bool magnetOn = false;
     bool teacupOn = false;
 
-    
+    GameObject WorkerVesit;
 
     WorkerFSM ascender;
     List<List<WorkerFSM>> workers = new List<List<WorkerFSM>>();
@@ -55,11 +55,17 @@ public class WorkerList : List<WorkerFSM>
         normWorkersHealth.Add(worker.health);
         base.Add(worker);
 
+        WorkerVesit = worker.transform.GetChild(0).gameObject;
+        WorkerVesit.SetActive(false);
+
         //if there is a power up apply it to worker
         if (shieldOn)
         {
             worker.health = 1000;
-           // worker.SetHelmetMaterial("_ExtAmount", 0.0001f);
+            WorkerVesit= worker.transform.GetChild(0).gameObject;
+            WorkerVesit.SetActive(true);
+           
+
         }
         if (magnetOn)
         {
@@ -148,8 +154,21 @@ public class WorkerList : List<WorkerFSM>
         for (int i = 0; i < Count; i++)
         {
             this[i].health = 1000;
-          //  this[i].SetHelmetMaterial("_ExtAmount", 0.0001f);
             this[i].SetWorkerCollision(VestState.WithVest);
+             WorkerVesit = this[i].transform.GetChild(0).gameObject; 
+            WorkerVesit.SetActive(true);
+        }
+    }
+    public void EndShieldPowerup()
+    {
+        shieldOn = false;
+        for (int i = 0; i < Count; i++)
+        {
+            this[i].health = normWorkersHealth[i];
+            this[i].SetWorkerCollision(VestState.WithoutVest);
+            WorkerVesit = this[i].transform.GetChild(0).gameObject;
+            WorkerVesit.SetActive(false);
+
         }
     }
     public void StartTeacupPowerUp()
@@ -172,16 +191,7 @@ public class WorkerList : List<WorkerFSM>
         }
     }
 
-    public void EndShieldPowerup()
-    {
-        shieldOn = false;
-        for(int i = 0; i < Count; i++)
-        {
-            this[i].health = normWorkersHealth[i];
-           // this[i].SetHelmetMaterial("_ExtAmount", 0);
-            this[i].SetWorkerCollision(VestState.WithoutVest);
-        }
-    }
+  
 
     public void EndMagnetPowerup()
     {
