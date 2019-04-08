@@ -54,9 +54,7 @@ public class WorkerList : List<WorkerFSM>
         //add worker normal health
         normWorkersHealth.Add(worker.health);
         base.Add(worker);
-
-        WorkerVesit = worker.transform.GetChild(0).gameObject;
-        WorkerVesit.SetActive(false);
+        
 
         //if there is a power up apply it to worker
         if (shieldOn)
