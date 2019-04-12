@@ -35,6 +35,8 @@ public class LanesDatabase : ScriptableObject
     [SerializeField]
     List<LaneType> gridLanes;
 
+    public List<LaneType> frameLines;
+
     private LaneType currentLane;
     private int currentLaneIndex;
 
