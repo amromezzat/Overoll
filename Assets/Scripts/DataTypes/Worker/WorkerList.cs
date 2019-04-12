@@ -31,6 +31,7 @@ public class WorkerList : List<WorkerFSM>
     bool magnetOn = false;
     bool teacupOn = false;
 
+    
     GameObject WorkerVesit;
 
     WorkerFSM ascender;
@@ -67,6 +68,7 @@ public class WorkerList : List<WorkerFSM>
         }
         if (magnetOn)
         {
+            worker.MagneOnHisHand.SetActive(true);
             worker.SetHelmetMaterial("_ColAmount", -0.001f);
         }
 
@@ -170,34 +172,46 @@ public class WorkerList : List<WorkerFSM>
         }
     }
     public void StartTeacupPowerUp()
-    {     
+    {
         teacupOn = true;
         SpeedManager.Instance.speed.Value = 10;
+
+        for (int i = 0; i < Count; i++)
+        {
+            this[i].TeaOnHisHand.SetActive(true);
+            this[i].GetComponent<Animator>().SetTrigger("Drink");
+        }
     }
     public void EndTeacupPowerUp()
     {
         teacupOn = false;
         SpeedManager.Instance.ResetSpeed();
+        for (int i = 0; i < Count; i++)
+        {
+            this[i].TeaOnHisHand.SetActive(false);
+         
+        }
     }
     public void StartMagnetPowerup()
     {
         magnetOn = true;
         for (int i = 0; i < Count; i++)
         {
+            this[i].MagneOnHisHand.SetActive(true);
             this[i].magnetColliderObject.SetActive(true);
-            this[i].SetHelmetMaterial("_ColAmount", -0.001f);
+            this[i].GetComponent<Animator>().SetBool("HoldingMagnet", true);
+           
         }
     }
-
-  
-
+    
     public void EndMagnetPowerup()
     {
         magnetOn = false;
         for(int i = 0; i < Count; i++)
         {
+            this[i].MagneOnHisHand.SetActive(false);
             this[i].magnetColliderObject.SetActive(false);
-            this[i].SetHelmetMaterial("_ColAmount", 0);
+            this[i].GetComponent<Animator>().SetBool("HoldingMagnet", false);
         }
     }
 }
