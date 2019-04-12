@@ -59,13 +59,14 @@ public class ScoreManager : MonoBehaviour, IHalt
     {
         RegisterListeners();
 
-        coinvalue = 5 * (1 + wConfig.workers.Count);
+        coinvalue = 1 * (1 + wConfig.workers.Count);
 
         if (TutorialManager.Instance.tutorialActive)
             return;
 
         score.Value = timeScore + coinsCount.Value * coinvalue;
-
+        Debug.Log(score.Value + coinsCount);
+        
         //Display score
         scoreText.text = score.Value.ToString();
         coinNum.text = coinsCount.Value.ToString();
