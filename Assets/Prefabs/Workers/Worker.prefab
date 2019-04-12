@@ -773,6 +773,8 @@ MonoBehaviour:
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   tc: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
+  MagneOnHisHand: {fileID: 4298993418496659029}
+  TeaOnHisHand: {fileID: 8895870464857827236}
   magnetColliderObject: {fileID: 1804160187}
   shadow: {fileID: 1219482692}
   currentState: 1
@@ -2301,11 +2303,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coffee Cup
       objectReference: {fileID: 0}
-    - target: {fileID: 4736625855026565352, guid: 76af7f8e977bd2840b56f77639619041,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 337429824907813678, guid: 76af7f8e977bd2840b56f77639619041,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2363,6 +2360,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76af7f8e977bd2840b56f77639619041, type: 3}
+--- !u!1 &8895870464857827236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4736625855026565352, guid: 76af7f8e977bd2840b56f77639619041,
+    type: 3}
+  m_PrefabInstance: {fileID: 4237776270143223628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4494963736380429410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 337429824907813678, guid: 76af7f8e977bd2840b56f77639619041,

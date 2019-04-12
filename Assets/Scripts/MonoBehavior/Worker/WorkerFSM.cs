@@ -33,7 +33,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     public LanesDatabase lanes;
     //public GameData gd;
     //public TextMesh healthText;
-
+    public GameObject MagneOnHisHand;
+    public GameObject TeaOnHisHand;
     public GameObject magnetColliderObject;
     public GameObject shadow;
     Animator mAnimator;

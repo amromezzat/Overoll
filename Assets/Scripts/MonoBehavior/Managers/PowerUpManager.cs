@@ -33,34 +33,48 @@ public class PowerUpManager : MonoBehaviour
 
     public WorkerConfig wc;
     //float magnetTimer;
-    float shieldTimer;
-    float shieldTime;
+    //float shieldTimer;
+    //float shieldTime;
     
 
     public Slider Shield_Slider;
     public Image Shield_Image;
+
+    public Slider Magnet_Slider;
+    public Image Magnet_Image;
+
+    public Slider TeaCup_Slider;
+    public Image TeaCup_Image;
+
     private void Awake()
     {
-        Shield_Slider.gameObject.SetActive(false);
+        
         if (Instance == null)
         {
             Instance = this;
         }
 
-        
+        Shield_Slider.gameObject.SetActive(false);
+        Magnet_Slider.gameObject.SetActive(false);
+        TeaCup_Slider.gameObject.SetActive(false);
+
         shield.BeginAction.AddListener(StartShield);
         shield.EndAction.AddListener(EndShield);
-       // magnet.BeginAction.AddListener(wc.workers.StartMagnetPowerup);
-       // magnet.EndAction.AddListener(wc.workers.EndMagnetPowerup);
-      //  teacup.BeginAction.AddListener(wc.workers.StartTeacupPowerUp);
-      //  teacup.EndAction.AddListener(wc.workers.EndTeacupPowerUp);
+        magnet.BeginAction.AddListener(StartMagnet);
+        magnet.EndAction.AddListener(EndMagnet);
+        teacup.BeginAction.AddListener(StartTeaCup);
+        teacup.EndAction.AddListener(EndTeaCup);
        
     }
     private void Update()
     {
         Shield_Slider.value = Mathf.Lerp(0, 1, shield.ScaledTime);
         Shield_Image.fillAmount = Shield_Slider.value;
-        //Debug.Log(shield.ScaledTime+"::"+Shield_Slider.value);
+        Magnet_Slider.value = Mathf.Lerp(0, 1, magnet.ScaledTime);
+        Magnet_Image.fillAmount = Magnet_Slider.value;
+        TeaCup_Slider.value = Mathf.Lerp(0, 1, teacup.ScaledTime);
+        TeaCup_Image.fillAmount = TeaCup_Slider.value;
+      
     }
      void StartShield ()
      {
@@ -70,5 +84,22 @@ public class PowerUpManager : MonoBehaviour
     {
         Shield_Slider.gameObject.SetActive(false);
     }
+    void StartMagnet()
+    {
+        Magnet_Slider.gameObject.SetActive(true);
+    }
+    void EndMagnet()
+    {
+        Magnet_Slider.gameObject.SetActive(false);
 
+    }
+    void StartTeaCup()
+    {
+        TeaCup_Slider.gameObject.SetActive(true);
+    }
+    void EndTeaCup()
+    {
+        TeaCup_Slider.gameObject.SetActive(false);
+
+    }
 }
