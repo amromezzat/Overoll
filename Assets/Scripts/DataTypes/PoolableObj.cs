@@ -34,8 +34,6 @@ public class PoolableObj
     {
         get
         {
-            if (type == null)
-                return null;
             return type.name;
         }
     }
