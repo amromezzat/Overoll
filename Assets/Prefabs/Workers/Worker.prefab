@@ -683,12 +683,8 @@ Transform:
   - {fileID: 793332551}
   - {fileID: 1163091326}
   - {fileID: 1526311055}
-  - {fileID: 1112839880}
   - {fileID: 1055286489}
   - {fileID: 334585501}
-  - {fileID: 2047636254}
-  - {fileID: 1416326567}
-  - {fileID: 516221531}
   - {fileID: 1219482693}
   - {fileID: 1804160188}
   m_Father: {fileID: 0}
@@ -786,12 +782,19 @@ MonoBehaviour:
   health: 1
   level: 0
   helmetsMaterial: []
-  Helmets:
-  - {fileID: 793332550}
-  - {fileID: 1163091325}
-  - {fileID: 1526311054}
-  - {fileID: 1112839879}
   powerUpPosition: {fileID: 1820479055540906191}
+  helmetMeshes:
+  - {fileID: 4300012, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300004, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300002, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300010, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  overollMeshes:
+  - {fileID: 4300014, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300008, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300000, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300006, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  helmet: {fileID: 1526311054}
+  overall: {fileID: 334585502}
 --- !u!114 &728659262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1279,7 +1282,7 @@ Transform:
   m_Father: {fileID: 1762278009}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1163091324
+--- !u!1 &1219482692
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1287,16 +1290,17 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1163091326}
-  - component: {fileID: 1163091325}
+  - component: {fileID: 1219482693}
+  - component: {fileID: 1219482695}
+  - component: {fileID: 1219482694}
   m_Layer: 0
-  m_Name: Helmet_green
+  m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1163091326
+  m_IsActive: 1
+--- !u!4 &1219482693
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1929,7 +1933,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 728659266}
-  m_RootOrder: 11
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1804160190
 BoxCollider:

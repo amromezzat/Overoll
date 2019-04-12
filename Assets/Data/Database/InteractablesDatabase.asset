@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolableTypeList:
   - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
+  - {fileID: 11400000, guid: ca488e72e49054546904acb122935688, type: 2}
+  - {fileID: 11400000, guid: 3a96abe44cfee27479a67b342f69c78b, type: 2}
   - {fileID: 11400000, guid: f020894b4b1daa94c95d680ab240dea3, type: 2}
   - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
   - {fileID: 11400000, guid: a5f362da046748b4d8f81a220673f65f, type: 2}
@@ -41,6 +43,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d25daee0bbcffcf47a2ffd6570540b45, type: 2}
   interactablesNames:
   - BlankTile
+  - LeftLineFrame
+  - RightLineFrame
   - CautionSign
   - Coin
   - GearLeft

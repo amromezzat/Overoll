@@ -98,3 +98,11 @@ MonoBehaviour:
     count: 5
     prefab: {fileID: 2639416541979229733, guid: 2f277861aebc1a74a89d0fcbe5fcf425,
       type: 3}
+  - type: {fileID: 11400000, guid: ca488e72e49054546904acb122935688, type: 2}
+    count: 10
+    prefab: {fileID: 8752142951297583730, guid: 86e12560aababd24e91172393dc117e2,
+      type: 3}
+  - type: {fileID: 11400000, guid: 3a96abe44cfee27479a67b342f69c78b, type: 2}
+    count: 10
+    prefab: {fileID: 8412835497287613751, guid: 42ac3e40e5884b04c9f56f03bbb7aaaa,
+      type: 3}

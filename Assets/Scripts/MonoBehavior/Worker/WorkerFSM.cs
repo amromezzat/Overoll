@@ -78,18 +78,29 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     [HideInInspector]
     public List<Material> helmetsMaterial = new List<Material>();
 
-    [SerializeField]
-    List<SkinnedMeshRenderer> Helmets;
+    //[SerializeField]
+   // List<SkinnedMeshRenderer> Helmets;
 
     [SerializeField]
     Transform powerUpPosition;
 
+    [SerializeField]
+    public List<Mesh> helmetMeshes = new List<Mesh>();
+    [SerializeField]
+    public List<Mesh> overollMeshes = new List<Mesh>();
+
+    [SerializeField]
+    public SkinnedMeshRenderer helmet;
+
+    [SerializeField]
+    public SkinnedMeshRenderer overall;
+    
     private void Awake()
     {
-        foreach (SkinnedMeshRenderer helmet in Helmets)
-        {
-            helmetsMaterial.Add(helmet.material);
-        }
+        //foreach (SkinnedMeshRenderer helmet in Helmets)
+        //{
+        //    helmetsMaterial.Add(helmet.material);
+        //}
         mAnimator = GetComponent<Animator>();
         mCollider = GetComponent<BoxCollider>();
         workerReturner = GetComponent<WorkerReturner>();
@@ -123,6 +134,9 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
             haltedState = WorkerState.Leader;
             currentState = WorkerState.Halted;
         }
+
+        helmet.sharedMesh = helmetMeshes[0];
+        overall.sharedMesh = overollMeshes[0];
     }
 
     private void OnDisable()
@@ -161,7 +175,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 
         positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
         seekLeaderPosition = new SeekLeaderPosition(transform, wc, lanes);
-        mergerCollide = new MergerCollide(wc);
+        mergerCollide = new MergerCollide(wc, helmetMeshes, overollMeshes, this, helmet, overall);
         seekMasterMerger = new SeekMasterMerger(wc, rb, transform);
         positionMasterMerger = new PositionMasterMerger(wc, rb, transform, GetInstanceID());
 

@@ -34,6 +34,22 @@ public class InteractablesDatabase : ScriptableObject
         }
     }
 
+    public PoolableType RightLineFrame
+    {
+        get
+        {
+            return poolableTypeList[2];
+        }
+    }
+
+    public PoolableType LeftLineFrame
+    {
+        get
+        {
+            return poolableTypeList[1];
+        }
+    }
+
     [HideInInspector]
     public List<string> interactablesNames;
 
