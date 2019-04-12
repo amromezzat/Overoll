@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Shield
   m_EditorClassIdentifier: 
   InAct: 0
-  DefaultTime: 5
-  Time: 0
+  DefaultTime: 10
+  Time: -0.25
   BeginAction:
     m_PersistentCalls:
       m_Calls: []

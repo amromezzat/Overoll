@@ -32,6 +32,7 @@ public class WorkerList : List<WorkerFSM>
     bool teacupOn = false;
 
     
+    GameObject WorkerVesit;
 
     WorkerFSM ascender;
     List<List<WorkerFSM>> workers = new List<List<WorkerFSM>>();
@@ -54,16 +55,25 @@ public class WorkerList : List<WorkerFSM>
         //add worker normal health
         normWorkersHealth.Add(worker.health);
         base.Add(worker);
+        
 
         //if there is a power up apply it to worker
         if (shieldOn)
         {
             worker.health = 1000;
-            worker.SetHelmetMaterial("_ExtAmount", 0.0001f);
+            WorkerVesit= worker.transform.GetChild(0).gameObject;
+            WorkerVesit.SetActive(true);
+           
+
         }
         if (magnetOn)
         {
+            worker.MagneOnHisHand.SetActive(true);
             worker.SetHelmetMaterial("_ColAmount", -0.001f);
+        }
+        if (teacupOn)
+        {
+            worker.TeaOnHisHand.SetActive(true);
         }
 
         //if the leader is added after succeding
@@ -110,8 +120,8 @@ public class WorkerList : List<WorkerFSM>
         normWorkersHealth.Remove(IndexOf(worker));
         base.Remove(worker);
 
-        worker.SetHelmetMaterial("_ExtAmount", 0);
-        worker.SetHelmetMaterial("_ColAmount", 0);
+       // worker.SetHelmetMaterial("_ExtAmount", 0);
+        //worker.SetHelmetMaterial("_ColAmount", 0);
 
         workers[worker.level].Remove(worker);
     }
@@ -148,48 +158,72 @@ public class WorkerList : List<WorkerFSM>
         for (int i = 0; i < Count; i++)
         {
             this[i].health = 1000;
-            this[i].SetHelmetMaterial("_ExtAmount", 0.0001f);
             this[i].SetWorkerCollision(VestState.WithVest);
+            this[i].ParticalPowerUp.SetActive(true);
+            this[i].ParticalShield.SetActive(true);
+            WorkerVesit = this[i].transform.GetChild(0).gameObject; 
+            WorkerVesit.SetActive(true);
+        }
+    }
+    public void EndShieldPowerup()
+    {
+        shieldOn = false;
+        for (int i = 0; i < Count; i++)
+        {
+            this[i].health = normWorkersHealth[i];
+            this[i].ParticalShield.SetActive(false);
+            this[i].SetWorkerCollision(VestState.WithoutVest);
+            WorkerVesit = this[i].transform.GetChild(0).gameObject;
+            WorkerVesit.SetActive(false);
+
         }
     }
     public void StartTeacupPowerUp()
-    {     
+    {
         teacupOn = true;
         SpeedManager.Instance.speed.Value = 10;
+        for (int i = 0; i < Count; i++)
+        {
+            this[i].TeaOnHisHand.SetActive(true);
+            this[i].ParticalPowerUp.SetActive(true);
+            this[i].ParticalSpeed.SetActive(true);
+            this[i].GetComponent<Animator>().SetTrigger("Drink");
+        }
     }
     public void EndTeacupPowerUp()
     {
         teacupOn = false;
         SpeedManager.Instance.ResetSpeed();
+        for (int i = 0; i < Count; i++)
+        {
+            this[i].ParticalSpeed.SetActive(false);
+            this[i].TeaOnHisHand.SetActive(false);
+         
+        }
     }
     public void StartMagnetPowerup()
     {
         magnetOn = true;
         for (int i = 0; i < Count; i++)
         {
+            this[i].ParticalPowerUp.SetActive(true);
+            this[i].ParticalMagnet.SetActive(true);
+            this[i].MagneOnHisHand.SetActive(true);
             this[i].magnetColliderObject.SetActive(true);
-            this[i].SetHelmetMaterial("_ColAmount", -0.001f);
+            this[i].GetComponent<Animator>().SetBool("HoldingMagnet", true);
+           
         }
     }
-
-    public void EndShieldPowerup()
-    {
-        shieldOn = false;
-        for(int i = 0; i < Count; i++)
-        {
-            this[i].health = normWorkersHealth[i];
-            this[i].SetHelmetMaterial("_ExtAmount", 0);
-            this[i].SetWorkerCollision(VestState.WithoutVest);
-        }
-    }
-
+    
     public void EndMagnetPowerup()
     {
         magnetOn = false;
         for(int i = 0; i < Count; i++)
         {
+            this[i].ParticalMagnet.SetActive(false);
+            this[i].MagneOnHisHand.SetActive(false);
             this[i].magnetColliderObject.SetActive(false);
-            this[i].SetHelmetMaterial("_ColAmount", 0);
+            this[i].GetComponent<Animator>().SetBool("HoldingMagnet", false);
         }
     }
 }
