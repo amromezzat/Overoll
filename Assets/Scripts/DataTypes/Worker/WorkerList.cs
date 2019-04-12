@@ -71,6 +71,10 @@ public class WorkerList : List<WorkerFSM>
             worker.MagneOnHisHand.SetActive(true);
             worker.SetHelmetMaterial("_ColAmount", -0.001f);
         }
+        if (teacupOn)
+        {
+            worker.TeaOnHisHand.SetActive(true);
+        }
 
         //if the leader is added after succeding
         //add him at the top of the level
@@ -155,7 +159,9 @@ public class WorkerList : List<WorkerFSM>
         {
             this[i].health = 1000;
             this[i].SetWorkerCollision(VestState.WithVest);
-             WorkerVesit = this[i].transform.GetChild(0).gameObject; 
+            this[i].ParticalPowerUp.SetActive(true);
+            this[i].ParticalShield.SetActive(true);
+            WorkerVesit = this[i].transform.GetChild(0).gameObject; 
             WorkerVesit.SetActive(true);
         }
     }
@@ -165,6 +171,7 @@ public class WorkerList : List<WorkerFSM>
         for (int i = 0; i < Count; i++)
         {
             this[i].health = normWorkersHealth[i];
+            this[i].ParticalShield.SetActive(false);
             this[i].SetWorkerCollision(VestState.WithoutVest);
             WorkerVesit = this[i].transform.GetChild(0).gameObject;
             WorkerVesit.SetActive(false);
@@ -175,10 +182,11 @@ public class WorkerList : List<WorkerFSM>
     {
         teacupOn = true;
         SpeedManager.Instance.speed.Value = 10;
-
         for (int i = 0; i < Count; i++)
         {
             this[i].TeaOnHisHand.SetActive(true);
+            this[i].ParticalPowerUp.SetActive(true);
+            this[i].ParticalSpeed.SetActive(true);
             this[i].GetComponent<Animator>().SetTrigger("Drink");
         }
     }
@@ -188,6 +196,7 @@ public class WorkerList : List<WorkerFSM>
         SpeedManager.Instance.ResetSpeed();
         for (int i = 0; i < Count; i++)
         {
+            this[i].ParticalSpeed.SetActive(false);
             this[i].TeaOnHisHand.SetActive(false);
          
         }
@@ -197,6 +206,8 @@ public class WorkerList : List<WorkerFSM>
         magnetOn = true;
         for (int i = 0; i < Count; i++)
         {
+            this[i].ParticalPowerUp.SetActive(true);
+            this[i].ParticalMagnet.SetActive(true);
             this[i].MagneOnHisHand.SetActive(true);
             this[i].magnetColliderObject.SetActive(true);
             this[i].GetComponent<Animator>().SetBool("HoldingMagnet", true);
@@ -209,6 +220,7 @@ public class WorkerList : List<WorkerFSM>
         magnetOn = false;
         for(int i = 0; i < Count; i++)
         {
+            this[i].ParticalMagnet.SetActive(false);
             this[i].MagneOnHisHand.SetActive(false);
             this[i].magnetColliderObject.SetActive(false);
             this[i].GetComponent<Animator>().SetBool("HoldingMagnet", false);

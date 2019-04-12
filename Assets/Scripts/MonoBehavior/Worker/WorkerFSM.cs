@@ -37,6 +37,11 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     public GameObject TeaOnHisHand;
     public GameObject magnetColliderObject;
     public GameObject shadow;
+
+    public GameObject ParticalPowerUp;
+    public GameObject ParticalMagnet;
+    public GameObject ParticalShield;
+    public GameObject ParticalSpeed;
     Animator mAnimator;
     BoxCollider mCollider;
     WorkerReturner workerReturner;
