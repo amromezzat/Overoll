@@ -149,6 +149,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         rb.velocity = Vector3.zero;
         transform.position = new Vector3(0, wc.groundLevel, 0);
         tag = "Worker";
+        //magnet, vest, tea cup
     }
 
     public void SetWorkerCollision(VestState vestState)
