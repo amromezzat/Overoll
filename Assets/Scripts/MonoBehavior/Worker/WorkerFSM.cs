@@ -78,16 +78,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     [SerializeField]
     Transform powerUpPosition;
 
-    [SerializeField]
-    public List<Mesh> helmetMeshes = new List<Mesh>();
-    [SerializeField]
-    public List<Mesh> overollMeshes = new List<Mesh>();
-
-    [SerializeField]
-    public SkinnedMeshRenderer helmet;
-
-    [SerializeField]
-    public SkinnedMeshRenderer overall;
+    MeshChange mMeshChange;
     
     private void Awake()
     {
@@ -99,6 +90,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         mCollider = GetComponent<BoxCollider>();
         workerReturner = GetComponent<WorkerReturner>();
         rb = GetComponent<Rigidbody>();
+
+        mMeshChange = gameObject.GetComponent<MeshChange>();
 
         wc.onLeft.AddListener(StrafeLeft);
         wc.onRight.AddListener(StrafeRight);
@@ -129,8 +122,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
             currentState = WorkerState.Halted;
         }
 
-        helmet.sharedMesh = helmetMeshes[0];
-        overall.sharedMesh = overollMeshes[0];
+        //helmet.sharedMesh = helmetMeshes[0];
+        //overall.sharedMesh = overollMeshes[0];
     }
 
     private void OnDisable()
@@ -163,13 +156,13 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         workerStrafe = new WorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
         jumpSlideFsm = new JumpSlideFSM(wc,  mCollider, mAnimator, transform, shadow);
 
-        workerWithoutVestCollide = new WorkerWithoutVestCollide(mAnimator, rb);
+        workerWithoutVestCollide = new WorkerWithoutVestCollide(mAnimator, rb, this, mMeshChange);
         workerWithVestCollide = new WorkerWithVestCollide(mAnimator, rb);
         SetWorkerCollision(VestState.WithoutVest);
 
         positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
         seekLeaderPosition = new SeekLeaderPosition(transform, wc, lanes);
-        mergerCollide = new MergerCollide(wc, helmetMeshes, overollMeshes, this, helmet, overall);
+        mergerCollide = new MergerCollide(wc, mMeshChange,this);
         seekMasterMerger = new SeekMasterMerger(wc, rb, transform);
         positionMasterMerger = new PositionMasterMerger(wc, rb, transform, GetInstanceID());
 
