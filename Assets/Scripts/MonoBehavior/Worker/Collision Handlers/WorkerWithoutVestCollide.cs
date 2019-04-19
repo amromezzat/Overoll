@@ -50,10 +50,7 @@ public class WorkerWithoutVestCollide : WorkerCollide
             else
             {
                 mState.level = (health / 5);
-                if (mState.level > 5)
-                {
-                    mState.level = 4;
-                }
+              
                 mMeshChange.ChangeHelmet(mState.level);
                 mMeshChange.ChangeOveroll(mState.level);
 
@@ -61,7 +58,8 @@ public class WorkerWithoutVestCollide : WorkerCollide
                 {
                     for (int i = 1; i < (health % 5) - 1; i++)
                     {
-                        WorkersManager.Instance.AddWorker();
+                        WorkersManager.Instance.AddWorker(new Vector2(collider.transform.position.x,collider.transform.position.z));
+                        
                     }
 
                     mState.health = mState.level * 5;

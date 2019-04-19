@@ -49,9 +49,10 @@ public abstract class ObstacleCollisionHandler : MonoBehaviour, IObstacle
 
     public virtual void PlayEffect(Animator animator, Rigidbody rb, VestState vestState)
     {
-        if(vestState == VestState.WithVest || withVestCollidingEffect == null)
+        if(vestState == VestState.WithoutVest)
             noVestCollidingEffect.PlayEffect(animator, rb);
-        else
-            withVestCollidingEffect.PlayEffect(animator, rb);
+        //else
+        //withVestCollidingEffect.PlayEffect(animator, rb);
+
     }
 }

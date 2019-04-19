@@ -30,7 +30,8 @@ public class StateScriptsWrapper
     // Scripts that can call FSM to change state
     public List<IWChangeState> changeStateScripts = new List<IWChangeState>();
     // Scripts that take action on collision
-    public IWCollide collideScript = null;
+    public CollideRefUpdate collideRefScript = null;
+    public IWCollide collideScript;
 
     public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript,
     IWCollide collideScript) : this(attachedScripts, strafeScript, jumpSlideScript)
@@ -38,6 +39,11 @@ public class StateScriptsWrapper
         this.collideScript = collideScript;
     }
 
+    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript,
+CollideRefUpdate collideScript) : this(attachedScripts, strafeScript, jumpSlideScript)
+    {
+        this.collideRefScript = collideScript;
+    }
     public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript,
         List<IWChangeState> changeStateScripts) : this(attachedScripts, strafeScript, jumpSlideScript)
     {
@@ -79,6 +85,11 @@ public class StateScriptsWrapper
         this.changeStateScripts = changeStateScripts;
     }
 
+    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript, CollideRefUpdate collideRefUpdate, List<IWChangeState> changeStateScripts) : this(attachedScripts, strafeScript, jumpSlideScript, collideRefUpdate)
+    {
+        this.changeStateScripts = changeStateScripts;
+    }
+
     public void StrafeLeft()
     {
         if (strafeScript != null)
@@ -107,6 +118,8 @@ public class StateScriptsWrapper
     {
         if (collideScript != null)
             return collideScript.Collide(collider, ref health);
+        if (collideRefScript != null && collideRefScript.m_ICollide != null)
+            return collideRefScript.m_ICollide.Collide(collider, ref health);
         return WorkerStateTrigger.Null;
     }
 

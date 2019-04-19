@@ -191,17 +191,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8895870464857827236, guid: 2758f69c35207c04b947f7f18e37dfb8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 800440881, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
+--- !u!137 &334585502 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 334585502, guid: 2758f69c35207c04b947f7f18e37dfb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 243061629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &362898308 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114564676074196204, guid: 9c3f44c4644abb54d91a8afb45b61c80,
@@ -332,13 +329,43 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2080885879}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &728659259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 728659259, guid: 2758f69c35207c04b947f7f18e37dfb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 243061629}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &728659260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728659259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6f2c1d29863f3499dbb05b5a605fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myHelmet: {fileID: 1526311054}
+  myOverall: {fileID: 334585502}
+  helmetList:
+  - {fileID: 4300012, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300004, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300002, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300010, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  OverallList:
+  - {fileID: 4300014, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300008, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300000, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
+  - {fileID: 4300006, guid: e41fcb6e809aa594faaeb7fba1835509, type: 3}
 --- !u!114 &728659261 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 728659261, guid: 2758f69c35207c04b947f7f18e37dfb8,
     type: 3}
   m_PrefabInstance: {fileID: 243061629}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 728659259}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5ab58eb5849dc34c9a79ef03a7be472, type: 3}
@@ -632,16 +659,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6447866538248582401, guid: 7f0d7c92315fc1840ab4d9b51ca74a99,
-        type: 3}
-      propertyPath: m_Name
-      value: Setting Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447866538248582401, guid: 7f0d7c92315fc1840ab4d9b51ca74a99,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2593140807837346841, guid: 7f0d7c92315fc1840ab4d9b51ca74a99,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -745,6 +762,16 @@ PrefabInstance:
     - target: {fileID: 2593140807837346841, guid: 7f0d7c92315fc1840ab4d9b51ca74a99,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447866538248582401, guid: 7f0d7c92315fc1840ab4d9b51ca74a99,
+        type: 3}
+      propertyPath: m_Name
+      value: Setting Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447866538248582401, guid: 7f0d7c92315fc1840ab4d9b51ca74a99,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8611484378107745230, guid: 7f0d7c92315fc1840ab4d9b51ca74a99,
@@ -1123,6 +1150,12 @@ MonoBehaviour:
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!137 &1526311054 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1526311054, guid: 2758f69c35207c04b947f7f18e37dfb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 243061629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1631588106 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7983557580306625623, guid: da96e29fe3a7ade49b8be1c2a094b162,

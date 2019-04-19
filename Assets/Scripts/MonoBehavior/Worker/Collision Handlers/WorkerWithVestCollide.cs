@@ -32,7 +32,7 @@ public class WorkerWithVestCollide : WorkerCollide
         // and vice versa, if the worker loses all his health he dies
         if (collidableObstacle != null)
         {
-            collidableObstacle.ReactToCollision(health);
+            collidableObstacle.ReactToCollision(100000);
             collidableObstacle.PlayEffect(animator, rb, VestState.WithVest);
         }
         return WorkerStateTrigger.Null;

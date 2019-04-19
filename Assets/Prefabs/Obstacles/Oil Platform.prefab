@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8146067441b2d954b8502f553287f151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsHealth: 10
+  obsHealth: 1
   runtimeObsHealth: 0
   withVestCollidingEffect: {fileID: 11400000, guid: aca4bb2f4a4afc2448717d6008510e3a,
     type: 2}
