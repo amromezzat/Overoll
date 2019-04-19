@@ -168,6 +168,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 
         mergeLeaderSeeker = new MergeLeaderSeeker(transform, wc, lanes);
 
+        mergerCollide = new MergerCollide(wc, mMeshChange, this);
+
         //for tutorial
         tutWorkerStrafe = new TutWorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
         tutJumpSlide = new TutJumpSlide(wc, mCollider, mAnimator, transform, shadow);
