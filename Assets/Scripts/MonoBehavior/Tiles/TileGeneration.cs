@@ -72,6 +72,7 @@ public class TileGeneration : MonoBehaviour
         }
 
         currentPattern = patternDB[GameManager.Instance.difficulty.Value][currentPatternIndex];
+        Debug.Log(currentPattern.name);
     }
 
     private void Update()
@@ -97,11 +98,20 @@ public class TileGeneration : MonoBehaviour
         }
         ObjectPooler.instance.segmentActiveCount++;
 
-        GameObject tile = ObjectPooler.instance.GetFromPool(interactDB.RightLineFrame);
+
+        GameObject tile = ObjectPooler.instance.GetFromPool(interactDB.LeftLineFrame);
         Vector3 objpos = tile.transform.position;
         objpos.x = lanes.frameLines[0].laneCenter;
         objpos.z = lastSegTrans.position.z + 1f;
         tile.transform.position = objpos;
+        tile.SetActive(true);
+
+        tile = ObjectPooler.instance.GetFromPool(interactDB.RightLineFrame);
+        objpos = tile.transform.position;
+        objpos.x = lanes.frameLines[1].laneCenter;
+        objpos.z = lastSegTrans.position.z + 1f;
+        tile.transform.position = objpos;
+        tile.SetActive(true);
 
         //generate on available lanes
         for (int i = 0; i < lanes.OnGridLanes.Count; i++)
@@ -120,18 +130,9 @@ public class TileGeneration : MonoBehaviour
                 tile.transform.position = objpos;
                 tile.SetActive(true);
             }
-
-            if (i == 4)
-            {
-                //tile = ObjectPooler.instance.GetFromPool(interactDB.LeftLineFrame);
-                //objpos = tile.transform.position;
-                //objpos.x = lanes.frameLines[1].laneCenter;
-                //objpos.z = lastSegTrans.position.z + 1f;
-                //tile.transform.position = objpos;
-
-                lastSegTrans = tile.transform;
-                tile.GetComponent<TileReturner>().inActiveSegment = true;
-            }
         }
+
+        lastSegTrans = tile.transform;
+        tile.GetComponent<TileReturner>().inActiveSegment = true;
     }
 }

@@ -33,9 +33,15 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     public LanesDatabase lanes;
     //public GameData gd;
     //public TextMesh healthText;
-
+    public GameObject MagneOnHisHand;
+    public GameObject TeaOnHisHand;
     public GameObject magnetColliderObject;
     public GameObject shadow;
+
+    public GameObject ParticalPowerUp;
+    public GameObject ParticalMagnet;
+    public GameObject ParticalShield;
+    public GameObject ParticalSpeed;
     Animator mAnimator;
     BoxCollider mCollider;
     WorkerReturner workerReturner;
@@ -136,6 +142,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         rb.velocity = Vector3.zero;
         transform.position = new Vector3(0, wc.groundLevel, 0);
         tag = "Worker";
+        //magnet, vest, tea cup
     }
 
     public void SetWorkerCollision(VestState vestState)
