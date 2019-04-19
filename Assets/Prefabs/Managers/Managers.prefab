@@ -354,32 +354,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
+      propertyPath: music.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
       propertyPath: sounds.Array.size
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: Music.name
-      value: TempSoundTrack
+      propertyPath: music.Array.data[0].name
+      value: Title music
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: Music.clip
+      propertyPath: music.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 326c4b8ef06688e46b9606a303726fbf, type: 3}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: music.Array.data[0].volume
+      value: 0.747
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: music.Array.data[0].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: music.Array.data[1].name
+      value: Overoll music
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: music.Array.data[1].clip
       value: 
       objectReference: {fileID: 8300000, guid: df55c1f6378b92f43a63fd49f1b33165, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: Music.volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
-        type: 3}
-      propertyPath: Music.pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
-        type: 3}
-      propertyPath: Music.loop
+      propertyPath: music.Array.data[1].loop
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
@@ -389,29 +404,79 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: df55c1f6378b92f43a63fd49f1b33165, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: sounds.Array.data[2].clip
+      propertyPath: sounds.Array.data[1].name
+      value: Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[1].clip
       value: 
       objectReference: {fileID: 8300000, guid: d539b97f2de93744fa57f2c01e16f63b, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: sounds.Array.data[3].clip
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: WorkerDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[2].clip
       value: 
       objectReference: {fileID: 8300000, guid: a2344bdde9c025349ac897129c31db61, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: sounds.Array.data[4].clip
+      propertyPath: sounds.Array.data[2].pitch
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[3].name
+      value: WorkerJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[3].clip
       value: 
       objectReference: {fileID: 8300000, guid: 8a6aeb4c8a5c5a047ae17988474de205, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
+      propertyPath: sounds.Array.data[3].volume
+      value: 0.296
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[4].name
+      value: Lose the game
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a8f7734e54dac343abd010081f27d94, type: 3}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[4].pitch
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
       propertyPath: sounds.Array.data[5].name
-      value: 'Lose the game '
+      value: Oil Slide
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[5].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 5a8f7734e54dac343abd010081f27d94, type: 3}
+      objectReference: {fileID: 8300000, guid: 4a3fcfb16d3840348bd2bff7086aa992, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[5].volume
@@ -425,13 +490,13 @@ PrefabInstance:
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[6].name
-      value: Oil Slide
+      value: Power Up
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[6].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 4a3fcfb16d3840348bd2bff7086aa992, type: 3}
+      objectReference: {fileID: 8300000, guid: 9f08b037ab3f97a41bd027fb4ca9363c, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[6].volume
@@ -445,13 +510,13 @@ PrefabInstance:
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[7].name
-      value: Power Up
+      value: Roll
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[7].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 9f08b037ab3f97a41bd027fb4ca9363c, type: 3}
+      objectReference: {fileID: 8300000, guid: 572501cec28402c458bab9d3aff8757d, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[7].volume
@@ -465,13 +530,13 @@ PrefabInstance:
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[8].name
-      value: Roll
+      value: Hydraullic press 1
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[8].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 572501cec28402c458bab9d3aff8757d, type: 3}
+      objectReference: {fileID: 8300000, guid: e0341fdc19687064fa3c8cdd2e7fdb89, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[8].volume
@@ -484,13 +549,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: _MusicToggle
-      value: 
+      propertyPath: sounds.Array.data[9].name
+      value: Hydraullic press 2
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: _SoundToggle
+      propertyPath: sounds.Array.data[9].clip
       value: 
+      objectReference: {fileID: 8300000, guid: c393d41f5a4d14b42863fcbb1c5706a1, type: 3}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[9].volume
+      value: 0.296
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[9].pitch
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[10].name
+      value: Hydraulic press 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 134b00d6bd72daf4784ecd4aaf19f4a7, type: 3}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[10].volume
+      value: 0.296
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[10].pitch
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be29277555d70a14d9ff8b88344d56aa, type: 3}
@@ -555,24 +650,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
-        type: 3}
-      propertyPath: shield
-      value: 
-      objectReference: {fileID: 11400000, guid: d81aa74c28e99354ea2903cd375fd38f,
-        type: 2}
-    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
-        type: 3}
-      propertyPath: magnet
-      value: 
-      objectReference: {fileID: 11400000, guid: 3e6e903bee6c1e94d93b1f9a133e43f1,
-        type: 2}
-    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
-        type: 3}
-      propertyPath: teacup
-      value: 
-      objectReference: {fileID: 11400000, guid: b0477af9ba2168943954facedcee9898,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9bb07bca5e165b4db3819c6f72097c5, type: 3}
 --- !u!4 &985469482325298885 stripped

@@ -36,6 +36,7 @@ public class PickUpPowerUp : MonoBehaviour
     {
         if (other.tag == "Worker")
         {
+            AudioManager.instance.PlaySound("Power Up");
             if (tag == "Magnet")
             {
                 //gameData.gotMagnet.Invoke();

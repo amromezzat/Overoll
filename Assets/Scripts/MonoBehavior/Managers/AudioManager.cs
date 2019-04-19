@@ -22,8 +22,10 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound Music;
+    public Sound[] music;
     public Sound[] sounds;
+
+    public Sound current;
 
     public GameObject _MusicToggle;
     public GameObject _SoundToggle;
@@ -48,11 +50,16 @@ public class AudioManager : MonoBehaviour
         soundToggle = _SoundToggle.GetComponent<Toggle>();
 
         //-------------------------------------------------
-        Music.source = gameObject.AddComponent<AudioSource>();
-        Music.source.clip = Music.clip;
-        Music.source.volume = Music.volume;
-        Music.source.pitch = Music.pitch;
-        Music.source.loop = Music.loop;
+        foreach (Sound s in music)
+        {
+
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+        }
+
 
         //---------------------------------------
 
@@ -67,49 +74,43 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-       // PlaySound("TempSoundTrack");
-        Music.source.Play();
-    }
+    //private void Start()
+    //{
+    //   // PlaySound("TempSoundTrack");
+    //    music.source.Play();
+    //}
 
-    public void PlaySound (string name)
+    public void PlaySound(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        current = Array.Find(sounds, sound => sound.name == name);
 
-        if (s == null)
+        if (current == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
         if (soundToggle.isOn == true)
         {
-            s.source.Play();
+            current.source.Play();
         }
         if (soundToggle.isOn == false)
         {
-            s.source.Pause();
+            current.source.Pause();
         }
-
     }
-
-
- 
-
 
     public void stopMusic()
     {
-        if (musicToggle.isOn == false)
+        foreach (Sound s in music)
         {
-          
-            Music.source.Pause();
-
+            if (musicToggle.isOn == false)
+            {
+                s.source.Pause();
+            }
+            if (musicToggle.isOn == true)
+            {
+                s.source.Play();
+            }
         }
-        if (musicToggle.isOn == true)
-        {
-            Music.source.Play();
-        }
-       
     }
-
 }

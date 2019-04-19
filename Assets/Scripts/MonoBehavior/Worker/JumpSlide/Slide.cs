@@ -41,6 +41,9 @@ public class Slide : IDoAction
     {
         slideTimer = 0;
         animator.SetTrigger("Duck");
+
+        AudioManager.instance.PlaySound("Roll");
+
         Vector3 newColliderSize = collider.size;
         newColliderSize.y *= 0.25f;
         collider.size = newColliderSize;
