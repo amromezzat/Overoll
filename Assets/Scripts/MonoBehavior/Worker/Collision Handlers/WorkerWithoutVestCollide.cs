@@ -21,12 +21,18 @@ using UnityEngine;
 
 public class WorkerWithoutVestCollide : WorkerCollide
 {
-    public WorkerWithoutVestCollide(Animator animator, Rigidbody rb) : base(animator, rb)
+    WorkerFSM mState;
+    MeshChange mMeshChange;
+
+    public WorkerWithoutVestCollide(Animator animator, Rigidbody rb, WorkerFSM state, MeshChange mesh) : base(animator, rb)
     {
+        mState = state;
+        mMeshChange = mesh;
     }
 
     public override WorkerStateTrigger Collide(Collider collider, ref int health)
     {
+
         IObstacle collidableObstacle = collider.GetComponent<IObstacle>();
         // When a worker hits an obstacle it decreases his health by its health
         // and vice versa, if the worker loses all his health he dies
@@ -35,12 +41,57 @@ public class WorkerWithoutVestCollide : WorkerCollide
             int obsHealth = collidableObstacle.Gethealth();
             int preCollisionWH = health;
             health = health - obsHealth;
-            collidableObstacle.ReactToCollision(preCollisionWH);
+
             if (health <= 0)
             {
                 collidableObstacle.PlayEffect(animator, rb, VestState.WithVest);
                 return WorkerStateTrigger.Die;
             }
+            else
+            {
+                mState.level = (health / 5);
+                if (mState.level > 5)
+                {
+                    mState.level = 4;
+                }
+                mMeshChange.ChangeHelmet(mState.level);
+                mMeshChange.ChangeOveroll(mState.level);
+
+                if (health % 5 != 0)
+                {
+                    for (int i = 1; i < (health % 5) - 1; i++)
+                    {
+                        WorkersManager.Instance.AddWorker();
+                    }
+
+                    mState.health = mState.level * 5;
+
+                    if (mState.level == 0)
+                    {
+                        mState.health = 1;
+                    }
+
+                    return WorkerStateTrigger.StateEnd;
+                }
+
+                else if (health % 5 == 0)
+                {
+                    mMeshChange.ChangeHelmet(mState.level);
+                    mMeshChange.ChangeOveroll(mState.level);
+
+                    mState.health = mState.level * 5;
+                    if (mState.level == 0)
+                    {
+                        mState.health = 1;
+                    }
+
+                    return WorkerStateTrigger.StateEnd;
+                }
+
+            }
+
+            collidableObstacle.ReactToCollision(preCollisionWH);
+
         }
         return WorkerStateTrigger.Null;
     }

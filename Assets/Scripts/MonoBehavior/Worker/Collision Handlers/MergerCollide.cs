@@ -30,21 +30,19 @@ public class MergerCollide : IWCollide
 
     WorkerFSM wfsm;
 
-    SkinnedMeshRenderer hel;
-    SkinnedMeshRenderer ov;
-    
-    List<Mesh> helMesh = new List<Mesh>();
-    List<Mesh> ovMesh = new List<Mesh>();
+    MeshChange m_meshChange;
 
-    public MergerCollide(WorkerConfig wc, List<Mesh> helmetmesh, List<Mesh> overallmesh, WorkerFSM w, SkinnedMeshRenderer h, SkinnedMeshRenderer o)
+    //SkinnedMeshRenderer hel;
+    //SkinnedMeshRenderer ov;
+    
+    //List<Mesh> helMesh = new List<Mesh>();
+    //List<Mesh> ovMesh = new List<Mesh>();
+
+    public MergerCollide(WorkerConfig wc, MeshChange mc, WorkerFSM w)
     {
         this.wc = wc;
-        hel = h;
-        ov = o;
-
-        helMesh = helmetmesh;
-        ovMesh = overallmesh;
         wfsm = w;
+        m_meshChange = mc;
     }
 
     public WorkerStateTrigger Collide(Collider collider, ref int health)
@@ -61,8 +59,10 @@ public class MergerCollide : IWCollide
             mergedCount++;
             if (mergedCount == wc.workersPerLevel - 1)
             {
-                hel.sharedMesh = helMesh[wfsm.level+1];
-                ov.sharedMesh = ovMesh[wfsm.level+1];
+                m_meshChange.ChangeHelmet(wfsm.level + 1);
+                m_meshChange.ChangeOveroll(wfsm.level + 1);
+                //hel.sharedMesh = helMesh[wfsm.level+1];
+                //ov.sharedMesh = ovMesh[wfsm.level+1];
                 mergedCount = 0;
 
                 return WorkerStateTrigger.StateEnd;
