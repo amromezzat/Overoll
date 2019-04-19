@@ -49,6 +49,8 @@ public class PressTile : TileExtraAction
         // Wait for the object to be close to the player
         yield return new WaitForSeconds(waitingTime);
 
+        AudioManager.instance.PlaySound("Hydraullic press 1");
+
         Press press = Press.None;
         // Set press value based on the order of the call
         if (Time.realtimeSinceStartup - lastCallTime > 3)

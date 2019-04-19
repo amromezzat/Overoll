@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378a3094784491a469550cb396da0c1a, type: 3}
   m_Name: Slide Effect
   m_EditorClassIdentifier: 
-  soundName: WorkerDeath
+  soundName: Oil Slide
   animationName: SlideFall
