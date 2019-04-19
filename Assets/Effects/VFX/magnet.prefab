@@ -4776,8 +4776,6 @@ GameObject:
   - component: {fileID: 4631871581286938}
   - component: {fileID: 198502350605350392}
   - component: {fileID: 199910883531967590}
-  - component: {fileID: 4804424367734042280}
-  - component: {fileID: 5140496778963199391}
   m_Layer: 0
   m_Name: magnet
   m_TagString: Untagged
@@ -9502,31 +9500,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &4804424367734042280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931229551122712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd06148c1b21f4388c43e8010a8c55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tc: {fileID: 0}
-  poolableType: {fileID: 0}
-  inActiveSegment: 0
---- !u!114 &5140496778963199391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931229551122712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37883b86802f78448ace9d702db80a9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerUpData: {fileID: 11400000, guid: 3e6e903bee6c1e94d93b1f9a133e43f1, type: 2}

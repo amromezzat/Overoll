@@ -17,6 +17,7 @@ under the License.*/
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 /// <summary>
@@ -30,80 +31,75 @@ public class PowerUpManager : MonoBehaviour
     public PowerUpVariable magnet;
     public PowerUpVariable teacup;
 
-    //public GameData gd;
-    // public WorkerConfig wc;
+    public WorkerConfig wc;
     //float magnetTimer;
     //float shieldTimer;
+    //float shieldTime;
+    
 
+    public Slider Shield_Slider;
+    public Image Shield_Image;
 
+    public Slider Magnet_Slider;
+    public Image Magnet_Image;
+
+    public Slider TeaCup_Slider;
+    public Image TeaCup_Image;
 
     private void Awake()
     {
+        
         if (Instance == null)
         {
             Instance = this;
         }
-        //RegisterListeners();
+
+        Shield_Slider.gameObject.SetActive(false);
+        Magnet_Slider.gameObject.SetActive(false);
+        TeaCup_Slider.gameObject.SetActive(false);
+
+        shield.BeginAction.AddListener(StartShield);
+        shield.EndAction.AddListener(EndShield);
+        magnet.BeginAction.AddListener(StartMagnet);
+        magnet.EndAction.AddListener(EndMagnet);
+        teacup.BeginAction.AddListener(StartTeaCup);
+        teacup.EndAction.AddListener(EndTeaCup);
+       
     }
+    private void Update()
+    {
+        Shield_Slider.value = Mathf.Lerp(0, 1, shield.ScaledTime);
+        Shield_Image.fillAmount = Shield_Slider.value;
+        Magnet_Slider.value = Mathf.Lerp(0, 1, magnet.ScaledTime);
+        Magnet_Image.fillAmount = Magnet_Slider.value;
+        TeaCup_Slider.value = Mathf.Lerp(0, 1, teacup.ScaledTime);
+        TeaCup_Image.fillAmount = TeaCup_Slider.value;
+      
+    }
+     void StartShield ()
+     {
+        Shield_Slider.gameObject.SetActive(true);
+    }
+    void EndShield()
+    {
+        Shield_Slider.gameObject.SetActive(false);
+    }
+    void StartMagnet()
+    {
+        Magnet_Slider.gameObject.SetActive(true);
+    }
+    void EndMagnet()
+    {
+        Magnet_Slider.gameObject.SetActive(false);
 
-    
-    //private void Update()
-    //{
-    //    //if (gd.shieldInAct)
-    //    if (shield.InAct)
-    //    {
-    //        //shieldTimer -= Time.deltaTime;
-    //        shield.Time -= Time.deltaTime;
-    //        //if (shieldTimer < 0)
-    //        if (shield.Time < 0)
-    //        {
-    //            EndShield();
-    //        }
-    //    }
+    }
+    void StartTeaCup()
+    {
+        TeaCup_Slider.gameObject.SetActive(true);
+    }
+    void EndTeaCup()
+    {
+        TeaCup_Slider.gameObject.SetActive(false);
 
-    //    //else if (gd.magnetInAct)
-    //    else if (magnet.InAct)
-    //    {
-    //        //magnetTimer -= Time.deltaTime;
-    //        magnet.Time -= Time.deltaTime;
-    //        //if (magnetTimer < 0)
-    //        if (magnet.Time < 0)
-    //        {
-    //            EndMagnet();
-    //        }
-    //    }
-    //}
-
-    //public void RegisterListeners()
-    //{
-    //    //   gd.gotMagnet.AddListener(StartMagnet);
-    //    //gd.gotShield.AddListener(StartShield);
-    //}
-
-    //void StartShield()
-    //{
-    //    gd.shieldInAct = true;
-    //    shieldTimer = gd.ShieldTime;
-    //    wc.workers.StartShieldPowerup();
-    //}
-
-    //void StartMagnet()
-    //{
-    //    gd.magnetInAct = true;
-    //    magnetTimer = gd.MagnetTime;
-    //    wc.workers.StartMagnetPowerup();
-    //}
-
-    //void EndShield()
-    //{
-    //    gd.shieldInAct = false;
-    //    wc.workers.EndShieldPowerup();
-    //}
-
-    //void EndMagnet()
-    //{
-    //    gd.magnetInAct = false;
-    //    wc.workers.EndMagnetPowerup();
-    //    gd.gotMagnetNoMore.Invoke();
-    //}
+    }
 }
