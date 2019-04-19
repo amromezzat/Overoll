@@ -22,7 +22,7 @@ using UnityEngine;
 public class WorkerList : List<WorkerFSM>
 {
     public bool Merging = false;
-    List<int> normWorkersHealth;
+    //List<int> normWorkersHealth;
 
     int minWorkersToMerge; //workers in each level
     int levels; //levels for merging
@@ -39,7 +39,7 @@ public class WorkerList : List<WorkerFSM>
 
     public WorkerList(int workersPerLevel, int levels)
     {
-        normWorkersHealth = new List<int>();
+        //normWorkersHealth = new List<int>();
 
         this.minWorkersToMerge = workersPerLevel;
         this.levels = levels;
@@ -53,14 +53,14 @@ public class WorkerList : List<WorkerFSM>
     public new void Add(WorkerFSM worker)
     {
         //add worker normal health
-        normWorkersHealth.Add(worker.health);
+        //normWorkersHealth.Add(worker.health);
         base.Add(worker);
         
 
         //if there is a power up apply it to worker
         if (shieldOn)
         {
-            worker.health = 1000;
+            //worker.health = 1000;
             WorkerVesit= worker.transform.GetChild(0).gameObject;
             WorkerVesit.SetActive(true);
            
@@ -110,14 +110,14 @@ public class WorkerList : List<WorkerFSM>
                 newMasterHealth += workers[worker.level][i].health;
             }
             //if health powerup is active divide by 1000 to get correct health
-            newMasterHealth = newMasterHealth >= 1000 ? newMasterHealth / 1000 : newMasterHealth;
-            normWorkersHealth[IndexOf(worker)] = newMasterHealth;
+            //newMasterHealth = newMasterHealth >= 1000 ? newMasterHealth / 1000 : newMasterHealth;
+            //normWorkersHealth[IndexOf(worker)] = newMasterHealth;
         }
     }
 
     public new void Remove(WorkerFSM worker)
     {
-        normWorkersHealth.Remove(IndexOf(worker));
+        //normWorkersHealth.Remove(IndexOf(worker));
         base.Remove(worker);
 
        // worker.SetHelmetMaterial("_ExtAmount", 0);
@@ -157,7 +157,7 @@ public class WorkerList : List<WorkerFSM>
         shieldOn = true;
         for (int i = 0; i < Count; i++)
         {
-            this[i].health = 1000;
+            //this[i].health = 1000;
             this[i].SetWorkerCollision(VestState.WithVest);
             this[i].ParticalPowerUp.SetActive(true);
             this[i].ParticalShield.SetActive(true);
@@ -170,7 +170,7 @@ public class WorkerList : List<WorkerFSM>
         shieldOn = false;
         for (int i = 0; i < Count; i++)
         {
-            this[i].health = normWorkersHealth[i];
+            //this[i].health = normWorkersHealth[i];
             this[i].ParticalShield.SetActive(false);
             this[i].SetWorkerCollision(VestState.WithoutVest);
             WorkerVesit = this[i].transform.GetChild(0).gameObject;

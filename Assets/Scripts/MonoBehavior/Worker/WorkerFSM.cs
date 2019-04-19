@@ -31,8 +31,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     public WorkerConfig wc;
     public TileConfig tc;
     public LanesDatabase lanes;
-    //public GameData gd;
-    //public TextMesh healthText;
     public GameObject MagneOnHisHand;
     public GameObject TeaOnHisHand;
     public GameObject magnetColliderObject;
@@ -49,7 +47,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 
     WorkerStrafe workerStrafe;
     JumpSlideFSM jumpSlideFsm;
-    WorkerCollide workerCollide;
+    CollideRefUpdate colliderRefUpdate = new CollideRefUpdate();
 
     WorkerWithoutVestCollide workerWithoutVestCollide;
     WorkerWithVestCollide workerWithVestCollide;
@@ -88,10 +86,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     
     private void Awake()
     {
-        //foreach (SkinnedMeshRenderer helmet in Helmets)
-        //{
-        //    helmetsMaterial.Add(helmet.material);
-        //}
         mAnimator = GetComponent<Animator>();
         mCollider = GetComponent<BoxCollider>();
         workerReturner = GetComponent<WorkerReturner>();
@@ -150,10 +144,10 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         switch (vestState)
         {
             case VestState.WithoutVest:
-                workerCollide = workerWithoutVestCollide;
+                colliderRefUpdate.m_ICollide = workerWithoutVestCollide;
                 break;
             case VestState.WithVest:
-                workerCollide = workerWithVestCollide;
+                colliderRefUpdate.m_ICollide = workerWithVestCollide;
                 break;
         }
     }
@@ -169,7 +163,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 
         positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
         seekLeaderPosition = new SeekLeaderPosition(transform, wc, lanes);
-        mergerCollide = new MergerCollide(wc, mMeshChange,this);
         seekMasterMerger = new SeekMasterMerger(wc, rb, transform);
         positionMasterMerger = new PositionMasterMerger(wc, rb, transform, GetInstanceID());
 
@@ -180,12 +173,12 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         tutJumpSlide = new TutJumpSlide(wc, mCollider, mAnimator, transform, shadow);
 
         scriptsToResetState = new IWorkerScript[] {
-            workerStrafe, jumpSlideFsm, mergerCollide,
+            workerStrafe, jumpSlideFsm, workerWithoutVestCollide, workerWithVestCollide,
             tutWorkerStrafe, tutJumpSlide, mergeLeaderSeeker
         };
 
         workerStateScripts[WorkerState.Leader] = new StateScriptsWrapper(new List<IWorkerScript>() {
-            workerStrafe, jumpSlideFsm }, workerStrafe, jumpSlideFsm, workerCollide);
+            workerStrafe, jumpSlideFsm }, workerStrafe, jumpSlideFsm, colliderRefUpdate);
 
         workerStateScripts[WorkerState.LeaderSeeker] = new StateScriptsWrapper(new List<IWorkerScript>() {
         workerStrafe, jumpSlideFsm, seekLeaderPosition}, workerStrafe, jumpSlideFsm,
@@ -199,7 +192,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         workerStrafe, jumpSlideFsm, mergerCollide, new List<IWChangeState>() { mergeLeaderSeeker });
 
         workerStateScripts[WorkerState.Worker] = new StateScriptsWrapper(new List<IWorkerScript>() {
-        positionWorker, jumpSlideFsm}, jumpSlideFsm, workerCollide);
+        positionWorker, jumpSlideFsm}, workerStrafe, jumpSlideFsm, colliderRefUpdate);
 
         workerStateScripts[WorkerState.MasterMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
         {positionMasterMerger, jumpSlideFsm}, jumpSlideFsm, mergerCollide);
@@ -295,7 +288,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 
     private void Update()
     {
-        SetHelmetMaterial("_Cutoff", health / (wc.levelsNum * level + 0.01f));
         //healthText.text = health.ToString();
         // Check if there is an output trigger from current state
         WorkerStateTrigger trigger = workerStateScripts[currentState].InputTrigger();
