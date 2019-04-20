@@ -58,6 +58,7 @@ public class JumpSlideFSM : IWJumpSlide
         {
             slideDuration = wc.slideDuration
         };
+
         jumpState = new Jump(mAnimator)
         {
             jumpDuration = wc.jumpDuration,
@@ -66,7 +67,7 @@ public class JumpSlideFSM : IWJumpSlide
 
         //allowed transition states
         actionsDic[slideState] = new List<IDoAction>() { runState, jumpState };
-        actionsDic[jumpState] = new List<IDoAction>() { runState, interruptJumpState };
+        actionsDic[jumpState] = new List<IDoAction>() { interruptJumpState, delayState };
         actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState, delayState };
         actionsDic[interruptJumpState] = new List<IDoAction>() { runState, slideState, delayState };
         actionsDic[delayState] = new List<IDoAction>() { jumpState, slideState };
@@ -94,6 +95,7 @@ public class JumpSlideFSM : IWJumpSlide
     {
         //float delayTime = (wc.leader.transform.position.z - transform.position.z) / gd.Speed;
         float delayTime = (wc.leader.transform.position.z - transform.position.z) / SpeedManager.Instance.speed.Value;
+        actionStack.Push(interruptJumpState);
         actionStack.Push(jumpState);
         if (delayTime > 0)
         {

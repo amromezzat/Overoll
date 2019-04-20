@@ -65,7 +65,7 @@ public class ScoreManager : MonoBehaviour, IHalt
             return;
 
         score.Value = timeScore + coinsCount.Value * coinvalue;
-        Debug.Log(score.Value + coinsCount);
+        //Debug.Log(score.Value + coinsCount);
         
         //Display score
         scoreText.text = score.Value.ToString();

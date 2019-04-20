@@ -47,9 +47,12 @@ public class Jump : IDoAction
         Vector3 newPos = transform.position;
         jumpTimer += deltaTime;
         float completedPortion = jumpTimer / jumpDuration;
-        animator.SetFloat("JumpingRatio", completedPortion);
         newPos.y = Mathf.Lerp(0.25f, jumpHeight, Mathf.Sin(Mathf.PI * completedPortion));
         transform.position = newPos;
+
+        if (newPos.y >= jumpHeight)
+            animator.SetBool("Landing", true);
+
         if (transform.position.y <= 0.25)
         {
             return false;

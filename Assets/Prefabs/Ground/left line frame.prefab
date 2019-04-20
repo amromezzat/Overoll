@@ -12,12 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: left line frame
       objectReference: {fileID: 0}
-    - target: {fileID: 3736567721675710737, guid: 42ac3e40e5884b04c9f56f03bbb7aaaa,
-        type: 3}
-      propertyPath: poolableType
-      value: 
-      objectReference: {fileID: 11400000, guid: ca488e72e49054546904acb122935688,
-        type: 2}
     - target: {fileID: 6620164300208715876, guid: 42ac3e40e5884b04c9f56f03bbb7aaaa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -76,12 +70,18 @@ PrefabInstance:
     - target: {fileID: 6620164300208715876, guid: 42ac3e40e5884b04c9f56f03bbb7aaaa,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6620164300208715876, guid: 42ac3e40e5884b04c9f56f03bbb7aaaa,
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 3736567721675710737, guid: 42ac3e40e5884b04c9f56f03bbb7aaaa,
+        type: 3}
+      propertyPath: poolableType
+      value: 
+      objectReference: {fileID: 11400000, guid: ca488e72e49054546904acb122935688,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42ac3e40e5884b04c9f56f03bbb7aaaa, type: 3}
