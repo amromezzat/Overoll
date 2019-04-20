@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RightLine
   m_EditorClassIdentifier: 
   laneNum: 5
-  laneCenter: 3
+  laneCenter: 2.7
