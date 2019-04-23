@@ -53,6 +53,10 @@ public class PickUpPowerUp : MonoBehaviour
             {
                 PowerUpManager.Instance.teacup.StartPowerUP();
             }
+            if (tag=="x2")
+            {
+                PowerUpManager.Instance.doublecoin.StartPowerUP();
+            }
 
             StartCoroutine(cReturn.ReturnToPool(0));
         }

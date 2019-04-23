@@ -46,7 +46,10 @@ MonoBehaviour:
   shield: {fileID: 11400000, guid: d81aa74c28e99354ea2903cd375fd38f, type: 2}
   magnet: {fileID: 11400000, guid: 3e6e903bee6c1e94d93b1f9a133e43f1, type: 2}
   teacup: {fileID: 11400000, guid: b0477af9ba2168943954facedcee9898, type: 2}
+  doublecoin: {fileID: 11400000, guid: 8a0516a6565c95d4ea948f1a864dca66, type: 2}
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+  DoubleCoin_Slider: {fileID: 0}
+  DoubleCoin_Image: {fileID: 0}
   Shield_Slider: {fileID: 0}
   Shield_Image: {fileID: 0}
   Magnet_Slider: {fileID: 0}
