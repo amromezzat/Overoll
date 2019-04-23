@@ -31,6 +31,8 @@ public class WorkersManager : MonoBehaviour
     public PowerUpVariable shield;
     public PowerUpVariable magnet;
     public PowerUpVariable teacup;
+    public PowerUpVariable doublecoin;
+
     //[HideInInspector]
     //public int hrNum;
     //[HideInInspector]
@@ -52,6 +54,9 @@ public class WorkersManager : MonoBehaviour
 
         teacup.BeginAction.AddListener(wc.workers.StartTeacupPowerUp);
         teacup.EndAction.AddListener(wc.workers.EndTeacupPowerUp);
+
+        doublecoin.BeginAction.AddListener(wc.workers.StartDoubleCoin);
+        doublecoin.EndAction.AddListener(wc.workers.EndDoubleCoin);
 
         wc.leader = leader;
         wc.workers.Add(leader);
@@ -123,6 +128,10 @@ public class WorkersManager : MonoBehaviour
         {
             GameManager.Instance.gameState = GameState.GameOver;
             GameManager.Instance.onEnd.Invoke();
+            magnet.ResetPowerUp();
+            teacup.ResetPowerUp();
+            shield.ResetPowerUp();
+            Debug.Log("Dead");
         }
     }
 

@@ -30,7 +30,7 @@ public class WorkerList : List<WorkerFSM>
     bool shieldOn = false;
     bool magnetOn = false;
     bool teacupOn = false;
-
+    public bool doubleCoinOn = false;
     
     GameObject WorkerVesit;
 
@@ -193,7 +193,8 @@ public class WorkerList : List<WorkerFSM>
     public void EndTeacupPowerUp()
     {
         teacupOn = false;
-        SpeedManager.Instance.ResetSpeed();
+        if(GameManager.Instance.gameState == GameState.Gameplay)
+            SpeedManager.Instance.ResetSpeed();
         for (int i = 0; i < Count; i++)
         {
             this[i].ParticalSpeed.SetActive(false);
@@ -225,5 +226,18 @@ public class WorkerList : List<WorkerFSM>
             this[i].magnetColliderObject.SetActive(false);
             this[i].GetComponent<Animator>().SetBool("HoldingMagnet", false);
         }
+    }
+    public void StartDoubleCoin()
+    {
+        doubleCoinOn = true;
+        for (int i= 0; i < Count; i++)
+        {
+            this[i].ParticalPowerUp.SetActive(true);
+
+        }
+    }
+    public void EndDoubleCoin()
+    {
+        doubleCoinOn = false;
     }
 }

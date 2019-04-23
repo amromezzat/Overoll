@@ -27,9 +27,9 @@ public class ScoreManager : MonoBehaviour, IHalt
     public IntField coinsCount;
     public IntField score;
 
-    int timeScore;
-    int coinvalue = 5;
-    int secValue = 1;
+    float timeScore;
+    float coinvalue = 0.5f;
+    float secValue = 0.03f;
     public Text scoreText;
     public Text coinNum;
     public WorkerConfig wConfig;
@@ -37,6 +37,8 @@ public class ScoreManager : MonoBehaviour, IHalt
 
     [HideInInspector]
     public int workerPrice = 0;
+
+    PowerUpVariable doublecoin;
 
     private void Awake()
     {
@@ -58,18 +60,23 @@ public class ScoreManager : MonoBehaviour, IHalt
     void Update()
     {
         RegisterListeners();
-
-        coinvalue = 1 * (1 + wConfig.workers.Count);
+        if (wConfig.workers.doubleCoinOn)
+        {
+            coinvalue = 2f;
+        }
+        coinvalue =  (1 + wConfig.workers.Count);
 
         if (TutorialManager.Instance.tutorialActive)
             return;
 
-        score.Value = timeScore + coinsCount.Value * coinvalue;
+        score.Value = (int)timeScore + coinsCount.Value * (int)(coinvalue);
         //Debug.Log(score.Value + coinsCount);
         
         //Display score
         scoreText.text = score.Value.ToString();
         coinNum.text = coinsCount.Value.ToString();
+       
+
     }
 
     IEnumerator ScorePerSec()
@@ -77,7 +84,7 @@ public class ScoreManager : MonoBehaviour, IHalt
         while (true)
         {
             timeScore += secValue;
-            yield return new WaitForSeconds(0.125f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 

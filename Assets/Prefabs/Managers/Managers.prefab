@@ -724,6 +724,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114500112709322594, guid: 172dab9867235f54fbdeecc0702644e5,
+        type: 3}
+      propertyPath: leader
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500112709322594, guid: 172dab9867235f54fbdeecc0702644e5,
+        type: 3}
+      propertyPath: addWorkerBtn
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500112709322594, guid: 172dab9867235f54fbdeecc0702644e5,
+        type: 3}
+      propertyPath: doublecoin
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a0516a6565c95d4ea948f1a864dca66,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 172dab9867235f54fbdeecc0702644e5, type: 3}
 --- !u!4 &985190390522917263 stripped

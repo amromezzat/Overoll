@@ -30,12 +30,15 @@ public class PowerUpManager : MonoBehaviour
     public PowerUpVariable shield;
     public PowerUpVariable magnet;
     public PowerUpVariable teacup;
+    public PowerUpVariable doublecoin;
 
     public WorkerConfig wc;
     //float magnetTimer;
     //float shieldTimer;
     //float shieldTime;
-    
+
+    public Slider DoubleCoin_Slider;
+    public Image DoubleCoin_Image;
 
     public Slider Shield_Slider;
     public Image Shield_Image;
@@ -64,7 +67,8 @@ public class PowerUpManager : MonoBehaviour
         magnet.EndAction.AddListener(EndMagnet);
         teacup.BeginAction.AddListener(StartTeaCup);
         teacup.EndAction.AddListener(EndTeaCup);
-       
+        doublecoin.BeginAction.AddListener(StartDoubleCoin);
+        doublecoin.EndAction.AddListener(EndDoubleCoin);
     }
     private void Update()
     {
@@ -74,6 +78,8 @@ public class PowerUpManager : MonoBehaviour
         Magnet_Image.fillAmount = Magnet_Slider.value;
         TeaCup_Slider.value = Mathf.Lerp(0, 1, teacup.ScaledTime);
         TeaCup_Image.fillAmount = TeaCup_Slider.value;
+        DoubleCoin_Slider.value = Mathf.Lerp(0, 1, doublecoin.ScaledTime);
+        DoubleCoin_Image.fillAmount = DoubleCoin_Slider.value;
       
     }
      void StartShield ()
@@ -102,4 +108,12 @@ public class PowerUpManager : MonoBehaviour
         TeaCup_Slider.gameObject.SetActive(false);
 
     }
+    void StartDoubleCoin()
+    {
+        DoubleCoin_Slider.gameObject.SetActive(true);
+    }
+     void EndDoubleCoin()
+     {
+        DoubleCoin_Slider.gameObject.SetActive(false);
+     }
 }
