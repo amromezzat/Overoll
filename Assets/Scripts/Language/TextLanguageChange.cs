@@ -17,9 +17,39 @@ under the License.*/
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using RTLTMPro;
 
-public class CollideRefUpdate
-{ 
-    public IWCollide m_ICollide;
+public class TextLanguageChange : MonoBehaviour,ILanguageChangable
+{
+    public RTLTextMeshPro targetText;
+
+    public string[] StringList;
+
+    LanguageTypes m_LangType;
+
+    private void OnEnable()
+    {
+        targetText = GetComponent<RTLTextMeshPro>();
+        //m_LangType = SettingsManager.Instance.languageType;
+        m_LangType = (LanguageTypes)PlayerPrefs.GetInt("Language");
+        targetText.text = StringList[(int)m_LangType];
+    }
+
+    private void Awake()
+    {
+       // Debug.Log(m_LangType);
+        
+    }
+    public void ChangeLanguage(LanguageTypes lanType)
+    {
+        Debug.Log(lanType);
+        Debug.Log("targetText" + targetText.text);
+    }
+
+    public void RegisterListners()
+    {
+        SettingsManager.Instance.ChangeLanguage.AddListener(ChangeLanguage);
+    }
 }
