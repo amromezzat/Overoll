@@ -19,7 +19,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollideRefUpdate
-{ 
-    public IWCollide m_ICollide;
+interface ILanguageChangable
+{
+    void ChangeLanguage(LanguageTypes lanType);
+
+    void RegisterListners();
 }

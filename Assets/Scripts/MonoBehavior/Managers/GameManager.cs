@@ -168,8 +168,6 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(WaitTheSound());
 
-        
-
         SpeedManager.Instance.speed.Value = 0;
 
         AudioManager.instance.PlaySound("Lose the game");

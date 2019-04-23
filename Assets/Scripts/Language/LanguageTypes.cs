@@ -15,11 +15,10 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.*/
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class CollideRefUpdate
-{ 
-    public IWCollide m_ICollide;
+public enum LanguageTypes
+{
+    AR,
+    EN,
+    DE,
+    FR
 }
