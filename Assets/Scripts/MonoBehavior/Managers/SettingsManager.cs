@@ -15,11 +15,47 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.*/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
-public class CollideRefUpdate
-{ 
-    public IWCollide m_ICollide;
+public class LanguageTypeEvent : UnityEvent<LanguageTypes>
+{
+
+}
+
+public class SettingsManager : MonoBehaviour
+{
+    public static SettingsManager Instance;
+
+    public UnityEvent<LanguageTypes> ChangeLanguage = new LanguageTypeEvent();
+
+    public LanguageTypes languageType;
+
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+    }
+
+    public void SetLanguage(int val)
+    {
+        PlayerPrefs.SetInt("Language",val);
+        OnChangeLanguage((LanguageTypes)val);
+    }
+
+    public void OnChangeLanguage(LanguageTypes langType)
+    {
+        languageType = langType;
+        
+        Debug.Log(languageType);
+
+        ChangeLanguage.Invoke(languageType);
+    }
+
+
 }
