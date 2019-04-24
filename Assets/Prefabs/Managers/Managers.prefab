@@ -355,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: music.Array.size
+      propertyPath: musics.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
@@ -365,37 +365,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: music.Array.data[0].name
+      propertyPath: musics.Array.data[0].name
       value: Title music
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: music.Array.data[0].clip
+      propertyPath: musics.Array.data[0].clip
       value: 
       objectReference: {fileID: 8300000, guid: 326c4b8ef06688e46b9606a303726fbf, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: music.Array.data[0].volume
-      value: 0.747
+      propertyPath: musics.Array.data[0].volume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: music.Array.data[0].loop
+      propertyPath: musics.Array.data[0].pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: music.Array.data[1].name
+      propertyPath: musics.Array.data[0].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: musics.Array.data[1].name
       value: Overoll music
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: music.Array.data[1].clip
+      propertyPath: musics.Array.data[1].clip
       value: 
       objectReference: {fileID: 8300000, guid: df55c1f6378b92f43a63fd49f1b33165, type: 3}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
-      propertyPath: music.Array.data[1].loop
+      propertyPath: musics.Array.data[1].volume
+      value: 0.448
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: musics.Array.data[1].pitch
+      value: 1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: musics.Array.data[1].loop
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
@@ -588,16 +603,6 @@ PrefabInstance:
       propertyPath: sounds.Array.data[10].pitch
       value: 2.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
-        type: 3}
-      propertyPath: _MusicToggle
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
-        type: 3}
-      propertyPath: _SoundToggle
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be29277555d70a14d9ff8b88344d56aa, type: 3}
 --- !u!4 &985187284778963712 stripped
@@ -723,16 +728,6 @@ PrefabInstance:
     - target: {fileID: 4436092485014146, guid: 172dab9867235f54fbdeecc0702644e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114500112709322594, guid: 172dab9867235f54fbdeecc0702644e5,
-        type: 3}
-      propertyPath: leader
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114500112709322594, guid: 172dab9867235f54fbdeecc0702644e5,
-        type: 3}
-      propertyPath: addWorkerBtn
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114500112709322594, guid: 172dab9867235f54fbdeecc0702644e5,
         type: 3}
