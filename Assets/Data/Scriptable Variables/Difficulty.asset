@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Difficulty
   m_EditorClassIdentifier: 
   InitialValue: 1
-  runtimeValue: 3
+  runtimeValue: 1
