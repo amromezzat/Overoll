@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         lanes.ResetLanes();
-
+        AudioManager.instance.PlayMusic("Title music");
         inGameCanvas.gameObject.SetActive(false);
         endGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(true);
@@ -127,6 +127,7 @@ public class GameManager : MonoBehaviour
 
     public void GameHalt()
     {
+        AudioManager.instance.HoldMusic("Overoll music");
         AudioManager.instance.PlaySound("Title music");
 
         gameState = GameState.Pause;
@@ -136,6 +137,7 @@ public class GameManager : MonoBehaviour
 
     public void GameResume()
     {
+        AudioManager.instance.HoldMusic("Title music");
         AudioManager.instance.PlaySound("Overoll music");
 
         gameState = GameState.Gameplay;
@@ -145,7 +147,8 @@ public class GameManager : MonoBehaviour
 
     void GameStart()
     {
-        AudioManager.instance.PlaySound("Title music");
+        AudioManager.instance.HoldMusic("Title music");
+        AudioManager.instance.PlayMusic("Overoll music");
 
         gameState = GameState.Gameplay;
         SpeedManager.Instance.ResetSpeed();
@@ -156,7 +159,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitUntil(()=>AudioManager.instance.current.source.isPlaying);
 
-        AudioManager.instance.PlaySound("Title music");
+        AudioManager.instance.PlayMusic("Title music");
     }
 
     /// <summary>
@@ -170,7 +173,7 @@ public class GameManager : MonoBehaviour
 
         SpeedManager.Instance.speed.Value = 0;
 
-        AudioManager.instance.PlaySound("Lose the game");
+        //AudioManager.instance.PlaySound("Lose the game");
 
         inGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(false);

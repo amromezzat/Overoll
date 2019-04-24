@@ -22,7 +22,7 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] music;
+    public Sound[] musics;
     public Sound[] sounds;
 
     public Sound current;
@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
         soundToggle = _SoundToggle.GetComponent<Toggle>();
 
         //-------------------------------------------------
-        foreach (Sound s in music)
+        foreach (Sound s in musics)
         {
 
             s.source = gameObject.AddComponent<AudioSource>();
@@ -76,8 +76,8 @@ public class AudioManager : MonoBehaviour
 
     //private void Start()
     //{
-    //   // PlaySound("TempSoundTrack");
-    //    music.source.Play();
+        //PlayMusic("Title music");
+        //musics[1].source.Play();
     //}
 
     public void PlaySound(string name)
@@ -99,9 +99,40 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void stopMusic()
+    public void PlayMusic(string name)
     {
-        foreach (Sound s in music)
+        current = Array.Find(musics, music => music.name == name);
+
+        if (current == null)
+        {
+            Debug.LogWarning("Music: " + name + " not found!");
+            return;
+        }
+        if (musicToggle.isOn == true)
+        {
+            current.source.Play();
+        }
+        if (musicToggle.isOn == false)
+        {
+            current.source.Pause();
+        }
+    }
+
+    public void HoldMusic(String name)
+    {
+        current = Array.Find(musics, music => music.name == name);
+
+        if (current == null)
+        {
+            Debug.LogWarning("Music: " + name + " not found!");
+            return;
+        }
+        current.source.Stop();
+    }
+
+    public void StopMusic()
+    {
+        foreach (Sound s in musics)
         {
             if (musicToggle.isOn == false)
             {
@@ -113,4 +144,6 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+
 }

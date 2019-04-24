@@ -39,7 +39,6 @@ public class SettingsManager : MonoBehaviour
         {
             Instance = this;
         }
-
     }
 
     public void SetLanguage(int val)
