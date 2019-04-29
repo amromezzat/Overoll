@@ -77,13 +77,13 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     public List<Material> helmetsMaterial = new List<Material>();
 
     //[SerializeField]
-   // List<SkinnedMeshRenderer> Helmets;
+    // List<SkinnedMeshRenderer> Helmets;
 
     [SerializeField]
     Transform powerUpPosition;
 
     MeshChange mMeshChange;
-    
+
     private void Awake()
     {
         mAnimator = GetComponent<Animator>();
@@ -122,8 +122,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
             currentState = WorkerState.Halted;
         }
 
-        //helmet.sharedMesh = helmetMeshes[0];
-        //overall.sharedMesh = overollMeshes[0];
+        ResetState();
     }
 
     private void OnDisable()
@@ -136,7 +135,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         rb.velocity = Vector3.zero;
         transform.position = new Vector3(0, wc.groundLevel, 0);
         tag = "Worker";
-        //magnet, vest, tea cup
     }
 
     public void SetWorkerCollision(VestState vestState)
@@ -152,10 +150,25 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         }
     }
 
+    void ResetState()
+    {
+        MagneOnHisHand.SetActive(false);
+        TeaOnHisHand.SetActive(false);
+        magnetColliderObject.SetActive(false);
+        shadow.SetActive(false);
+
+        ParticalPowerUp.SetActive(false);
+        ParticalMagnet.SetActive(false);
+        ParticalShield.SetActive(false);
+        ParticalSpeed.SetActive(false);
+
+        SetWorkerCollision(VestState.WithoutVest);
+    }
+
     void SetStatesScripts()
     {
         workerStrafe = new WorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
-        jumpSlideFsm = new JumpSlideFSM(wc,  mCollider, mAnimator, transform, shadow);
+        jumpSlideFsm = new JumpSlideFSM(wc, mCollider, mAnimator, transform, shadow);
 
         workerWithoutVestCollide = new WorkerWithoutVestCollide(mAnimator, rb, this, mMeshChange);
         workerWithVestCollide = new WorkerWithVestCollide(mAnimator, rb);
