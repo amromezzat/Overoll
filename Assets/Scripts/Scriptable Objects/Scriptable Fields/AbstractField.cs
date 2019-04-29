@@ -21,10 +21,6 @@ public abstract class AbstractField<T> : ScriptableObject, ISerializationCallbac
         }
         set
         {
-            if(name == "Speed")
-            {
-                Debug.Log("lll");
-            }
             if (HasValueChanged(value))
             {
                 OldValue = runtimeValue;
