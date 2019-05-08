@@ -1113,15 +1113,100 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6314250253807008492, guid: da96e29fe3a7ade49b8be1c2a094b162,
+    - target: {fileID: 5316668337643726983, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
-      propertyPath: m_RaycastTarget
-      value: 1
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 972e988dc3e7f754197baa49f4e8dc77,
+        type: 3}
+    - target: {fileID: 1897637290609309711, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 273c2a29e34564c4caff65865bbe3056,
+        type: 3}
+    - target: {fileID: 445915839441693828, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c758df9583130a74bb4a0fe8342ab2a8,
+        type: 3}
+    - target: {fileID: 271567910605453576, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b3b8ee910697bb4ab7f1616a9718b36,
+        type: 3}
+    - target: {fileID: 1197688922545497736, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 555ba973e81476442a2e001f2406dcb0,
+        type: 3}
+    - target: {fileID: 2231018264166938543, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Name
+      value: MusicBtnON
       objectReference: {fileID: 0}
-    - target: {fileID: 6314250253807008492, guid: da96e29fe3a7ade49b8be1c2a094b162,
+    - target: {fileID: 8262944101646998096, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
-      propertyPath: m_Color.a
-      value: 0.22352941
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 85f047754514497489a431204c089eb9,
+        type: 3}
+    - target: {fileID: 2413094852218298556, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Name
+      value: LangARBTN
+      objectReference: {fileID: 0}
+    - target: {fileID: 2309637142107290701, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 41ae682e64c790743ba465e1a5d5d8c6,
+        type: 3}
+    - target: {fileID: 6424720408254583628, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Name
+      value: GooglePlayBTN
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394129745250586994, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3ac0a61d1834ac84f8510a6be336907d,
+        type: 3}
+    - target: {fileID: 6261528719794034701, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundBtnOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182730468401900152, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff275de0a981f5749bd806b767cb3ab9,
+        type: 3}
+    - target: {fileID: 5162702876697381073, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1091
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162702876697381073, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 306
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089774571860270560, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0421622d79e982f4aa4155abd470631b,
+        type: 3}
+    - target: {fileID: 2307334463422455222, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Name
+      value: Setting Image
       objectReference: {fileID: 0}
     - target: {fileID: 1242844755465786, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 3}
       propertyPath: m_Name
@@ -1132,6 +1217,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1802761230}
+    - target: {fileID: 6314250253807008492, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6314250253807008492, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.22352941
+      objectReference: {fileID: 0}
     - target: {fileID: 224740645386596128, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1242,6 +1337,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 173071367}
+    - target: {fileID: 3612717484902708339, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 3}
 --- !u!223 &1334711766 stripped
