@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     public LanesDatabase lanes;
     
     public Text gamePausedTxt;
+    public GameObject PauseMenu;
+    public GameObject SettingMenu;
 
     public Sprite pauseSprite;
     public Sprite resumeSprite;
@@ -88,7 +90,8 @@ public class GameManager : MonoBehaviour
         inGameCanvas.gameObject.SetActive(false);
         endGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(true);
-
+        PauseMenu.SetActive(false);
+        SettingMenu.SetActive(false);
         gamePausedTxt.gameObject.SetActive(false);
 
         onEnd.AddListener(EndGame);
@@ -112,19 +115,25 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.Gameplay:
-                gamePausedTxt.gameObject.SetActive(true);
+                //  gamePausedTxt.gameObject.SetActive(true);
+                PauseMenu.SetActive(true);
                 pauseBtn.GetComponent<Image>().sprite = resumeSprite;
                 GameHalt();
                 break;
 
             case GameState.Pause:
-                gamePausedTxt.gameObject.SetActive(false);
+                //  gamePausedTxt.gameObject.SetActive(false);
+                PauseMenu.SetActive(false);
                 pauseBtn.GetComponent<Image>().sprite = pauseSprite;
                 GameResume();
                 break;
         }
     }
-
+    public void SettingBtnEntered()
+    {
+        PauseMenu.SetActive(false);
+        SettingMenu.SetActive(true);
+    }
     public void GameHalt()
     {
         AudioManager.instance.HoldMusic("Overoll music");
@@ -139,7 +148,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.instance.HoldMusic("Title music");
         AudioManager.instance.PlaySound("Overoll music");
-
+        PauseMenu.SetActive(false);
         gameState = GameState.Gameplay;
         SpeedManager.Instance.ResetSpeed();
         OnResume.Invoke();
