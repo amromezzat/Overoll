@@ -43,10 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794461d0d47696546ad412882314f9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: 223eb67042739bd43834ce2210cd0171, type: 2}
+  gameState: 0
   difficulty: {fileID: 11400000, guid: 6132f316afbf02441a1e6ad0ff4a5ed5, type: 2}
   lanes: {fileID: 11400000, guid: 445cf88e0f13ad34a9de9076e78eff02, type: 2}
   gamePausedTxt: {fileID: 0}
+  PauseMenu: {fileID: 883744164263621932, guid: 010a4c4b579ee7d46b435b9617dfa2f7,
+    type: 3}
+  SettingMenu: {fileID: 822896080570241638, guid: eed9943987485c34b9d0a6bed6650533,
+    type: 3}
   pauseSprite: {fileID: 21300000, guid: b63874d7599018340a0815a9f5b94414, type: 3}
   resumeSprite: {fileID: 21300000, guid: e3d6627ad207ac24587091921d041d2c, type: 3}
   pauseBtn: {fileID: 0}
@@ -54,6 +58,26 @@ MonoBehaviour:
   playBtn: {fileID: 0}
   settingsBtn: {fileID: 0}
   storeBtn: {fileID: 0}
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnResume:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onPause:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   mainMenuCanvas: {fileID: 0}
   inGameCanvas: {fileID: 0}
   endGameCanvas: {fileID: 0}
