@@ -25,6 +25,9 @@ public class DestructableObstacleCollision : ObstacleCollisionHandler
     [SerializeField]
     protected TileReturner objReturner;
 
+    [SerializeField]
+    protected CollisionEffect collisionEffect;
+
     protected override void Awake()
     {
         base.Awake();
@@ -32,6 +35,9 @@ public class DestructableObstacleCollision : ObstacleCollisionHandler
 
     public override void ReactToCollision(int collidedHealth)
     {
+        if(collisionEffect != null)
+            collisionEffect.PlayEffect();
+
         runtimeObsHealth -= collidedHealth;
         if (runtimeObsHealth <= 0)
         {
