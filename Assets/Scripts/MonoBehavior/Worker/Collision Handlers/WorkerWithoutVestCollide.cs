@@ -44,7 +44,7 @@ public class WorkerWithoutVestCollide : WorkerCollide
 
             if (health <= 0)
             {
-                collidableObstacle.PlayEffect(animator, rb, VestState.WithVest);
+                collidableObstacle.PlayEffect(animator, rb, VestState.WithoutVest);
                 return WorkerStateTrigger.Die;
             }
             else

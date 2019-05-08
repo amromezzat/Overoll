@@ -59,7 +59,7 @@ MonoBehaviour:
   maxSepForce: 15
   maxFolForce: 15
   maxSpeed: 15
-  aheadFollowPoint: -0.80103004
+  aheadFollowPoint: -0.5
   hrWorkers: []
   managerWorkers: []
   workerType: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
