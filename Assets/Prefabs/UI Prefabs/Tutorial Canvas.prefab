@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialState: 0
-  tutorialActive: 0
+  tutorialActive: 1
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
   pauseBtn: {fileID: 0}
   slowingRatio: 0.1

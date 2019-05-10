@@ -288,10 +288,11 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
                 wc.onMergeOver.Invoke();
                 break;
             case WorkerFSMOutput.TutRightInput:
-                SpeedManager.Instance.ResetSpeed();
+                //SpeedManager.Instance.ResetSpeed();
+                TutorialManager.Instance.SpeedUp();
                 break;
             case WorkerFSMOutput.TutEnded:
-                mAnimator.SetBool("StrafeRightAnim", false);
+                //mAnimator.SetBool("StrafeRightAnim", false);
                 break;
         }
     }

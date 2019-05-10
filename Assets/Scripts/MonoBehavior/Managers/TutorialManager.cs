@@ -53,7 +53,10 @@ public class TutorialManager : MonoBehaviour
             if (tutorialActive && value != TutorialState.Null)
             {
                 SpeedManager.Instance.speed.Value = 0;
+
+                SlowDown();
             }
+          
         }
     }
 
@@ -161,9 +164,9 @@ public class TutorialManager : MonoBehaviour
 
     public void SpeedUp()
     {
-        StopCoroutine(slowingCoroutine);
+        //StopCoroutine(slowingCoroutine);
         //gd.Speed = gd.defaultSpeed;
-        SpeedManager.Instance.speed.Value = SpeedManager.Instance.speed.defaultValue;
+        SpeedManager.Instance.ResetSpeed();
 
         switch (TutorialState)
         {
@@ -209,7 +212,7 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator KillSpeed()
     {
-        while (true)
+        while (tutorialState != TutorialState.Null)
         {
             //faster by 0.1 than the other listeners
             //to set velocity before they get it
