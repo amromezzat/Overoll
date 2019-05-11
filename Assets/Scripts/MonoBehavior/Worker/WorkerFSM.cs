@@ -76,6 +76,9 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     [HideInInspector]
     public List<Material> helmetsMaterial = new List<Material>();
 
+    [SerializeField]
+    public FloatField Speed;
+
     //[SerializeField]
     // List<SkinnedMeshRenderer> Helmets;
 
@@ -123,6 +126,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         }
 
         ResetState();
+
+        Speed.onValueChanged.AddListener(ChangeAnimationSpeed);
     }
 
     private void OnDisable()
@@ -135,6 +140,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         rb.velocity = Vector3.zero;
         transform.position = new Vector3(0, wc.groundLevel, 0);
         tag = "Worker";
+
+        Speed.onValueChanged.RemoveListener(ChangeAnimationSpeed);
     }
 
     public void SetWorkerCollision(VestState vestState)
@@ -148,6 +155,11 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
                 colliderRefUpdate.m_ICollide = workerWithVestCollide;
                 break;
         }
+    }
+
+    void ChangeAnimationSpeed(float speed)
+    {
+        mAnimator.speed = speed / SpeedManager.Instance.gameSpeed;
     }
 
     void ResetState()
@@ -288,10 +300,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
                 wc.onMergeOver.Invoke();
                 break;
             case WorkerFSMOutput.TutRightInput:
-                SpeedManager.Instance.ResetSpeed();
-                break;
-            case WorkerFSMOutput.TutEnded:
-                mAnimator.SetBool("StrafeRightAnim", false);
+                TutorialManager.Instance.ExitState();
                 break;
         }
     }
