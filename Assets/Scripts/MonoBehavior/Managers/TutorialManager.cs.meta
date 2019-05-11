@@ -1,11 +1,23 @@
 fileFormatVersion: 2
 guid: ad606f10029810b4f8c63fd4e6e553c2
-timeCreated: 1528568601
-licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+  - pauseBtn: {instanceID: 0}
+  - addWorkerBtn: {instanceID: 0}
+  - leftArrow: {instanceID: 0}
+  - rightArrow: {instanceID: 0}
+  - upArrow: {instanceID: 0}
+  - downArrow: {instanceID: 0}
+  - doubleTap: {instanceID: 0}
+  - buyWorkersText: {instanceID: 0}
+  - MergeText: {instanceID: 0}
+  - CollideText: {instanceID: 0}
+  - EndText: {instanceID: 0}
+  - ScoreText: {instanceID: 0}
+  - GoldText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
