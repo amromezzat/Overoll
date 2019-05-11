@@ -28,16 +28,16 @@ public class TutorialManager : MonoBehaviour
     public GameObject downArrow;
     public GameObject doubleTap;
     public GameObject buyWorkersText;
-    public GameObject MergeText;
-    public GameObject CollideText;
-    public GameObject EndText;
+    public List<GameObject> mergeTextList;
     public GameObject ScoreText;
     public GameObject GoldText;
+    [SerializeField]
+    float mergeSpeed = 3;
+    [SerializeField]
+    float delayBetweenMessages = 2;
 
+    int mergeListIndex;
     Animator addBtnAnimator;
-    IEnumerator slowingCoroutine;
-
-    const float earlierListenTime = 0.2f;
 
     public TutorialState TutorialState
     {
@@ -54,9 +54,9 @@ public class TutorialManager : MonoBehaviour
             {
                 SpeedManager.Instance.speed.Value = 0;
 
-                SlowDown();
+                EnterState();
             }
-          
+
         }
     }
 
@@ -66,14 +66,8 @@ public class TutorialManager : MonoBehaviour
         {
             Instance = this;
         }
-    }
 
-    private void OnEnable()
-    {
         addBtnAnimator = addWorkerBtn.GetComponent<Animator>();
-        //onSlowDown.AddListener(SlowDown);
-        //onSpeedUp.AddListener(SpeedUp);
-        slowingCoroutine = KillSpeed();
     }
 
     private void Start()
@@ -81,11 +75,8 @@ public class TutorialManager : MonoBehaviour
         GameManager.Instance.OnStart.AddListener(TutStart);
     }
 
-    public void SlowDown()
+    public void EnterState()
     {
-        StartCoroutine(slowingCoroutine);
-        //gd.Speed *= gd.slowingRate;
-        SpeedManager.Instance.speed.Value *= slowingRate;
         switch (TutorialState)
         {
             case TutorialState.Jump:
@@ -106,41 +97,20 @@ public class TutorialManager : MonoBehaviour
                 GoldText.SetActive(true);
                 break;
             case TutorialState.MergeWorker:
+                SpeedManager.Instance.speed.Value = mergeSpeed;
                 StartCoroutine(StartMergeTutorial());
                 break;
-            case TutorialState.Collide:
-                StartCoroutine(CollideTut());
-                break;
+
             case TutorialState.End:
-                EndText.SetActive(true);
-                StartCoroutine(EndTutorial());
+                SpeedManager.Instance.ResetSpeed();
+                pauseBtn.SetActive(true);
+                gameObject.SetActive(false);
+
+                ScoreText.SetActive(true);
+                tutorialActive = false;
                 PlayerPrefs.SetInt("PlayedTutorial", 1);
                 break;
         }
-    }
-
-    IEnumerator StartMergeTutorial()
-    {
-        buyWorkersText.SetActive(true);
-        wc.leader.ChangeState(WorkerStateTrigger.EndTutoring);
-        yield return new WaitForSeconds(3);
-        for (int i = 0; i < 3; i++)
-        {
-            wc.onAddWorker.Invoke();
-        }
-        SpeedManager.Instance.ResetSpeed();
-    }
-
-    IEnumerator CollideTut()
-    {
-        MergeText.SetActive(true);
-        yield return new WaitForSeconds(1);
-        SpeedManager.Instance.ResetSpeed();
-        yield return new WaitForSeconds(1);
-        MergeText.SetActive(false);
-        CollideText.SetActive(true);
-        yield return new WaitForSeconds(2);
-        CollideText.SetActive(false);
     }
 
     void TutStart()
@@ -162,7 +132,7 @@ public class TutorialManager : MonoBehaviour
         wc.leader.ChangeState(WorkerStateTrigger.StartTutoring);
     }
 
-    public void SpeedUp()
+    public void ExitState()
     {
         //StopCoroutine(slowingCoroutine);
         //gd.Speed = gd.defaultSpeed;
@@ -187,41 +157,45 @@ public class TutorialManager : MonoBehaviour
                 doubleTap.SetActive(false);
                 addBtnAnimator.SetBool("Play", false);
                 break;
-            case TutorialState.MergeWorker:
-                buyWorkersText.SetActive(false);
-                break;
         }
         TutorialState = TutorialState.Null;
     }
 
-    IEnumerator EndTutorial()
+    IEnumerator StartMergeTutorial()
     {
-        yield return new WaitForSeconds(1);
-        SpeedManager.Instance.ResetSpeed();
-        ScoreText.SetActive(true);
-        tutorialActive = false;
-        yield return new WaitForSeconds(1);
-        EndText.SetActive(false);
-        //gd.Speed = gd.defaultSpeed;
-        SpeedManager.Instance.speed.SetValueToInitial();
-        GameManager.Instance.OnStart.RemoveListener(TutStart);
-        tutorialActive = false;
-        pauseBtn.SetActive(true);
-        gameObject.SetActive(false);
+        buyWorkersText.SetActive(true);
+        wc.leader.ChangeState(WorkerStateTrigger.EndTutoring);
+        yield return new WaitForSeconds(3);
+
+        for (int i = 0; i < 3; i++)
+        {
+            wc.onAddWorker.Invoke();
+        }
+
+        StartCoroutine(CollideTut());
     }
 
-    public IEnumerator KillSpeed()
+    IEnumerator CollideTut()
     {
-        while (tutorialState != TutorialState.Null)
-        {
-            //faster by 0.1 than the other listeners
-            //to set velocity before they get it
-            yield return new WaitForSeconds(slowingRate - earlierListenTime);
+        mergeTextList[mergeListIndex].SetActive(true);
+        yield return new WaitForSeconds(delayBetweenMessages);
 
-            //gd.Speed = gd.Speed * gd.slowingRatio;
-            SpeedManager.Instance.speed.Value = SpeedManager.Instance.speed.Value * slowingRatio;
+        mergeTextList[mergeListIndex].SetActive(false);
+        mergeTextList[++mergeListIndex].SetActive(true);
+        yield return new WaitForSeconds(delayBetweenMessages);
 
-            yield return new WaitForSeconds(earlierListenTime);
-        }
+        mergeTextList[mergeListIndex].SetActive(false);
+
+        StartCoroutine(EndMergeCollide());
+    }
+
+    IEnumerator EndMergeCollide()
+    {
+        mergeTextList[++mergeListIndex].SetActive(true);
+        yield return new WaitForSeconds(delayBetweenMessages);
+
+        SpeedManager.Instance.ResetSpeed();
+        mergeTextList[mergeListIndex].SetActive(false);
+        GameManager.Instance.OnStart.RemoveListener(TutStart);
     }
 }

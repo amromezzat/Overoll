@@ -42,6 +42,8 @@ public class WorkerWithoutVestCollide : WorkerCollide
             int preCollisionWH = health;
             health = health - obsHealth;
 
+            collidableObstacle.ReactToCollision(preCollisionWH);
+
             if (health <= 0)
             {
                 collidableObstacle.PlayEffect(animator, rb, VestState.WithoutVest);
@@ -87,9 +89,6 @@ public class WorkerWithoutVestCollide : WorkerCollide
                 }
 
             }
-
-            collidableObstacle.ReactToCollision(preCollisionWH);
-
         }
         return WorkerStateTrigger.Null;
     }
