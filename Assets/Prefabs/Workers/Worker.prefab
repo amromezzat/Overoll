@@ -674,6 +674,7 @@ MonoBehaviour:
   health: 1
   level: 0
   helmetsMaterial: []
+  Speed: {fileID: 11400000, guid: 3caf6b3e404505e4f84233ff0d4f0259, type: 2}
   powerUpPosition: {fileID: 1820479055540906191}
 --- !u!114 &4635411868383147124
 MonoBehaviour:
@@ -1032,7 +1033,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219482692}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.02000001, z: 0}
+  m_LocalPosition: {x: 0, y: 0.050000012, z: 0}
   m_LocalScale: {x: 39.37008, y: 39.37008, z: 39.37008}
   m_Children: []
   m_Father: {fileID: 728659266}

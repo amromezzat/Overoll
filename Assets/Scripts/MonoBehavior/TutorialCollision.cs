@@ -55,7 +55,7 @@ public class TutorialCollision : MonoBehaviour
                     TutorialManager.Instance.TutorialState = TutorialState.MergeWorker;
                     break;
                 case "TutCollide":
-                    TutorialManager.Instance.TutorialState = TutorialState.Collide;
+                    workerFSM.health += 1;
                     break;
                 case "TutEnd":
                     TutorialManager.Instance.TutorialState = TutorialState.End;
