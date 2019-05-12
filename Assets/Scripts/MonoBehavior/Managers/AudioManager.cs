@@ -19,33 +19,38 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] musics;
     public Sound[] sounds;
 
-    public Sound current;
+    public string currentMusic;
+    public string currentSound;
 
-    public  Button soundButton;
-    public  Button musicButton;
+    public Button soundButton;
+    public Button musicButton;
 
-    bool sound;
+    bool soundOn;
 
-    bool Music;
+    bool musicOn;
 
     public Sprite soundOnSprite;
     public Sprite soundOffSprite;
     public Sprite musicOnSprite;
     public Sprite musicOffSprite;
 
+    Dictionary<string, Sound> soundDictionary = new Dictionary<string, Sound>();
+    Dictionary<string, Sound> musicDictionary = new Dictionary<string, Sound>();
+
     public static AudioManager instance;
 
     private void Awake()
     {
-        sound = true;
+        soundOn = true;
         soundButton.image.sprite = soundOnSprite;
-        Music = true;
+        musicOn = true;
         musicButton.image.sprite = musicOnSprite;
         if (instance == null)
         {
@@ -56,16 +61,18 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         //-------------------------------------------------
-        foreach (Sound s in musics)
+        foreach (Sound m in musics)
         {
 
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+            m.source = gameObject.AddComponent<AudioSource>();
+            m.source.clip = m.clip;
+            m.source.volume = m.volume;
+            m.source.pitch = m.pitch;
+            m.source.loop = m.loop;
+
+            musicDictionary.Add(m.name, m);
         }
 
 
@@ -79,106 +86,93 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+
+            soundDictionary.Add(s.name, s);
         }
     }
     public void OnMusicClick()
     {
-        Debug.Log("Music  = " + Music);
+        Debug.Log("Music  = " + musicOn);
 
-        if (Music)
+        if (musicOn)
         {
             musicButton.image.sprite = musicOffSprite;
-            Music = false;
+            musicOn = false;
+            PauseCurrentMusic();
         }
         else
         {
             musicButton.image.sprite = musicOnSprite;
-            Music = true;
+            musicOn = true;
+            UnpauseCurrentMusic();
         }
     }
-    public void OnSoundClick() {
+    public void OnSoundClick()
+    {
 
-        Debug.Log("Sound  = " + sound);
+        Debug.Log("Sound  = " + soundOn);
 
-        if (sound)
+        if (soundOn)
         {
             soundButton.image.sprite = soundOffSprite;
-            sound = false;
-         
+            soundOn = false;
         }
         else
         {
             soundButton.image.sprite = soundOnSprite;
 
-            sound = true;
+            soundOn = true;
         }
-}
-       
+    }
+
     public void PlaySound(string name)
     {
-        current = Array.Find(sounds, sound => sound.name == name);
+        Sound newSound;
+        bool foundSound = soundDictionary.TryGetValue(name, out newSound);
 
-        if (current == null)
+        if (foundSound)
         {
-            Debug.LogWarning("Sound: " + name + " not found!");
+            if (soundOn)
+                newSound.source.Play();
+            currentSound = name;
             return;
         }
-        if (sound)
-        {
-            current.source.Play();
-        }
-        if (!sound)
-        {
-            current.source.Pause();
-        }
+        Debug.LogWarning("Sound: " + name + " not found!");
     }
 
     public void PlayMusic(string name)
     {
-        current = Array.Find(musics, music => music.name == name);
+        Sound newMusic;
+        bool foundMusic = musicDictionary.TryGetValue(name, out newMusic);
 
-        if (current == null)
+        if (foundMusic)
         {
-            Debug.LogWarning("Music: " + name + " not found!");
+            if (musicOn)
+            {
+                StopCurrentMusic();
+                newMusic.source.Play();
+            }
+            currentMusic = name;
             return;
         }
-        if (Music)
-        {
-            current.source.Play();
-            Debug.Log("********************"+current);
-        }
-        if (!Music)
-        {
-            current.source.Pause();
-        }
+        Debug.LogWarning("Music: " + name + " not found!");
     }
 
-    public void HoldMusic(String name)
+    public void StopCurrentMusic()
     {
-        current = Array.Find(musics, music => music.name == name);
-
-        if (current == null)
-        {
-            Debug.LogWarning("Music: " + name + " not found!");
-            return;
-        }
-        current.source.Pause();
+        if (currentMusic != "")
+            musicDictionary[currentMusic].source.Stop();
     }
 
-    //public void StopMusic()
-    //{
-    //    foreach (Sound s in musics)
-    //    {
-    //        if (musicToggle.isOn == false)
-    //        {
-    //            s.source.Pause();
-    //        }
-    //        if (musicToggle.isOn == true)
-    //        {
-    //            s.source.Play();
-    //        }
-    //    }
-    //}
+    public void PauseCurrentMusic()
+    {
+        if (currentMusic != "")
+            musicDictionary[currentMusic].source.Pause();
+    }
 
-
+    public void UnpauseCurrentMusic()
+    {
+        if (currentMusic != "")
+            musicDictionary[currentMusic].source.UnPause();
+    }
 }
