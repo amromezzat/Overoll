@@ -159,7 +159,8 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 
     void ChangeAnimationSpeed(float speed)
     {
-        mAnimator.speed = speed / SpeedManager.Instance.gameSpeed;
+        if (currentState != WorkerState.Dead)
+            mAnimator.speed = speed / SpeedManager.Instance.gameSpeed;
     }
 
     void ResetState()
