@@ -27,15 +27,26 @@ public class AudioManager : MonoBehaviour
 
     public Sound current;
 
-    public GameObject _MusicToggle;
-    public GameObject _SoundToggle;
-    Toggle musicToggle;
-    Toggle soundToggle;
+    public  Button soundButton;
+    public  Button musicButton;
+
+    bool sound;
+
+    bool Music;
+
+    public Sprite soundOnSprite;
+    public Sprite soundOffSprite;
+    public Sprite musicOnSprite;
+    public Sprite musicOffSprite;
 
     public static AudioManager instance;
 
     private void Awake()
     {
+        sound = true;
+        soundButton.image.sprite = soundOnSprite;
+        Music = true;
+        musicButton.image.sprite = musicOnSprite;
         if (instance == null)
         {
             instance = this;
@@ -45,10 +56,7 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        musicToggle = _MusicToggle.GetComponent<Toggle>();
-        soundToggle = _SoundToggle.GetComponent<Toggle>();
-
+        
         //-------------------------------------------------
         foreach (Sound s in musics)
         {
@@ -73,13 +81,39 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
     }
+    public void OnMusicClick()
+    {
+        Debug.Log("Music  = " + Music);
 
-    //private void Start()
-    //{
-        //PlayMusic("Title music");
-        //musics[1].source.Play();
-    //}
+        if (Music)
+        {
+            musicButton.image.sprite = musicOffSprite;
+            Music = false;
+        }
+        else
+        {
+            musicButton.image.sprite = musicOnSprite;
+            Music = true;
+        }
+    }
+    public void OnSoundClick() {
 
+        Debug.Log("Sound  = " + sound);
+
+        if (sound)
+        {
+            soundButton.image.sprite = soundOffSprite;
+            sound = false;
+         
+        }
+        else
+        {
+            soundButton.image.sprite = soundOnSprite;
+
+            sound = true;
+        }
+}
+       
     public void PlaySound(string name)
     {
         current = Array.Find(sounds, sound => sound.name == name);
@@ -89,11 +123,11 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
-        if (soundToggle.isOn == true)
+        if (sound)
         {
             current.source.Play();
         }
-        if (soundToggle.isOn == false)
+        if (!sound)
         {
             current.source.Pause();
         }
@@ -108,11 +142,12 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Music: " + name + " not found!");
             return;
         }
-        if (musicToggle.isOn == true)
+        if (Music)
         {
             current.source.Play();
+            Debug.Log("********************"+current);
         }
-        if (musicToggle.isOn == false)
+        if (!Music)
         {
             current.source.Pause();
         }
@@ -127,23 +162,23 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Music: " + name + " not found!");
             return;
         }
-        current.source.Stop();
+        current.source.Pause();
     }
 
-    public void StopMusic()
-    {
-        foreach (Sound s in musics)
-        {
-            if (musicToggle.isOn == false)
-            {
-                s.source.Pause();
-            }
-            if (musicToggle.isOn == true)
-            {
-                s.source.Play();
-            }
-        }
-    }
+    //public void StopMusic()
+    //{
+    //    foreach (Sound s in musics)
+    //    {
+    //        if (musicToggle.isOn == false)
+    //        {
+    //            s.source.Pause();
+    //        }
+    //        if (musicToggle.isOn == true)
+    //        {
+    //            s.source.Play();
+    //        }
+    //    }
+    //}
 
 
 }

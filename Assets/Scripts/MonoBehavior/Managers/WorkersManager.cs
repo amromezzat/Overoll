@@ -131,7 +131,7 @@ public class WorkersManager : MonoBehaviour
             magnet.ResetPowerUp();
             teacup.ResetPowerUp();
             shield.ResetPowerUp();
-            Debug.Log("Dead");
+           // Debug.Log("Dead");
         }
     }
 
