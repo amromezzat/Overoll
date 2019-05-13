@@ -1123,7 +1123,7 @@ PrefabInstance:
     - target: {fileID: 4790379782960391148, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.1219997
+      value: 4.121994
       objectReference: {fileID: 0}
     - target: {fileID: 4790379782960391148, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
@@ -1303,7 +1303,7 @@ PrefabInstance:
     - target: {fileID: 6228621870569851278, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5.4986496
+      value: 5.498657
       objectReference: {fileID: 0}
     - target: {fileID: 6228621870569851278, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
@@ -1454,6 +1454,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: e39828b34cc74514d91418fa08fd50c4,
         type: 3}
+    - target: {fileID: 5516475625949508026, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516475625949508026, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516475625949508026, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516475625949508026, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 982870945700128413}
+    - target: {fileID: 5516475625949508026, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickLangBTN
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516475625949508026, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 3}
 --- !u!223 &1334711766 stripped
@@ -1477,6 +1507,18 @@ MonoBehaviour:
 --- !u!114 &1334711768 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3010786635471413992, guid: da96e29fe3a7ade49b8be1c2a094b162,
+    type: 3}
+  m_PrefabInstance: {fileID: 1334711765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1334711769 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5516475625949508026, guid: da96e29fe3a7ade49b8be1c2a094b162,
     type: 3}
   m_PrefabInstance: {fileID: 1334711765}
   m_PrefabAsset: {fileID: 0}
@@ -2320,8 +2362,59 @@ PrefabInstance:
       propertyPath: TeaCup_Image
       value: 
       objectReference: {fileID: 5948995963379090584}
+    - target: {fileID: 7640696432902340645, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: Langsprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640696432902340645, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: languageType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640696432902340645, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: LangBtn
+      value: 
+      objectReference: {fileID: 1334711769}
+    - target: {fileID: 7640696432902340645, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: Langsprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3092a8aeba60b8a4286908df96416a02,
+        type: 3}
+    - target: {fileID: 7640696432902340645, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: Langsprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 351b282e447aa5247a40d4ed180cf26a,
+        type: 3}
+    - target: {fileID: 7640696432902340645, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: Langsprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 02022b4f9d9596444967fe670085e44a,
+        type: 3}
+    - target: {fileID: 7640696432902340645, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: Langsprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3ffd211be5cfd7e40a64463cfa1e9912,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3bea2aae378a6e4c967d42794c01c98, type: 3}
+--- !u!114 &982870945700128413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7640696432902340645, guid: b3bea2aae378a6e4c967d42794c01c98,
+    type: 3}
+  m_PrefabInstance: {fileID: 982870945700128412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bdc338063608c4489056c0c83023766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5948995963379090584 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5948995963379090584, guid: da96e29fe3a7ade49b8be1c2a094b162,
