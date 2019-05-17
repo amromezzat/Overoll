@@ -96,7 +96,7 @@ public class WorkersManager : MonoBehaviour
     {
         if (TutorialManager.Instance.tutorialActive && TutorialManager.Instance.TutorialState == TutorialState.AddWorker)
         {
-            SpeedManager.Instance.ResetSpeed();
+            TutorialManager.Instance.ExitState();
         }
         GameObject worker = ObjectPooler.instance.GetFromPool(wc.workerType);
         worker.transform.position = new Vector3(pos.x, worker.transform.position.y, pos.y);

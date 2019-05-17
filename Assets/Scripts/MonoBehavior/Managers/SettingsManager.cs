@@ -18,6 +18,8 @@ under the License.*/
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class LanguageTypeEvent : UnityEvent<LanguageTypes>
 {
@@ -30,7 +32,26 @@ public class SettingsManager : MonoBehaviour
 
     public UnityEvent<LanguageTypes> ChangeLanguage = new LanguageTypeEvent();
 
-    public LanguageTypes languageType;
+    [SerializeField]
+    LanguageTypes languageType;
+
+    // Set Language for first time use with the device language
+    // or if cache was cleared
+    Dictionary<int, int> availableSystemLanguages = new Dictionary<int, int>() { { 1, 0 },{ 10, 1 },
+        {15,2 },{14, 3 } };
+
+    public LanguageTypes currentLanguage
+    {
+        set
+        {
+            SetLanguage(value);
+            languageType = value;
+        }
+        get
+        {
+            return languageType;
+        }
+    }
 
     public Button LangBtn;
     public Sprite[] Langsprites;
@@ -46,18 +67,36 @@ public class SettingsManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        if (PlayerPrefs.HasKey("Language"))
+            SetLanguage(PlayerPrefs.GetInt("Language"));
+        else
+            SetLanguage(availableSystemLanguages[(int)Application.systemLanguage]);
     }
 
+    [ContextMenu("Update in-game language")]
+    public void UpdateLanguage()
+    {
+        SetLanguage(languageType);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="val">0: Ar, 1:En, 2:Du, 3:Fr </param>
     public void SetLanguage(int val)
     {
-        PlayerPrefs.SetInt("Language",val);
-        OnChangeLanguage((LanguageTypes)val);
+        PlayerPrefs.SetInt("Language", val);
+
+        Debug.Log((LanguageTypes)val);
+
+        ChangeLanguage.Invoke((LanguageTypes)val);
     }
 
-    public void OnChangeLanguage(LanguageTypes langType)
+    public void SetLanguage(LanguageTypes language)
     {
-        languageType = langType;
-        
+        PlayerPrefs.SetInt("Language", (int)language);
+
         Debug.Log(languageType);
 
         ChangeLanguage.Invoke(languageType);
