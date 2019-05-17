@@ -158,6 +158,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
+      propertyPath: SettingMenu
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aef0c503253fed4f8bd5eb9738b5f9e, type: 3}
 --- !u!4 &985636025002170766 stripped
@@ -603,6 +613,30 @@ PrefabInstance:
       propertyPath: sounds.Array.data[10].pitch
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: soundOnSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 827aaabf290be144eb79e522540d6810,
+        type: 3}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: soundOffSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7852583966460844fbb1d8b6e0c35fa2,
+        type: 3}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: musicOnSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed647f86aeaa7e842946f65835783f2a,
+        type: 3}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: musicOffSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 146bbd6cbdcfbb746a2a2d57a0c3d50c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be29277555d70a14d9ff8b88344d56aa, type: 3}
 --- !u!4 &985187284778963712 stripped
@@ -885,6 +919,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
+        type: 3}
+      propertyPath: Langsprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
+        type: 3}
+      propertyPath: languageType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
+        type: 3}
+      propertyPath: Langsprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3092a8aeba60b8a4286908df96416a02,
+        type: 3}
+    - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
+        type: 3}
+      propertyPath: Langsprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 351b282e447aa5247a40d4ed180cf26a,
+        type: 3}
+    - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
+        type: 3}
+      propertyPath: Langsprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 02022b4f9d9596444967fe670085e44a,
+        type: 3}
+    - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
+        type: 3}
+      propertyPath: Langsprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3ffd211be5cfd7e40a64463cfa1e9912,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f25095ef9773ed48a6cc3b2210fbb89, type: 3}
 --- !u!4 &7640696432902340644 stripped
