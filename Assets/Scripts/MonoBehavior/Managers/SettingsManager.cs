@@ -53,6 +53,14 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public Button LangBtn;
+    public Sprite[] Langsprites;
+    int clickCount=0;
+    //public Sprite ARLang;
+    //public Sprite ENLang;
+    //public Sprite FRLang;
+    //public Sprite DELang;
+
     private void Awake()
     {
         if (Instance == null)
@@ -93,6 +101,43 @@ public class SettingsManager : MonoBehaviour
 
         ChangeLanguage.Invoke(languageType);
     }
+     
+    public void OnClickLangBTN()
+    {
+        if (clickCount == Langsprites.Length )
+        {
+            clickCount = 0;
+            LangBtn.image.sprite = Langsprites[0];
+            
+        }
+        LangBtn.image.sprite = Langsprites[clickCount];
 
+   
+
+        switch(clickCount)
+        {
+            case 0:
+                OnChangeLanguage(LanguageTypes.AR);
+                break;
+            case 1:
+                OnChangeLanguage(LanguageTypes.EN);
+                break;
+            case 2:
+                OnChangeLanguage(LanguageTypes.DE);
+                break;
+            case 3:
+                OnChangeLanguage(LanguageTypes.FR);
+                break;
+            default:
+                OnChangeLanguage(LanguageTypes.EN);
+
+                break;
+        }
+        clickCount++;
+    }
+
+        
+     
+    
 
 }

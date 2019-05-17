@@ -68,7 +68,9 @@ public class GameManager : MonoBehaviour
     public Canvas mainMenuCanvas;
     public Canvas inGameCanvas;
     public Canvas endGameCanvas;
-   
+    bool fromMenu = false;
+    bool fromPause = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -90,8 +92,8 @@ public class GameManager : MonoBehaviour
         inGameCanvas.gameObject.SetActive(false);
         endGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(true);
-        PauseMenu.SetActive(false);
-        SettingMenu.SetActive(false);
+        PauseMenu.gameObject.SetActive(false);
+        SettingMenu.gameObject.SetActive(false);
         gamePausedTxt.gameObject.SetActive(false);
 
         onEnd.AddListener(EndGame);
@@ -128,15 +130,36 @@ public class GameManager : MonoBehaviour
                 GameResume();
                 break;
         }
-    }
-    public void SettingBtnEntered()
+    } 
+
+    public void EnteredSettingBtnfromMainMenu()
     {
-        PauseMenu.SetActive(false);
-        SettingMenu.SetActive(true);
+        fromMenu = true;
+        PauseMenu.gameObject.SetActive(false);
+        SettingMenu.gameObject.SetActive(true);
     }
+    public void EnteredSettingBtnfromPausedMenu()
+    {
+        fromPause = true;
+        PauseMenu.gameObject.SetActive(false);
+        SettingMenu.gameObject.SetActive(true);
+    }
+    public void ExitSettingMenu()
+    {
+        if (fromPause)
+        {
+            PauseMenu.gameObject.SetActive(true);
+            SettingMenu.gameObject.SetActive(false);
+        }
+        if (fromMenu)
+        {
+            SettingMenu.gameObject.SetActive(false);
+            mainMenuCanvas.gameObject.SetActive(true);
+        }
+    }
+  
     public void GameHalt()
     {
-        AudioManager.instance.HoldMusic("Overoll music");
         AudioManager.instance.PlaySound("Title music");
 
         gameState = GameState.Pause;
@@ -146,9 +169,8 @@ public class GameManager : MonoBehaviour
 
     public void GameResume()
     {
-        AudioManager.instance.HoldMusic("Title music");
         AudioManager.instance.PlaySound("Overoll music");
-        PauseMenu.SetActive(false);
+        PauseMenu.gameObject.SetActive(false);
         gameState = GameState.Gameplay;
         SpeedManager.Instance.ResetSpeed();
         OnResume.Invoke();
@@ -156,19 +178,11 @@ public class GameManager : MonoBehaviour
 
     void GameStart()
     {
-        AudioManager.instance.HoldMusic("Title music");
         AudioManager.instance.PlayMusic("Overoll music");
 
         gameState = GameState.Gameplay;
         SpeedManager.Instance.ResetSpeed();
         OnStart.Invoke();
-    }
-
-    IEnumerator WaitTheSound()
-    {
-        yield return new WaitUntil(()=>AudioManager.instance.current.source.isPlaying);
-
-        AudioManager.instance.PlayMusic("Title music");
     }
 
     /// <summary>
@@ -177,8 +191,6 @@ public class GameManager : MonoBehaviour
     void EndGame()
     {
         AudioManager.instance.PlaySound("Lose the game");
-
-        StartCoroutine(WaitTheSound());
 
         SpeedManager.Instance.speed.Value = 0;
 
@@ -190,6 +202,5 @@ public class GameManager : MonoBehaviour
 
         gameState = GameState.GameOver;
        
-    }
-
+    } 
 }
