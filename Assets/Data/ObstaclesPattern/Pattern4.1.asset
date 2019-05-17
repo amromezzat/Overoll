@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 105248dcd7f28d240afe3662cf910555, type: 3}
-  m_Name: Difficulty
+  m_Script: {fileID: 11500000, guid: cfa27f646f3c08944887e92b070bc06c, type: 3}
+  m_Name: Pattern4.1
   m_EditorClassIdentifier: 
-  InitialValue: 0
-  runtimeValue: 0
+  difficulty: 0
+  length: 0
+  sectionLength: 0
+  segmentList: []
