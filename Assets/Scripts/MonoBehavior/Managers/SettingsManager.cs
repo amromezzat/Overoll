@@ -21,7 +21,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class LanguageTypeEvent : UnityEvent<LanguageTypes>
+public class LanguageTypeEvent : UnityEvent<LanguageType>
 {
 
 }
@@ -30,22 +30,23 @@ public class SettingsManager : MonoBehaviour
 {
     public static SettingsManager Instance;
 
-    public UnityEvent<LanguageTypes> ChangeLanguage = new LanguageTypeEvent();
+    public UnityEvent<LanguageType> languageChanged = new LanguageTypeEvent();
 
     [SerializeField]
-    LanguageTypes languageType;
+    LanguageType languageType;
 
     // Set Language for first time use with the device language
     // or if cache was cleared
     Dictionary<int, int> availableSystemLanguages = new Dictionary<int, int>() { { 1, 0 },{ 10, 1 },
         {15,2 },{14, 3 } };
 
-    public LanguageTypes currentLanguage
+    public LanguageType currentLanguage
     {
         set
         {
-            SetLanguage(value);
-            languageType = value;
+            value = (LanguageType)((int)value % Langsprites.Length);
+
+            SetLanguage((int)value);
         }
         get
         {
@@ -53,13 +54,22 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public int currentLanguageIndex
+    {
+        set
+        {
+            value %= Langsprites.Length;
+
+            SetLanguage(value);
+        }
+        get
+        {
+            return (int)languageType;
+        }
+    }
+
     public Button LangBtn;
     public Sprite[] Langsprites;
-    int clickCount=0;
-    //public Sprite ARLang;
-    //public Sprite ENLang;
-    //public Sprite FRLang;
-    //public Sprite DELang;
 
     private void Awake()
     {
@@ -69,75 +79,28 @@ public class SettingsManager : MonoBehaviour
         }
 
         if (PlayerPrefs.HasKey("Language"))
-            SetLanguage(PlayerPrefs.GetInt("Language"));
+            currentLanguageIndex = PlayerPrefs.GetInt("Language");
         else
-            SetLanguage(availableSystemLanguages[(int)Application.systemLanguage]);
+            currentLanguageIndex = availableSystemLanguages[(int)Application.systemLanguage];
+    }
+
+    public void SetLanguage(int index)
+    {
+        languageType = (LanguageType)index;
+        LangBtn.image.sprite = Langsprites[index];
+        PlayerPrefs.SetInt("Language", index);
+        languageChanged.Invoke((LanguageType)index);
+        Debug.Log((LanguageType)index);
     }
 
     [ContextMenu("Update in-game language")]
     public void UpdateLanguage()
     {
-        SetLanguage(languageType);
+        currentLanguage = languageType;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="val">0: Ar, 1:En, 2:Du, 3:Fr </param>
-    public void SetLanguage(int val)
-    {
-        PlayerPrefs.SetInt("Language", val);
-
-        Debug.Log((LanguageTypes)val);
-
-        ChangeLanguage.Invoke((LanguageTypes)val);
-    }
-
-    public void SetLanguage(LanguageTypes language)
-    {
-        PlayerPrefs.SetInt("Language", (int)language);
-
-        Debug.Log(languageType);
-
-        ChangeLanguage.Invoke(languageType);
-    }
-     
     public void OnClickLangBTN()
     {
-        if (clickCount == Langsprites.Length )
-        {
-            clickCount = 0;
-            LangBtn.image.sprite = Langsprites[0];
-            
-        }
-        LangBtn.image.sprite = Langsprites[clickCount];
-
-   
-
-        switch(clickCount)
-        {
-            case 0:
-                OnChangeLanguage(LanguageTypes.AR);
-                break;
-            case 1:
-                OnChangeLanguage(LanguageTypes.EN);
-                break;
-            case 2:
-                OnChangeLanguage(LanguageTypes.DE);
-                break;
-            case 3:
-                OnChangeLanguage(LanguageTypes.FR);
-                break;
-            default:
-                OnChangeLanguage(LanguageTypes.EN);
-
-                break;
-        }
-        clickCount++;
+        currentLanguageIndex++;
     }
-
-        
-     
-    
-
 }

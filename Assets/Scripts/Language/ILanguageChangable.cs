@@ -21,7 +21,7 @@ using UnityEngine;
 
 interface ILanguageChangable
 {
-    void ChangeLanguage(LanguageTypes lanType);
+    void ChangeLanguage(LanguageType lanType);
 
     void RegisterListners();
 }

@@ -27,13 +27,13 @@ public class TextLanguageChange : MonoBehaviour,ILanguageChangable
 
     public string[] StringList;
 
-    LanguageTypes m_LangType;
+    LanguageType m_LangType;
 
     private void OnEnable()
     {
         targetText = GetComponent<RTLTextMeshPro>();
         //m_LangType = SettingsManager.Instance.languageType;
-        m_LangType = (LanguageTypes)PlayerPrefs.GetInt("Language");
+        m_LangType = (LanguageType)PlayerPrefs.GetInt("Language");
         targetText.text = StringList[(int)m_LangType];
     }
 
@@ -42,7 +42,7 @@ public class TextLanguageChange : MonoBehaviour,ILanguageChangable
        // Debug.Log(m_LangType);
         
     }
-    public void ChangeLanguage(LanguageTypes lanType)
+    public void ChangeLanguage(LanguageType lanType)
     {
         Debug.Log(lanType);
         Debug.Log("targetText" + targetText.text);
@@ -50,6 +50,6 @@ public class TextLanguageChange : MonoBehaviour,ILanguageChangable
 
     public void RegisterListners()
     {
-        SettingsManager.Instance.ChangeLanguage.AddListener(ChangeLanguage);
+        SettingsManager.Instance.languageChanged.AddListener(ChangeLanguage);
     }
 }
