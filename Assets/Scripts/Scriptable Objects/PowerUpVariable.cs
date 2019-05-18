@@ -18,6 +18,9 @@ public class PowerUpVariable : ScriptableObject, ISerializationCallbackReceiver
     }
 
     [HideInInspector]
+    public bool paused = false;
+
+    [HideInInspector]
     public UnityEvent BeginAction;
     [HideInInspector]
     public UnityEvent EndAction;
@@ -44,6 +47,7 @@ public class PowerUpVariable : ScriptableObject, ISerializationCallbackReceiver
     {
         while (Time > 0)
         {
+            yield return new WaitUntil(() => !paused);
             yield return new WaitForSeconds(0.25f);
             Time = Time - 0.25f;
         }

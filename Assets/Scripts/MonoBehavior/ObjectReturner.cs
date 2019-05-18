@@ -24,6 +24,8 @@ public class ObjectReturner : MonoBehaviour
     public TileConfig tc;
     public PoolableType poolableType;
 
+    float origYPos;
+
     [HideInInspector]
     public bool inActiveSegment = false;
 

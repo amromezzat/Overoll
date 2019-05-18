@@ -33,6 +33,9 @@ public class CoinMagnet : MonoBehaviour
     bool collided = false;
     float timerCoolDown;
 
+    [HideInInspector]
+    public bool onAct;
+
     const float cdBeforeCollision = 0.3f;
 
     void Awake()
@@ -49,6 +52,7 @@ public class CoinMagnet : MonoBehaviour
         Vector3 fixedYPos = transform.position;
         fixedYPos.y = wc.groundLevel;
         transform.position = fixedYPos;
+        onAct = true;
     }
 
     void Update()
@@ -59,10 +63,15 @@ public class CoinMagnet : MonoBehaviour
             lerpFac = currentTimer / totalTime;
             // Move coin to worker position
             transform.position = Vector3.Lerp(coinPos, playerTrans.position, lerpFac);
-            if(lerpFac > 1)
+            if (lerpFac > 1)
             {
                 StartCoroutine(tileReturner.ReturnToPool(0));
             }
+        }
+        else if (!onAct)
+        {
+            onAct = false;
+            enabled = false;
         }
         else
         {

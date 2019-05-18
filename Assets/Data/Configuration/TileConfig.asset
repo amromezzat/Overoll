@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileSize: 1
   laneWidth: 1
-  disableSafeDistance: -10
+  disableSafeDistance: -20
   extraRoleDistance: 5
   activeTilesNum: 100
   keepInLaneForce: 3

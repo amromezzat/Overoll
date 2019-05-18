@@ -25,15 +25,14 @@ public class PickUpCoin : MonoBehaviour
     public WorkerConfig wc;
     TileReturner cReturn;
     private CoinMagnet coinMagnet;
-
+    float origYPos;
 
     void Awake()
     {
-
         cReturn = GetComponent<TileReturner>();
         coinMagnet = GetComponent<CoinMagnet>();
         RegisterListeners();
-
+        origYPos = transform.position.y;
     }
 
     public void OnEnable()
@@ -68,12 +67,14 @@ public class PickUpCoin : MonoBehaviour
 
     public void ActWithoutMagnet()
     {
-        coinMagnet.enabled = false;
+        coinMagnet.onAct = false;
     }
 
     void OnDisable()
     {
         coinMagnet.enabled = false;
+
+        transform.position = new Vector3(0, origYPos, 0);
     }
 
 }

@@ -68,6 +68,9 @@ public class TutorialManager : MonoBehaviour
         }
 
         addBtnAnimator = addWorkerBtn.GetComponent<Animator>();
+
+        if (!tutorialActive)
+            gameObject.SetActive(false);
     }
 
     private void Start()

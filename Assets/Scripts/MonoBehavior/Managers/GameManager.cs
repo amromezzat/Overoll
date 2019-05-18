@@ -35,7 +35,17 @@ public enum GameState
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    static GameManager instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<GameManager>();
+
+            return instance;
+        }
+    }
 
     public GameState gameState;
 
@@ -70,14 +80,12 @@ public class GameManager : MonoBehaviour
     public Canvas endGameCanvas;
     bool fromMenu = false;
     bool fromPause = false;
+    Image pauseButtonImg;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-  
+        pauseButtonImg = pauseBtn.GetComponent<Image>();
+
         gameState = GameState.MainMenu;
 #if !UNITY_EDITOR
         difficulty.Value= PlayerPrefs.GetInt("PlayedTutorial");
@@ -119,14 +127,15 @@ public class GameManager : MonoBehaviour
             case GameState.Gameplay:
                 //  gamePausedTxt.gameObject.SetActive(true);
                 PauseMenu.SetActive(true);
-                pauseBtn.GetComponent<Image>().sprite = resumeSprite;
+                pauseButtonImg.sprite = resumeSprite;
+                inGameCanvas.gameObject.SetActive(false);
                 GameHalt();
                 break;
 
             case GameState.Pause:
                 //  gamePausedTxt.gameObject.SetActive(false);
                 PauseMenu.SetActive(false);
-                pauseBtn.GetComponent<Image>().sprite = pauseSprite;
+                pauseButtonImg.sprite = pauseSprite;
                 GameResume();
                 break;
         }
@@ -137,6 +146,7 @@ public class GameManager : MonoBehaviour
         fromMenu = true;
         PauseMenu.gameObject.SetActive(false);
         SettingMenu.gameObject.SetActive(true);
+        mainMenuCanvas.gameObject.SetActive(false);
     }
     public void EnteredSettingBtnfromPausedMenu()
     {
@@ -173,6 +183,8 @@ public class GameManager : MonoBehaviour
         PauseMenu.gameObject.SetActive(false);
         gameState = GameState.Gameplay;
         SpeedManager.Instance.ResetSpeed();
+        inGameCanvas.gameObject.SetActive(true);
+        pauseButtonImg.sprite = pauseSprite;
         OnResume.Invoke();
     }
 

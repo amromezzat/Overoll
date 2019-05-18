@@ -23,7 +23,7 @@ using UnityEngine;
 /// <summary>
 /// this is resposible for powerup ui
 /// </summary>
-public class PowerUpManager : MonoBehaviour
+public class PowerUpManager : MonoBehaviour, IHalt
 {
     public static PowerUpManager Instance;
 
@@ -57,9 +57,8 @@ public class PowerUpManager : MonoBehaviour
             Instance = this;
         }
 
-        Shield_Slider.gameObject.SetActive(false);
-        Magnet_Slider.gameObject.SetActive(false);
-        TeaCup_Slider.gameObject.SetActive(false);
+        RegisterListeners();
+        DisablePowerups();
 
         shield.BeginAction.AddListener(StartShield);
         shield.EndAction.AddListener(EndShield);
@@ -70,6 +69,23 @@ public class PowerUpManager : MonoBehaviour
         doublecoin.BeginAction.AddListener(StartDoubleCoin);
         doublecoin.EndAction.AddListener(EndDoubleCoin);
     }
+
+    void PausePowerups(bool val)
+    {
+        shield.paused = val;
+        magnet.paused = val;
+        teacup.paused = val;
+        doublecoin.paused = val;
+    }
+
+    void DisablePowerups()
+    {
+        Shield_Slider.gameObject.SetActive(false);
+        Magnet_Slider.gameObject.SetActive(false);
+        TeaCup_Slider.gameObject.SetActive(false);
+        DoubleCoin_Slider.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         Shield_Slider.value = Mathf.Lerp(0, 1, shield.ScaledTime);
@@ -116,4 +132,31 @@ public class PowerUpManager : MonoBehaviour
      {
         DoubleCoin_Slider.gameObject.SetActive(false);
      }
+
+    public void Begin()
+    {
+    }
+
+    public void Halt()
+    {
+        PausePowerups(true);
+    }
+
+    public void Resume()
+    {
+        PausePowerups(false);
+    }
+
+    public void End()
+    {
+        DisablePowerups();
+    }
+
+    public void RegisterListeners()
+    {
+        GameManager.Instance.OnStart.AddListener(Begin);
+        GameManager.Instance.onPause.AddListener(Halt);
+        GameManager.Instance.OnResume.AddListener(Resume);
+        GameManager.Instance.onEnd.AddListener(End);
+    }
 }
