@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa27f646f3c08944887e92b070bc06c, type: 3}
   m_Name: Pattern
   m_EditorClassIdentifier: 
-  difficulty: 0
   length: 0
   sectionLength: 0
   segmentList:
@@ -235,7 +234,7 @@ MonoBehaviour:
   - ListOfTiles:
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
-    - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
   - ListOfTiles:
@@ -313,7 +312,7 @@ MonoBehaviour:
   - ListOfTiles:
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
-    - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+    - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
     - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
   - ListOfTiles:
