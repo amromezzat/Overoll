@@ -93,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.01859262, y: 0.01859262, z: 0.028132409}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.01859262, y: 0.015429677, z: 0.025874702}
+  m_Center: {x: 0, y: -0.0015814746, z: 0.0011288521}
 --- !u!54 &54226079662615242
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -160,3 +160,4 @@ MonoBehaviour:
   noVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
     type: 2}
   objReturner: {fileID: 114563296869936222}
+  collisionEffect: {fileID: 0}
