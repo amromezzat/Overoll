@@ -170,8 +170,6 @@ public class GameManager : MonoBehaviour
   
     public void GameHalt()
     {
-        AudioManager.instance.PlaySound("Title music");
-
         gameState = GameState.Pause;
         SpeedManager.Instance.speed.Value = 0;
         onPause.Invoke();
@@ -179,7 +177,6 @@ public class GameManager : MonoBehaviour
 
     public void GameResume()
     {
-        AudioManager.instance.PlaySound("Overoll music");
         PauseMenu.gameObject.SetActive(false);
         gameState = GameState.Gameplay;
         SpeedManager.Instance.ResetSpeed();
@@ -202,17 +199,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void EndGame()
     {
+        AudioManager.instance.StopCurrentMusic();
         AudioManager.instance.PlaySound("Lose the game");
+        double waitTime = AudioManager.instance.currentSoundDuration;
+        StartCoroutine(EndGameMusic((float)waitTime));
 
         SpeedManager.Instance.speed.Value = 0;
-
-        //AudioManager.instance.PlaySound("Lose the game");
 
         inGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(false);
         endGameCanvas.gameObject.SetActive(true);
 
-        gameState = GameState.GameOver;
-       
+        gameState = GameState.GameOver;      
     } 
+
+    IEnumerator EndGameMusic(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        AudioManager.instance.PlayMusic("Overoll music");
+    }
 }

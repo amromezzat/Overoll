@@ -47,7 +47,12 @@ public class PressTile : TileExtraAction
         float waitingTime = (caller.transform.position.z - relActivPos) / SpeedManager.Instance.speed.Value;
 
         // Wait for the object to be close to the player
-        yield return new WaitForSeconds(waitingTime);
+        while (waitingTime > 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+            yield return new WaitWhile(() => GameManager.Instance.gameState == GameState.Pause);
+            waitingTime -= 0.1f;
+        }
 
         AudioManager.instance.PlaySound("Hydraullic press 1");
 

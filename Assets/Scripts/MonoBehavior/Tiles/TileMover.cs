@@ -65,7 +65,7 @@ public class TileMover : ObjectMover
 
     protected override void SetVelocity(float speed)
     {
-        Velocity = speed + extraSpeed;
+        Velocity = speed > Mathf.Epsilon ? speed + extraSpeed : 0;
     }
 
     protected virtual void TakeExtraAction()

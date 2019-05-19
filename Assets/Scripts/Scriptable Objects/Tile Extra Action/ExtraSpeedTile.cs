@@ -35,7 +35,12 @@ public class ExtraSpeedTile : TileExtraAction
     {
         yield return new WaitUntil(() => SpeedManager.Instance.speed.Value > 0.001f);
         float waitingTime = (caller.transform.position.z - relActivPos) / SpeedManager.Instance.speed.Value;
-        yield return new WaitForSeconds(waitingTime);
+        while (waitingTime > 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+            yield return new WaitWhile(() => GameManager.Instance.gameState == GameState.Pause);
+            waitingTime -= 0.1f;
+        }
         caller.Anim.SetTrigger("Rotate Spool");
         caller.extraSpeed = ExtraVelocity;
         caller.Velocity += caller.Velocity + ExtraVelocity;

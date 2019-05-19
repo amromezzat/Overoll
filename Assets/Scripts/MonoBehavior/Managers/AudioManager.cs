@@ -32,6 +32,33 @@ public class AudioManager : MonoBehaviour
     public Button soundButton;
     public Button musicButton;
 
+    public bool isPlayingSound
+    {
+        get
+        {
+            return currentSound != "" && soundDictionary[currentSound].source.isPlaying;
+        }
+    }
+
+    public bool isPlayingMusic
+    {
+        get
+        {
+            return currentMusic != "" && musicDictionary[currentMusic].source.isPlaying;
+        }
+    }
+
+    public double currentSoundDuration
+    {
+        get
+        {
+            if (currentSound == "")
+                return 0;
+            return (double)soundDictionary[currentSound].source.clip.samples /
+                soundDictionary[currentSound].source.clip.frequency;
+        }
+    }
+
     bool soundOn;
 
     bool musicOn;
