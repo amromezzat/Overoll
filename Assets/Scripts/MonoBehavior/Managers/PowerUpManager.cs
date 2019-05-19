@@ -101,6 +101,7 @@ public class PowerUpManager : MonoBehaviour, IHalt
      void StartShield ()
      {
         Shield_Slider.gameObject.SetActive(true);
+        Shield_Slider.transform.SetAsLastSibling();
     }
     void EndShield()
     {
@@ -109,6 +110,7 @@ public class PowerUpManager : MonoBehaviour, IHalt
     void StartMagnet()
     {
         Magnet_Slider.gameObject.SetActive(true);
+        Shield_Slider.transform.SetAsLastSibling();
     }
     void EndMagnet()
     {
@@ -118,6 +120,7 @@ public class PowerUpManager : MonoBehaviour, IHalt
     void StartTeaCup()
     {
         TeaCup_Slider.gameObject.SetActive(true);
+        Shield_Slider.transform.SetAsLastSibling();
     }
     void EndTeaCup()
     {
@@ -127,6 +130,7 @@ public class PowerUpManager : MonoBehaviour, IHalt
     void StartDoubleCoin()
     {
         DoubleCoin_Slider.gameObject.SetActive(true);
+        Shield_Slider.transform.SetAsLastSibling();
     }
      void EndDoubleCoin()
      {
@@ -135,6 +139,7 @@ public class PowerUpManager : MonoBehaviour, IHalt
 
     public void Begin()
     {
+        PausePowerups(false);
     }
 
     public void Halt()

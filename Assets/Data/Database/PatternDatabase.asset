@@ -16,6 +16,11 @@ MonoBehaviour:
   - ListOfPatterns:
     - {fileID: 11400000, guid: d5ce4d6bf700b5644a38829ba4a661e7, type: 2}
   - ListOfPatterns:
+    - {fileID: 11400000, guid: b49c170111bf87a4195228f07cae60d2, type: 2}
+    - {fileID: 11400000, guid: 14e36972d5076c24e928bc855057479a, type: 2}
+    - {fileID: 11400000, guid: b5a782343da9ea9468fd4db056d17a11, type: 2}
+    - {fileID: 11400000, guid: fe77f64cb92788843b42db806a98983b, type: 2}
+    - {fileID: 11400000, guid: 87cc8f4a7f9238640aca8704a975d521, type: 2}
     - {fileID: 11400000, guid: 24d6a11da26ac0942a0ba0f79d46d3f7, type: 2}
   - ListOfPatterns:
     - {fileID: 11400000, guid: 1e0253a16f9e902408681295ccf44b42, type: 2}
@@ -26,3 +31,4 @@ MonoBehaviour:
   - ListOfPatterns:
     - {fileID: 11400000, guid: 1026aa84d82dd764393988e8fdcbe38e, type: 2}
     - {fileID: 11400000, guid: c35bfc79874f9ef46a482042fbe6b7af, type: 2}
+    - {fileID: 11400000, guid: 843589779c873ef43a3e7b6b43603be8, type: 2}

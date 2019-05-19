@@ -47,7 +47,7 @@ public class PowerUpVariable : ScriptableObject, ISerializationCallbackReceiver
     {
         while (Time > 0)
         {
-            yield return new WaitUntil(() => !paused);
+            yield return new WaitWhile(() => paused);
             yield return new WaitForSeconds(0.25f);
             Time = Time - 0.25f;
         }

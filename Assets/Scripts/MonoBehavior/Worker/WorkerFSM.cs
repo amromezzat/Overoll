@@ -36,10 +36,12 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     public GameObject magnetColliderObject;
     public GameObject shadow;
 
-    public GameObject ParticalPowerUp;
-    public GameObject ParticalMagnet;
-    public GameObject ParticalShield;
-    public GameObject ParticalSpeed;
+    public GameObject ParticlePowerUp;
+    public GameObject ParticleMagnet;
+    public GameObject ParticleShield;
+    public GameObject ParticleSpeed;
+    public GameObject ParticleDoubleCoin;
+
     Animator mAnimator;
     BoxCollider mCollider;
     WorkerReturner workerReturner;
@@ -170,10 +172,11 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         magnetColliderObject.SetActive(false);
         shadow.SetActive(false);
 
-        ParticalPowerUp.SetActive(false);
-        ParticalMagnet.SetActive(false);
-        ParticalShield.SetActive(false);
-        ParticalSpeed.SetActive(false);
+        ParticlePowerUp.SetActive(false);
+        ParticleMagnet.SetActive(false);
+        ParticleShield.SetActive(false);
+        ParticleSpeed.SetActive(false);
+        ParticleDoubleCoin.SetActive(false);
 
         SetWorkerCollision(VestState.WithoutVest);
     }

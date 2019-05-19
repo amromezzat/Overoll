@@ -32,7 +32,7 @@ public class WorkerList : List<WorkerFSM>
     bool teacupOn = false;
     public bool doubleCoinOn = false;
     
-    GameObject WorkerVesit;
+    GameObject WorkerVest;
 
     WorkerFSM ascender;
     List<List<WorkerFSM>> workers = new List<List<WorkerFSM>>();
@@ -61,8 +61,8 @@ public class WorkerList : List<WorkerFSM>
         if (shieldOn)
         {
             //worker.health = 1000;
-            WorkerVesit= worker.transform.GetChild(0).gameObject;
-            WorkerVesit.SetActive(true);
+            WorkerVest= worker.transform.GetChild(0).gameObject;
+            WorkerVest.SetActive(true);
            
 
         }
@@ -159,10 +159,10 @@ public class WorkerList : List<WorkerFSM>
         {
             //this[i].health = 1000;
             this[i].SetWorkerCollision(VestState.WithVest);
-            this[i].ParticalPowerUp.SetActive(true);
-            this[i].ParticalShield.SetActive(true);
-            WorkerVesit = this[i].transform.GetChild(0).gameObject; 
-            WorkerVesit.SetActive(true);
+            this[i].ParticlePowerUp.SetActive(true);
+            this[i].ParticleShield.SetActive(true);
+            WorkerVest = this[i].transform.GetChild(0).gameObject; 
+            WorkerVest.SetActive(true);
         }
     }
     public void EndShieldPowerup()
@@ -171,10 +171,10 @@ public class WorkerList : List<WorkerFSM>
         for (int i = 0; i < Count; i++)
         {
             //this[i].health = normWorkersHealth[i];
-            this[i].ParticalShield.SetActive(false);
+            this[i].ParticleShield.SetActive(false);
             this[i].SetWorkerCollision(VestState.WithoutVest);
-            WorkerVesit = this[i].transform.GetChild(0).gameObject;
-            WorkerVesit.SetActive(false);
+            WorkerVest = this[i].transform.GetChild(0).gameObject;
+            WorkerVest.SetActive(false);
 
         }
     }
@@ -185,8 +185,8 @@ public class WorkerList : List<WorkerFSM>
         for (int i = 0; i < Count; i++)
         {
             this[i].TeaOnHisHand.SetActive(true);
-            this[i].ParticalPowerUp.SetActive(true);
-            this[i].ParticalSpeed.SetActive(true);
+            this[i].ParticlePowerUp.SetActive(true);
+            this[i].ParticleSpeed.SetActive(true);
             this[i].GetComponent<Animator>().SetTrigger("Drink");
         }
     }
@@ -197,7 +197,7 @@ public class WorkerList : List<WorkerFSM>
             SpeedManager.Instance.ResetSpeed();
         for (int i = 0; i < Count; i++)
         {
-            this[i].ParticalSpeed.SetActive(false);
+            this[i].ParticleSpeed.SetActive(false);
             this[i].TeaOnHisHand.SetActive(false);
          
         }
@@ -207,8 +207,8 @@ public class WorkerList : List<WorkerFSM>
         magnetOn = true;
         for (int i = 0; i < Count; i++)
         {
-            this[i].ParticalPowerUp.SetActive(true);
-            this[i].ParticalMagnet.SetActive(true);
+            this[i].ParticlePowerUp.SetActive(true);
+            this[i].ParticleMagnet.SetActive(true);
             this[i].MagneOnHisHand.SetActive(true);
             this[i].magnetColliderObject.SetActive(true);
             this[i].GetComponent<Animator>().SetBool("HoldingMagnet", true);
@@ -221,7 +221,7 @@ public class WorkerList : List<WorkerFSM>
         magnetOn = false;
         for(int i = 0; i < Count; i++)
         {
-            this[i].ParticalMagnet.SetActive(false);
+            this[i].ParticleMagnet.SetActive(false);
             this[i].MagneOnHisHand.SetActive(false);
             this[i].magnetColliderObject.SetActive(false);
             this[i].GetComponent<Animator>().SetBool("HoldingMagnet", false);
@@ -232,12 +232,16 @@ public class WorkerList : List<WorkerFSM>
         doubleCoinOn = true;
         for (int i= 0; i < Count; i++)
         {
-            this[i].ParticalPowerUp.SetActive(true);
-
+            this[i].ParticlePowerUp.SetActive(true);
+            this[i].ParticleDoubleCoin.SetActive(true);
         }
     }
     public void EndDoubleCoin()
     {
         doubleCoinOn = false;
+        for (int i = 0; i < Count; i++)
+        {
+            this[i].ParticleDoubleCoin.SetActive(false);
+        }
     }
 }

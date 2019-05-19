@@ -48,8 +48,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Radius: 0.28865063
+  m_Center: {x: 0, y: 0.28865063, z: 0}
 --- !u!54 &54085142096316720
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wc: {fileID: 11400000, guid: 05c49743844edb1428501f66bf889e0b, type: 2}
+  onAct: 0
 --- !u!114 &1647636130565548829
 MonoBehaviour:
   m_ObjectHideFlags: 0
