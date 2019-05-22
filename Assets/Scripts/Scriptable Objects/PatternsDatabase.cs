@@ -20,10 +20,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PatternDatabase", menuName = "Database/Patterns")]
-public class PatternsDatabase: ScriptableObject {
-
-
-    public List<Difficulty> PatternDBList;
+public class PatternsDatabase : ScriptableObject
+{
+    [SerializeField]
+    List<Difficulty> PatternDBList;
 
     public PatternsDatabase()
     {
@@ -46,7 +46,7 @@ public class PatternsDatabase: ScriptableObject {
         }
         set
         {
-            PatternDBList[index]= value;
+            PatternDBList[index] = value;
         }
     }
 

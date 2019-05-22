@@ -11,7 +11,20 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private TutorialState tutorialState = TutorialState.Null;
 
-    public bool tutorialActive = true;
+    [SerializeField]
+    bool active = false;
+
+    public bool Active
+    {
+        get
+        {
+#if UNITY_EDITOR
+            return active;
+#else
+            return PlayerPrefs.GetInt("PlayedTutorial") == 0;
+#endif
+        }
+    }
 
     //public GameData gd;
     public WorkerConfig wc;
@@ -50,7 +63,7 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialState = value;
 
-            if (tutorialActive && value != TutorialState.Null)
+            if (active && value != TutorialState.Null)
             {
                 SpeedManager.Instance.speed.Value = 0;
 
@@ -69,7 +82,7 @@ public class TutorialManager : MonoBehaviour
 
         addBtnAnimator = addWorkerBtn.GetComponent<Animator>();
 
-        if (!tutorialActive)
+        if (!active)
             gameObject.SetActive(false);
     }
 
@@ -110,7 +123,7 @@ public class TutorialManager : MonoBehaviour
                 gameObject.SetActive(false);
 
                 ScoreText.SetActive(true);
-                tutorialActive = false;
+                active = false;
                 PlayerPrefs.SetInt("PlayedTutorial", 1);
                 break;
         }
@@ -119,7 +132,7 @@ public class TutorialManager : MonoBehaviour
     void TutStart()
     {
         //if (gd.tutorialActive && gd.difficulty == 0)
-        if (tutorialActive && GameManager.Instance.difficulty.Value == 0)
+        if (active && GameManager.Instance.difficulty.Value == 0)
         {
             pauseBtn.SetActive(false);
             addWorkerBtn.SetActive(false);

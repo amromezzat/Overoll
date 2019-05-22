@@ -86,7 +86,7 @@ public class WorkersManager : MonoBehaviour
     {
         if (GameManager.Instance.gameState == GameState.Gameplay)
         {
-            if (ScoreManager.Instance.workerPrice < ScoreManager.Instance.coinsCount.Value || TutorialManager.Instance.tutorialActive)
+            if (ScoreManager.Instance.workerPrice < ScoreManager.Instance.coinsCount.Value || TutorialManager.Instance.Active)
                 AddWorker();
         }
     }
@@ -94,7 +94,7 @@ public class WorkersManager : MonoBehaviour
 
     public void AddWorker(Vector2 pos)
     {
-        if (TutorialManager.Instance.tutorialActive && TutorialManager.Instance.TutorialState == TutorialState.AddWorker)
+        if (TutorialManager.Instance.Active && TutorialManager.Instance.TutorialState == TutorialState.AddWorker)
         {
             TutorialManager.Instance.ExitState();
         }

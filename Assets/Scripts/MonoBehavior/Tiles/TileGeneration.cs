@@ -25,51 +25,73 @@ using UnityEngine;
 /// </summary>
 public class TileGeneration : MonoBehaviour
 {
+    public Pattern tutorialPattern;
+    public Pattern emptyPattern;
     public PatternsDatabase patternDB;//[]->difficulty, [][]->pattern
+    // Active lanes in game
     public LanesDatabase lanes;
+    // Tile data
     public TileConfig tc;
+    // Database carrying available tiles
     public InteractablesDatabase interactDB;
 
+    // Position of the upcoming segment
     Transform lastSegTrans;
     Pattern currentPattern;
+
+    // Current Segment in the pattern
     int currentSegmentIndex;
     int currentPatternIndex = -1;
 
     const float difficultyRunTime = 120;
-    const int availableDifficulties = 4;
 
+    // Increase difficulty after certain time frame
     IEnumerator IncreaseDifficulty()
     {
-        yield return new WaitForSeconds(difficultyRunTime);
+        yield return new WaitWhile(() => TutorialManager.Instance.Active);
 
-        if (GameManager.Instance.difficulty.Value > 0)
+        while (GameManager.Instance.difficulty.Value < patternDB.Count)
         {
-            GameManager.Instance.difficulty.Value = (GameManager.Instance.difficulty.Value + 1) % availableDifficulties + 1;
+            float difficultyTimer = difficultyRunTime;
+            while (difficultyTimer > 0)
+            {
+                difficultyTimer -= 0.1f;
+                yield return new WaitForSeconds(0.1f);
+                yield return new WaitWhile(() => GameManager.Instance.gameState == GameState.Pause);
+            }
+
+            GameManager.Instance.difficulty.Value++;
         }
     }
 
     private void Start()
     {
-        InitPattern();
         lastSegTrans = transform;
         StartCoroutine(IncreaseDifficulty());
+
+        GenerateEmptyPattern();
+
+        if (TutorialManager.Instance.Active)
+            currentPattern = tutorialPattern;
+        else
+            GetNextPattern();
     }
 
-    void InitPattern()
+    void GenerateEmptyPattern()
+    {
+        currentPattern = emptyPattern;
+
+        for (int i = 0; i < emptyPattern.Count; i++)
+            GetNextSegment();
+
+        currentSegmentIndex = 0;
+    }
+
+    void GetNextPattern()
     {
         currentSegmentIndex = 0;
 
-        if (!TutorialManager.Instance.tutorialActive && GameManager.Instance.difficulty.Value == 0)
-            GameManager.Instance.difficulty.Value++;
-
-        //get a random pattern
-        currentPatternIndex++;
-
-        if (currentPatternIndex == patternDB[GameManager.Instance.difficulty.Value].Count)
-        {
-            currentPatternIndex = 0;
-            GameManager.Instance.difficulty.Value++;
-        }
+        currentPatternIndex = Random.Range(0, patternDB[GameManager.Instance.difficulty.Value].Count - 1);
 
         currentPattern = patternDB[GameManager.Instance.difficulty.Value][currentPatternIndex];
         Debug.Log(currentPattern.name);
@@ -85,54 +107,39 @@ public class TileGeneration : MonoBehaviour
 
     void GetNextSegment()
     {
-        currentSegmentIndex = (currentSegmentIndex + 1) % currentPattern.Count;
         Segment currentSegment = currentPattern[currentSegmentIndex];
+
+        currentSegmentIndex++;
 
         if (currentSegmentIndex == currentPattern.Count)
         {
-            if (GameManager.Instance.difficulty.Value == 0)
-            {
-                GameManager.Instance.difficulty.Value++;
-            }
-            InitPattern();
+            GetNextPattern();
         }
+
         ObjectPooler.instance.segmentActiveCount++;
 
-
-        GameObject tile = ObjectPooler.instance.GetFromPool(interactDB.LeftLineFrame);
-        Vector3 objpos = tile.transform.position;
-        objpos.x = lanes.frameLines[0].laneCenter;
-        objpos.z = lastSegTrans.position.z + 1f;
-        tile.transform.position = objpos;
-        tile.SetActive(true);
-
-        tile = ObjectPooler.instance.GetFromPool(interactDB.RightLineFrame);
-        objpos = tile.transform.position;
-        objpos.x = lanes.frameLines[1].laneCenter;
-        objpos.z = lastSegTrans.position.z + 1f;
-        tile.transform.position = objpos;
-        tile.SetActive(true);
+        ActivateTile(interactDB.LeftLineFrame, lanes.frameLines[0].laneCenter);
+        GameObject activeTileGameobject = ActivateTile(interactDB.RightLineFrame, lanes.frameLines[1].laneCenter);
+        activeTileGameobject.GetComponent<TileReturner>().inActiveSegment = true;
+        lastSegTrans = activeTileGameobject.transform;
 
         //generate on available lanes
         for (int i = 0; i < lanes.OnGridLanes.Count; i++)
         {
-            tile = ObjectPooler.instance.GetFromPool(currentSegment[i]);
-            objpos = tile.transform.position;
-            objpos.x = lanes[i].laneCenter;
-            objpos.z = lastSegTrans.position.z + 1f;
-            tile.transform.position = objpos;
-            tile.SetActive(true);
+            ActivateTile(currentSegment[i], lanes[i].laneCenter);
 
             if (!currentSegment[i].containTiles)
             {
-                tile = ObjectPooler.instance.GetFromPool(interactDB.Tile);
-                objpos.y = tile.transform.position.y;
-                tile.transform.position = objpos;
-                tile.SetActive(true);
+                ActivateTile(interactDB.Tile, lanes[i].laneCenter);
             }
         }
+    }
 
-        lastSegTrans = tile.transform;
-        tile.GetComponent<TileReturner>().inActiveSegment = true;
+    GameObject ActivateTile(PoolableType type, float xPos)
+    {
+        GameObject tile = ObjectPooler.instance.GetFromPool(type);
+        tile.transform.position = new Vector3(xPos, tile.transform.position.y, lastSegTrans.position.z + 1);
+        tile.SetActive(true);
+        return tile;
     }
 }

@@ -66,7 +66,7 @@ public class ScoreManager : MonoBehaviour, IHalt
         }
         coinvalue =  (1 + wConfig.workers.Count);
 
-        if (TutorialManager.Instance.tutorialActive)
+        if (TutorialManager.Instance.Active)
             return;
 
         score.Value = (int)timeScore + coinsCount.Value * (int)(coinvalue);

@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PatternDBList:
   - ListOfPatterns:
-    - {fileID: 11400000, guid: d5ce4d6bf700b5644a38829ba4a661e7, type: 2}
-  - ListOfPatterns:
     - {fileID: 11400000, guid: b49c170111bf87a4195228f07cae60d2, type: 2}
     - {fileID: 11400000, guid: 14e36972d5076c24e928bc855057479a, type: 2}
     - {fileID: 11400000, guid: b5a782343da9ea9468fd4db056d17a11, type: 2}
