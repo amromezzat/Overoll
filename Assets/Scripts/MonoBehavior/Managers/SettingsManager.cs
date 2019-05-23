@@ -29,7 +29,8 @@ public class LanguageTypeEvent : UnityEvent<LanguageType>
 public class SettingsManager : MonoBehaviour
 {
     public static SettingsManager Instance;
-
+    public GameObject creditsPanel;
+    public GameObject settingMenu;
     public UnityEvent<LanguageType> languageChanged = new LanguageTypeEvent();
 
     [SerializeField]
@@ -84,6 +85,16 @@ public class SettingsManager : MonoBehaviour
             currentLanguageIndex = availableSystemLanguages[(int)Application.systemLanguage];
     }
 
+    public void OnClickCredits()
+    {
+        creditsPanel.gameObject.SetActive(true);
+        settingMenu.gameObject.SetActive(false);
+    }
+    public void OnExitCredits()
+    {
+        settingMenu.gameObject.SetActive(true);
+        creditsPanel.gameObject.SetActive(false);
+    }
     public void SetLanguage(int index)
     {
         languageType = (LanguageType)index;
