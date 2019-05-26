@@ -94,7 +94,7 @@ public class JumpSlideFSM : IWJumpSlide
     public virtual void Jump()
     {
         //float delayTime = (wc.leader.transform.position.z - transform.position.z) / gd.Speed;
-        float delayTime = (wc.leader.transform.position.z - transform.position.z) / SpeedManager.Instance.speed.Value;
+        float delayTime = (WorkersManager.Instance.leader.transform.position.z - transform.position.z) / SpeedManager.Instance.speed.Value;
         actionStack.Push(interruptJumpState);
         actionStack.Push(jumpState);
         if (delayTime > 0)
@@ -109,7 +109,7 @@ public class JumpSlideFSM : IWJumpSlide
     {
         //if jumping interrupt jump to return worker to ground and then slide
         //float delayTime = (wc.leader.transform.position.z - transform.position.z) / gd.Speed;
-        float delayTime = (wc.leader.transform.position.z - transform.position.z) / SpeedManager.Instance.speed.Value;
+        float delayTime = (WorkersManager.Instance.leader.transform.position.z - transform.position.z) / SpeedManager.Instance.speed.Value;
 
         if (currentState == jumpState)
         {

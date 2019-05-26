@@ -282,16 +282,13 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         switch (outputKey)
         {
             case WorkerFSMOutput.LeaderDied:
-                wc.workers.Remove(this);
+                WorkersManager.Instance.RemoveWorker(this);
                 wc.onLeaderDeath.Invoke();
                 StartCoroutine(workerReturner.ReturnToPool(2));
                 break;
             case WorkerFSMOutput.WorkerDied:
-                wc.workers.Remove(this);
+                WorkersManager.Instance.RemoveWorker(this);
                 StartCoroutine(workerReturner.ReturnToPool(2));
-                break;
-            case WorkerFSMOutput.WorkerRevived:
-                wc.workers.Add(this);
                 break;
             case WorkerFSMOutput.LeaderElected:
                 seekLeaderPosition.SetClosestLane();

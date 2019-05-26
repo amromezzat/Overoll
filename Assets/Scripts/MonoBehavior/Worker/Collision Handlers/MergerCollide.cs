@@ -52,7 +52,7 @@ public class MergerCollide : IWCollide
         // the trigger for the next state
         if (collider.CompareTag("SlaveMerger"))
         {
-            wc.workers.Remove(collider.GetComponent<WorkerFSM>());
+            WorkersManager.Instance.RemoveWorker(collider.GetComponent<WorkerFSM>());
             ICollidable slaveMerger = collider.GetComponent<ICollidable>();
             health += slaveMerger.Gethealth();
             slaveMerger.ReactToCollision(0);

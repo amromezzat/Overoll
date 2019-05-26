@@ -17,6 +17,7 @@ under the License.*/
 
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class WorkersManager : MonoBehaviour
 {
@@ -33,12 +34,24 @@ public class WorkersManager : MonoBehaviour
     public PowerUpVariable teacup;
     public PowerUpVariable doublecoin;
 
-    //[HideInInspector]
-    //public int hrNum;
-    //[HideInInspector]
-    //public int bossNum;
-    //[HideInInspector]
-    //public PoolableType leaderType;
+    public bool DoubleCoinOn
+    {
+        get
+        {
+            return workers.doubleCoinOn;
+        }
+    }
+
+    public int WorkersCount
+    {
+        get
+        {
+            return workers.Count;
+        }
+    }
+
+    [HideInInspector]
+    public WorkerList workers = new WorkerList(0, 0);
 
     void Awake()
     {
@@ -47,19 +60,19 @@ public class WorkersManager : MonoBehaviour
             Instance = this;
         }
 
-        shield.BeginAction.AddListener(wc.workers.StartShieldPowerup);
-        shield.EndAction.AddListener(wc.workers.EndShieldPowerup);
-        magnet.BeginAction.AddListener(wc.workers.StartMagnetPowerup);
-        magnet.EndAction.AddListener(wc.workers.EndMagnetPowerup);
+        shield.BeginAction.AddListener(workers.StartShieldPowerup);
+        shield.EndAction.AddListener(workers.EndShieldPowerup);
+        magnet.BeginAction.AddListener(workers.StartMagnetPowerup);
+        magnet.EndAction.AddListener(workers.EndMagnetPowerup);
 
-        teacup.BeginAction.AddListener(wc.workers.StartTeacupPowerUp);
-        teacup.EndAction.AddListener(wc.workers.EndTeacupPowerUp);
+        teacup.BeginAction.AddListener(workers.StartTeacupPowerUp);
+        teacup.EndAction.AddListener(workers.EndTeacupPowerUp);
 
-        doublecoin.BeginAction.AddListener(wc.workers.StartDoubleCoin);
-        doublecoin.EndAction.AddListener(wc.workers.EndDoubleCoin);
+        doublecoin.BeginAction.AddListener(workers.StartDoubleCoin);
+        doublecoin.EndAction.AddListener(workers.EndDoubleCoin);
 
-        wc.leader = leader;
-        wc.workers.Add(leader);
+        workers = new WorkerList(wc.workersPerLevel, wc.levelsNum);
+        workers.Add(leader);
         wc.onLeaderDeath.AddListener(LeaderDied);
         wc.onMergeOver.AddListener(MergingDone);
         wc.onAddWorker.AddListener(OnDoubleTap);
@@ -69,8 +82,8 @@ public class WorkersManager : MonoBehaviour
 
     void Update()
     {
-        wc.aheadFollowPoint = -Mathf.Log10(wc.workers.Count + 1) - 0.5f;
-        ScoreManager.Instance.workerPrice = (wc.workers.Count + 1) * wPFactor;
+        wc.aheadFollowPoint = -Mathf.Log10(workers.Count + 1) - 0.5f;
+        ScoreManager.Instance.workerPrice = (workers.Count + 1) * wPFactor;
 
         if (ScoreManager.Instance.workerPrice > ScoreManager.Instance.coinsCount.Value)
         {
@@ -102,25 +115,30 @@ public class WorkersManager : MonoBehaviour
         worker.transform.position = new Vector3(pos.x, worker.transform.position.y, pos.y);
         WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
 
-        wc.workers.Add(workerFSM);
+        workers.Add(workerFSM);
     }
 
     public void AddWorker()
     {
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
-        float newZPos = Random.Range(tc.disableSafeDistance + 5, tc.disableSafeDistance + 8);
+        float newZPos = Random.Range(-6, -3);
         AddWorker(new Vector2(newXPos, newZPos));
         ScoreManager.Instance.DeductWorkerPrice();
     }
 
+    public void RemoveWorker(WorkerFSM worker)
+    {
+        workers.Remove(worker);
+    }
+
     void MergingDone()
     {
-        wc.workers.Ascend();
+        workers.Ascend();
     }
 
     void LeaderDied()
     {
-        if (wc.workers.Count > 0)
+        if (workers.Count > 0)
         {
             ElectNewLeader();
         }
@@ -131,12 +149,12 @@ public class WorkersManager : MonoBehaviour
             magnet.ResetPowerUp();
             teacup.ResetPowerUp();
             shield.ResetPowerUp();
-           // Debug.Log("Dead");
+            // Debug.Log("Dead");
         }
     }
 
     public void ElectNewLeader()
     {
-        wc.leader = wc.workers.GetNewLeader();
+        leader = workers.GetNewLeader();
     }
 }

@@ -33,7 +33,7 @@ public class MergeLeaderSeeker : SeekLeaderPosition, IWCollide
         // then he is sent to pool
         if (collider.CompareTag("SlaveMerger"))
         {
-            wc.workers.Remove(collider.GetComponent<WorkerFSM>());
+            WorkersManager.Instance.RemoveWorker(collider.GetComponent<WorkerFSM>());
             ICollidable slaveMerger = collider.GetComponent<ICollidable>();
             health += slaveMerger.Gethealth();
             slaveMerger.ReactToCollision(0);

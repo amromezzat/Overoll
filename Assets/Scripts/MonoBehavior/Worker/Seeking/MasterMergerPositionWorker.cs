@@ -22,8 +22,8 @@ using UnityEngine;
 /// <summary>
 /// Master merger keeps following leader
 /// </summary>
-public class PositionMasterMerger : SeekPosition {
-
+public class PositionMasterMerger : SeekPosition
+{
     public PositionMasterMerger(WorkerConfig wc, Rigidbody rb, Transform transform) : base(wc, rb, transform)
     {
     }
@@ -35,7 +35,7 @@ public class PositionMasterMerger : SeekPosition {
     protected override Vector2 SteeringForce()
     {
         // Creates a force to arrive at the point
-        return SeekTarget(wc.leader.transform.position, wc.aheadFollowPoint); ;
+        return SeekTarget(WorkersManager.Instance.leader.transform.position, wc.aheadFollowPoint); ;
     }
 
     public override void FixedUpdate(float fixedDeltaTime)

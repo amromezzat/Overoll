@@ -145,7 +145,7 @@ public class TutorialManager : MonoBehaviour
     IEnumerator BecomeATutor()
     {
         yield return new WaitForSeconds(0.5f);
-        wc.leader.ChangeState(WorkerStateTrigger.StartTutoring);
+        WorkersManager.Instance.leader.ChangeState(WorkerStateTrigger.StartTutoring);
     }
 
     public void ExitState()
@@ -180,7 +180,7 @@ public class TutorialManager : MonoBehaviour
     IEnumerator StartMergeTutorial()
     {
         buyWorkersText.SetActive(true);
-        wc.leader.ChangeState(WorkerStateTrigger.EndTutoring);
+        WorkersManager.Instance.leader.ChangeState(WorkerStateTrigger.EndTutoring);
         yield return new WaitForSeconds(3);
 
         for (int i = 0; i < 3; i++)

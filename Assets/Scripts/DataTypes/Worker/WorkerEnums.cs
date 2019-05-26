@@ -52,7 +52,6 @@ public enum WorkerFSMOutput
     Null,
     LeaderDied,
     WorkerDied,
-    WorkerRevived,
     SeekingMasterMerger,
     MergingDone,
     LeaderElected,

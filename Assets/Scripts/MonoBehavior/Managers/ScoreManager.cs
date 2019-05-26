@@ -60,11 +60,11 @@ public class ScoreManager : MonoBehaviour, IHalt
     void Update()
     {
         RegisterListeners();
-        if (wConfig.workers.doubleCoinOn)
+        if (WorkersManager.Instance.DoubleCoinOn)
         {
             coinvalue = 2f;
         }
-        coinvalue =  (1 + wConfig.workers.Count);
+        coinvalue =  (1 + WorkersManager.Instance.WorkersCount);
 
         if (TutorialManager.Instance.Active)
             return;

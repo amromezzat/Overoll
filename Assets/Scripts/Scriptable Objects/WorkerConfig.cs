@@ -23,8 +23,6 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "WorkerConfig", menuName = "Config/WorkerConfig")]
 public class WorkerConfig : ScriptableObject
 {
-    public WorkerFSM leader;
-
     //Events available for other classes to register to
     [HideInInspector]
     public UnityEvent onLeft;
@@ -60,23 +58,10 @@ public class WorkerConfig : ScriptableObject
     [HideInInspector]
     public float aheadFollowPoint = 5;//distance infront of leader for workers to follow
 
-    public WorkerList workers;
-    [HideInInspector]
-    public List<GameObject> hrWorkers;
-    [HideInInspector]
-    public List<GameObject> managerWorkers;
-
     [Header("Workers Types")]
     public PoolableType workerType;
-    public PoolableType hrType;
-    public PoolableType managerType;
 
     [Header("Worker Merge")]
     public int workersPerLevel = 5;
     public int levelsNum = 5;
-
-    private void OnEnable()
-    {
-        workers = new WorkerList(workersPerLevel, levelsNum);
-    }
 }

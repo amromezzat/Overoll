@@ -72,9 +72,9 @@ public abstract class SeekPosition : IWorkerScript
         return folForce.normalized * wc.maxFolForce;
     }
 
-    protected float CalculateDisFrom(GameObject entity)
+    protected float CalculateDisFrom(Transform entity)
     {
-        Vector2 entityPos = new Vector2(entity.transform.position.x, entity.transform.position.z);
+        Vector2 entityPos = new Vector2(entity.position.x, entity.position.z);
         Vector2 pos = new Vector2(transform.position.x, transform.position.z);
         return (entityPos - pos).magnitude;
     }

@@ -34,9 +34,9 @@ public class PositionWorker : PositionMasterMerger
         Vector2 seperationForce = Vector2.zero;
         int neighborCount = 0;
 
-        foreach (WorkerFSM worker in wc.workers)
+        foreach (WorkerFSM worker in WorkersManager.Instance.workers)
         {
-            if (worker.GetInstanceID() != id && CalculateDisFrom(worker.gameObject) < wc.workersSepDis)
+            if (worker.GetInstanceID() != id && CalculateDisFrom(worker.transform) < wc.workersSepDis)
             {
                 seperationForce.x += worker.transform.position.x - transform.position.x;
                 seperationForce.y += worker.transform.position.z - transform.position.z;
