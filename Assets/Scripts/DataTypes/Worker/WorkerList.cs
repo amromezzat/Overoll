@@ -165,6 +165,7 @@ public class WorkerList : List<WorkerFSM>
             WorkerVest.SetActive(true);
         }
     }
+
     public void EndShieldPowerup()
     {
         shieldOn = false;
@@ -178,10 +179,11 @@ public class WorkerList : List<WorkerFSM>
 
         }
     }
+
     public void StartTeacupPowerUp()
     {
         teacupOn = true;
-        SpeedManager.Instance.speed.Value = 10;
+        SpeedManager.Instance.speed.Value += 1;
         for (int i = 0; i < Count; i++)
         {
             this[i].TeaOnHisHand.SetActive(true);
@@ -190,6 +192,7 @@ public class WorkerList : List<WorkerFSM>
             this[i].GetComponent<Animator>().SetTrigger("Drink");
         }
     }
+
     public void EndTeacupPowerUp()
     {
         teacupOn = false;
@@ -198,10 +201,9 @@ public class WorkerList : List<WorkerFSM>
         for (int i = 0; i < Count; i++)
         {
             this[i].ParticleSpeed.SetActive(false);
-            this[i].TeaOnHisHand.SetActive(false);
-         
         }
     }
+
     public void StartMagnetPowerup()
     {
         magnetOn = true;

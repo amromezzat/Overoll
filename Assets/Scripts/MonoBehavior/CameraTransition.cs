@@ -57,7 +57,7 @@ public class CameraTransition : MonoBehaviour, IHalt
         current = beginTrans;
         next = beginTrans;
     }
-    
+
     void Update()
     {
         if (onHalt)
@@ -117,9 +117,12 @@ public class CameraTransition : MonoBehaviour, IHalt
 
     private void OnDisable()
     {
-        GameManager.Instance.OnStart.RemoveListener(Begin);
-        GameManager.Instance.onPause.RemoveListener(Halt);
-        GameManager.Instance.OnResume.RemoveListener(Resume);
-        GameManager.Instance.onEnd.RemoveListener(End);
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnStart.RemoveListener(Begin);
+            GameManager.Instance.onPause.RemoveListener(Halt);
+            GameManager.Instance.OnResume.RemoveListener(Resume);
+            GameManager.Instance.onEnd.RemoveListener(End);
+        }
     }
 }

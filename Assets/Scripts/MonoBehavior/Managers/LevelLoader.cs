@@ -10,9 +10,6 @@ public class LevelLoader : MonoBehaviour
     public Slider slider;
     public Text progressText;
 
-    public VideoPlayer videoLogo;
-    public RawImage rawImage;
-
     private int sceneInd;
 
     private void Start()
@@ -23,18 +20,7 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
-        videoLogo.Prepare();
-
         WaitForSeconds waitForSeconds = new WaitForSeconds(0.5f);
-
-        while (!videoLogo.isPrepared)
-        {
-            yield return waitForSeconds;
-            break;
-        }
-
-        rawImage.texture = videoLogo.texture;
-        videoLogo.Play();
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex); 
 

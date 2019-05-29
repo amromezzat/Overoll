@@ -60,6 +60,8 @@ public class WorkersManager : MonoBehaviour
             Instance = this;
         }
 
+        workers = new WorkerList(wc.workersPerLevel, wc.levelsNum);
+
         shield.BeginAction.AddListener(workers.StartShieldPowerup);
         shield.EndAction.AddListener(workers.EndShieldPowerup);
         magnet.BeginAction.AddListener(workers.StartMagnetPowerup);
@@ -71,7 +73,6 @@ public class WorkersManager : MonoBehaviour
         doublecoin.BeginAction.AddListener(workers.StartDoubleCoin);
         doublecoin.EndAction.AddListener(workers.EndDoubleCoin);
 
-        workers = new WorkerList(wc.workersPerLevel, wc.levelsNum);
         workers.Add(leader);
         wc.onLeaderDeath.AddListener(LeaderDied);
         wc.onMergeOver.AddListener(MergingDone);

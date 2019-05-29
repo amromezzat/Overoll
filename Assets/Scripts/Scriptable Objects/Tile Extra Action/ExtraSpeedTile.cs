@@ -43,7 +43,7 @@ public class ExtraSpeedTile : TileExtraAction
         }
         caller.Anim.SetTrigger("Rotate Spool");
         caller.extraSpeed = ExtraVelocity;
-        caller.Velocity += caller.Velocity + ExtraVelocity;
+        caller.Velocity += ExtraVelocity;
         caller.Anim.speed = 1;
     }
 }

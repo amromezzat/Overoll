@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8123a77c711724dace600c4d04c4f5, type: 3}
   m_Name: Extra Speed
   m_EditorClassIdentifier: 
-  relActivPos: 20
+  relActivPos: 40
   ExtraVelocity: 5

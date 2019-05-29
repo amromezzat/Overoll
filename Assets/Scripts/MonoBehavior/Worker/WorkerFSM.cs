@@ -146,6 +146,11 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         Speed.onValueChanged.RemoveListener(ChangeAnimationSpeed);
     }
 
+    public void DisableTeaCup()
+    {
+        TeaOnHisHand.SetActive(false);
+    }
+
     public void SetWorkerCollision(VestState vestState)
     {
         switch (vestState)
