@@ -1,15 +1,84 @@
-﻿using UnityEngine;
+﻿/*Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.*/
+
+using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
+    public Sound[] musics;
     public Sound[] sounds;
+
+    public string currentMusic;
+    public string currentSound;
+
+    public Button soundButton;
+    public Button musicButton;
+
+    public bool isPlayingSound
+    {
+        get
+        {
+            return currentSound != "" && soundDictionary[currentSound].source.isPlaying;
+        }
+    }
+
+    public bool isPlayingMusic
+    {
+        get
+        {
+            return currentMusic != "" && musicDictionary[currentMusic].source.isPlaying;
+        }
+    }
+
+    public double currentSoundDuration
+    {
+        get
+        {
+            if (currentSound == "")
+                return 0;
+            return (double)soundDictionary[currentSound].source.clip.samples /
+                soundDictionary[currentSound].source.clip.frequency;
+        }
+    }
+
+    bool soundOn;
+
+    bool musicOn;
+
+    public Sprite soundOnSprite;
+    public Sprite soundOffSprite;
+    public Sprite musicOnSprite;
+    public Sprite musicOffSprite;
+
+    Dictionary<string, Sound> soundDictionary = new Dictionary<string, Sound>();
+    Dictionary<string, Sound> musicDictionary = new Dictionary<string, Sound>();
 
     public static AudioManager instance;
 
     private void Awake()
     {
+        soundOn = true;
+        soundButton.image.sprite = soundOnSprite;
+        musicOn = true;
+        musicButton.image.sprite = musicOnSprite;
         if (instance == null)
         {
             instance = this;
@@ -20,7 +89,21 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
+        //-------------------------------------------------
+        foreach (Sound m in musics)
+        {
+
+            m.source = gameObject.AddComponent<AudioSource>();
+            m.source.clip = m.clip;
+            m.source.volume = m.volume;
+            m.source.pitch = m.pitch;
+            m.source.loop = m.loop;
+
+            musicDictionary.Add(m.name, m);
+        }
+
+
+        //---------------------------------------
 
         foreach (Sound s in sounds)
         {
@@ -30,24 +113,93 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+
+            soundDictionary.Add(s.name, s);
+        }
+    }
+    public void OnMusicClick()
+    {
+        Debug.Log("Music  = " + musicOn);
+
+        if (musicOn)
+        {
+            musicButton.image.sprite = musicOffSprite;
+            musicOn = false;
+            PauseCurrentMusic();
+        }
+        else
+        {
+            musicButton.image.sprite = musicOnSprite;
+            musicOn = true;
+            UnpauseCurrentMusic();
+        }
+    }
+    public void OnSoundClick()
+    {
+
+        Debug.Log("Sound  = " + soundOn);
+
+        if (soundOn)
+        {
+            soundButton.image.sprite = soundOffSprite;
+            soundOn = false;
+        }
+        else
+        {
+            soundButton.image.sprite = soundOnSprite;
+
+            soundOn = true;
         }
     }
 
-    private void Start()
+    public void PlaySound(string name)
     {
-        PlaySound("TempSoundTrack");
-    }
+        Sound newSound;
+        bool foundSound = soundDictionary.TryGetValue(name, out newSound);
 
-    public void PlaySound (string name)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-
-        if (s == null)
+        if (foundSound)
         {
-            Debug.LogWarning("Sound: " + name + " not found!");
+            if (soundOn)
+                newSound.source.Play();
+            currentSound = name;
             return;
         }
+        Debug.LogWarning("Sound: " + name + " not found!");
+    }
 
-        s.source.Play();
+    public void PlayMusic(string name)
+    {
+        Sound newMusic;
+        bool foundMusic = musicDictionary.TryGetValue(name, out newMusic);
+
+        if (foundMusic)
+        {
+            if (musicOn)
+            {
+                StopCurrentMusic();
+                newMusic.source.Play();
+            }
+            currentMusic = name;
+            return;
+        }
+        Debug.LogWarning("Music: " + name + " not found!");
+    }
+
+    public void StopCurrentMusic()
+    {
+        if (currentMusic != "")
+            musicDictionary[currentMusic].source.Stop();
+    }
+
+    public void PauseCurrentMusic()
+    {
+        if (currentMusic != "")
+            musicDictionary[currentMusic].source.Pause();
+    }
+
+    public void UnpauseCurrentMusic()
+    {
+        if (currentMusic != "")
+            musicDictionary[currentMusic].source.UnPause();
     }
 }

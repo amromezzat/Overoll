@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393c9ec4fa1e9354ba4d1cbf00d9bffb, type: 3}
+  m_Name: InteractablesDatabase
+  m_EditorClassIdentifier: 
+  poolableTypeList:
+  - {fileID: 11400000, guid: b8e804ecdbbcb8c4c84b07176c9decb0, type: 2}
+  - {fileID: 11400000, guid: ca488e72e49054546904acb122935688, type: 2}
+  - {fileID: 11400000, guid: 3a96abe44cfee27479a67b342f69c78b, type: 2}
+  - {fileID: 11400000, guid: f020894b4b1daa94c95d680ab240dea3, type: 2}
+  - {fileID: 11400000, guid: 5858703f5fa703a43aef2254ef9b3ade, type: 2}
+  - {fileID: 11400000, guid: a5f362da046748b4d8f81a220673f65f, type: 2}
+  - {fileID: 11400000, guid: 04341e926ab72b043b23ec993f18dbce, type: 2}
+  - {fileID: 11400000, guid: 6dcf70ceecc17bc47b536d4e00689755, type: 2}
+  - {fileID: 11400000, guid: 5d01d61373a9730449a3808545895813, type: 2}
+  - {fileID: 11400000, guid: d158b12bdb0c1724dacf966c151628a3, type: 2}
+  - {fileID: 11400000, guid: 3e86c4a97f571eb438a8ba8bee42a600, type: 2}
+  - {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
+  - {fileID: 11400000, guid: 637f3122e8297614b8cdb31c61214b69, type: 2}
+  - {fileID: 11400000, guid: 33dc546893613ae45861b54164b469b5, type: 2}
+  - {fileID: 11400000, guid: c27068b799c6e434088e8e132da56b7a, type: 2}
+  - {fileID: 11400000, guid: c80f4cdde9e74204c9a5dadb698c64b4, type: 2}
+  - {fileID: 11400000, guid: aeb7fec5d347b98469189b1d03a0606d, type: 2}
+  - {fileID: 11400000, guid: 9785c1e28ba920d418b477a9703d1cee, type: 2}
+  - {fileID: 11400000, guid: d534f5f773c88124ca381e0979d27550, type: 2}
+  - {fileID: 11400000, guid: 8f5fac3dab167c4408b86c49982c6420, type: 2}
+  - {fileID: 11400000, guid: f5ef9563a799911479f6df20244cbf7b, type: 2}
+  - {fileID: 11400000, guid: b5c6a242a553cab4e94a17f18761808e, type: 2}
+  - {fileID: 11400000, guid: 56098683eabe6744d911d115a7b5c46a, type: 2}
+  - {fileID: 11400000, guid: 03b46bc1d05ff204b8a296a21c18b806, type: 2}
+  - {fileID: 11400000, guid: 68bcde335e2a9974b9c8e06ed4a10fe2, type: 2}
+  - {fileID: 11400000, guid: 7381256c288ad8e4c94e92532ffa3d7a, type: 2}
+  - {fileID: 11400000, guid: adaeafb77eee4344bae1c559e4be59b3, type: 2}
+  - {fileID: 11400000, guid: d25daee0bbcffcf47a2ffd6570540b45, type: 2}
+  - {fileID: 11400000, guid: e942071e789adf643916db8cbd58b798, type: 2}
+  interactablesNames:
+  - BlankTile
+  - LeftLineFrame
+  - RightLineFrame
+  - CautionSign
+  - Coin
+  - GearLeft
+  - GearRight
+  - JumpPipe
+  - SpoolDynamic
+  - SlidePipe
+  - SpoolStatic
+  - Worker
+  - Shield
+  - MagnetPollable
+  - JumpPipe1
+  - TutJump
+  - TutSlide
+  - TutStrafeLeft
+  - TutStrafeRight
+  - TutAddWorker
+  - TutMerge
+  - TutCollide
+  - TutEnd
+  - LeftPress
+  - RightPress
+  - TeaCup
+  - OilSpot
+  - Star
+  - JumpPipe3

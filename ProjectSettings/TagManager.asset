@@ -22,6 +22,8 @@ TagManager:
   - TutMerge
   - TutCollide
   - TutEnd
+  - TeaCup
+  - x2
   layers:
   - Default
   - TransparentFX

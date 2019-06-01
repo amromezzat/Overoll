@@ -3,11 +3,22 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 public class DemoManager : MonoBehaviour {
+
+    public static DemoManager Instance;
+
     public Text text;
     public GameObject[] effects;
 
     protected int currentIndex = 0;
     protected List<Vector3> initPos = new List<Vector3>();
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     public void Start()
     {

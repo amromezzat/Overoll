@@ -3,6 +3,7 @@
 	Properties{
 		//texture
 		_MainTex("Base (RGB)", 2D) = "white" {}
+		_Color("Color", Color) = (1.0, 1.0, 1.0, 1.0)
 	}
 	SubShader{
 		Tags{ "RenderType" = "Opaque" }
@@ -15,6 +16,7 @@
 
 		// Access the shaderlab properties
 		uniform sampler2D _MainTex;
+		fixed4 _Color;
 		uniform float _CurveStrength;
 
 		// Basic input structure to the shader function
@@ -48,7 +50,7 @@
 		// This is just a default surface shader
 		void surf(Input IN, inout SurfaceOutput o) {
 			half4 mainTex = tex2D(_MainTex, IN.uv_MainTex);
-			o.Emission = mainTex.rgb * IN.color;
+			o.Emission = mainTex.rgb * IN.color * _Color;
 			o.Alpha = mainTex.a;
 		}
 

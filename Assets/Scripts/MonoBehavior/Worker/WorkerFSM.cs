@@ -1,17 +1,47 @@
-﻿using System.Collections;
+﻿/*Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(WorkerReturner))]
-public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
+public enum VestState
+{
+    WithoutVest,
+    WithVest
+}
+
+[RequireComponent(typeof(WorkerReturner)), SelectionBase]
+public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 {
     public WorkerConfig wc;
     public TileConfig tc;
     public LanesDatabase lanes;
-    public GameData gd;
-    //public TextMesh healthText;
+    public GameObject MagneOnHisHand;
+    public GameObject TeaOnHisHand;
+    public GameObject magnetColliderObject;
+    public GameObject shadow;
 
-    GameObject magnetColliderObject;
+    public GameObject ParticlePowerUp;
+    public GameObject ParticleMagnet;
+    public GameObject ParticleShield;
+    public GameObject ParticleSpeed;
+    public GameObject ParticleDoubleCoin;
+
     Animator mAnimator;
     BoxCollider mCollider;
     WorkerReturner workerReturner;
@@ -19,7 +49,11 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
     WorkerStrafe workerStrafe;
     JumpSlideFSM jumpSlideFsm;
-    WorkerCollide workerCollide;
+    CollideRefUpdate colliderRefUpdate = new CollideRefUpdate();
+
+    WorkerWithoutVestCollide workerWithoutVestCollide;
+    WorkerWithVestCollide workerWithVestCollide;
+
     PositionWorker positionWorker;
     SeekLeaderPosition seekLeaderPosition;
     MergerCollide mergerCollide;
@@ -41,18 +75,28 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     public int health = 1;
     public int level = 0;
 
-    bool isKillingSpeed = false;
-
     [HideInInspector]
-    public Material helmetMaterial;
+    public List<Material> helmetsMaterial = new List<Material>();
+
+    [SerializeField]
+    public FloatField Speed;
+
+    //[SerializeField]
+    // List<SkinnedMeshRenderer> Helmets;
+
+    [SerializeField]
+    Transform powerUpPosition;
+
+    MeshChange mMeshChange;
 
     private void Awake()
     {
-        helmetMaterial = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material;
         mAnimator = GetComponent<Animator>();
         mCollider = GetComponent<BoxCollider>();
         workerReturner = GetComponent<WorkerReturner>();
         rb = GetComponent<Rigidbody>();
+
+        mMeshChange = gameObject.GetComponent<MeshChange>();
 
         wc.onLeft.AddListener(StrafeLeft);
         wc.onRight.AddListener(StrafeRight);
@@ -67,21 +111,25 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
     private void OnEnable()
     {
-        magnetColliderObject.SetActive(true);
+        magnetColliderObject.SetActive(false);
         for (int i = 0; i < scriptsToResetState.Length; i++)
         {
             scriptsToResetState[i].ScriptReset();
         }
-        if (gd.gameState == GameState.Gameplay)
+        if (GameManager.Instance.gameState == GameState.Gameplay)
         {
             currentState = WorkerState.Worker;
-            mAnimator.SetBool("RunAnim", true);
         }
-        else if (gd.gameState == GameState.MainMenu)
+        else if (GameManager.Instance.gameState == GameState.MainMenu)
         {
+            mAnimator.SetBool("Idle", true);
             haltedState = WorkerState.Leader;
             currentState = WorkerState.Halted;
         }
+
+        ResetState();
+
+        Speed.onValueChanged.AddListener(ChangeAnimationSpeed);
     }
 
     private void OnDisable()
@@ -94,33 +142,79 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         rb.velocity = Vector3.zero;
         transform.position = new Vector3(0, wc.groundLevel, 0);
         tag = "Worker";
+
+        Speed.onValueChanged.RemoveListener(ChangeAnimationSpeed);
+    }
+
+    public void DisableTeaCup()
+    {
+        TeaOnHisHand.SetActive(false);
+    }
+
+    public void SetWorkerCollision(VestState vestState)
+    {
+        switch (vestState)
+        {
+            case VestState.WithoutVest:
+                colliderRefUpdate.m_ICollide = workerWithoutVestCollide;
+                break;
+            case VestState.WithVest:
+                colliderRefUpdate.m_ICollide = workerWithVestCollide;
+                break;
+        }
+    }
+
+    void ChangeAnimationSpeed(float speed)
+    {
+        if (currentState != WorkerState.Dead)
+            mAnimator.speed = speed / SpeedManager.Instance.gameSpeed;
+    }
+
+    void ResetState()
+    {
+        MagneOnHisHand.SetActive(false);
+        TeaOnHisHand.SetActive(false);
+        magnetColliderObject.SetActive(false);
+        shadow.SetActive(false);
+
+        ParticlePowerUp.SetActive(false);
+        ParticleMagnet.SetActive(false);
+        ParticleShield.SetActive(false);
+        ParticleSpeed.SetActive(false);
+        ParticleDoubleCoin.SetActive(false);
+
+        SetWorkerCollision(VestState.WithoutVest);
     }
 
     void SetStatesScripts()
     {
         workerStrafe = new WorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
-        jumpSlideFsm = new JumpSlideFSM(wc, gd, mCollider, mAnimator, transform);
-        workerCollide = new WorkerCollide(mAnimator, rb, gd);
+        jumpSlideFsm = new JumpSlideFSM(wc, mCollider, mAnimator, transform, shadow);
+
+        workerWithoutVestCollide = new WorkerWithoutVestCollide(mAnimator, rb, this, mMeshChange);
+        workerWithVestCollide = new WorkerWithVestCollide(mAnimator, rb);
+        SetWorkerCollision(VestState.WithoutVest);
 
         positionWorker = new PositionWorker(wc, rb, transform, GetInstanceID());
         seekLeaderPosition = new SeekLeaderPosition(transform, wc, lanes);
-        mergerCollide = new MergerCollide(wc);
         seekMasterMerger = new SeekMasterMerger(wc, rb, transform);
         positionMasterMerger = new PositionMasterMerger(wc, rb, transform, GetInstanceID());
 
         mergeLeaderSeeker = new MergeLeaderSeeker(transform, wc, lanes);
 
+        mergerCollide = new MergerCollide(wc, mMeshChange, this);
+
         //for tutorial
-        tutWorkerStrafe = new TutWorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration, gd);
-        tutJumpSlide = new TutJumpSlide(wc, gd, mCollider, mAnimator, transform);
+        tutWorkerStrafe = new TutWorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
+        tutJumpSlide = new TutJumpSlide(wc, mCollider, mAnimator, transform, shadow);
 
         scriptsToResetState = new IWorkerScript[] {
-            workerStrafe, jumpSlideFsm, mergerCollide,
+            workerStrafe, jumpSlideFsm, workerWithoutVestCollide, workerWithVestCollide,
             tutWorkerStrafe, tutJumpSlide, mergeLeaderSeeker
         };
 
         workerStateScripts[WorkerState.Leader] = new StateScriptsWrapper(new List<IWorkerScript>() {
-            workerStrafe, jumpSlideFsm }, workerStrafe, jumpSlideFsm, workerCollide);
+            workerStrafe, jumpSlideFsm }, workerStrafe, jumpSlideFsm, colliderRefUpdate);
 
         workerStateScripts[WorkerState.LeaderSeeker] = new StateScriptsWrapper(new List<IWorkerScript>() {
         workerStrafe, jumpSlideFsm, seekLeaderPosition}, workerStrafe, jumpSlideFsm,
@@ -134,7 +228,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         workerStrafe, jumpSlideFsm, mergerCollide, new List<IWChangeState>() { mergeLeaderSeeker });
 
         workerStateScripts[WorkerState.Worker] = new StateScriptsWrapper(new List<IWorkerScript>() {
-        positionWorker, jumpSlideFsm}, jumpSlideFsm, workerCollide);
+        positionWorker, jumpSlideFsm}, workerStrafe, jumpSlideFsm, colliderRefUpdate);
 
         workerStateScripts[WorkerState.MasterMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
         {positionMasterMerger, jumpSlideFsm}, jumpSlideFsm, mergerCollide);
@@ -193,16 +287,13 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         switch (outputKey)
         {
             case WorkerFSMOutput.LeaderDied:
-                wc.workers.Remove(this);
+                WorkersManager.Instance.RemoveWorker(this);
                 wc.onLeaderDeath.Invoke();
                 StartCoroutine(workerReturner.ReturnToPool(2));
                 break;
             case WorkerFSMOutput.WorkerDied:
-                wc.workers.Remove(this);
+                WorkersManager.Instance.RemoveWorker(this);
                 StartCoroutine(workerReturner.ReturnToPool(2));
-                break;
-            case WorkerFSMOutput.WorkerRevived:
-                wc.workers.Add(this);
                 break;
             case WorkerFSMOutput.LeaderElected:
                 seekLeaderPosition.SetClosestLane();
@@ -215,10 +306,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
                 wc.onMergeOver.Invoke();
                 break;
             case WorkerFSMOutput.TutRightInput:
-                gd.onSpeedUp.Invoke();
-                break;
-            case WorkerFSMOutput.TutEnded:
-                mAnimator.SetBool("StrafeRightAnim", false);
+                TutorialManager.Instance.ExitState();
                 break;
         }
     }
@@ -230,18 +318,14 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
     private void Update()
     {
-        helmetMaterial.SetFloat("_Cutoff", health / (wc.levelsNum * level + 0.01f));
         //healthText.text = health.ToString();
+        // Check if there is an output trigger from current state
         WorkerStateTrigger trigger = workerStateScripts[currentState].InputTrigger();
         if (trigger != WorkerStateTrigger.Null)
         {
             TransitionBundle transition = workerStateTransition.ChangeState(trigger, currentState);
             currentState = transition.Destination;
             Output(transition.Output);
-        }
-        if (isKillingSpeed)
-        {
-            mAnimator.speed *= gd.Speed / gd.oldSpeed;
         }
     }
 
@@ -253,10 +337,17 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
         }
     }
 
+    public void SetHelmetMaterial(string floatName, float value)
+    {
+        foreach (Material helmetMaterial in helmetsMaterial)
+        {
+            helmetMaterial.SetFloat(floatName, value);
+        }
+    }
     public void Begin()
     {
         if (gameObject.activeSelf)
-            mAnimator.SetBool("RunAnim", true);
+            mAnimator.SetBool("Idle", false);
         currentState = haltedState;
     }
 
@@ -293,12 +384,10 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
 
     public void RegisterListeners()
     {
-        gd.OnStart.AddListener(Begin);
-        gd.onPause.AddListener(Halt);
-        gd.OnResume.AddListener(Resume);
-        gd.onEnd.AddListener(End);
-        gd.onSlowDown.AddListener(SlowDown);
-        gd.onSpeedUp.AddListener(SpeedUp);
+        GameManager.Instance.OnStart.AddListener(Begin);
+        GameManager.Instance.onPause.AddListener(Halt);
+        GameManager.Instance.OnResume.AddListener(Resume);
+        GameManager.Instance.onEnd.AddListener(End);
     }
 
     public void ReactToCollision(int collidedHealth)
@@ -309,21 +398,5 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable, IChangeSpeed
     public int Gethealth()
     {
         return health;
-    }
-
-    public void SpeedUp()
-    {
-        if (!isActiveAndEnabled)
-            return;
-        mAnimator.speed = 1;
-        isKillingSpeed = false;
-    }
-
-    public void SlowDown()
-    {
-        if (!isActiveAndEnabled)
-            return;
-        mAnimator.speed = gd.Speed / gd.oldSpeed;
-        isKillingSpeed = true;
     }
 }

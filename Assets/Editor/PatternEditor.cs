@@ -29,7 +29,7 @@ public class PatternEditor : Editor
     void OnEnable()
     {
         pattern = target as Pattern;
-        idb = (InteractablesDatabase)AssetDatabase.LoadAllAssetsAtPath("Assets/Resources/Database/InteractablesDatabase.asset")[0];
+        idb = AssetDatabase.LoadAssetAtPath<InteractablesDatabase>("Assets/Data/Database/InteractablesDatabase.asset");
         editAreaSeg = new Segment(idb[0]);
     }
 
@@ -214,8 +214,7 @@ public class PatternEditor : Editor
     /// <param name="name">Get Prefab Texture by its name</param>
     void DisplayPrefabTexture(string name)
     {
-        string texture = "Assets/Resources/Textures/PoolableAssets/" + name + ".png";
-        Texture2D inputTexture = (Texture2D)AssetDatabase.LoadAssetAtPath(texture, typeof(Texture2D));
+        Texture2D inputTexture = (Texture2D)EditorGUIUtility.Load("PoolableAssets/" + name + ".png");
         GUILayout.Label(inputTexture, GUILayout.MaxHeight(70), GUILayout.MaxWidth(80));
     }
 
