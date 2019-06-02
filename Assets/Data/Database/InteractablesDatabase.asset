@@ -25,8 +25,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d158b12bdb0c1724dacf966c151628a3, type: 2}
   - {fileID: 11400000, guid: 3e86c4a97f571eb438a8ba8bee42a600, type: 2}
   - {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
-  - {fileID: 11400000, guid: 637f3122e8297614b8cdb31c61214b69, type: 2}
   - {fileID: 11400000, guid: 33dc546893613ae45861b54164b469b5, type: 2}
+  - {fileID: 11400000, guid: 637f3122e8297614b8cdb31c61214b69, type: 2}
   - {fileID: 11400000, guid: c27068b799c6e434088e8e132da56b7a, type: 2}
   - {fileID: 11400000, guid: c80f4cdde9e74204c9a5dadb698c64b4, type: 2}
   - {fileID: 11400000, guid: aeb7fec5d347b98469189b1d03a0606d, type: 2}
@@ -55,8 +55,8 @@ MonoBehaviour:
   - SlidePipe
   - SpoolStatic
   - Worker
-  - Shield
   - MagnetPollable
+  - Vest
   - JumpPipe1
   - TutJump
   - TutSlide

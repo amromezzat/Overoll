@@ -130,7 +130,7 @@ public class PowerUpManager : MonoBehaviour, IHalt
     void StartDoubleCoin()
     {
         DoubleCoin_Slider.gameObject.SetActive(true);
-        Shield_Slider.transform.SetAsLastSibling();
+        DoubleCoin_Slider.transform.SetAsLastSibling();
     }
      void EndDoubleCoin()
      {

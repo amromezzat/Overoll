@@ -13,7 +13,6 @@ TagManager:
   - SlaveMerger
   - PowerUpCollider
   - Magnet
-  - Shield
   - TutJump
   - TutSlide
   - TutStrafeLeft
@@ -24,6 +23,7 @@ TagManager:
   - TutEnd
   - TeaCup
   - x2
+  - Vest
   layers:
   - Default
   - TransparentFX

@@ -37,8 +37,6 @@ public class CameraTransition : MonoBehaviour, IHalt
 
     public Animator cameraAnimator;
 
-    Transform current;
-    Transform next;
     PlayableDirector playableDirector;
     float timer = 0;
     bool onHalt = true;
@@ -54,8 +52,6 @@ public class CameraTransition : MonoBehaviour, IHalt
     void Start()
     {
         RegisterListeners();
-        current = beginTrans;
-        next = beginTrans;
     }
 
     void Update()
@@ -66,9 +62,6 @@ public class CameraTransition : MonoBehaviour, IHalt
         }
         timer += Time.deltaTime;
         float completedPortion = timer / transTime;
-        float sinPortion = Mathf.Sin(completedPortion * Mathf.PI / (transTime * 2));
-        //transform.position = Vector3.Lerp(current.position, next.position, sinPortion);
-        //transform.rotation = Quaternion.Lerp(current.rotation, next.rotation, sinPortion);
         if (completedPortion >= transTime)
         {
             Destroy(startView);
@@ -81,7 +74,6 @@ public class CameraTransition : MonoBehaviour, IHalt
         cameraAnimator.SetBool("Start", true);
         timer = 0;
         onHalt = false;
-        next = EndTrans;
         playableDirector.enabled = false;
         //startViewRB.velocity = Vector3.back * gd.Speed;
         startViewRB.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
