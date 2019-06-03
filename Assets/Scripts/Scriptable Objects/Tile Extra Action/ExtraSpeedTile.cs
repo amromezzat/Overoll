@@ -33,7 +33,8 @@ public class ExtraSpeedTile : TileExtraAction
     /// </summary>
     protected override IEnumerator Action(TileMover caller)
     {
-        yield return new WaitUntil(() => SpeedManager.Instance.speed.Value > 0.001f);
+        yield return base.Action(caller);
+
         float waitingTime = (caller.transform.position.z - relActivPos) / SpeedManager.Instance.speed.Value;
         while (waitingTime > 0)
         {

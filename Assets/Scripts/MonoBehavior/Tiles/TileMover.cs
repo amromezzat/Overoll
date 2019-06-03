@@ -30,6 +30,8 @@ public class TileMover : ObjectMover
     [HideInInspector]
     public float extraSpeed;
 
+    public Coroutine extraActionCoroutine;
+
     public float Velocity
     {
         get
@@ -66,10 +68,14 @@ public class TileMover : ObjectMover
     protected override void SetVelocity(float speed)
     {
         Velocity = speed > Mathf.Epsilon ? speed + extraSpeed : 0;
+        TakeExtraAction();
     }
 
     protected virtual void TakeExtraAction()
     {
+        if (extraActionCoroutine != null)
+            StopCoroutine(extraActionCoroutine);
+
         if (isActiveAndEnabled && tileExtraAction != null)
         {
             tileExtraAction.Begin(this);

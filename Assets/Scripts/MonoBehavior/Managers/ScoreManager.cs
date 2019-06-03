@@ -39,7 +39,7 @@ public class ScoreManager : MonoBehaviour, IHalt
 
     float timeScore;
     float coinvalue = 0.5f;
-    float secValue = 0.03f;
+    float quarterSecValue = 0.25f;
     public Text scoreText;
     public Text coinNum;
     public WorkerConfig wConfig;
@@ -52,7 +52,7 @@ public class ScoreManager : MonoBehaviour, IHalt
 
     private void Awake()
     {
-        coinsCount.Value = PlayerPrefs.GetInt("CoinsCountGet");
+        //coinsCount.Value = PlayerPrefs.GetInt("CoinsCountGet");
         scoreCoroutine = ScorePerSec();
         RegisterListeners();
     }
@@ -90,8 +90,8 @@ public class ScoreManager : MonoBehaviour, IHalt
     {
         while (true)
         {
-            timeScore += secValue;
-            yield return new WaitForSeconds(0.2f);
+            timeScore += quarterSecValue;
+            yield return new WaitForSeconds(0.25f);
         }
     }
 

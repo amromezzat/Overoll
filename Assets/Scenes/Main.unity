@@ -1367,11 +1367,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4852867941256744078, guid: 9c3f44c4644abb54d91a8afb45b61c80,
-        type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 8400000, guid: 3a389b0a56fac6d4b98142f4ed0a4e14, type: 2}
     - target: {fileID: 1487952047271920, guid: 9c3f44c4644abb54d91a8afb45b61c80, type: 3}
       propertyPath: m_Name
       value: Main Menu Canvas
@@ -1395,6 +1390,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 173071367}
+    - target: {fileID: 4852867941256744078, guid: 9c3f44c4644abb54d91a8afb45b61c80,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: 3a389b0a56fac6d4b98142f4ed0a4e14, type: 2}
     - target: {fileID: 224583716637095564, guid: 9c3f44c4644abb54d91a8afb45b61c80,
         type: 3}
       propertyPath: m_LocalPosition.x

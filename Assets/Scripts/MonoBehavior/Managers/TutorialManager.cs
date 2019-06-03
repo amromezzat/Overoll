@@ -137,7 +137,7 @@ public class TutorialManager : MonoBehaviour
     void TutStart()
     {
         //if (gd.tutorialActive && gd.difficulty == 0)
-        if (active && GameManager.Instance.difficulty.Value == 0)
+        if (Active && GameManager.Instance.difficulty.Value == 0)
         {
             pauseBtn.SetActive(false);
             addWorkerBtn.SetActive(false);
@@ -188,7 +188,7 @@ public class TutorialManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            wc.onAddWorker.Invoke();
+            WorkersManager.Instance.AddWorker();
         }
 
         StartCoroutine(CollideTut());

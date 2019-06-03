@@ -105,7 +105,7 @@ public class WorkersManager : MonoBehaviour
     {
         if (GameManager.Instance.gameState == GameState.Gameplay)
         {
-            if (ScoreManager.Instance.workerPrice < ScoreManager.Instance.coinsCount.Value || TutorialManager.Instance.Active)
+            if (ScoreManager.Instance.workerPrice < ScoreManager.Instance.coinsCount.Value)
                 AddWorker();
         }
     }

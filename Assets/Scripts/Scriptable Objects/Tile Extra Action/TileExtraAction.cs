@@ -29,11 +29,12 @@ public class TileExtraAction : ScriptableObject
 
     public void Begin(TileMover caller)
     {
-        caller.StartCoroutine(Action(caller));
+        caller.extraActionCoroutine = caller.StartCoroutine(Action(caller));
     }
 
     protected virtual IEnumerator Action(TileMover caller)
     {
-        yield return null;
+        yield return new WaitWhile(() => TutorialManager.Instance.Active);
+        yield return new WaitUntil(() => SpeedManager.Instance.speed.Value > 0.001f);
     }
 }
