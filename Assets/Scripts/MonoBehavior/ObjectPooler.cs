@@ -21,7 +21,17 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPooler instance;
+    static ObjectPooler instance;
+    public static ObjectPooler Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<ObjectPooler>();
+
+            return instance;
+        }
+    }
     public PoolDatabase pd;
 
     [HideInInspector]
@@ -31,12 +41,8 @@ public class ObjectPooler : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
         poolDict = new Dictionary<PoolableType, Queue<GameObject>>(pd.poolableList.Count);
-    }
 
-    void Start()
-    {
         foreach (PoolableObj po in pd.poolableList)
         {
             Queue<GameObject> instancesQueue = new Queue<GameObject>(po.count);
@@ -61,7 +67,7 @@ public class ObjectPooler : MonoBehaviour
             }
             return InstantiateGameObj(pd[instType].prefab, true); ;
         }
-        Debug.LogError("Instance is invalid", instType);
+        Debug.LogError("Instance is invalid: " + instType.name);
         return null;
     }
 

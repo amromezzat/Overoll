@@ -23,6 +23,18 @@ using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
+    static AudioManager instance;
+    public static AudioManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<AudioManager>();
+
+            return instance;
+        }
+    }
+
     public Sound[] musics;
     public Sound[] sounds;
 
@@ -71,23 +83,12 @@ public class AudioManager : MonoBehaviour
     Dictionary<string, Sound> soundDictionary = new Dictionary<string, Sound>();
     Dictionary<string, Sound> musicDictionary = new Dictionary<string, Sound>();
 
-    public static AudioManager instance;
-
     private void Awake()
     {
         soundOn = true;
         soundButton.image.sprite = soundOnSprite;
         musicOn = true;
         musicButton.image.sprite = musicOnSprite;
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
 
         //-------------------------------------------------
         foreach (Sound m in musics)

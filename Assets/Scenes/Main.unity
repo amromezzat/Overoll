@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1219482693, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.050000012
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
 --- !u!114 &315233241 stripped
@@ -1363,6 +1367,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4852867941256744078, guid: 9c3f44c4644abb54d91a8afb45b61c80,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: 3a389b0a56fac6d4b98142f4ed0a4e14, type: 2}
     - target: {fileID: 1487952047271920, guid: 9c3f44c4644abb54d91a8afb45b61c80, type: 3}
       propertyPath: m_Name
       value: Main Menu Canvas
@@ -1500,9 +1509,45 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1823926690483592, guid: 9c3f44c4644abb54d91a8afb45b61c80, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 224912251357185112, guid: 9c3f44c4644abb54d91a8afb45b61c80,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -9.370003
+      objectReference: {fileID: 0}
+    - target: {fileID: 224912251357185112, guid: 9c3f44c4644abb54d91a8afb45b61c80,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 224912251357185112, guid: 9c3f44c4644abb54d91a8afb45b61c80,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224912251357185112, guid: 9c3f44c4644abb54d91a8afb45b61c80,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224912251357185112, guid: 9c3f44c4644abb54d91a8afb45b61c80,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224912251357185112, guid: 9c3f44c4644abb54d91a8afb45b61c80,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 388
+      objectReference: {fileID: 0}
+    - target: {fileID: 224912251357185112, guid: 9c3f44c4644abb54d91a8afb45b61c80,
+        type: 3}
+      propertyPath: m_AnchorMax.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224912251357185112, guid: 9c3f44c4644abb54d91a8afb45b61c80,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.96348166
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c3f44c4644abb54d91a8afb45b61c80, type: 3}
@@ -2091,6 +2136,16 @@ PrefabInstance:
       propertyPath: settingMenu
       value: 
       objectReference: {fileID: 2073783579}
+    - target: {fileID: 879816725949162590, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 879816725949162590, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: curveStrength
+      value: 0.0001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3bea2aae378a6e4c967d42794c01c98, type: 3}
 --- !u!114 &982870945700128413 stripped

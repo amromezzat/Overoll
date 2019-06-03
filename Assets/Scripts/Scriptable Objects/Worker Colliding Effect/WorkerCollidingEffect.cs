@@ -29,7 +29,7 @@ public class WorkerCollidingEffect : ScriptableObject
 
     public virtual void PlayEffect(Animator workerAnimator, Rigidbody rb)
     {
-        AudioManager.instance.PlaySound(soundName);
+        AudioManager.Instance.PlaySound(soundName);
         workerAnimator.SetTrigger(animationName);
         rb.velocity = Vector3.back * SpeedManager.Instance.speed.Value;
     }

@@ -21,7 +21,17 @@ using System.Collections.Generic;
 
 public class WorkersManager : MonoBehaviour
 {
-    public static WorkersManager Instance;
+    static WorkersManager instance;
+    public static WorkersManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<WorkersManager>();
+
+            return instance;
+        }
+    }
 
     public WorkerFSM leader;
     public Button addWorkerBtn;
@@ -55,11 +65,6 @@ public class WorkersManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-
         workers = new WorkerList(wc.workersPerLevel, wc.levelsNum);
 
         shield.BeginAction.AddListener(workers.StartShieldPowerup);
@@ -112,7 +117,7 @@ public class WorkersManager : MonoBehaviour
         {
             TutorialManager.Instance.ExitState();
         }
-        GameObject worker = ObjectPooler.instance.GetFromPool(wc.workerType);
+        GameObject worker = ObjectPooler.Instance.GetFromPool(wc.workerType);
         worker.transform.position = new Vector3(pos.x, worker.transform.position.y, pos.y);
         WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
 

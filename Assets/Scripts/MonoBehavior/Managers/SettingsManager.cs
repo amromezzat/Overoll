@@ -28,7 +28,18 @@ public class LanguageTypeEvent : UnityEvent<LanguageType>
 
 public class SettingsManager : MonoBehaviour
 {
-    public static SettingsManager Instance;
+    static SettingsManager instance;
+    public static SettingsManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<SettingsManager>();
+
+            return instance;
+        }
+    }
+
     public GameObject creditsPanel;
     public GameObject settingMenu;
     public UnityEvent<LanguageType> languageChanged = new LanguageTypeEvent();
@@ -74,11 +85,6 @@ public class SettingsManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-
         if (PlayerPrefs.HasKey("Language"))
             currentLanguageIndex = PlayerPrefs.GetInt("Language");
         else

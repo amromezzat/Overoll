@@ -89,14 +89,13 @@ public class GameManager : MonoBehaviour
         gameState = GameState.MainMenu;
 #if !UNITY_EDITOR
         difficulty.Value= PlayerPrefs.GetInt("PlayedTutorial");
-
 #endif
     }
 
     private void Start()
     {
         lanes.ResetLanes();
-        AudioManager.instance.PlayMusic("Title music");
+        AudioManager.Instance.PlayMusic("Title music");
         inGameCanvas.gameObject.SetActive(false);
         endGameCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(true);
@@ -187,7 +186,7 @@ public class GameManager : MonoBehaviour
 
     void GameStart()
     {
-        AudioManager.instance.PlayMusic("Overoll music");
+        AudioManager.Instance.PlayMusic("Overoll music");
 
         gameState = GameState.Gameplay;
         SpeedManager.Instance.ResetSpeed();
@@ -199,9 +198,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void EndGame()
     {
-        AudioManager.instance.StopCurrentMusic();
-        AudioManager.instance.PlaySound("Lose the game");
-        double waitTime = AudioManager.instance.currentSoundDuration;
+        AudioManager.Instance.StopCurrentMusic();
+        AudioManager.Instance.PlaySound("Lose the game");
+        double waitTime = AudioManager.Instance.currentSoundDuration;
         StartCoroutine(EndGameMusic((float)waitTime));
 
         SpeedManager.Instance.speed.Value = 0;
@@ -216,6 +215,6 @@ public class GameManager : MonoBehaviour
     IEnumerator EndGameMusic(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        AudioManager.instance.PlayMusic("Overoll music");
+        AudioManager.Instance.PlayMusic("Overoll music");
     }
 }

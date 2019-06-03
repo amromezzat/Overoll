@@ -47,7 +47,7 @@ public class PickUpCoin : MonoBehaviour
     {
         if (other.tag == "Worker" || other.tag == "SlaveMerger")
         {
-            AudioManager.instance.PlaySound("Coin");
+            AudioManager.Instance.PlaySound("Coin");
 
             ScoreManager.Instance.coinsCount.Value += 1;
             StartCoroutine(cReturn.ReturnToPool(0));

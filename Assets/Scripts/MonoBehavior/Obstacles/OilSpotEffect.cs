@@ -5,10 +5,10 @@ using UnityEngine;
 public class OilSpotEffect : CollisionEffect
 {
     [SerializeField]
-    ParticleSystem particleSystem;
+    ParticleSystem particleEffect;
 
     public override void PlayEffect()
     {
-        particleSystem.Play();
+        particleEffect.Play();
     }
 }

@@ -54,7 +54,7 @@ public class PressTile : TileExtraAction
             waitingTime -= 0.1f;
         }
 
-        AudioManager.instance.PlaySound("Hydraullic press 1");
+        AudioManager.Instance.PlaySound("Hydraullic press 1");
 
         Press press = Press.None;
         // Set press value based on the order of the call

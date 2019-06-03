@@ -12,14 +12,22 @@ public class LevelLoader : MonoBehaviour
 
     private int sceneInd;
 
-    private void Start()
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += OnCurrentSceneLoaded;
+    }
+
+    private void OnCurrentSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         sceneInd = 1;
         StartCoroutine(LoadAsynchronously(sceneInd));
+        SceneManager.sceneLoaded -= OnCurrentSceneLoaded;
     }
 
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
+        yield return new WaitForSeconds(1.5f);
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex); 
 
         loadingScreen.SetActive(true);
@@ -29,7 +37,7 @@ public class LevelLoader : MonoBehaviour
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
             //Debug.Log(progress);
             slider.value = progress;
-            progressText.text = progress * 100f + "%";
+            progressText.text = string.Format("{0}%", Mathf.Round(progress * 100f));
             yield return null;
         }
     }

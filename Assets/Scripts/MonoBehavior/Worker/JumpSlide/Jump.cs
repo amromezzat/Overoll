@@ -37,7 +37,7 @@ public class Jump : IDoAction
     {
         this.animator = animator;
         animator.SetBool("Jumping", true);
-        AudioManager.instance.PlaySound("WorkerJump");
+        AudioManager.Instance.PlaySound("WorkerJump");
 
         jumpTimer = 0;
     }

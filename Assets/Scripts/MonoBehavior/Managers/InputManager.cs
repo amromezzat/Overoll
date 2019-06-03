@@ -21,7 +21,17 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance;
+    static InputManager instance;
+    public static InputManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<InputManager>();
+
+            return instance;
+        }
+    }
 
     public WorkerConfig wc;
 
@@ -36,14 +46,6 @@ public class InputManager : MonoBehaviour
     float doubleTapTimer;
 
     const float doubleTapTime = 1.5f;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
 
     void Start()
     {

@@ -25,7 +25,17 @@ using UnityEngine;
 /// </summary>
 public class PowerUpManager : MonoBehaviour, IHalt
 {
-    public static PowerUpManager Instance;
+    static PowerUpManager instance;
+    public static PowerUpManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<PowerUpManager>();
+
+            return instance;
+        }
+    }
 
     public PowerUpVariable shield;
     public PowerUpVariable magnet;
@@ -51,12 +61,6 @@ public class PowerUpManager : MonoBehaviour, IHalt
 
     private void Awake()
     {
-        
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-
         RegisterListeners();
         DisablePowerups();
 

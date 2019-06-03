@@ -50,6 +50,6 @@ public class WorkerReturner : ObjectReturner
         dying = true;
         yield return new WaitForSeconds(returnTime);
         dying = false;
-        ObjectPooler.instance.ReturnToPool(poolableType, gameObject);
+        ObjectPooler.Instance.ReturnToPool(poolableType, gameObject);
     }
 }

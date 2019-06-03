@@ -99,7 +99,7 @@ public class TileGeneration : MonoBehaviour
 
     private void Update()
     {
-        if (ObjectPooler.instance.segmentActiveCount < tc.activeTilesNum)
+        if (ObjectPooler.Instance.segmentActiveCount < tc.activeTilesNum)
         {
             GetNextSegment();
         }
@@ -116,7 +116,7 @@ public class TileGeneration : MonoBehaviour
             GetNextPattern();
         }
 
-        ObjectPooler.instance.segmentActiveCount++;
+        ObjectPooler.Instance.segmentActiveCount++;
 
         ActivateTile(interactDB.LeftLineFrame, lanes.frameLines[0].laneCenter);
         GameObject activeTileGameobject = ActivateTile(interactDB.RightLineFrame, lanes.frameLines[1].laneCenter);
@@ -137,7 +137,7 @@ public class TileGeneration : MonoBehaviour
 
     GameObject ActivateTile(PoolableType type, float xPos)
     {
-        GameObject tile = ObjectPooler.instance.GetFromPool(type);
+        GameObject tile = ObjectPooler.Instance.GetFromPool(type);
         tile.transform.position = new Vector3(xPos, tile.transform.position.y, lastSegTrans.position.z + 1);
         tile.SetActive(true);
         return tile;

@@ -32,6 +32,6 @@ public class ObjectReturner : MonoBehaviour
     public virtual IEnumerator ReturnToPool(float returnTime)
     {
         yield return new WaitForSeconds(returnTime);
-        ObjectPooler.instance.ReturnToPool(poolableType, gameObject);
+        ObjectPooler.Instance.ReturnToPool(poolableType, gameObject);
     }
 }

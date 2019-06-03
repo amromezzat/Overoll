@@ -25,7 +25,6 @@ using UnityEngine;
 public class PickUpPowerUp : MonoBehaviour
 {
     ObjectReturner cReturn;
-    //public GameData gameData;
 
     void OnEnable()
     {
@@ -36,24 +35,20 @@ public class PickUpPowerUp : MonoBehaviour
     {
         if (other.tag == "Worker")
         {
-            AudioManager.instance.PlaySound("Power Up");
+            AudioManager.Instance.PlaySound("Power Up");
             if (tag == "Magnet")
             {
-                //gameData.gotMagnet.Invoke();
                 PowerUpManager.Instance.magnet.StartPowerUP();
-
             }
-            if (tag == "Shield")
+            if (tag == "Vest")
             {
-                //gameData.gotShield.Invoke();
-
                 PowerUpManager.Instance.shield.StartPowerUP();
             }
             if (tag == "TeaCup")
             {
                 PowerUpManager.Instance.teacup.StartPowerUP();
             }
-            if (tag=="x2")
+            if (tag == "x2")
             {
                 PowerUpManager.Instance.doublecoin.StartPowerUP();
             }

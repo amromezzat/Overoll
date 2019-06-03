@@ -22,7 +22,17 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour, IHalt
 {
-    public static ScoreManager Instance;
+    static ScoreManager instance;
+    public static ScoreManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<ScoreManager>();
+
+            return instance;
+        }
+    }
 
     public IntField coinsCount;
     public IntField score;
@@ -42,12 +52,9 @@ public class ScoreManager : MonoBehaviour, IHalt
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
         coinsCount.Value = PlayerPrefs.GetInt("CoinsCountGet");
         scoreCoroutine = ScorePerSec();
+        RegisterListeners();
     }
 
     // Use this for initialization
@@ -59,15 +66,15 @@ public class ScoreManager : MonoBehaviour, IHalt
     // Update is called once per frame
     void Update()
     {
-        RegisterListeners();
-        if (WorkersManager.Instance.DoubleCoinOn)
-        {
-            coinvalue = 2f;
-        }
-        coinvalue =  (1 + WorkersManager.Instance.WorkersCount);
-
         if (TutorialManager.Instance.Active)
             return;
+
+        coinvalue =  (1 + WorkersManager.Instance.WorkersCount);
+
+        if (WorkersManager.Instance.DoubleCoinOn)
+        {
+            coinvalue *= 2f;
+        }
 
         score.Value = (int)timeScore + coinsCount.Value * (int)(coinvalue);
         //Debug.Log(score.Value + coinsCount);

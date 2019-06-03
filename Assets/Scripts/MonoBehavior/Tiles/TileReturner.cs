@@ -25,7 +25,7 @@ public class TileReturner : ObjectReturner
     {
         if (gameObject.transform.position.z < tc.disableSafeDistance)
         {
-            ObjectPooler.instance.ReturnToPool(poolableType, gameObject);
+            ObjectPooler.Instance.ReturnToPool(poolableType, gameObject);
         }
     }
 }

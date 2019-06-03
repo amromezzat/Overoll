@@ -5,19 +5,21 @@
 /// </summary>
 public class SpeedManager : MonoBehaviour
 {
-    public static SpeedManager Instance;
+    static SpeedManager instance;
+    public static SpeedManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<SpeedManager>();
+
+            return instance;
+        }
+    }
 
     public float gameSpeed = 5;
 
     public FloatField speed;
-    
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
 
     public void ResetSpeed()
     {

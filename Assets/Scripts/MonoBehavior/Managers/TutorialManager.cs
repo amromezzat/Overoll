@@ -6,7 +6,17 @@ using UnityEngine.Events;
 
 public class TutorialManager : MonoBehaviour
 {
-    public static TutorialManager Instance;
+    static TutorialManager instance;
+    public static TutorialManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<TutorialManager>();
+
+            return instance;
+        }
+    }
 
     [SerializeField]
     private TutorialState tutorialState = TutorialState.Null;
@@ -63,7 +73,7 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialState = value;
 
-            if (active && value != TutorialState.Null)
+            if (Active && value != TutorialState.Null)
             {
                 SpeedManager.Instance.speed.Value = 0;
 
@@ -75,15 +85,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-
         addBtnAnimator = addWorkerBtn.GetComponent<Animator>();
-
-        if (!active)
-            gameObject.SetActive(false);
     }
 
     private void Start()
@@ -124,7 +126,10 @@ public class TutorialManager : MonoBehaviour
 
                 ScoreText.SetActive(true);
                 active = false;
+
+#if !UNITY_EDITOR
                 PlayerPrefs.SetInt("PlayedTutorial", 1);
+#endif
                 break;
         }
     }
@@ -150,8 +155,6 @@ public class TutorialManager : MonoBehaviour
 
     public void ExitState()
     {
-        //StopCoroutine(slowingCoroutine);
-        //gd.Speed = gd.defaultSpeed;
         SpeedManager.Instance.ResetSpeed();
 
         switch (TutorialState)
