@@ -67,6 +67,7 @@ public class TileGeneration : MonoBehaviour
     private void Start()
     {
         lastSegTrans = transform;
+        GameManager.Instance.difficulty.Value = 0;
         StartCoroutine(IncreaseDifficulty());
 
         GenerateEmptyPattern();

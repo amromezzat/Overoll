@@ -135,7 +135,7 @@ public class TutorialManager : MonoBehaviour
     void TutStart()
     {
         //if (gd.tutorialActive && gd.difficulty == 0)
-        if (Active && GameManager.Instance.difficulty.Value == 0)
+        if (Active)
         {
             pauseBtn.SetActive(false);
             addWorkerBtn.SetActive(false);
