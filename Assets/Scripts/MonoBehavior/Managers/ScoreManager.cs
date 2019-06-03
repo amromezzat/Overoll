@@ -55,6 +55,8 @@ public class ScoreManager : MonoBehaviour, IHalt
         //coinsCount.Value = PlayerPrefs.GetInt("CoinsCountGet");
         scoreCoroutine = ScorePerSec();
         RegisterListeners();
+        score.Value = 0;
+        coinsCount.Value = 0;
     }
 
     // Use this for initialization
@@ -66,9 +68,6 @@ public class ScoreManager : MonoBehaviour, IHalt
     // Update is called once per frame
     void Update()
     {
-        if (TutorialManager.Instance.Active)
-            return;
-
         coinvalue =  (1 + WorkersManager.Instance.WorkersCount);
 
         if (WorkersManager.Instance.DoubleCoinOn)
@@ -82,12 +81,12 @@ public class ScoreManager : MonoBehaviour, IHalt
         //Display score
         scoreText.text = score.Value.ToString();
         coinNum.text = coinsCount.Value.ToString();
-       
-
     }
 
     IEnumerator ScorePerSec()
     {
+        yield return new WaitWhile(() => TutorialManager.Instance.Active);
+
         while (true)
         {
             timeScore += quarterSecValue;

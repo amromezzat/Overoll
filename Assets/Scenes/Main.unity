@@ -112,6 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &101570003 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 813475120362102726, guid: da96e29fe3a7ade49b8be1c2a094b162,
+    type: 3}
+  m_PrefabInstance: {fileID: 1334711765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &173071367 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 879997997822284586, guid: b3bea2aae378a6e4c967d42794c01c98,
@@ -477,6 +483,11 @@ PrefabInstance:
       propertyPath: EndTrans
       value: 
       objectReference: {fileID: 651305430}
+    - target: {fileID: 114713073532724110, guid: 07dce5888f96cc14ea7abe45f56f2d1a,
+        type: 3}
+      propertyPath: sharedInstanceID
+      value: 802202b7-9585-4166-8b13-dd17fb9ba7af
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07dce5888f96cc14ea7abe45f56f2d1a, type: 3}
 --- !u!1001 &952188153
@@ -718,7 +729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1242844755465786, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114805408070781126, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
@@ -998,7 +1009,7 @@ PrefabInstance:
     - target: {fileID: 6559735215807012874, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.6497803
+      value: 0.6496582
       objectReference: {fileID: 0}
     - target: {fileID: 8848124294706450913, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
@@ -1029,6 +1040,61 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StartCorner
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224050580428022672, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224154430791426006, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224154430791426006, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -25.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224154430791426006, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.02418518
+      objectReference: {fileID: 0}
+    - target: {fileID: 224570707733037474, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224145494750674810, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224548835989369256, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 95821026494314012, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494666982682005687, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494666982682005687, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.199951
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604228366933067211, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_Name
+      value: Add Worker Animator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 3}
@@ -1123,7 +1189,7 @@ PrefabInstance:
     - target: {fileID: 224665805237481656, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224665805237481656, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7,
         type: 3}
@@ -1212,9 +1278,9 @@ PrefabInstance:
       objectReference: {fileID: 1728137747}
     - target: {fileID: 114419713232927628, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7,
         type: 3}
-      propertyPath: tutorialActive
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: addBtnAnimator
+      value: 
+      objectReference: {fileID: 101570003}
     - target: {fileID: 114419713232927628, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7,
         type: 3}
       propertyPath: active
@@ -1373,7 +1439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1487952047271920, guid: 9c3f44c4644abb54d91a8afb45b61c80, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114992128383809234, guid: 9c3f44c4644abb54d91a8afb45b61c80,
         type: 3}
@@ -1433,7 +1499,7 @@ PrefabInstance:
     - target: {fileID: 224583716637095564, guid: 9c3f44c4644abb54d91a8afb45b61c80,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224583716637095564, guid: 9c3f44c4644abb54d91a8afb45b61c80,
         type: 3}

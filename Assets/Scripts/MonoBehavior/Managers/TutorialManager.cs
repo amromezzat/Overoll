@@ -60,6 +60,8 @@ public class TutorialManager : MonoBehaviour
     float delayBetweenMessages = 2;
 
     int mergeListIndex;
+
+    [SerializeField]
     Animator addBtnAnimator;
 
     public TutorialState TutorialState
@@ -83,11 +85,6 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        addBtnAnimator = addWorkerBtn.GetComponent<Animator>();
-    }
-
     private void Start()
     {
         GameManager.Instance.OnStart.AddListener(TutStart);
@@ -95,6 +92,7 @@ public class TutorialManager : MonoBehaviour
 
     public void EnterState()
     {
+        //Debug.Log("Entering State: " + TutorialState);
         switch (TutorialState)
         {
             case TutorialState.Jump:
@@ -155,6 +153,8 @@ public class TutorialManager : MonoBehaviour
 
     public void ExitState()
     {
+        //Debug.Log("Exiting State: " + TutorialState);
+
         SpeedManager.Instance.ResetSpeed();
 
         switch (TutorialState)
@@ -175,6 +175,7 @@ public class TutorialManager : MonoBehaviour
             case TutorialState.AddWorker:
                 doubleTap.SetActive(false);
                 addBtnAnimator.SetBool("Play", false);
+                ScoreManager.Instance.coinsCount.Value = 0;
                 break;
         }
         TutorialState = TutorialState.Null;

@@ -105,8 +105,10 @@ public class WorkersManager : MonoBehaviour
     {
         if (GameManager.Instance.gameState == GameState.Gameplay)
         {
-            if (ScoreManager.Instance.workerPrice < ScoreManager.Instance.coinsCount.Value)
+            if (ScoreManager.Instance.workerPrice <= ScoreManager.Instance.coinsCount.Value)
+            {
                 AddWorker();
+            }
         }
     }
 
@@ -114,9 +116,8 @@ public class WorkersManager : MonoBehaviour
     public void AddWorker(Vector2 pos)
     {
         if (TutorialManager.Instance.Active && TutorialManager.Instance.TutorialState == TutorialState.AddWorker)
-        {
             TutorialManager.Instance.ExitState();
-        }
+
         GameObject worker = ObjectPooler.Instance.GetFromPool(wc.workerType);
         worker.transform.position = new Vector3(pos.x, worker.transform.position.y, pos.y);
         WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
@@ -129,7 +130,9 @@ public class WorkersManager : MonoBehaviour
         float newXPos = Random.Range(leader.transform.position.x - tc.laneWidth, leader.transform.position.x + tc.laneWidth);
         float newZPos = Random.Range(-6, -3);
         AddWorker(new Vector2(newXPos, newZPos));
-        ScoreManager.Instance.DeductWorkerPrice();
+
+        if (!TutorialManager.Instance.Active)
+            ScoreManager.Instance.DeductWorkerPrice();
     }
 
     public void RemoveWorker(WorkerFSM worker)
