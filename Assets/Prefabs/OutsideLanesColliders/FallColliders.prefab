@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4722149412830200}
   - component: {fileID: 65773274137093148}
+  - component: {fileID: 1309027123}
   m_Layer: 0
   m_Name: Left Collider
   m_TagString: Obstacle
@@ -44,6 +45,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1309027123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377476240638260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1248988ae1f2e0a40bf49a5efdab55d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obsHealth: 1000
+  runtimeObsHealth: 0
+  withVestCollidingEffect: {fileID: 11400000, guid: cc258ae224fc69c4c987204b9dafee09,
+    type: 2}
+  noVestCollidingEffect: {fileID: 11400000, guid: cc258ae224fc69c4c987204b9dafee09,
+    type: 2}
+  collisionEffect: {fileID: 0}
+  tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
 --- !u!1 &1385196841438088
 GameObject:
   m_ObjectHideFlags: 0
@@ -54,6 +75,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4558276879642238}
   - component: {fileID: 65089102674307634}
+  - component: {fileID: 912573751}
   m_Layer: 0
   m_Name: Right Collider
   m_TagString: Obstacle
@@ -88,6 +110,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &912573751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385196841438088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1248988ae1f2e0a40bf49a5efdab55d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obsHealth: 1000
+  runtimeObsHealth: 0
+  withVestCollidingEffect: {fileID: 11400000, guid: cc258ae224fc69c4c987204b9dafee09,
+    type: 2}
+  noVestCollidingEffect: {fileID: 11400000, guid: cc258ae224fc69c4c987204b9dafee09,
+    type: 2}
+  collisionEffect: {fileID: 0}
+  tileConfig: {fileID: 11400000, guid: 3627554083da72a45b32db99557c043c, type: 2}
 --- !u!1 &1403593219252522
 GameObject:
   m_ObjectHideFlags: 0

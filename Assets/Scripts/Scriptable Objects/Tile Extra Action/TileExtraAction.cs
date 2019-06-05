@@ -20,21 +20,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "No Action", menuName = "AbstractFields/Extra Action Tiles/No Action Tile")]
-public class TileExtraAction : ScriptableObject
+[RequireComponent(typeof(TileMover))]
+public abstract class TileExtraAction : MonoBehaviour
 {
     // Activation position infront of the player
     [SerializeField, Tooltip("Activation position infront of the player")]
     protected float relActivPos;
 
-    public void Begin(TileMover caller)
+    protected TileMover tileMover;
+
+    protected bool actionInitiated;
+
+    Coroutine takeAction;
+
+    protected virtual void Awake()
     {
-        caller.extraActionCoroutine = caller.StartCoroutine(Action(caller));
+        tileMover = GetComponent<TileMover>();
+
+        SpeedManager.Instance.speed.onValueChanged.AddListener((speed) =>
+        {
+            if(isActiveAndEnabled)
+                StartAction();
+        });
     }
 
-    protected virtual IEnumerator Action(TileMover caller)
+    protected virtual void OnEnable()
     {
+        actionInitiated = false;
+        StartAction();
+    }
+
+    void StartAction()
+    {
+        if (actionInitiated)
+            return;
+
+        if (takeAction != null)
+            StopCoroutine(takeAction);
+
+        takeAction = StartCoroutine(TakeActionCoroutine());
+    }
+
+    protected virtual IEnumerator TakeActionCoroutine()
+    {
+        yield return new WaitWhile(() => SpeedManager.Instance.speed < Mathf.Epsilon);
         yield return new WaitWhile(() => TutorialManager.Instance.Active);
-        yield return new WaitUntil(() => SpeedManager.Instance.speed.Value > 0.001f);
+
+        float waitingTime = (transform.position.z - relActivPos) / SpeedManager.Instance.speed.Value;
+        while (waitingTime > 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+            yield return new WaitWhile(() => SpeedManager.Instance.speed < Mathf.Epsilon);
+            waitingTime -= 0.1f;
+        }
     }
 }

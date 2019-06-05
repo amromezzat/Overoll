@@ -24,6 +24,13 @@ public class WorkerReturner : ObjectReturner
     public WorkerConfig wc;
     bool dying = false;
 
+    Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Update()
     {
         if (dying)
@@ -47,7 +54,8 @@ public class WorkerReturner : ObjectReturner
     /// <returns>WaitForSeconds</returns>
     public override IEnumerator ReturnToPool(float returnTime)
     {
-        dying = true;
+        if (rb.velocity.y >= Mathf.Epsilon)
+            dying = true;
         yield return new WaitForSeconds(returnTime);
         dying = false;
         ObjectPooler.Instance.ReturnToPool(poolableType, gameObject);

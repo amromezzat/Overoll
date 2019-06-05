@@ -82,8 +82,6 @@ public class WorkersManager : MonoBehaviour
         wc.onLeaderDeath.AddListener(LeaderDied);
         wc.onMergeOver.AddListener(MergingDone);
         wc.onAddWorker.AddListener(OnDoubleTap);
-
-        leader.gameObject.SetActive(true);
     }
 
     void Update()
@@ -123,6 +121,7 @@ public class WorkersManager : MonoBehaviour
         WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
 
         workers.Add(workerFSM);
+        AudioManager.Instance.PlaySound("Add Worker");
     }
 
     public void AddWorker()
@@ -138,6 +137,11 @@ public class WorkersManager : MonoBehaviour
     public void RemoveWorker(WorkerFSM worker)
     {
         workers.Remove(worker);
+    }
+
+    public void Descend(WorkerFSM worker)
+    {
+        workers.Descend(worker);
     }
 
     void MergingDone()

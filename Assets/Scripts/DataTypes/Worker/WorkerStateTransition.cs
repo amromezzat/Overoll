@@ -38,6 +38,8 @@ public class WorkerStateTransition
 
         workerTransitionsDic[WorkerStateTrigger.Die] = new List<TransitionBundle>() {
             new TransitionBundle(WorkerState.Leader, WorkerState.Dead, WorkerFSMOutput.LeaderDied),
+            new TransitionBundle(WorkerState.LeaderSeeker, WorkerState.Dead, WorkerFSMOutput.LeaderDied),
+            new TransitionBundle(WorkerState.LeaderMerger, WorkerState.Dead, WorkerFSMOutput.LeaderDied),
             new TransitionBundle(WorkerState.Worker, WorkerState.Dead, WorkerFSMOutput.WorkerDied)
         };
 

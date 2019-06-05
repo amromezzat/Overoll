@@ -38,19 +38,19 @@ public class PickUpPowerUp : MonoBehaviour
             AudioManager.Instance.PlaySound("Power Up");
             if (tag == "Magnet")
             {
-                PowerUpManager.Instance.magnet.StartPowerUP();
+                PowerUpManager.Instance.magnet.StartPowerUp();
             }
             if (tag == "Vest")
             {
-                PowerUpManager.Instance.shield.StartPowerUP();
+                PowerUpManager.Instance.shield.StartPowerUp();
             }
             if (tag == "TeaCup")
             {
-                PowerUpManager.Instance.teacup.StartPowerUP();
+                PowerUpManager.Instance.teacup.StartPowerUp();
             }
             if (tag == "x2")
             {
-                PowerUpManager.Instance.doublecoin.StartPowerUP();
+                PowerUpManager.Instance.doublecoin.StartPowerUp();
             }
 
             StartCoroutine(cReturn.ReturnToPool(0));

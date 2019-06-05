@@ -20,31 +20,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Extra Speed", menuName = "AbstractFields/Extra Action Tiles/Extra Speed Tile")]
 public class ExtraSpeedTile : TileExtraAction
 {
     [SerializeField]
     float ExtraVelocity;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
+    private void OnDisable()
+    {
+        tileMover.extraSpeed = 0;
+        tileMover.Velocity -= ExtraVelocity;
+    }
 
     /// <summary>
     /// Take extra speed when reaching workers;
     /// object stays static relative to other objects
     /// until it is close enough to workers
     /// </summary>
-    protected override IEnumerator Action(TileMover caller)
+    protected override IEnumerator TakeActionCoroutine()
     {
-        yield return base.Action(caller);
+        yield return base.TakeActionCoroutine();
+        tileMover.Anim.SetTrigger("Rotate Spool");
+        tileMover.extraSpeed = ExtraVelocity;
+        tileMover.Velocity += ExtraVelocity;
+        tileMover.Anim.speed = 1;
 
-        float waitingTime = (caller.transform.position.z - relActivPos) / SpeedManager.Instance.speed.Value;
-        while (waitingTime > 0)
-        {
-            yield return new WaitForSeconds(0.1f);
-            yield return new WaitWhile(() => GameManager.Instance.gameState == GameState.Pause);
-            waitingTime -= 0.1f;
-        }
-        caller.Anim.SetTrigger("Rotate Spool");
-        caller.extraSpeed = ExtraVelocity;
-        caller.Velocity += ExtraVelocity;
-        caller.Anim.speed = 1;
+        actionInitiated = true;
     }
 }

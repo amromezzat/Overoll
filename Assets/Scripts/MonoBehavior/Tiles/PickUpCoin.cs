@@ -49,7 +49,11 @@ public class PickUpCoin : MonoBehaviour
         {
             AudioManager.Instance.PlaySound("Coin");
 
-            ScoreManager.Instance.coinsCount.Value += 1;
+            ScoreManager.Instance.coinsCount.Value++;
+
+            if (WorkersManager.Instance.DoubleCoinOn)
+                ScoreManager.Instance.coinsCount.Value++;
+
             StartCoroutine(cReturn.ReturnToPool(0));
         }
     }

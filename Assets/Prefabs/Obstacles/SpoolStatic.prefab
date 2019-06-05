@@ -93,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.01859262, y: 0.015429677, z: 0.025874702}
-  m_Center: {x: 0, y: -0.0015814746, z: 0.0011288521}
+  m_Size: {x: 0.01859262, y: 0.011791132, z: 0.025874702}
+  m_Center: {x: 0, y: 0.0005092042, z: 0.0011288525}
 --- !u!54 &54226079662615242
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631f491a5640a4478f2803e87e0f7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileExtraAction: {fileID: 11400000, guid: d821dc09e0d4a3b4e81cd980c435e90e, type: 2}
+  tileExtraAction: {fileID: 0}
   Anim: {fileID: 0}
   extraSpeed: 0
 --- !u!114 &4645174742374779185
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8146067441b2d954b8502f553287f151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsHealth: 10
+  obsHealth: 2
   runtimeObsHealth: 0
   withVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
     type: 2}

@@ -28,48 +28,43 @@ public enum Press
     Duel
 }
 
-[CreateAssetMenu(fileName = "Press", menuName = "AbstractFields/Extra Action Tiles/Press Tile")]
 public class PressTile : TileExtraAction
 {
-    float lastCallTime;
-    Press lastPress;
+    static float lastCallTime;
+    static Press lastPress;
 
-    private void OnEnable()
+    protected override void Awake()
     {
-        lastPress = ExtensionMethods.RandomEnumValue<Press>();
-        lastCallTime = Time.realtimeSinceStartup;
+        base.Awake();
     }
 
-    protected override IEnumerator Action(TileMover caller)
+    protected override void OnEnable()
     {
-        yield return base.Action(caller);
+        base.OnEnable();
+    }
 
-        float waitingTime = (caller.transform.position.z - relActivPos) / SpeedManager.Instance.speed.Value;
+    protected override IEnumerator TakeActionCoroutine()
+    {
+        yield return base.TakeActionCoroutine();
 
-        // Wait for the object to be close to the player
-        while (waitingTime > 0)
-        {
-            yield return new WaitForSeconds(0.1f);
-            yield return new WaitWhile(() => GameManager.Instance.gameState == GameState.Pause);
-            waitingTime -= 0.1f;
-        }
-
-        AudioManager.Instance.PlaySound("Hydraullic press 1");
-
-        Press press = Press.None;
+        Press press = SetPress();
         // Set press value based on the order of the call
         if (Time.realtimeSinceStartup - lastCallTime > 3)
-            press = lastPress = ExtensionMethods.RandomEnumValue<Press>();
+            lastPress = press = ExtensionMethods.RandomEnumValue<Press>();
         else
-            SetNextPress(ref press);
+            press = SetPress();
 
         lastCallTime = Time.realtimeSinceStartup;
 
-        caller.Anim.SetTrigger(press.ToString() + "Press");
+        PlaySound(press);
+        tileMover.Anim.SetTrigger(press.ToString() + "Press");
+
+        actionInitiated = true;
     }
 
-    void SetNextPress(ref Press press)
+    Press SetPress()
     {
+        Press press = Press.None;
         switch (lastPress)
         {
             case Press.None:
@@ -81,8 +76,22 @@ public class PressTile : TileExtraAction
             case Press.Lower:
                 press = Press.Lower;
                 break;
+        }
+        return press;
+    }
+
+    void PlaySound(Press press)
+    {
+        switch (press)
+        {
+            case Press.Upper:
+                AudioManager.Instance.PlaySound("Hydraullic press 3");
+                break;
+            case Press.Lower:
+                AudioManager.Instance.PlaySound("Hydraullic press 2");
+                break;
             case Press.Duel:
-                press = Press.None;
+                AudioManager.Instance.PlaySound("Hydraullic press 1");
                 break;
         }
     }

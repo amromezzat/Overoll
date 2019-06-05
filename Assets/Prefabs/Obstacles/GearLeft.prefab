@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 54954345666869628}
   - component: {fileID: 114785912936059398}
   - component: {fileID: 5214918799915108880}
+  - component: {fileID: 8174662904609953529}
   m_Layer: 0
   m_Name: GearLeft
   m_TagString: Obstacle
@@ -673,9 +674,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631f491a5640a4478f2803e87e0f7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileExtraAction: {fileID: 11400000, guid: d821dc09e0d4a3b4e81cd980c435e90e, type: 2}
   Anim: {fileID: 95240979625603974}
   extraSpeed: 0
+--- !u!114 &8174662904609953529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865114421742296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75d829e00a2f5b4995f50b0931e43f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  children:
+  - {fileID: 6120144473673764982}
 --- !u!1 &8793196063726382616
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +703,7 @@ GameObject:
   - component: {fileID: 6120144473673764982}
   m_Layer: 0
   m_Name: Gear
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -720,8 +734,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0039191, y: 1.9879496, z: 0.573287}
-  m_Center: {x: 0.12323648, y: 0.70045674, z: -0.013734341}
+  m_Size: {x: 1.0039191, y: 1.9879496, z: 0.3478668}
+  m_Center: {x: 0.12323648, y: 0.70045674, z: 0.09897576}
 --- !u!114 &6120144473673764982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678a8877dd1b29745a710b74676e1198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsHealth: 10
+  obsHealth: 2
   runtimeObsHealth: 0
   withVestCollidingEffect: {fileID: 11400000, guid: 21e4486a5ca76d947895fa354df8317f,
     type: 2}

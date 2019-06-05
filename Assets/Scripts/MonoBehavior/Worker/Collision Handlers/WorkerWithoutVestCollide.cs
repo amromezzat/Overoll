@@ -32,7 +32,6 @@ public class WorkerWithoutVestCollide : WorkerCollide
 
     public override WorkerStateTrigger Collide(Collider collider, ref int health)
     {
-
         IObstacle collidableObstacle = collider.GetComponent<IObstacle>();
         // When a worker hits an obstacle it decreases his health by its health
         // and vice versa, if the worker loses all his health he dies
@@ -40,7 +39,7 @@ public class WorkerWithoutVestCollide : WorkerCollide
         {
             int obsHealth = collidableObstacle.Gethealth();
             int preCollisionWH = health;
-            health = health - obsHealth;
+            health -= obsHealth;
 
             collidableObstacle.ReactToCollision(preCollisionWH);
 
@@ -51,43 +50,21 @@ public class WorkerWithoutVestCollide : WorkerCollide
             }
             else
             {
-                mState.level = (health / 5);
-              
+                int workersHealthFrac = health % 5;
+                health -= workersHealthFrac;
+                mState.level = health / 5;
+                WorkersManager.Instance.Descend(mState);
+
                 mMeshChange.ChangeHelmet(mState.level);
                 mMeshChange.ChangeOveroll(mState.level);
 
-                if (health % 5 != 0)
+                Vector2 pos;
+                for (int i = 1; i <= workersHealthFrac; i++)
                 {
-                    for (int i = 1; i < (health % 5) - 1; i++)
-                    {
-                        WorkersManager.Instance.AddWorker(new Vector2(collider.transform.position.x,collider.transform.position.z));
-                        
-                    }
-
-                    mState.health = mState.level * 5;
-
-                    if (mState.level == 0)
-                    {
-                        mState.health = 1;
-                    }
-
-                    return WorkerStateTrigger.StateEnd;
+                    pos.x = Random.Range(mState.transform.position.x - 0.05f, mState.transform.position.x + 0.05f);
+                    pos.y = Random.Range(mState.transform.position.z - 0.1f, mState.transform.position.z - 0.05f);
+                    WorkersManager.Instance.AddWorker(pos);
                 }
-
-                else if (health % 5 == 0)
-                {
-                    mMeshChange.ChangeHelmet(mState.level);
-                    mMeshChange.ChangeOveroll(mState.level);
-
-                    mState.health = mState.level * 5;
-                    if (mState.level == 0)
-                    {
-                        mState.health = 1;
-                    }
-
-                    return WorkerStateTrigger.StateEnd;
-                }
-
             }
         }
         return WorkerStateTrigger.Null;

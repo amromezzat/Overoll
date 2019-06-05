@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4709573279927515654}
   - component: {fileID: 5934074539249064814}
   - component: {fileID: 1336292739746411988}
+  - component: {fileID: 310939622123410261}
   m_Layer: 0
   m_Name: Left Press
   m_TagString: Untagged
@@ -78,7 +79,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631f491a5640a4478f2803e87e0f7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileExtraAction: {fileID: 11400000, guid: e6abbac817dfd5d469552f637f6ddfcf, type: 2}
   Anim: {fileID: 3964722477923690674}
   extraSpeed: 0
 --- !u!114 &1336292739746411988
@@ -96,6 +96,20 @@ MonoBehaviour:
   children:
   - {fileID: 3610388939957343836}
   - {fileID: 1491370018911329368}
+  - {fileID: 6736485258325482959}
+--- !u!114 &310939622123410261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2884035450094131716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf658fc6e1c20443bebe67038cfc2fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relActivPos: 40
 --- !u!1001 &6292958502779446746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107,6 +121,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Press
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893017284954683778, guid: 5ce1781c764852d4d8ca4780897ae7df,
+        type: 3}
+      propertyPath: obsHealth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300257987394368390, guid: 5ce1781c764852d4d8ca4780897ae7df,
+        type: 3}
+      propertyPath: obsHealth
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8040984134830478498, guid: 5ce1781c764852d4d8ca4780897ae7df,
         type: 3}
@@ -178,6 +202,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.85
       objectReference: {fileID: 0}
+    - target: {fileID: 732355885045921813, guid: 5ce1781c764852d4d8ca4780897ae7df,
+        type: 3}
+      propertyPath: obsHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8992221938292654890, guid: 5ce1781c764852d4d8ca4780897ae7df,
         type: 3}
       propertyPath: obsHealth
@@ -236,6 +265,18 @@ MonoBehaviour:
 --- !u!114 &1491370018911329368 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4893017284954683778, guid: 5ce1781c764852d4d8ca4780897ae7df,
+    type: 3}
+  m_PrefabInstance: {fileID: 6292958502779446746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678a8877dd1b29745a710b74676e1198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6736485258325482959 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 732355885045921813, guid: 5ce1781c764852d4d8ca4780897ae7df,
     type: 3}
   m_PrefabInstance: {fileID: 6292958502779446746}
   m_PrefabAsset: {fileID: 0}

@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartBtnEntered()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(1);
         endGameCanvas.gameObject.SetActive(false);
     }
 

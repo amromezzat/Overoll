@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundName: WorkerDeath
   animationName: DieHigh
+  fallDirection: {x: 0, y: 0, z: -1}
+  fallSpeed: {fileID: 11400000, guid: 3caf6b3e404505e4f84233ff0d4f0259, type: 2}

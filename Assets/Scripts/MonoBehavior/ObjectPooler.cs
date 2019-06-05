@@ -65,7 +65,7 @@ public class ObjectPooler : MonoBehaviour
                 GameObject pooledObj = instQueue.Dequeue();
                 return pooledObj;
             }
-            return InstantiateGameObj(pd[instType].prefab, true); ;
+            return InstantiateGameObj(pd[instType].prefab); ;
         }
         Debug.LogError("Instance is invalid: " + instType.name);
         return null;
@@ -86,7 +86,6 @@ public class ObjectPooler : MonoBehaviour
         Queue<GameObject> instQueue = poolDict[instType];
         inst.SetActive(false);
         instQueue.Enqueue(inst);
-
     }
 
     public GameObject InstantiateGameObj(GameObject prefab, bool active = false)

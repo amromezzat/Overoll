@@ -61,5 +61,38 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 04341e926ab72b043b23ec993f18dbce,
         type: 2}
+    - target: {fileID: 5214918799915108880, guid: 879cdd4c13031c6498cdfa3bb7cd53b1,
+        type: 3}
+      propertyPath: Anim
+      value: 
+      objectReference: {fileID: 8127455407256641678}
+    - target: {fileID: 8793196063726382616, guid: 879cdd4c13031c6498cdfa3bb7cd53b1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174662904609953529, guid: 879cdd4c13031c6498cdfa3bb7cd53b1,
+        type: 3}
+      propertyPath: children.Array.data[0]
+      value: 
+      objectReference: {fileID: 2699844695174792062}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 879cdd4c13031c6498cdfa3bb7cd53b1, type: 3}
+--- !u!114 &2699844695174792062 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6120144473673764982, guid: 879cdd4c13031c6498cdfa3bb7cd53b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8185530414995657480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678a8877dd1b29745a710b74676e1198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &8127455407256641678 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95240979625603974, guid: 879cdd4c13031c6498cdfa3bb7cd53b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8185530414995657480}
+  m_PrefabAsset: {fileID: 0}

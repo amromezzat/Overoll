@@ -127,8 +127,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
             currentState = WorkerState.Halted;
         }
 
-        ResetState();
-
         Speed.onValueChanged.AddListener(ChangeAnimationSpeed);
     }
 
@@ -168,22 +166,6 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     {
         if (currentState != WorkerState.Dead)
             mAnimator.speed = speed / SpeedManager.Instance.gameSpeed;
-    }
-
-    void ResetState()
-    {
-        MagneOnHisHand.SetActive(false);
-        TeaOnHisHand.SetActive(false);
-        magnetColliderObject.SetActive(false);
-        shadow.SetActive(false);
-
-        ParticlePowerUp.SetActive(false);
-        ParticleMagnet.SetActive(false);
-        ParticleShield.SetActive(false);
-        ParticleSpeed.SetActive(false);
-        ParticleDoubleCoin.SetActive(false);
-
-        SetWorkerCollision(VestState.WithoutVest);
     }
 
     void SetStatesScripts()
@@ -290,10 +272,12 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
                 WorkersManager.Instance.RemoveWorker(this);
                 wc.onLeaderDeath.Invoke();
                 StartCoroutine(workerReturner.ReturnToPool(2));
+                AudioManager.Instance.PlaySound("WorkerDeath");
                 break;
             case WorkerFSMOutput.WorkerDied:
                 WorkersManager.Instance.RemoveWorker(this);
                 StartCoroutine(workerReturner.ReturnToPool(2));
+                AudioManager.Instance.PlaySound("WorkerDeath");
                 break;
             case WorkerFSMOutput.LeaderElected:
                 seekLeaderPosition.SetClosestLane();

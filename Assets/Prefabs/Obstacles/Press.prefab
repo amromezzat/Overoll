@@ -11,8 +11,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8777993, y: 0.71950346, z: 0.69528717}
-  m_Center: {x: -0.9474534, y: -0.000000044703388, z: -0.00000031292433}
+  m_Size: {x: 1.8777993, y: 0.56325334, z: 0.69528717}
+  m_Center: {x: -0.9474535, y: 0.078124955, z: -0.000000303611}
 --- !u!114 &732355885045921813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678a8877dd1b29745a710b74676e1198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsHealth: 5
+  obsHealth: 2
   runtimeObsHealth: 0
   withVestCollidingEffect: {fileID: 11400000, guid: 1bc72a38d4e2af347a07275ac024c732,
     type: 2}
@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8777993, y: 0.71950346, z: 0.69528717}
-  m_Center: {x: -0.9474534, y: -0.000000044703388, z: -0.00000031292433}
+  m_Size: {x: 1.8777993, y: 0.53060484, z: 0.69528717}
+  m_Center: {x: -0.9474534, y: 0.094449386, z: -0.00000026874915}
 --- !u!114 &4893017284954683778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678a8877dd1b29745a710b74676e1198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsHealth: 5
+  obsHealth: 2
   runtimeObsHealth: 0
   withVestCollidingEffect: {fileID: 11400000, guid: 1bc72a38d4e2af347a07275ac024c732,
     type: 2}
@@ -173,8 +173,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8777993, y: 0.71950346, z: 0.69528717}
-  m_Center: {x: -0.9474534, y: -0.000000044237726, z: 0.000000044703526}
+  m_Size: {x: 1.8777993, y: 0.56344676, z: 0.69528717}
+  m_Center: {x: -0.9474534, y: 0.07802835, z: 0.000000053986817}
 --- !u!114 &7300257987394368390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678a8877dd1b29745a710b74676e1198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsHealth: 5
+  obsHealth: 2
   runtimeObsHealth: 0
   withVestCollidingEffect: {fileID: 11400000, guid: b813637342a5f08448ea13fd55a10929,
     type: 2}

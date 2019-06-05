@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821b61d5fc7621b4f9c2a701059088dd, type: 3}
   m_Name: WorkerConfig
   m_EditorClassIdentifier: 
-  leader: {fileID: 0}
   onLeft:
     m_PersistentCalls:
       m_Calls: []
@@ -53,17 +52,13 @@ MonoBehaviour:
   jumpHeight: 2
   groundLevel: 0.25
   strafeDuration: 0.1
-  takeLeadDuration: 1
+  takeLeadDuration: 2
   workersSepDis: 1
   arrivalSlowingRad: 1
-  maxSepForce: 15
+  maxSepForce: 20
   maxFolForce: 15
   maxSpeed: 15
   aheadFollowPoint: -0.5
-  hrWorkers: []
-  managerWorkers: []
   workerType: {fileID: 11400000, guid: 484711c75982a6444b4cb9ec3f4f8642, type: 2}
-  hrType: {fileID: 0}
-  managerType: {fileID: 0}
   workersPerLevel: 5
   levelsNum: 5

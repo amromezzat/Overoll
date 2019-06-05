@@ -43,9 +43,6 @@ public class PowerUpManager : MonoBehaviour, IHalt
     public PowerUpVariable doublecoin;
 
     public WorkerConfig wc;
-    //float magnetTimer;
-    //float shieldTimer;
-    //float shieldTime;
 
     public Slider DoubleCoin_Slider;
     public Image DoubleCoin_Image;
@@ -106,6 +103,7 @@ public class PowerUpManager : MonoBehaviour, IHalt
      {
         Shield_Slider.gameObject.SetActive(true);
         Shield_Slider.transform.SetAsLastSibling();
+        AudioManager.Instance.PlaySound("Power Up");
     }
     void EndShield()
     {
@@ -115,6 +113,7 @@ public class PowerUpManager : MonoBehaviour, IHalt
     {
         Magnet_Slider.gameObject.SetActive(true);
         Shield_Slider.transform.SetAsLastSibling();
+        AudioManager.Instance.PlaySound("Power Up");
     }
     void EndMagnet()
     {
@@ -125,6 +124,7 @@ public class PowerUpManager : MonoBehaviour, IHalt
     {
         TeaCup_Slider.gameObject.SetActive(true);
         Shield_Slider.transform.SetAsLastSibling();
+        AudioManager.Instance.PlaySound("Power Up");
     }
     void EndTeaCup()
     {
@@ -135,6 +135,7 @@ public class PowerUpManager : MonoBehaviour, IHalt
     {
         DoubleCoin_Slider.gameObject.SetActive(true);
         DoubleCoin_Slider.transform.SetAsLastSibling();
+        AudioManager.Instance.PlaySound("Power Up");
     }
      void EndDoubleCoin()
      {

@@ -22,21 +22,18 @@ using UnityEngine;
 /// <summary>
 /// Add force to workers on the edge to return to the lane
 /// </summary>
-public class KeepInLane : MonoBehaviour {
-
+public class KeepInLane : MonoBehaviour
+{
     public TileConfig tc;
     public Transform otherCollider;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Worker"))
+        if (other.CompareTag("Worker") || other.CompareTag("SlaveMerger"))
         {
-            //if (!other.GetComponent<WorkerLifeCycle>().isLeader)
-            //{
-            //    other.GetComponent<Rigidbody>().AddForce(
-            //        (otherCollider.position - transform.position).normalized * tc.keepInLaneForce,
-            //        ForceMode.VelocityChange);
-            //}
+            other.GetComponent<Rigidbody>().AddForce(
+                (otherCollider.position - transform.position).normalized * tc.keepInLaneForce,
+                ForceMode.VelocityChange);
         }
     }
 }

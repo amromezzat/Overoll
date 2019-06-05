@@ -24,6 +24,7 @@ TagManager:
   - TeaCup
   - x2
   - Vest
+  - ExtraAction
   layers:
   - Default
   - TransparentFX

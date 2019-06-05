@@ -70,11 +70,6 @@ public class ScoreManager : MonoBehaviour, IHalt
     {
         coinvalue =  (1 + WorkersManager.Instance.WorkersCount);
 
-        if (WorkersManager.Instance.DoubleCoinOn)
-        {
-            coinvalue *= 2f;
-        }
-
         score.Value = (int)timeScore + coinsCount.Value * (int)(coinvalue);
         //Debug.Log(score.Value + coinsCount);
         

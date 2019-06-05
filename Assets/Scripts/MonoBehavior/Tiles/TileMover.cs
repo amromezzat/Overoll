@@ -23,8 +23,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class TileMover : ObjectMover
 {
-    public TileExtraAction tileExtraAction;
-
     public Animator Anim;
 
     [HideInInspector]
@@ -49,37 +47,20 @@ public class TileMover : ObjectMover
         base.Awake();
     }
 
-    private void OnEnable()
-    {
-        TakeExtraAction();
-    }
-
     protected override void Start()
     {
         base.Start();
     }
 
-    protected virtual void OnDisable()
-    {
-        if (Anim != null)
-            Anim.SetTrigger("Reset");
-    }
-
     protected override void SetVelocity(float speed)
     {
         Velocity = speed > Mathf.Epsilon ? speed + extraSpeed : 0;
-        TakeExtraAction();
     }
 
-    protected virtual void TakeExtraAction()
+    private void OnDisable()
     {
-        if (extraActionCoroutine != null)
-            StopCoroutine(extraActionCoroutine);
-
-        if (isActiveAndEnabled && tileExtraAction != null)
-        {
-            tileExtraAction.Begin(this);
-        }
+        if (Anim != null)
+            Anim.SetTrigger("Reset");
     }
 
     protected override void SetAnimatorsSpeed(float speed)

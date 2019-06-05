@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b8123a77c711724dace600c4d04c4f5, type: 3}
-  m_Name: Extra Speed
+  m_Script: {fileID: 11500000, guid: 378a3094784491a469550cb396da0c1a, type: 3}
+  m_Name: Fall Death
   m_EditorClassIdentifier: 
-  relActivPos: 40
-  ExtraVelocity: 5
+  soundName: Fall
+  animationName: FallToDeath
+  fallDirection: {x: 0, y: -1, z: 0}
+  fallSpeed: {fileID: 11400000, guid: 3caf6b3e404505e4f84233ff0d4f0259, type: 2}

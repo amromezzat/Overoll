@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "PowerUp", menuName = "Types/PowerUp")]
@@ -25,7 +24,8 @@ public class PowerUpVariable : ScriptableObject, ISerializationCallbackReceiver
     [HideInInspector]
     public UnityEvent EndAction;
 
-    public void StartPowerUP()
+    [ContextMenu("Start Power-up")]
+    public void StartPowerUp()
     {
         InAct = true;
         Time = DefaultTime;
@@ -37,6 +37,7 @@ public class PowerUpVariable : ScriptableObject, ISerializationCallbackReceiver
         }
     }
 
+    [ContextMenu("End Power-up")]
     public void ResetPowerUp()
     {
         EndAction.Invoke();

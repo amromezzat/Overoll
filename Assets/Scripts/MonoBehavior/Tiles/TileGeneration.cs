@@ -50,7 +50,7 @@ public class TileGeneration : MonoBehaviour
     {
         yield return new WaitWhile(() => TutorialManager.Instance.Active);
 
-        while (GameManager.Instance.difficulty.Value < patternDB.Count)
+        while (GameManager.Instance.difficulty.Value < patternDB.Count - 1)
         {
             float difficultyTimer = difficultyRunTime;
             while (difficultyTimer > 0)

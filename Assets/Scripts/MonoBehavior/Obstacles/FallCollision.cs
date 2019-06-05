@@ -15,26 +15,38 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.*/
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AbstractFields/Worker Colliding Effect/Death Effect")]
-public class WorkerCollidingEffect : ScriptableObject
+public class FallCollision : ObstacleCollisionHandler
 {
     [SerializeField]
-    string soundName;
-    [SerializeField]
-    string animationName;
-    [SerializeField]
-    Vector3 fallDirection = new Vector3(0, 0, -1);
-    [SerializeField]
-    FloatField fallSpeed;
+    protected CollisionEffect collisionEffect;
 
-    public virtual void PlayEffect(Animator workerAnimator, Rigidbody rb)
+    [SerializeField]
+    TileConfig tileConfig;
+
+    protected override void Awake()
     {
-        AudioManager.Instance.PlaySound(soundName);
-        workerAnimator.SetTrigger(animationName);
-        rb.velocity = fallDirection * fallSpeed;
+        base.Awake();
+    }
+
+    public override void ReactToCollision(int collidedHealth)
+    {
+        if (collisionEffect != null)
+            collisionEffect.PlayEffect();
+    }
+
+    public override void PlayEffect(Animator animator, Rigidbody rb, VestState vestState)
+    {
+        if (vestState == VestState.WithoutVest)
+            noVestCollidingEffect.PlayEffect(animator, rb);
+        else
+        {
+            Vector3 inLaneForce = (rb.transform.position - transform.position).normalized * tileConfig.keepInLaneForce;
+            rb.AddForce(inLaneForce, ForceMode.VelocityChange);
+        }
     }
 }

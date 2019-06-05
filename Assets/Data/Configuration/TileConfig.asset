@@ -17,4 +17,4 @@ MonoBehaviour:
   disableSafeDistance: -20
   extraRoleDistance: 5
   activeTilesNum: 100
-  keepInLaneForce: 3
+  keepInLaneForce: 0.5

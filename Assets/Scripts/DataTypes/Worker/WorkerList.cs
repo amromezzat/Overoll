@@ -31,7 +31,7 @@ public class WorkerList : List<WorkerFSM>
     bool magnetOn = false;
     bool teacupOn = false;
     public bool doubleCoinOn = false;
-    
+
     GameObject WorkerVest;
 
     WorkerFSM ascender;
@@ -39,8 +39,6 @@ public class WorkerList : List<WorkerFSM>
 
     public WorkerList(int workersPerLevel, int levels)
     {
-        //normWorkersHealth = new List<int>();
-
         this.minWorkersToMerge = workersPerLevel;
         this.levels = levels;
 
@@ -55,26 +53,16 @@ public class WorkerList : List<WorkerFSM>
         //add worker normal health
         //normWorkersHealth.Add(worker.health);
         base.Add(worker);
-        
 
         //if there is a power up apply it to worker
         if (shieldOn)
-        {
-            //worker.health = 1000;
-            WorkerVest= worker.transform.GetChild(0).gameObject;
-            WorkerVest.SetActive(true);
-           
-
-        }
+            WorkerStartShield(worker);
         if (magnetOn)
-        {
-            worker.MagneOnHisHand.SetActive(true);
-            worker.SetHelmetMaterial("_ColAmount", -0.001f);
-        }
+            WorkerStartMagnet(worker);
         if (teacupOn)
-        {
-            worker.TeaOnHisHand.SetActive(true);
-        }
+            WorkerStartTeacup(worker);
+        if (doubleCoinOn)
+            WorkerStartDoubleCoin(worker);
 
         //if the leader is added after succeding
         //add him at the top of the level
@@ -83,13 +71,19 @@ public class WorkerList : List<WorkerFSM>
         else
             workers[worker.level].Add(worker);
 
+        if (!worker.gameObject.activeSelf)
+        {
+            WorkerStartShield(worker);
+            WorkersManager.Instance.StartCoroutine(DisableStartProtection(worker));
+            worker.gameObject.SetActive(true);
+        }
+
+
         //if worker is at last level don't merge
         if (Merging || worker.level == levels - 1)
         {
             return;
         }
-
-        worker.gameObject.SetActive(true);
 
         //if the workers in current level match minimum workers to merge
         //start merging
@@ -99,31 +93,43 @@ public class WorkerList : List<WorkerFSM>
 
             int newMasterHealth = 0;
 
+            WorkerStartShield(workers[worker.level][0]);
             workers[worker.level][0].ChangeState(WorkerStateTrigger.Merge);
             ascender = workers[worker.level][0];
 
             //set normal new master merger health
             for (int i = 1; i < minWorkersToMerge; i++)
             {
+                WorkerStartShield(workers[worker.level][i]);
                 workers[worker.level][i].SetSeekedMaster(ascender.transform);
                 workers[worker.level][i].ChangeState(WorkerStateTrigger.SlaveMerge);
                 newMasterHealth += workers[worker.level][i].health;
             }
-            //if health powerup is active divide by 1000 to get correct health
-            //newMasterHealth = newMasterHealth >= 1000 ? newMasterHealth / 1000 : newMasterHealth;
-            //normWorkersHealth[IndexOf(worker)] = newMasterHealth;
         }
+    }
+
+    IEnumerator DisableStartProtection(WorkerFSM worker)
+    {
+        yield return new WaitForSeconds(3);
+
+        if (!shieldOn)
+            WorkerEndShield(worker);
     }
 
     public new void Remove(WorkerFSM worker)
     {
-        //normWorkersHealth.Remove(IndexOf(worker));
         base.Remove(worker);
 
-       // worker.SetHelmetMaterial("_ExtAmount", 0);
-        //worker.SetHelmetMaterial("_ColAmount", 0);
-
         workers[worker.level].Remove(worker);
+
+        if (shieldOn)
+            WorkerEndShield(worker);
+        if (magnetOn)
+            WorkerEndMagnet(worker);
+        if (teacupOn)
+            WorkerEndTeacup(worker);
+        if (doubleCoinOn)
+            WorkerEndDoubleCoin(worker);
     }
 
     //called after merging is finished
@@ -136,7 +142,16 @@ public class WorkerList : List<WorkerFSM>
             Remove(ascender);
             ascender.level++;
             Add(ascender);
+
+            if (!shieldOn)
+                WorkerEndShield(ascender);
         }
+    }
+
+    public void Descend(WorkerFSM worker)
+    {
+        Remove(worker);
+        Add(worker);
     }
 
     public WorkerFSM GetNewLeader()
@@ -146,10 +161,21 @@ public class WorkerList : List<WorkerFSM>
             if (workers[i].Count > 0)
             {
                 workers[i][0].ChangeState(WorkerStateTrigger.Succeed);
+                WorkerStartShield(workers[i][0]);
+                WorkersManager.Instance.StartCoroutine(DisableStartProtection(workers[i][0]));
                 return workers[i][0];
             }
         }
         return null;
+    }
+
+    void WorkerStartShield(WorkerFSM worker)
+    {
+        worker.SetWorkerCollision(VestState.WithVest);
+        worker.ParticlePowerUp.SetActive(true);
+        worker.ParticleShield.SetActive(true);
+        WorkerVest = worker.transform.GetChild(0).gameObject;
+        WorkerVest.SetActive(true);
     }
 
     public void StartShieldPowerup()
@@ -157,13 +183,16 @@ public class WorkerList : List<WorkerFSM>
         shieldOn = true;
         for (int i = 0; i < Count; i++)
         {
-            //this[i].health = 1000;
-            this[i].SetWorkerCollision(VestState.WithVest);
-            this[i].ParticlePowerUp.SetActive(true);
-            this[i].ParticleShield.SetActive(true);
-            WorkerVest = this[i].transform.GetChild(0).gameObject; 
-            WorkerVest.SetActive(true);
+            WorkerStartShield(this[i]);
         }
+    }
+
+    void WorkerEndShield(WorkerFSM worker)
+    {
+        worker.ParticleShield.SetActive(false);
+        worker.SetWorkerCollision(VestState.WithoutVest);
+        WorkerVest = worker.transform.GetChild(0).gameObject;
+        WorkerVest.SetActive(false);
     }
 
     public void EndShieldPowerup()
@@ -171,13 +200,16 @@ public class WorkerList : List<WorkerFSM>
         shieldOn = false;
         for (int i = 0; i < Count; i++)
         {
-            //this[i].health = normWorkersHealth[i];
-            this[i].ParticleShield.SetActive(false);
-            this[i].SetWorkerCollision(VestState.WithoutVest);
-            WorkerVest = this[i].transform.GetChild(0).gameObject;
-            WorkerVest.SetActive(false);
-
+            WorkerEndShield(this[i]);
         }
+    }
+
+    void WorkerStartTeacup(WorkerFSM worker)
+    {
+        worker.TeaOnHisHand.SetActive(true);
+        worker.ParticlePowerUp.SetActive(true);
+        worker.ParticleSpeed.SetActive(true);
+        worker.GetComponent<Animator>().SetTrigger("Drink");
     }
 
     public void StartTeacupPowerUp()
@@ -186,22 +218,33 @@ public class WorkerList : List<WorkerFSM>
         SpeedManager.Instance.speed.Value += 1;
         for (int i = 0; i < Count; i++)
         {
-            this[i].TeaOnHisHand.SetActive(true);
-            this[i].ParticlePowerUp.SetActive(true);
-            this[i].ParticleSpeed.SetActive(true);
-            this[i].GetComponent<Animator>().SetTrigger("Drink");
+            WorkerStartTeacup(this[i]);
         }
+    }
+
+    void WorkerEndTeacup(WorkerFSM worker)
+    {
+        worker.ParticleSpeed.SetActive(false);
     }
 
     public void EndTeacupPowerUp()
     {
         teacupOn = false;
-        if(GameManager.Instance.gameState == GameState.Gameplay)
+        if (GameManager.Instance.gameState == GameState.Gameplay)
             SpeedManager.Instance.ResetSpeed();
         for (int i = 0; i < Count; i++)
         {
-            this[i].ParticleSpeed.SetActive(false);
+            WorkerEndTeacup(this[i]);
         }
+    }
+
+    void WorkerStartMagnet(WorkerFSM worker)
+    {
+        worker.ParticlePowerUp.SetActive(true);
+        worker.ParticleMagnet.SetActive(true);
+        worker.MagneOnHisHand.SetActive(true);
+        worker.magnetColliderObject.SetActive(true);
+        worker.GetComponent<Animator>().SetBool("HoldingMagnet", true);
     }
 
     public void StartMagnetPowerup()
@@ -209,41 +252,53 @@ public class WorkerList : List<WorkerFSM>
         magnetOn = true;
         for (int i = 0; i < Count; i++)
         {
-            this[i].ParticlePowerUp.SetActive(true);
-            this[i].ParticleMagnet.SetActive(true);
-            this[i].MagneOnHisHand.SetActive(true);
-            this[i].magnetColliderObject.SetActive(true);
-            this[i].GetComponent<Animator>().SetBool("HoldingMagnet", true);
-           
+            WorkerStartMagnet(this[i]);
         }
     }
-    
+
+    void WorkerEndMagnet(WorkerFSM worker)
+    {
+        worker.ParticleMagnet.SetActive(false);
+        worker.MagneOnHisHand.SetActive(false);
+        worker.magnetColliderObject.SetActive(false);
+        worker.GetComponent<Animator>().SetBool("HoldingMagnet", false);
+    }
+
     public void EndMagnetPowerup()
     {
         magnetOn = false;
-        for(int i = 0; i < Count; i++)
+        for (int i = 0; i < Count; i++)
         {
-            this[i].ParticleMagnet.SetActive(false);
-            this[i].MagneOnHisHand.SetActive(false);
-            this[i].magnetColliderObject.SetActive(false);
-            this[i].GetComponent<Animator>().SetBool("HoldingMagnet", false);
+            WorkerEndMagnet(this[i]);
         }
     }
+
+    void WorkerStartDoubleCoin(WorkerFSM worker)
+    {
+        worker.ParticlePowerUp.SetActive(true);
+        worker.ParticleDoubleCoin.SetActive(true);
+    }
+
     public void StartDoubleCoin()
     {
         doubleCoinOn = true;
-        for (int i= 0; i < Count; i++)
+        for (int i = 0; i < Count; i++)
         {
-            this[i].ParticlePowerUp.SetActive(true);
-            this[i].ParticleDoubleCoin.SetActive(true);
+            WorkerStartDoubleCoin(this[i]);
         }
     }
+
+    void WorkerEndDoubleCoin(WorkerFSM worker)
+    {
+        worker.ParticleDoubleCoin.SetActive(false);
+    }
+
     public void EndDoubleCoin()
     {
         doubleCoinOn = false;
         for (int i = 0; i < Count; i++)
         {
-            this[i].ParticleDoubleCoin.SetActive(false);
+            WorkerEndDoubleCoin(this[i]);
         }
     }
 }
