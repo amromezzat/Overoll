@@ -66,16 +66,26 @@ PrefabInstance:
       propertyPath: Anim
       value: 
       objectReference: {fileID: 8127455407256641678}
-    - target: {fileID: 8793196063726382616, guid: 879cdd4c13031c6498cdfa3bb7cd53b1,
-        type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
-      objectReference: {fileID: 0}
     - target: {fileID: 8174662904609953529, guid: 879cdd4c13031c6498cdfa3bb7cd53b1,
         type: 3}
       propertyPath: children.Array.data[0]
       value: 
       objectReference: {fileID: 2699844695174792062}
+    - target: {fileID: 8793196063726382616, guid: 879cdd4c13031c6498cdfa3bb7cd53b1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551280409192094036, guid: 879cdd4c13031c6498cdfa3bb7cd53b1,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.17805058
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551280409192094036, guid: 879cdd4c13031c6498cdfa3bb7cd53b1,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.010618687
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 879cdd4c13031c6498cdfa3bb7cd53b1, type: 3}
 --- !u!114 &2699844695174792062 stripped

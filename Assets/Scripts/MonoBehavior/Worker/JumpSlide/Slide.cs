@@ -47,9 +47,9 @@ public class Slide : IDoAction
         Vector3 newColliderSize = collider.size;
         newColliderSize.y *= 0.25f;
         collider.size = newColliderSize;
-        Vector3 colliderNewPos = collider.transform.position;
+        Vector3 colliderNewPos = collider.center;
         colliderNewPos.y *= 0.25f;
-        collider.transform.position = colliderNewPos;
+        collider.center = colliderNewPos;
         shadow.SetActive(false);
     }
 
@@ -68,9 +68,9 @@ public class Slide : IDoAction
         Vector3 newColliderSize = collider.size;
         newColliderSize.y *= 4;
         collider.size = newColliderSize;
-        Vector3 colliderNewPos = collider.transform.position;
+        Vector3 colliderNewPos = collider.center;
         colliderNewPos.y *= 4;
-        collider.transform.position = colliderNewPos;
+        collider.center = colliderNewPos;
         shadow.SetActive(true);
     }
 }

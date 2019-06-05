@@ -28,6 +28,8 @@ public class InterruptJump : IDoAction
     public void OnStateEnter(Animator animator)
     {
         this.animator = animator;
+
+        landTimer = 0;
     }
 
     public bool OnStateExecution(Transform transform, float deltaTime)

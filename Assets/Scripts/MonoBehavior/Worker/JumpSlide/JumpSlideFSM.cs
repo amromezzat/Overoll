@@ -32,13 +32,14 @@ public class JumpSlideFSM : IWJumpSlide
 
     Slide slideState;
     Jump jumpState;
-    Run runState = new Run();
+    Run runState;
     InterruptJump interruptJumpState = new InterruptJump();
     DelayState delayState = new DelayState();
+
     // Dictionary for allowed transitions from a certain state
     Dictionary<IDoAction, List<IDoAction>> actionsDic = new Dictionary<IDoAction, List<IDoAction>>();
-    Stack<IDoAction> actionStack = new Stack<IDoAction>();
 
+    Queue<IDoAction> actionQueue = new Queue<IDoAction>();
     IDoAction currentState;
 
     public JumpSlideFSM(WorkerConfig wc, BoxCollider mCollider, Animator mAnimator, Transform transform, GameObject mShadow)
@@ -54,6 +55,11 @@ public class JumpSlideFSM : IWJumpSlide
 
     void InitializeFSM()
     {
+        runState = new Run()
+        {
+            jsFSM = this
+        };
+
         slideState = new Slide(mCollider, mAnimator, shadow)
         {
             slideDuration = wc.slideDuration
@@ -66,17 +72,22 @@ public class JumpSlideFSM : IWJumpSlide
         };
 
         //allowed transition states
-        actionsDic[slideState] = new List<IDoAction>() { runState, jumpState };
-        actionsDic[jumpState] = new List<IDoAction>() { interruptJumpState, delayState };
-        actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState, delayState };
-        actionsDic[interruptJumpState] = new List<IDoAction>() { runState, slideState, delayState };
-        actionsDic[delayState] = new List<IDoAction>() { jumpState, slideState };
+        actionsDic[slideState] = new List<IDoAction>() { runState, jumpState, delayState };
+        actionsDic[jumpState] = new List<IDoAction>() { interruptJumpState, runState, delayState };
+        actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState, delayState, interruptJumpState };
+        actionsDic[interruptJumpState] = new List<IDoAction>() { runState, slideState };
+        actionsDic[delayState] = new List<IDoAction>() { jumpState, slideState, runState };
+    }
+
+    public void Enqueue(IDoAction state)
+    {
+        actionQueue.Enqueue(state);
     }
 
     public virtual void ScriptReset()
     {
-        actionStack = new Stack<IDoAction>();
-        actionStack.Push(runState);
+        actionQueue = new Queue<IDoAction>();
+        actionQueue.Enqueue(runState);
         currentState = runState;
     }
 
@@ -91,54 +102,66 @@ public class JumpSlideFSM : IWJumpSlide
         }
     }
 
+    void ChangeState(Stack<IDoAction> nextStates)
+    {
+        if (!actionsDic[currentState].Contains(nextStates.Peek()))
+            return;
+
+        currentState.OnStateExit(mAnimator);
+        currentState = nextStates.Pop();
+        currentState.OnStateEnter(mAnimator);
+
+        while (nextStates.Count > 0)
+            actionQueue.Enqueue(nextStates.Pop());
+    }
+
     public virtual void Jump()
     {
-        //float delayTime = (wc.leader.transform.position.z - transform.position.z) / gd.Speed;
         float delayTime = (WorkersManager.Instance.leader.transform.position.z - transform.position.z) / SpeedManager.Instance.speed.Value;
-        actionStack.Push(interruptJumpState);
-        actionStack.Push(jumpState);
-        if (delayTime > 0)
+
+        Stack<IDoAction> nextActions = new Stack<IDoAction>();
+
+        nextActions.Push(interruptJumpState);
+        nextActions.Push(jumpState);
+
+        if (delayTime > Mathf.Epsilon)
         {
             delayState.Delay = delayTime;
-            actionStack.Push(delayState);
+            nextActions.Push(delayState);
         }
-        ChangeState(actionStack.Pop());
+
+        ChangeState(nextActions);
     }
 
     public virtual void Slide()
     {
-        //if jumping interrupt jump to return worker to ground and then slide
-        //float delayTime = (wc.leader.transform.position.z - transform.position.z) / gd.Speed;
+        // Delay time before reaching leader position
         float delayTime = (WorkersManager.Instance.leader.transform.position.z - transform.position.z) / SpeedManager.Instance.speed.Value;
 
-        if (currentState == jumpState)
-        {
-            actionStack.Push(slideState);
-            actionStack.Push(interruptJumpState);
-        }
-        else
-        {
-            actionStack.Push(slideState);
-        }
+        Stack<IDoAction> nextActions = new Stack<IDoAction>();
 
-        if (delayTime > 0)
+        nextActions.Push(slideState);
+
+        if (currentState == jumpState)
+            nextActions.Push(interruptJumpState);
+
+        if (delayTime > Mathf.Epsilon)
         {
             delayState.Delay = delayTime;
-            actionStack.Push(delayState);
+            nextActions.Push(delayState);
         }
-        ChangeState(actionStack.Pop());
+
+        ChangeState(nextActions);
     }
 
     public void FixedUpdate(float fixedDeltaTime)
     {
+        //Debug.Log("List: " + string.Join(", ", actionQueue));
+
         bool executing = currentState.OnStateExecution(transform, fixedDeltaTime);
         if (!executing)
         {
-            IDoAction nextState = actionStack.Pop();
-            if (nextState == runState)
-            {
-                actionStack.Push(runState);
-            }
+            IDoAction nextState = actionQueue.Dequeue();
             ChangeState(nextState);
         }
     }

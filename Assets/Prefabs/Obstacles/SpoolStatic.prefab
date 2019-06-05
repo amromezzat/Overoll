@@ -93,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.01859262, y: 0.011791132, z: 0.025874702}
-  m_Center: {x: 0, y: 0.0005092042, z: 0.0011288525}
+  m_Size: {x: 0.01859262, y: 0.009829326, z: 0.025874702}
+  m_Center: {x: 0, y: 0.0014901079, z: 0.0011288525}
 --- !u!54 &54226079662615242
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -138,7 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631f491a5640a4478f2803e87e0f7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileExtraAction: {fileID: 0}
   Anim: {fileID: 0}
   extraSpeed: 0
 --- !u!114 &4645174742374779185
