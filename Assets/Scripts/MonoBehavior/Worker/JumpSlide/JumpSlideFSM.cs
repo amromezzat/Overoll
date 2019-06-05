@@ -73,7 +73,7 @@ public class JumpSlideFSM : IWJumpSlide
 
         //allowed transition states
         actionsDic[slideState] = new List<IDoAction>() { runState, jumpState, delayState };
-        actionsDic[jumpState] = new List<IDoAction>() { interruptJumpState, runState, delayState };
+        actionsDic[jumpState] = new List<IDoAction>() { interruptJumpState, runState };
         actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState, delayState, interruptJumpState };
         actionsDic[interruptJumpState] = new List<IDoAction>() { runState, slideState };
         actionsDic[delayState] = new List<IDoAction>() { jumpState, slideState, runState };
@@ -104,12 +104,12 @@ public class JumpSlideFSM : IWJumpSlide
 
     void ChangeState(Stack<IDoAction> nextStates)
     {
-        if (!actionsDic[currentState].Contains(nextStates.Peek()))
-            return;
-
-        currentState.OnStateExit(mAnimator);
-        currentState = nextStates.Pop();
-        currentState.OnStateEnter(mAnimator);
+        if (actionsDic[currentState].Contains(nextStates.Peek()))
+        {
+            currentState.OnStateExit(mAnimator);
+            currentState = nextStates.Pop();
+            currentState.OnStateEnter(mAnimator);
+        }
 
         while (nextStates.Count > 0)
             actionQueue.Enqueue(nextStates.Pop());

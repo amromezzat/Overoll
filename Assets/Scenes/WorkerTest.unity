@@ -153,10 +153,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Worker
       objectReference: {fileID: 0}
-    - target: {fileID: 728659259, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 728659266, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -200,14 +196,6 @@ PrefabInstance:
     - target: {fileID: 728659266, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1219482693, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.050000012
-      objectReference: {fileID: 0}
-    - target: {fileID: 334585500, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}

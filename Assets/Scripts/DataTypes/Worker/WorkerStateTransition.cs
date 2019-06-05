@@ -46,7 +46,8 @@ public class WorkerStateTransition
         workerTransitionsDic[WorkerStateTrigger.Merge] = new List<TransitionBundle>()
         {
             new TransitionBundle(WorkerState.Leader, WorkerState.LeaderMerger),
-            new TransitionBundle(WorkerState.Worker, WorkerState.MasterMerger)
+            new TransitionBundle(WorkerState.Worker, WorkerState.MasterMerger),
+            new TransitionBundle(WorkerState.LeaderSeeker, WorkerState.SeekerMerger),
         };
 
         workerTransitionsDic[WorkerStateTrigger.SlaveMerge] = new List<TransitionBundle>()
@@ -64,7 +65,7 @@ public class WorkerStateTransition
 
         workerTransitionsDic[WorkerStateTrigger.StateEnd] = new List<TransitionBundle>() {
             new TransitionBundle(WorkerState.LeaderSeeker, WorkerState.Leader),
-            new TransitionBundle(WorkerState.SeekerMerger, WorkerState.Leader, WorkerFSMOutput.MergingDone),
+            new TransitionBundle(WorkerState.SeekerMerger, WorkerState.LeaderSeeker, WorkerFSMOutput.MergingDone),
             new TransitionBundle(WorkerState.LeaderMerger, WorkerState.Leader, WorkerFSMOutput.MergingDone),
             new TransitionBundle(WorkerState.MasterMerger, WorkerState.Worker, WorkerFSMOutput.MergingDone),
             new TransitionBundle(WorkerState.SlaveMerger, WorkerState.Worker),

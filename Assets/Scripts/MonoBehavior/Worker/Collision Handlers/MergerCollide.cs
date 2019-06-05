@@ -34,7 +34,7 @@ public class MergerCollide : IWCollide
 
     //SkinnedMeshRenderer hel;
     //SkinnedMeshRenderer ov;
-    
+
     //List<Mesh> helMesh = new List<Mesh>();
     //List<Mesh> ovMesh = new List<Mesh>();
 
@@ -52,7 +52,6 @@ public class MergerCollide : IWCollide
         // the trigger for the next state
         if (collider.CompareTag("SlaveMerger"))
         {
-            WorkersManager.Instance.RemoveWorker(collider.GetComponent<WorkerFSM>());
             ICollidable slaveMerger = collider.GetComponent<ICollidable>();
             health += slaveMerger.Gethealth();
             slaveMerger.ReactToCollision(0);
@@ -61,8 +60,6 @@ public class MergerCollide : IWCollide
             {
                 m_meshChange.ChangeHelmet(wfsm.level + 1);
                 m_meshChange.ChangeOveroll(wfsm.level + 1);
-                //hel.sharedMesh = helMesh[wfsm.level+1];
-                //ov.sharedMesh = ovMesh[wfsm.level+1];
                 mergedCount = 0;
 
                 return WorkerStateTrigger.StateEnd;

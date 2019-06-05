@@ -67,6 +67,10 @@ public class WorkersManager : MonoBehaviour
     {
         workers = new WorkerList(wc.workersPerLevel, wc.levelsNum);
 
+        wc.onAddWorker.RemoveAllListeners();
+        wc.onLeaderDeath.RemoveAllListeners();
+        wc.onMergeOver.RemoveAllListeners();
+
         shield.BeginAction.AddListener(workers.StartShieldPowerup);
         shield.EndAction.AddListener(workers.EndShieldPowerup);
         magnet.BeginAction.AddListener(workers.StartMagnetPowerup);
@@ -79,6 +83,10 @@ public class WorkersManager : MonoBehaviour
         doublecoin.EndAction.AddListener(workers.EndDoubleCoin);
 
         workers.Add(leader);
+    }
+
+    private void Start()
+    {
         wc.onLeaderDeath.AddListener(LeaderDied);
         wc.onMergeOver.AddListener(MergingDone);
         wc.onAddWorker.AddListener(OnDoubleTap);
@@ -119,6 +127,8 @@ public class WorkersManager : MonoBehaviour
         GameObject worker = ObjectPooler.Instance.GetFromPool(wc.workerType);
         worker.transform.position = new Vector3(pos.x, worker.transform.position.y, pos.y);
         WorkerFSM workerFSM = worker.GetComponent<WorkerFSM>();
+        workerFSM.level = 0;
+        workerFSM.health = 1;
 
         workers.Add(workerFSM);
         AudioManager.Instance.PlaySound("Add Worker");

@@ -160,12 +160,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
         type: 3}
+      propertyPath: gamePausedTxt
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
       propertyPath: PauseMenu
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
         type: 3}
       propertyPath: SettingMenu
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
+      propertyPath: pauseBtn
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
+      propertyPath: restartBtn
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
+      propertyPath: playBtn
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
+      propertyPath: settingsBtn
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
+      propertyPath: storeBtn
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
+      propertyPath: mainMenuCanvas
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
+      propertyPath: inGameCanvas
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202349555431272, guid: 2aef0c503253fed4f8bd5eb9738b5f9e,
+        type: 3}
+      propertyPath: endGameCanvas
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -243,6 +288,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 68a08b5c75fbc2a449eafeec74f8f3e4,
         type: 2}
+    - target: {fileID: 114392418027195832, guid: ddac1840df7459e49ae395b731f114ad,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114392418027195832, guid: ddac1840df7459e49ae395b731f114ad,
+        type: 3}
+      propertyPath: curveStrength
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114347762976271026, guid: ddac1840df7459e49ae395b731f114ad,
         type: 3}
       propertyPath: listOfPrefabs.Array.data[0]
@@ -383,7 +438,7 @@ PrefabInstance:
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
@@ -613,7 +668,7 @@ PrefabInstance:
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
       propertyPath: sounds.Array.data[10].name
-      value: Hydraulic press 3
+      value: Hydraullic press 3
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
@@ -629,6 +684,56 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[10].pitch
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[11].name
+      value: Fall
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[11].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b7f4c76d414eac748addcfe74c2785b2, type: 3}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[11].volume
+      value: 0.296
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[11].pitch
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[12].name
+      value: Add Worker
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[12].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6016e54ffd30b7f42b8aac10125ede04, type: 3}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[12].volume
+      value: 0.296
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: sounds.Array.data[12].pitch
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: soundButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
+        type: 3}
+      propertyPath: musicButton
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114246570318349270, guid: be29277555d70a14d9ff8b88344d56aa,
         type: 3}
@@ -717,6 +822,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
+        type: 3}
+      propertyPath: DoubleCoin_Slider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
+        type: 3}
+      propertyPath: DoubleCoin_Image
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
+        type: 3}
+      propertyPath: Shield_Slider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
+        type: 3}
+      propertyPath: Shield_Image
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
+        type: 3}
+      propertyPath: Magnet_Slider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
+        type: 3}
+      propertyPath: Magnet_Image
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
+        type: 3}
+      propertyPath: TeaCup_Slider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114956589263644132, guid: a9bb07bca5e165b4db3819c6f72097c5,
+        type: 3}
+      propertyPath: TeaCup_Image
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9bb07bca5e165b4db3819c6f72097c5, type: 3}
 --- !u!4 &985469482325298885 stripped
@@ -779,6 +924,16 @@ PrefabInstance:
     - target: {fileID: 4436092485014146, guid: 172dab9867235f54fbdeecc0702644e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500112709322594, guid: 172dab9867235f54fbdeecc0702644e5,
+        type: 3}
+      propertyPath: leader
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500112709322594, guid: 172dab9867235f54fbdeecc0702644e5,
+        type: 3}
+      propertyPath: addWorkerBtn
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114500112709322594, guid: 172dab9867235f54fbdeecc0702644e5,
         type: 3}
@@ -943,8 +1098,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
         type: 3}
+      propertyPath: creditsPanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
+        type: 3}
+      propertyPath: settingMenu
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
+        type: 3}
       propertyPath: languageType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
+        type: 3}
+      propertyPath: LangBtn
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6259181744114142573, guid: 9f25095ef9773ed48a6cc3b2210fbb89,
         type: 3}
@@ -1044,6 +1214,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411796383507534104, guid: b16deee6a53c7db41b46edcb86b94fe7,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411796383507534104, guid: b16deee6a53c7db41b46edcb86b94fe7,
+        type: 3}
+      propertyPath: coinNum
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b16deee6a53c7db41b46edcb86b94fe7, type: 3}

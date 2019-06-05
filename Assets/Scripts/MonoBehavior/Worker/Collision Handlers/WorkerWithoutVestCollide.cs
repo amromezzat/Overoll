@@ -52,7 +52,6 @@ public class WorkerWithoutVestCollide : WorkerCollide
             {
                 int workersHealthFrac = health % 5;
                 health -= workersHealthFrac;
-                mState.level = health / 5;
                 WorkersManager.Instance.Descend(mState);
 
                 mMeshChange.ChangeHelmet(mState.level);

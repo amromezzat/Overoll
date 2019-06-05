@@ -47,6 +47,14 @@ public class InputManager : MonoBehaviour
 
     const float doubleTapTime = 1.5f;
 
+    private void Awake()
+    {
+        wc.onLeft.RemoveAllListeners();
+        wc.onRight.RemoveAllListeners();
+        wc.onJump.RemoveAllListeners();
+        wc.onSlide.RemoveAllListeners();
+    }
+
     void Start()
     {
         dragDistance = Screen.height * 5 / 100; //dragDistance is 5% height of the screen

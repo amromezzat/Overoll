@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Magnet
   m_EditorClassIdentifier: 
   InAct: 0
-  DefaultTime: 5
+  DefaultTime: 10
   Time: 0
+  paused: 0
   BeginAction:
     m_PersistentCalls:
       m_Calls: []

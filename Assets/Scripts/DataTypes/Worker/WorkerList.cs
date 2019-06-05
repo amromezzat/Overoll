@@ -54,16 +54,6 @@ public class WorkerList : List<WorkerFSM>
         //normWorkersHealth.Add(worker.health);
         base.Add(worker);
 
-        //if there is a power up apply it to worker
-        if (shieldOn)
-            WorkerStartShield(worker);
-        if (magnetOn)
-            WorkerStartMagnet(worker);
-        if (teacupOn)
-            WorkerStartTeacup(worker);
-        if (doubleCoinOn)
-            WorkerStartDoubleCoin(worker);
-
         //if the leader is added after succeding
         //add him at the top of the level
         if (worker.currentState == WorkerState.Leader)
@@ -73,11 +63,19 @@ public class WorkerList : List<WorkerFSM>
 
         if (!worker.gameObject.activeSelf)
         {
-            WorkerStartShield(worker);
-            WorkersManager.Instance.StartCoroutine(DisableStartProtection(worker));
+            WorkersManager.Instance.StartCoroutine(SetTemporaryShield(worker));
             worker.gameObject.SetActive(true);
         }
 
+        //if there is a power up apply it to worker
+        if (shieldOn)
+            WorkerStartShield(worker);
+        if (magnetOn)
+            WorkerStartMagnet(worker);
+        if (teacupOn)
+            WorkerStartTeacup(worker);
+        if (doubleCoinOn)
+            WorkerStartDoubleCoin(worker);
 
         //if worker is at last level don't merge
         if (Merging || worker.level == levels - 1)
@@ -90,26 +88,35 @@ public class WorkerList : List<WorkerFSM>
         if (workers[worker.level].Count >= minWorkersToMerge)
         {
             Merging = true;
+            //DebugWorkerInfo("master", workers[worker.level][0]);
 
-            int newMasterHealth = 0;
-
-            WorkerStartShield(workers[worker.level][0]);
+            WorkersManager.Instance.StartCoroutine(SetTemporaryShield(workers[worker.level][0]));
             workers[worker.level][0].ChangeState(WorkerStateTrigger.Merge);
             ascender = workers[worker.level][0];
 
             //set normal new master merger health
             for (int i = 1; i < minWorkersToMerge; i++)
             {
-                WorkerStartShield(workers[worker.level][i]);
+                //DebugWorkerInfo("slaved", workers[worker.level][i]);
+
+                WorkersManager.Instance.StartCoroutine(SetTemporaryShield(workers[worker.level][i]));
                 workers[worker.level][i].SetSeekedMaster(ascender.transform);
                 workers[worker.level][i].ChangeState(WorkerStateTrigger.SlaveMerge);
-                newMasterHealth += workers[worker.level][i].health;
             }
         }
     }
 
-    IEnumerator DisableStartProtection(WorkerFSM worker)
+#if UNITY_EDITOR
+    void DebugWorkerInfo(string title, WorkerFSM worker)
     {
+        Debug.Log(string.Format(title + " State({0}): {1}", worker.GetInstanceID(), worker.currentState));
+    }
+#endif
+
+    IEnumerator SetTemporaryShield(WorkerFSM worker)
+    {
+        WorkerStartShield(worker);
+
         yield return new WaitForSeconds(3);
 
         if (!shieldOn)
@@ -119,6 +126,9 @@ public class WorkerList : List<WorkerFSM>
     public new void Remove(WorkerFSM worker)
     {
         base.Remove(worker);
+
+        //if (!workers[worker.level].Contains(worker))
+        //    Debug.Log("Ouch!");
 
         workers[worker.level].Remove(worker);
 
@@ -142,15 +152,13 @@ public class WorkerList : List<WorkerFSM>
             Remove(ascender);
             ascender.level++;
             Add(ascender);
-
-            if (!shieldOn)
-                WorkerEndShield(ascender);
         }
     }
 
     public void Descend(WorkerFSM worker)
     {
         Remove(worker);
+        worker.level = worker.health / 5;
         Add(worker);
     }
 
@@ -162,7 +170,7 @@ public class WorkerList : List<WorkerFSM>
             {
                 workers[i][0].ChangeState(WorkerStateTrigger.Succeed);
                 WorkerStartShield(workers[i][0]);
-                WorkersManager.Instance.StartCoroutine(DisableStartProtection(workers[i][0]));
+                WorkersManager.Instance.StartCoroutine(SetTemporaryShield(workers[i][0]));
                 return workers[i][0];
             }
         }

@@ -28,6 +28,10 @@ public enum VestState
 [RequireComponent(typeof(WorkerReturner)), SelectionBase]
 public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 {
+#if UNITY_EDITOR
+    public DestructableObstacleCollision testSample;
+#endif
+
     public WorkerConfig wc;
     public TileConfig tc;
     public LanesDatabase lanes;
@@ -98,15 +102,18 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 
         mMeshChange = gameObject.GetComponent<MeshChange>();
 
-        wc.onLeft.AddListener(StrafeLeft);
-        wc.onRight.AddListener(StrafeRight);
-        wc.onJump.AddListener(Jump);
-        wc.onSlide.AddListener(Slide);
-
         RegisterListeners();
         SetStatesScripts();
 
         magnetColliderObject = transform.GetChild(transform.childCount - 1).gameObject;
+    }
+
+    private void Start()
+    {
+        wc.onLeft.AddListener(StrafeLeft);
+        wc.onRight.AddListener(StrafeRight);
+        wc.onJump.AddListener(Jump);
+        wc.onSlide.AddListener(Slide);
     }
 
     private void OnEnable()
@@ -352,6 +359,31 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         }
     }
 
+#if UNITY_EDITOR
+    [ContextMenu("Leader Die")]
+    void LeaderDie()
+    {
+        Output(WorkerFSMOutput.LeaderDied);
+    }
+    [ContextMenu("Worker Die")]
+    void WorkerDie()
+    {
+        Output(WorkerFSMOutput.LeaderDied);
+    }
+    [ContextMenu("Lose Health")]
+    void LoseHealth()
+    {
+        DestructableObstacleCollision other = Instantiate(testSample);
+        WorkerStateTrigger trigger = workerStateScripts[currentState].Collide(other.GetComponent<Collider>(), ref health);
+        if (trigger != WorkerStateTrigger.Null)
+        {
+            TransitionBundle transition = workerStateTransition.ChangeState(trigger, currentState);
+            currentState = transition.Destination;
+            Output(transition.Output);
+        }
+    }
+#endif
+
     public void Resume()
     {
         if (gameObject.activeSelf)
@@ -376,6 +408,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 
     public void ReactToCollision(int collidedHealth)
     {
+        WorkersManager.Instance.RemoveWorker(this);
         StartCoroutine(workerReturner.ReturnToPool(0));
     }
 

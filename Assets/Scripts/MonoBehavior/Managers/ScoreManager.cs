@@ -38,7 +38,8 @@ public class ScoreManager : MonoBehaviour, IHalt
     public IntField score;
 
     float timeScore;
-    float coinvalue = 0.5f;
+    float coinScore;
+    float coinValue = 0.5f;
     float quarterSecValue = 0.25f;
     public Text scoreText;
     public Text coinNum;
@@ -49,6 +50,7 @@ public class ScoreManager : MonoBehaviour, IHalt
     public int workerPrice = 0;
 
     PowerUpVariable doublecoin;
+    int lastCoinCount;
 
     private void Awake()
     {
@@ -68,11 +70,12 @@ public class ScoreManager : MonoBehaviour, IHalt
     // Update is called once per frame
     void Update()
     {
-        coinvalue =  (1 + WorkersManager.Instance.WorkersCount);
+        int coinDiff = coinsCount.Value - lastCoinCount;
+        coinScore += coinDiff > 0 ? coinDiff * coinValue : 0;
+        lastCoinCount = coinsCount.Value;
 
-        score.Value = (int)timeScore + coinsCount.Value * (int)(coinvalue);
-        //Debug.Log(score.Value + coinsCount);
-        
+        score.Value = (int)(timeScore + coinScore);
+
         //Display score
         scoreText.text = score.Value.ToString();
         coinNum.text = coinsCount.Value.ToString();
@@ -85,6 +88,11 @@ public class ScoreManager : MonoBehaviour, IHalt
         while (true)
         {
             timeScore += quarterSecValue;
+
+            coinValue = (1 + WorkersManager.Instance.WorkersCount);
+
+            //Debug.Log(score.Value + coinsCount);
+
             yield return new WaitForSeconds(0.25f);
         }
     }

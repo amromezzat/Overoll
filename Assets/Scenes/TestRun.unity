@@ -2255,10 +2255,16 @@ PrefabInstance:
       propertyPath: curveStrength
       value: 0.0001
       objectReference: {fileID: 0}
+    - target: {fileID: 879356133175445380, guid: b3bea2aae378a6e4c967d42794c01c98,
+        type: 3}
+      propertyPath: patternDB
+      value: 
+      objectReference: {fileID: 11400000, guid: f0220e1fbad3f294488c80c9df109268,
+        type: 2}
     - target: {fileID: 983457606214874321, guid: b3bea2aae378a6e4c967d42794c01c98,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 983202467709470173, guid: b3bea2aae378a6e4c967d42794c01c98,
         type: 3}
@@ -2270,12 +2276,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 879356133175445380, guid: b3bea2aae378a6e4c967d42794c01c98,
-        type: 3}
-      propertyPath: patternDB
-      value: 
-      objectReference: {fileID: 11400000, guid: f0220e1fbad3f294488c80c9df109268,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3bea2aae378a6e4c967d42794c01c98, type: 3}
 --- !u!114 &982870945700128413 stripped

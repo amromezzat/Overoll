@@ -61,6 +61,15 @@ public class PowerUpManager : MonoBehaviour, IHalt
         RegisterListeners();
         DisablePowerups();
 
+        shield.BeginAction.RemoveAllListeners();
+        shield.EndAction.RemoveAllListeners();
+        magnet.BeginAction.RemoveAllListeners();
+        magnet.EndAction.RemoveAllListeners();
+        teacup.BeginAction.RemoveAllListeners();
+        teacup.EndAction.RemoveAllListeners();
+        doublecoin.BeginAction.RemoveAllListeners();
+        doublecoin.EndAction.RemoveAllListeners();
+
         shield.BeginAction.AddListener(StartShield);
         shield.EndAction.AddListener(EndShield);
         magnet.BeginAction.AddListener(StartMagnet);
