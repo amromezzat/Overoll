@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     public IntField difficulty;
 
     public LanesDatabase lanes;
-    
+
     public Text gamePausedTxt;
     public GameObject PauseMenu;
     public GameObject SettingMenu;
@@ -79,7 +79,6 @@ public class GameManager : MonoBehaviour
     public Canvas inGameCanvas;
     public Canvas endGameCanvas;
     bool fromMenu = false;
-    bool fromPause = false;
     Image pauseButtonImg;
 
     private void Awake()
@@ -138,7 +137,7 @@ public class GameManager : MonoBehaviour
                 GameResume();
                 break;
         }
-    } 
+    }
 
     public void EnteredSettingBtnfromMainMenu()
     {
@@ -147,26 +146,27 @@ public class GameManager : MonoBehaviour
         SettingMenu.gameObject.SetActive(true);
         mainMenuCanvas.gameObject.SetActive(false);
     }
+
     public void EnteredSettingBtnfromPausedMenu()
     {
-        fromPause = true;
+        fromMenu = false;
         PauseMenu.gameObject.SetActive(false);
         SettingMenu.gameObject.SetActive(true);
     }
     public void ExitSettingMenu()
     {
-        if (fromPause)
-        {
-            PauseMenu.gameObject.SetActive(true);
-            SettingMenu.gameObject.SetActive(false);
-        }
         if (fromMenu)
         {
             SettingMenu.gameObject.SetActive(false);
             mainMenuCanvas.gameObject.SetActive(true);
         }
+        else
+        {
+            PauseMenu.gameObject.SetActive(true);
+            SettingMenu.gameObject.SetActive(false);
+        }
     }
-  
+
     public void GameHalt()
     {
         gameState = GameState.Pause;
@@ -209,8 +209,8 @@ public class GameManager : MonoBehaviour
         mainMenuCanvas.gameObject.SetActive(false);
         endGameCanvas.gameObject.SetActive(true);
 
-        gameState = GameState.GameOver;      
-    } 
+        gameState = GameState.GameOver;
+    }
 
     IEnumerator EndGameMusic(float waitTime)
     {

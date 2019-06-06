@@ -71,6 +71,15 @@ public class WorkersManager : MonoBehaviour
         wc.onLeaderDeath.RemoveAllListeners();
         wc.onMergeOver.RemoveAllListeners();
 
+        workers.Add(leader);
+    }
+
+    private void Start()
+    {
+        wc.onLeaderDeath.AddListener(LeaderDied);
+        wc.onMergeOver.AddListener(MergingDone);
+        wc.onAddWorker.AddListener(OnDoubleTap);
+
         shield.BeginAction.AddListener(workers.StartShieldPowerup);
         shield.EndAction.AddListener(workers.EndShieldPowerup);
         magnet.BeginAction.AddListener(workers.StartMagnetPowerup);
@@ -81,15 +90,6 @@ public class WorkersManager : MonoBehaviour
 
         doublecoin.BeginAction.AddListener(workers.StartDoubleCoin);
         doublecoin.EndAction.AddListener(workers.EndDoubleCoin);
-
-        workers.Add(leader);
-    }
-
-    private void Start()
-    {
-        wc.onLeaderDeath.AddListener(LeaderDied);
-        wc.onMergeOver.AddListener(MergingDone);
-        wc.onAddWorker.AddListener(OnDoubleTap);
     }
 
     void Update()
