@@ -39,8 +39,14 @@ public class StateScriptsWrapper
         this.collideScript = collideScript;
     }
 
+    public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWJumpSlide jumpSlideScript,
+    CollideRefUpdate collideScript) : this(attachedScripts, jumpSlideScript)
+    {
+        this.collideRefScript = collideScript;
+    }
+
     public StateScriptsWrapper(List<IWorkerScript> attachedScripts, IWStrafe strafeScript, IWJumpSlide jumpSlideScript,
-CollideRefUpdate collideScript) : this(attachedScripts, strafeScript, jumpSlideScript)
+    CollideRefUpdate collideScript) : this(attachedScripts, strafeScript, jumpSlideScript)
     {
         this.collideRefScript = collideScript;
     }

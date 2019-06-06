@@ -217,7 +217,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         workerStrafe, jumpSlideFsm, mergerCollide, new List<IWChangeState>() { mergeLeaderSeeker });
 
         workerStateScripts[WorkerState.Worker] = new StateScriptsWrapper(new List<IWorkerScript>() {
-        positionWorker, jumpSlideFsm}, workerStrafe, jumpSlideFsm, colliderRefUpdate);
+        positionWorker, jumpSlideFsm}, jumpSlideFsm, colliderRefUpdate);
 
         workerStateScripts[WorkerState.MasterMerger] = new StateScriptsWrapper(new List<IWorkerScript>()
         {positionMasterMerger, jumpSlideFsm}, jumpSlideFsm, mergerCollide);

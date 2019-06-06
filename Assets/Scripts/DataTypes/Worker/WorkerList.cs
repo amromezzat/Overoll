@@ -214,6 +214,7 @@ public class WorkerList : List<WorkerFSM>
 
     void WorkerStartTeacup(WorkerFSM worker)
     {
+        //DebugWorkerInfo("Start Tea cup", worker);
         worker.TeaOnHisHand.SetActive(true);
         worker.ParticlePowerUp.SetActive(true);
         worker.ParticleSpeed.SetActive(true);
@@ -233,6 +234,7 @@ public class WorkerList : List<WorkerFSM>
     void WorkerEndTeacup(WorkerFSM worker)
     {
         worker.ParticleSpeed.SetActive(false);
+        worker.TeaOnHisHand.SetActive(false);
     }
 
     public void EndTeacupPowerUp()

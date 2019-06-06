@@ -66,6 +66,9 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.gameState != GameState.Gameplay)
+            return;
+
 #if UNITY_EDITOR
         AndroidControls();
         WindowsControls();
@@ -82,7 +85,7 @@ public class InputManager : MonoBehaviour
         {
             windowsAction = false;
         }
-        else if(windowsAction)
+        else if (windowsAction)
         {
             return;
         }
@@ -118,6 +121,10 @@ public class InputManager : MonoBehaviour
         if (doubleTapCount > 0)
         {
             doubleTapTimer -= Time.deltaTime;
+            if (doubleTapTimer < 0)
+            {
+                ResetDoubleTap();
+            }
         }
         if (Input.touchCount > 0) // user is touching the screen
         {
@@ -137,24 +144,27 @@ public class InputManager : MonoBehaviour
                 if (!androidDragging)
                 {   //It's a tap as the drag distance is less than 10% of the screen height
                     doubleTapCount++;
+                    //Debug.Log(doubleTapCount);
                     if (doubleTapCount == 2)
                     {
-                        if (doubleTapTimer > 0)
-                        {
-                            wc.onAddWorker.Invoke();
-                        }
-                        doubleTapCount = 0;
-                        doubleTapTimer = doubleTapTime;
+                        wc.onAddWorker.Invoke();
+                        ResetDoubleTap();
                     }
                 }
                 else
                 {
-                    doubleTapCount = 0;
-                    doubleTapTimer = doubleTapTime;
+                    ResetDoubleTap();
                 }
                 androidDragging = false;
             }
         }
+    }
+
+    void ResetDoubleTap()
+    {
+        doubleTapCount = 0;
+        //Debug.Log(doubleTapCount);
+        doubleTapTimer = doubleTapTime;
     }
 
     void AndroidDetermineTouchType(Touch touch)

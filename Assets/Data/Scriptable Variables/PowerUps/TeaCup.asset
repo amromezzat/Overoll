@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228c828bf38fb0d4393988dde5e73118, type: 3}
   m_Name: TeaCup
   m_EditorClassIdentifier: 
-  InAct: 1
+  InAct: 0
   DefaultTime: 10
-  Time: 5.75
+  Time: 0
   paused: 0
   BeginAction:
     m_PersistentCalls:

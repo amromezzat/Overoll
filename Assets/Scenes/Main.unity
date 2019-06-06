@@ -708,6 +708,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGmae UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1242844755465786, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114805408070781126, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1008,6 +1012,11 @@ PrefabInstance:
       propertyPath: addBtnAnimator
       value: 
       objectReference: {fileID: 101570003}
+    - target: {fileID: 114419713232927628, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7,
+        type: 3}
+      propertyPath: active
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0dcaa71cecc3c74597bc4dfc2cee3c7, type: 3}
 --- !u!114 &1628417635 stripped

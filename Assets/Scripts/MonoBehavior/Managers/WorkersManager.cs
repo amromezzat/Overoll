@@ -82,6 +82,7 @@ public class WorkersManager : MonoBehaviour
 
         shield.BeginAction.AddListener(workers.StartShieldPowerup);
         shield.EndAction.AddListener(workers.EndShieldPowerup);
+
         magnet.BeginAction.AddListener(workers.StartMagnetPowerup);
         magnet.EndAction.AddListener(workers.EndMagnetPowerup);
 
