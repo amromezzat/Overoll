@@ -19,6 +19,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[SelectionBase]
 public class DisableableObstacleCollision : ObstacleCollisionHandler
 {
     protected override void Awake()
