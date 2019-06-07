@@ -54,7 +54,7 @@ public class WorkerReturner : ObjectReturner
     /// <returns>WaitForSeconds</returns>
     public override IEnumerator ReturnToPool(float returnTime)
     {
-        if (rb.velocity.y >= Mathf.Epsilon)
+        if (rb.velocity.y >= -Mathf.Epsilon)
             dying = true;
         yield return new WaitForSeconds(returnTime);
         dying = false;

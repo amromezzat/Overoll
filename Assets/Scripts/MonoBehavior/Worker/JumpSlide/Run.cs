@@ -21,16 +21,13 @@ using UnityEngine;
 
 public class Run : IDoAction
 {
-    public JumpSlideFSM jsFSM;
-
     public void OnStateEnter(Animator animator)
     {
-        jsFSM.Enqueue(this);
     }
 
     public bool OnStateExecution(Transform transform, float deltaTime)
     {
-        return false;
+        return true;
     }
 
     public void OnStateExit(Animator animator)

@@ -21,12 +21,13 @@ using UnityEngine;
 
 public class JumpSlideFSM : IWJumpSlide
 {
-    //external references
+    // External references
     WorkerConfig wc;
     //protected GameData gd;
     BoxCollider mCollider;
     Animator mAnimator;
     Transform transform;
+    WorkerFSM workerController;
 
     GameObject shadow;
 
@@ -34,7 +35,10 @@ public class JumpSlideFSM : IWJumpSlide
     Jump jumpState;
     Run runState;
     InterruptJump interruptJumpState = new InterruptJump();
-    DelayState delayState = new DelayState();
+
+    Vector3 colliderSize;
+    Vector3 colliderPosition;
+    float yPos;
 
     // Dictionary for allowed transitions from a certain state
     Dictionary<IDoAction, List<IDoAction>> actionsDic = new Dictionary<IDoAction, List<IDoAction>>();
@@ -42,7 +46,8 @@ public class JumpSlideFSM : IWJumpSlide
     Queue<IDoAction> actionQueue = new Queue<IDoAction>();
     IDoAction currentState;
 
-    public JumpSlideFSM(WorkerConfig wc, BoxCollider mCollider, Animator mAnimator, Transform transform, GameObject mShadow)
+    public JumpSlideFSM(WorkerConfig wc, BoxCollider mCollider, Animator mAnimator,
+        Transform transform, GameObject mShadow, WorkerFSM workerController)
     {
         this.wc = wc;
         //this.gd = gd;
@@ -50,15 +55,17 @@ public class JumpSlideFSM : IWJumpSlide
         this.mAnimator = mAnimator;
         this.transform = transform;
         this.shadow = mShadow;
+        this.workerController = workerController;
         InitializeFSM();
     }
 
     void InitializeFSM()
     {
-        runState = new Run()
-        {
-            jsFSM = this
-        };
+        colliderPosition = mCollider.center;
+        colliderSize = mCollider.size;
+        yPos = transform.position.y;
+
+        runState = new Run();
 
         slideState = new Slide(mCollider, mAnimator, shadow)
         {
@@ -71,87 +78,78 @@ public class JumpSlideFSM : IWJumpSlide
             jumpHeight = wc.jumpHeight
         };
 
-        //allowed transition states
-        actionsDic[slideState] = new List<IDoAction>() { runState, jumpState, delayState };
-        actionsDic[jumpState] = new List<IDoAction>() { interruptJumpState, runState };
-        actionsDic[runState] = new List<IDoAction>() { runState, jumpState, slideState, delayState, interruptJumpState };
-        actionsDic[interruptJumpState] = new List<IDoAction>() { runState, slideState };
-        actionsDic[delayState] = new List<IDoAction>() { jumpState, slideState, runState };
-    }
-
-    public void Enqueue(IDoAction state)
-    {
-        actionQueue.Enqueue(state);
+        // Allowed transition states
+        actionsDic[slideState] = new List<IDoAction>() { runState, jumpState };
+        actionsDic[jumpState] = new List<IDoAction>() { interruptJumpState };
+        actionsDic[runState] = new List<IDoAction>() { jumpState, slideState, runState };
+        actionsDic[interruptJumpState] = new List<IDoAction>() { slideState, runState };
     }
 
     public virtual void ScriptReset()
     {
+        mCollider.center = colliderPosition;
+        mCollider.size = colliderSize;
+        Vector3 pos = transform.position;
+        pos.y = yPos;
+        transform.position = pos;
+
         actionQueue = new Queue<IDoAction>();
-        actionQueue.Enqueue(runState);
         currentState = runState;
     }
 
-    //change to a new state after concluding the current one
-    void ChangeState(IDoAction nextState)
+    // Change to a new state after concluding the current one
+    bool ChangeState(IDoAction nextState)
     {
         if (actionsDic[currentState].Contains(nextState))
         {
             currentState.OnStateExit(mAnimator);
             nextState.OnStateEnter(mAnimator);
             currentState = nextState;
+            return true;
         }
+        return false;
     }
 
-    void ChangeState(Stack<IDoAction> nextStates)
+    void ChangeState(Queue<IDoAction> nextStates)
     {
-        if (actionsDic[currentState].Contains(nextStates.Peek()))
-        {
-            currentState.OnStateExit(mAnimator);
-            currentState = nextStates.Pop();
-            currentState.OnStateEnter(mAnimator);
-        }
+        bool changeAllowed = ChangeState(nextStates.Dequeue());
 
-        while (nextStates.Count > 0)
-            actionQueue.Enqueue(nextStates.Pop());
+        if (changeAllowed)
+            actionQueue = nextStates;
     }
 
     public virtual void Jump()
     {
-        float delayTime = (WorkersManager.Instance.leader.transform.position.z - transform.position.z) / SpeedManager.Instance.speed.Value;
+        Queue<IDoAction> nextActions = new Queue<IDoAction>();
 
-        Stack<IDoAction> nextActions = new Stack<IDoAction>();
+        nextActions.Enqueue(jumpState);
+        nextActions.Enqueue(interruptJumpState);
+        nextActions.Enqueue(runState);
 
-        nextActions.Push(interruptJumpState);
-        nextActions.Push(jumpState);
-
-        if (delayTime > Mathf.Epsilon)
-        {
-            delayState.Delay = delayTime;
-            nextActions.Push(delayState);
-        }
-
-        ChangeState(nextActions);
+        workerController.StartCoroutine(DelayedAction(() => ChangeState(nextActions)));
     }
 
     public virtual void Slide()
     {
-        // Delay time before reaching leader position
-        float delayTime = (WorkersManager.Instance.leader.transform.position.z - transform.position.z) / SpeedManager.Instance.speed.Value;
-
-        Stack<IDoAction> nextActions = new Stack<IDoAction>();
-
-        nextActions.Push(slideState);
+        Queue<IDoAction> nextActions = new Queue<IDoAction>();
 
         if (currentState == jumpState)
-            nextActions.Push(interruptJumpState);
+            nextActions.Enqueue(interruptJumpState);
 
-        if (delayTime > Mathf.Epsilon)
-        {
-            delayState.Delay = delayTime;
-            nextActions.Push(delayState);
-        }
+        nextActions.Enqueue(slideState);
+        nextActions.Enqueue(runState);
 
-        ChangeState(nextActions);
+        workerController.StartCoroutine(DelayedAction(() => ChangeState(nextActions)));
+    }
+
+    IEnumerator DelayedAction(System.Action action)
+    {
+        // Delay time before reaching leader position
+        float delayTime = WorkersManager.Instance.leader.transform.position.z - transform.position.z;
+        delayTime /= SpeedManager.Instance.speed.Value > Mathf.Epsilon ? SpeedManager.Instance.speed.Value : 1;
+
+        yield return new WaitForSeconds(delayTime);
+        action();
     }
 
     public void FixedUpdate(float fixedDeltaTime)

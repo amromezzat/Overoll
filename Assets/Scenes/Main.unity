@@ -197,10 +197,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1219482693, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.050000012
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2758f69c35207c04b947f7f18e37dfb8, type: 3}
 --- !u!114 &315233241 stripped
@@ -710,7 +706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1242844755465786, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114805408070781126, guid: da96e29fe3a7ade49b8be1c2a094b162,
         type: 3}
@@ -827,6 +823,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 173071367}
+    - target: {fileID: 224570707733037474, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 229
+      objectReference: {fileID: 0}
+    - target: {fileID: 224570707733037474, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 291.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 224570707733037474, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 298.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224570707733037474, guid: da96e29fe3a7ade49b8be1c2a094b162,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da96e29fe3a7ade49b8be1c2a094b162, type: 3}
 --- !u!223 &1334711766 stripped
@@ -1167,6 +1183,10 @@ PrefabInstance:
     - target: {fileID: 1487952047271920, guid: 9c3f44c4644abb54d91a8afb45b61c80, type: 3}
       propertyPath: m_Name
       value: Main Menu Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487952047271920, guid: 9c3f44c4644abb54d91a8afb45b61c80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114992128383809234, guid: 9c3f44c4644abb54d91a8afb45b61c80,
         type: 3}

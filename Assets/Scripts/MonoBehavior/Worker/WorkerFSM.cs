@@ -178,7 +178,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
     void SetStatesScripts()
     {
         workerStrafe = new WorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
-        jumpSlideFsm = new JumpSlideFSM(wc, mCollider, mAnimator, transform, shadow);
+        jumpSlideFsm = new JumpSlideFSM(wc, mCollider, mAnimator, transform, shadow, this);
 
         workerWithoutVestCollide = new WorkerWithoutVestCollide(mAnimator, rb, this, mMeshChange);
         workerWithVestCollide = new WorkerWithVestCollide(mAnimator, rb);
@@ -195,7 +195,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
 
         //for tutorial
         tutWorkerStrafe = new TutWorkerStrafe(lanes, mAnimator, transform, wc.strafeDuration);
-        tutJumpSlide = new TutJumpSlide(wc, mCollider, mAnimator, transform, shadow);
+        tutJumpSlide = new TutJumpSlide(wc, mCollider, mAnimator, transform, shadow, this);
 
         scriptsToResetState = new IWorkerScript[] {
             workerStrafe, jumpSlideFsm, workerWithoutVestCollide, workerWithVestCollide,
@@ -260,7 +260,7 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         {
             TransitionBundle transition = workerStateTransition.ChangeState(trigger, currentState);
             currentState = transition.Destination;
-            Output(transition.Output);
+            Output(transition.Output, other);
         }
     }
 
@@ -271,19 +271,28 @@ public class WorkerFSM : MonoBehaviour, IHalt, ICollidable
         Output(transition.Output);
     }
 
-    void Output(WorkerFSMOutput outputKey)
+    void WorkerDied(Collider collider)
+    {
+        WorkersManager.Instance.RemoveWorker(this);
+        StartCoroutine(workerReturner.ReturnToPool(2));
+
+        Vector3 throwDirection = transform.position - collider.transform.position;
+        throwDirection.y = 0;
+        throwDirection = throwDirection.normalized * 0.25f;
+        rb.AddForce(throwDirection, ForceMode.Impulse);
+    }
+
+    void Output(WorkerFSMOutput outputKey, Collider collider = null)
     {
         switch (outputKey)
         {
             case WorkerFSMOutput.LeaderDied:
-                WorkersManager.Instance.RemoveWorker(this);
+                WorkerDied(collider);
                 wc.onLeaderDeath.Invoke();
-                StartCoroutine(workerReturner.ReturnToPool(2));
                 AudioManager.Instance.PlaySound("WorkerDeath");
                 break;
             case WorkerFSMOutput.WorkerDied:
-                WorkersManager.Instance.RemoveWorker(this);
-                StartCoroutine(workerReturner.ReturnToPool(2));
+                WorkerDied(collider);
                 AudioManager.Instance.PlaySound("WorkerDeath");
                 break;
             case WorkerFSMOutput.LeaderElected:

@@ -33,7 +33,7 @@ public class WorkerConfig : ScriptableObject
     [HideInInspector]
     public UnityEvent onSlide;
     [HideInInspector]
-    public UnityEvent onAddWorker;//on double tap
+    public UnityEvent onAddWorker;// On double tap
     [HideInInspector]
     public UnityEvent onLeaderDeath;
     [HideInInspector]
@@ -43,7 +43,7 @@ public class WorkerConfig : ScriptableObject
     public float jumpDuration = 1;
     public float slideDuration = 1;
     public float jumpHeight = 2;
-    public float groundLevel = 0.25f;//worker y position
+    public float groundLevel = 0.25f;// Worker y position
 
     [Header("Moving Attributes")]
     public float strafeDuration = 0.1f;

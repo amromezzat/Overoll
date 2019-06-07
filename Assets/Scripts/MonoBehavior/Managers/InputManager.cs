@@ -19,7 +19,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager : MonoBehaviour, IHalt
 {
     static InputManager instance;
     public static InputManager Instance
@@ -47,12 +47,16 @@ public class InputManager : MonoBehaviour
 
     const float doubleTapTime = 1.5f;
 
+    bool halted = true;
+
     private void Awake()
     {
         wc.onLeft.RemoveAllListeners();
         wc.onRight.RemoveAllListeners();
         wc.onJump.RemoveAllListeners();
         wc.onSlide.RemoveAllListeners();
+
+        RegisterListeners();
     }
 
     void Start()
@@ -66,7 +70,7 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.gameState != GameState.Gameplay)
+        if (halted)
             return;
 
 #if UNITY_EDITOR
@@ -205,5 +209,39 @@ public class InputManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Begin()
+    {
+        StartCoroutine(ExecuteAfterDelay(() => halted = false));
+    }
+
+    public void Halt()
+    {
+        halted = true;
+    }
+
+    public void Resume()
+    {
+        StartCoroutine(ExecuteAfterDelay(() => halted = false));
+    }
+
+    IEnumerator ExecuteAfterDelay(System.Action action)
+    {
+        yield return new WaitForEndOfFrame();
+        action();
+    }
+
+    public void End()
+    {
+        halted = true;
+    }
+
+    public void RegisterListeners()
+    {
+        GameManager.Instance.OnStart.AddListener(Begin);
+        GameManager.Instance.onPause.AddListener(Halt);
+        GameManager.Instance.OnResume.AddListener(Resume);
+        GameManager.Instance.onEnd.AddListener(End);
     }
 }
