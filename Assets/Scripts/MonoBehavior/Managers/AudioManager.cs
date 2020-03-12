@@ -85,10 +85,18 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        soundOn = true;
-        soundButton.image.sprite = soundOnSprite;
-        musicOn = true;
-        musicButton.image.sprite = musicOnSprite;
+        soundOn = PlayerPrefs.GetInt("soundOn", 1) == 0 ? false : true;
+        if (soundOn)
+            soundButton.image.sprite = soundOnSprite;
+        else
+            soundButton.image.sprite = soundOffSprite;
+
+        musicOn = PlayerPrefs.GetInt("musicOn", 1) == 0 ? false : true;
+        if (musicOn)
+            musicButton.image.sprite = musicOnSprite;
+        else
+            musicButton.image.sprite = musicOffSprite;
+
 
         //-------------------------------------------------
         foreach (Sound m in musics)
@@ -134,6 +142,8 @@ public class AudioManager : MonoBehaviour
             musicOn = true;
             UnpauseCurrentMusic();
         }
+
+        PlayerPrefs.SetInt("musicOn", musicOn ? 1 : 0);
     }
     public void OnSoundClick()
     {
@@ -151,6 +161,8 @@ public class AudioManager : MonoBehaviour
 
             soundOn = true;
         }
+
+        PlayerPrefs.SetInt("soundOn", soundOn ? 1 : 0);
     }
 
     public void PlaySound(string name)
@@ -201,6 +213,6 @@ public class AudioManager : MonoBehaviour
     public void UnpauseCurrentMusic()
     {
         if (currentMusic != "")
-            musicDictionary[currentMusic].source.UnPause();
+            musicDictionary[currentMusic].source.Play();
     }
 }
