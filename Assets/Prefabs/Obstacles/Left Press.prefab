@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf658fc6e1c20443bebe67038cfc2fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relActivPos: 40
+  relActivPos: 25
 --- !u!1001 &6292958502779446746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117,11 +117,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7638500566688356536}
     m_Modifications:
-    - target: {fileID: 8040984134830049410, guid: 5ce1781c764852d4d8ca4780897ae7df,
+    - target: {fileID: 732355885045921813, guid: 5ce1781c764852d4d8ca4780897ae7df,
         type: 3}
-      propertyPath: m_Name
-      value: Press
+      propertyPath: obsHealth
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3384623158421787648, guid: 5ce1781c764852d4d8ca4780897ae7df,
+        type: 3}
+      propertyPath: obsHealth
+      value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3974027634890400985, guid: 5ce1781c764852d4d8ca4780897ae7df,
+        type: 3}
+      propertyPath: obsHealth
+      value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3974027634890400985, guid: 5ce1781c764852d4d8ca4780897ae7df,
+        type: 3}
+      propertyPath: objReturner
+      value: 
+      objectReference: {fileID: 4709573279927515654}
     - target: {fileID: 4893017284954683778, guid: 5ce1781c764852d4d8ca4780897ae7df,
         type: 3}
       propertyPath: obsHealth
@@ -131,6 +146,11 @@ PrefabInstance:
         type: 3}
       propertyPath: obsHealth
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040984134830049410, guid: 5ce1781c764852d4d8ca4780897ae7df,
+        type: 3}
+      propertyPath: m_Name
+      value: Press
       objectReference: {fileID: 0}
     - target: {fileID: 8040984134830478498, guid: 5ce1781c764852d4d8ca4780897ae7df,
         type: 3}
@@ -202,11 +222,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.85
       objectReference: {fileID: 0}
-    - target: {fileID: 732355885045921813, guid: 5ce1781c764852d4d8ca4780897ae7df,
-        type: 3}
-      propertyPath: obsHealth
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8992221938292654890, guid: 5ce1781c764852d4d8ca4780897ae7df,
         type: 3}
       propertyPath: obsHealth
@@ -217,21 +232,6 @@ PrefabInstance:
       propertyPath: objReturner
       value: 
       objectReference: {fileID: 4709573279927515654}
-    - target: {fileID: 3974027634890400985, guid: 5ce1781c764852d4d8ca4780897ae7df,
-        type: 3}
-      propertyPath: obsHealth
-      value: 1000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974027634890400985, guid: 5ce1781c764852d4d8ca4780897ae7df,
-        type: 3}
-      propertyPath: objReturner
-      value: 
-      objectReference: {fileID: 4709573279927515654}
-    - target: {fileID: 3384623158421787648, guid: 5ce1781c764852d4d8ca4780897ae7df,
-        type: 3}
-      propertyPath: obsHealth
-      value: 1000000
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8992221938292654890, guid: 5ce1781c764852d4d8ca4780897ae7df, type: 3}
     - {fileID: 3384623158421787648, guid: 5ce1781c764852d4d8ca4780897ae7df, type: 3}

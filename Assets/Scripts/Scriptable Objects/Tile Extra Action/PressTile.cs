@@ -32,6 +32,7 @@ public class PressTile : TileExtraAction
 {
     static float lastCallTime;
     static Press lastPress;
+    static bool inPress;
 
     protected override void Awake()
     {
@@ -47,12 +48,21 @@ public class PressTile : TileExtraAction
     {
         yield return base.TakeActionCoroutine();
 
+        yield return new WaitWhile(() => inPress);
+        inPress = true;
+
         Press press = SetPress();
         // Set press value based on the order of the call
         if (Time.realtimeSinceStartup - lastCallTime > 3)
+        {
             lastPress = press = ExtensionMethods.RandomEnumValue<Press>();
+            Debug.LogWarning("1: " + lastPress);
+        }
         else
+        {
             press = SetPress();
+            Debug.LogWarning("2: " + press);
+        }
 
         lastCallTime = Time.realtimeSinceStartup;
 
@@ -60,6 +70,7 @@ public class PressTile : TileExtraAction
         tileMover.Anim.SetTrigger(press.ToString() + "Press");
 
         actionInitiated = true;
+        inPress = false;
     }
 
     Press SetPress()
